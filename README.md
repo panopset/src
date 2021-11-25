@@ -1,4 +1,4 @@
-
+[![Panopset](html/images/panopset.png)](https://panopset.com)
 
 Source code for Panopset desktop applications, 
 and the [panopset.com](https://panopset.com) website itself.

@@ -1,4 +1,4 @@
-[home](../../../README.md)
+[![Panopset](../../../html/images/panopset.png)](https://panopset.com) ~ [home](../../../README.md)
 
 # Local Workstation Setup
 

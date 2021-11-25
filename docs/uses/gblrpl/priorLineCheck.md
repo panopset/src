@@ -1,4 +1,4 @@
-[![Panopset](../../../static/images/panopset.png)](https://panopset.com) ~ [home](../../../README.md) ~ [version history](../../../docs/vh.md)
+[![Panopset](../../../html/images/panopset.png)](https://panopset.com) ~ [home](../../../README.md) ~ [version history](../../../docs/vh.md)
 
 
 # Global Replace Prior Line Check

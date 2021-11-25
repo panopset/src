@@ -1,13 +1,18 @@
 [home](../../README.md)
 
 
-... create the nginx server block and secure it with letsencrypt.
+Create the nginx server block and secure it with letsencrypt.
 
 Just need to do one if hosting both on a [single](./single/README.md) server:
 
 
+From your workstation:
+
+
+
     ./secprep.sh $PSS $PSD
     ./secprep.sh $PDS $PDD
+
 
 
 From the server, run the new dolink.sh script in the home directory.
@@ -25,7 +30,7 @@ From the server, run the new dolink.sh script in the home directory.
     sudo nginx -t
     
     
-... verify nginx.conf test is successful, then:
+... verify nginx.conf test is successful, then, make sure $PSD and/or $PDD is pointing to the right IP, then:
 
 
 
