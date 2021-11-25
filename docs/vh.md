@@ -1,4 +1,4 @@
-[![Panopset](../static/images/panopset.png)](https://panopset.com) ~ [home](../README.md) ~ version history
+[![Panopset](../html/images/panopset.png)](https://panopset.com) ~ [home](../README.md) ~ version history
 
 Some versions, with insignificant functional changes, are not listed here.
 
