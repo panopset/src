@@ -254,13 +254,7 @@ div.content {
  color: var(--panfgtxt);
  font-family: sans-serif;
 }
-#pagetitle {
- background-color: var(--bgd);
- color: var(--panpage);
- min-width: 6em;
- text-align:center;
- font-variant: small-caps;
-}
+
 table.w1000 {
  width: 1000px;
 }
