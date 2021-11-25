@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.canvas.Canvas?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.panopset.marin.games.wallgate.WallgateController">
+
+    <top>
+        <fx:include fx:id="panMenuBar" source="../../fx/PanMenuFX.fxml"  />
+    </top>
+    <center>
+        <HBox>
+            <Canvas fx:id="yard"/>
+        </HBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="panopset" default="site">
+ 
+ <target name="site" depends="init, clean, copy_jar, copy_installer, checksums">
+ </target>
+ 
+ <target name="copy_jar" depends="init">
+  <echo message="copying panopset.jar to home." />
+  <copy tofile="${JAR_CP}">
+   <fileset file="shoring/panopset/target/panopset-jar-with-dependencies.jar">
+   </fileset>
+  </copy>
+  <echo message="copying panopset.jar to downloads." />
+  <copy tofile="${HTTP_HOME}/downloads/${PLATFORM}/panopset.jar">
+   <fileset file="${JAR_CP}">
+   </fileset>
+  </copy>
+ </target>
+
+ <target name="copy_installer" depends="init">
+  <echo message="copying target/${INSTALLER} to ${HTTP_HOME}/installers" />
+  <copy todir="${HTTP_HOME}/installers">
+   <fileset dir="target">
+   </fileset>
+  </copy>
+ </target>
+
+ <target name="checksums" depends="init">
+  <echo message="JAR_CP: ${JAR_CP}" />
+  <mkdir dir="${HTTP_HOME}/gen/json" />
+
+  <java dir="." classpath="${JAR_CP}" fork="true" classname="com.panopset.flywheel.Flywheel">
+   <arg value="./arch/rest_version.txt" />
+   <arg value="${HTTP_HOME}" />
+  </java>
+
+  <echo message="Creating ${INSTALLER} checksum info file pci_${INSTALLER}.json" />
+  <java dir="." classpath="${JAR_CP}" fork="true" classname="com.panopset.marin.bootstrap.CreatePanopsetInfoFile">
+
+<!--
+   <jvmarg value="-Xdebug" />
+   <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8888" />
+-->
+   <arg value="${INSTALLER}" />
+   <arg value="${HTTP_HOME}/installers/${INSTALLER}" />
+   <arg value="${HTTP_HOME}/gen/json/pci_${INSTALLER}.json" />
+  </java>
+
+  <echo message="Creating panopset.jar checksum info file pci_${PLATFORM}.json" />
+  <java dir="." classpath="${JAR_CP}" fork="true" classname="com.panopset.marin.bootstrap.CreatePanopsetInfoFile">
+   <arg value="panopset.jar" />
+   <arg value="${JAR_CP}" />
+   <arg value="${HTTP_HOME}/gen/json/pci_${PLATFORM}.json" />
+  </java>
+ </target>
+
+ <target name="clean" depends="init">
+  <delete dir="${HTTP_HOME}" />
+  <mkdir dir="${HTTP_HOME}/installers" />
+ </target>
+
+ <target name="init" depends="checksw_path, read_properties">
+  <property name="INSTALLER" value="${INSTALLER_PFX}${PV}${INSTALLER_SFX}" />
+  <echo message="INSTALLER: ${INSTALLER}" />
+  <property name="HTTP_HOME" value="temp${file.separator}www80${file.separator}html" />
+  <echo message="HTTP_HOME: ${HTTP_HOME}" />
+  <property name="BASEDIR" value="." />
+  <property name="PAN_CP" value="./shoring/compat/target/compat.jar;./shoring/fxapp/target/fxapp.jar;./shoring/flywheel/target/flywheel.jar;./shoring/desk/target/desk.jar;${UHOME}/.m2/repository/com/google/code/gson/gson/2.8.7/gson-2.8.7.jar" />
+  <property name="JAR_CP" value="${UHOME}${file.separator}panopset.jar" />
+ </target>
+
+ <target name="checksw_path" depends="if_windows10, if_mac, if_unix" />
+
+ <target name="if_windows10" depends="checkos" if="isWindows10">
+  <property name="MAVEN_CMD" value="mvn.cmd" />
+  <property name="UHOME" value="${env.USERPROFILE}" />
+  <property name="HTTP_LOCAL_HOME" value="${UHOME}/apps/nginx/html" />
+  <property name="SHSFX" value="cmd" />
+  <property name="PLATFORM" value="win" />
+ </target>
+
+ <target name="if_unix" depends="checkos" if="isLinux">
+  <property name="MAVEN_CMD" value="mvn" />
+  <property name="UHOME" value="${env.HOME}" />
+  <property name="HTTP_LOCAL_HOME" value="/var/www/html" />
+  <property name="SHSFX" value="sh" />
+  <property name="PLATFORM" value="linux" />
+ </target>
+
+ <target name="if_mac" depends="checkos" if="isMac">
+  <property name="MAVEN_CMD" value="mvn" />
+  <property name="UHOME" value="${env.HOME}" />
+  <property name="HTTP_LOCAL_HOME" value="/var/www/html" />
+  <property name="SHSFX" value="sh" />
+  <property name="PLATFORM" value="mac" />
+ </target>
+
+ <target name="checkos">
+  <property environment="env" />
+  <condition property="isWindows10">
+   <os name="Windows 10" />
+  </condition>
+
+  <condition property="isLinux">
+   <and>
+    <os family="unix" />
+    <not>
+     <os family="mac" />
+    </not>
+   </and>
+  </condition>
+
+  <condition property="isMac">
+   <os family="mac" />
+  </condition>
+ </target>
+
+ <target name="deploy_local_www80" depends="init">
+  <copy todir="${HTTP_LOCAL_HOME}">
+   <fileset dir="${HTTP_HOME}" />
+  </copy>
+ </target>
+
+ <target name="read_properties">
+  <property file="deploy.properties" />
+  <property file="deploy_${PLATFORM}.properties" />
+  <property file="${UHOME}/.com.panopset.deploy.properties" />
+ </target>
+</project>

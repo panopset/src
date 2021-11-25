@@ -1,0 +1,14 @@
+${@f web.service}[Unit]
+Description=web
+
+[Service]
+User=${PAN_USR}
+Type=simple
+ExecStart=/usr/bin/java -jar /home/${PAN_USR}/web.jar --spring.profiles.active=prod
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+
+
+${@f installservice.sh}sudo mv web.service /etc/systemd/system/

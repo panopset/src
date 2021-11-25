@@ -1,0 +1,21 @@
+${@f dolink.sh}sudo mv ${PAN_DOMAIN} /etc/nginx/sites-available/
+sudo mkdir -p /var/www/${PAN_DOMAIN}/html
+sudo chown -R $USER:$USER /var/www/${PAN_DOMAIN}/html
+sudo chmod -R 755 /var/www/${PAN_DOMAIN}
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/${PAN_DOMAIN} .
+
+${@f PAN_DOMAIN}server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/${PAN_DOMAIN}/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name ${PAN_DOMAIN} www.${PAN_DOMAIN};
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+${@f docert.sh}sudo certbot --nginx -d ${PAN_DOMAIN} -d www.${PAN_DOMAIN}

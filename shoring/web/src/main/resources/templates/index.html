@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: headFragment">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Panopset</title>
+ <link rel="shortcut icon" href="../../../../../../html/images/favicon-32.png" />
+ <link rel="stylesheet" href="../../../../../../html/css/a.css" type="text/css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="../../../../../../html/js/a.js"></script>
+</head><body class="borderline" onload="initPage()">
+
+<div class="mainfc">
+<div th:replace="fragments/nav :: menuBarFragment">
+<p>
+fragments/nav :: menuBarFragment
+</p>
+</div>
+
+<div class="content2">
+<div class="inset">
+
+<h1>
+Applications
+</h1>
+
+<table>
+
+<tr>
+<th>Utilities</th><th>Web</th>
+<th><a href="/download">Desk</a></th><th>&nbsp;</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td><a href="/flywheel">Flywheel</a></td>
+<td>&bull;</td>
+<td>&bull;</td>
+<td>&nbsp;</td>
+<td>Freeform template processing engine.</td>
+</tr>
+
+<tr>
+<td><a href="/lowerclass">Lowerclass</a></td>
+<td>&nbsp;</td>
+<td>&bull;</td>
+<td>&nbsp;</td>
+<td>Determine minimum Java Version for a class, jar, or repository.</td>
+</tr>
+
+<tr>
+<th>Security</th><th>Web</th><th><a href="/download">Desk</a></th><th>&nbsp;</th><th>&nbsp;</th>
+</tr>
+
+<tr>
+<td><a href="/scrambler">Scrambler</a></td>
+<td>&bull;</td>
+<td>&bull;</td>
+<td>&nbsp;</td>
+<td>Password or pass phrase based text scrambler.</td>
+</tr>
+
+<tr>
+<td><a href="/checksum">Checksum</a></td>
+<td>&nbsp;</td>
+<td>&bull;</td>
+<td>&nbsp;</td>
+<td>File checksum verification.</td>
+</tr>
+
+<tr>
+<th>Games</th><th>&nbsp;</th><th><a href="/download">Desk</a></th><th><a href="https://play.google.com/store/apps/details?id=com.panopset.droid.games.blackjack">Droid</a></th><th>&nbsp;</th>
+</tr>
+
+<tr>
+<td><a href="/blackjack">Blackjack</a></td>
+<td>&nbsp;</td>
+<td>&bull;</td>
+<td>&bull;</td>
+<td>Blackjack simulation, with fast deal option.  Droid version featured on 
+<a href="https://gameskeys.net/hidden-gems-top-card-games-to-play/">
+gameskeys.net</a>.</td>
+</tr>
+
+</table>
+
+<hr/>
+
+<h2>Featured feature</h2>
+<ul><li>
+<a href="https://github.com/panopset/src/blob/main/docs/uses/gblrpl/priorLineCheck.md">Global Replace Prior Line Check</a>.
+</li></ul>
+
+</div>
+</div>
+
+</div>
+
+<div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
+
+</body></html>
+

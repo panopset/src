@@ -1,0 +1,8 @@
+# https://stackoverflow.com/questions/2150882
+${@f crtusr.sh}adduser --gecos "" --disabled-password ${PAN_USR}
+chpasswd <<<"${PAN_USR}:${PAN_PWD}"
+usermod -aG sudo ${PAN_USR}
+rsync --archive --chown=${PAN_USR}:${PAN_USR} ~/.ssh /home/${PAN_USR}
+chown -R ${PAN_USR}:${PAN_USR} /home/karl
+chown -R ${PAN_USR}:${PAN_USR} /var/www
+ls /home/${PAN_USR}/.ssh

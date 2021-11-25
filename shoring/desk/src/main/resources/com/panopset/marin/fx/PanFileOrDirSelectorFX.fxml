@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns="http://javafx.com/javafx/8"
+ xmlns:fx="http://javafx.com/fxml/1"
+
+ fx:controller="com.panopset.fxapp.PanFileOrDirSelectorFX">
+ <Button fx:id="fod_selectdirbtn" mnemonicParsing="false"
+  text="Directory">
+  <tooltip>
+   <Tooltip text="Select directory." />
+  </tooltip>
+
+ </Button>
+ <Button fx:id="fod_selectfilbtn" mnemonicParsing="false"
+  text="File">
+  <tooltip>
+   <Tooltip text="Select file." />
+  </tooltip>
+ </Button>
+ <TextField fx:id="fod_inpfile" HBox.hgrow="ALWAYS" />
+</HBox>

@@ -1,0 +1,1 @@
+${@f gen/json/version.json}"${@e getVersion()}"

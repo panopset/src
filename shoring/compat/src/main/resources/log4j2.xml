@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+ <Loggers>
+  <Root level="INFO">
+   <AppenderRef ref="file" />
+  </Root>
+ </Loggers>
+
+ <Appenders>
+
+  <!-- Panopset JavaFX applications intentionally do not roll logs, and clear 
+   them out with each run, so as to never fill a users disk with old logs. -->
+  <File name="file" fileName="logs/panopset.log"
+   immediateFlush="false" append="false">
+   <PatternLayout
+    pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} – %msg%n" />
+  </File>
+
+ </Appenders>
+</Configuration>

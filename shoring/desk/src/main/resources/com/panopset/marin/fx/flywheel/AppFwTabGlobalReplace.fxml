@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.panopset.marin.apps.gr.GrScene">
+  <center>
+  <VBox fx:id="mainbox">
+    <fx:include fx:id="grdirselect" source="../PanDirSelectorFX.fxml" />
+    <TextField fx:id="fxidRegex" promptText="Regex selection (ignored if extensions selection is specified)" />
+    <TextField fx:id="fxidFromText" promptText="from" />
+    <TextField fx:id="fxidToText" promptText="to" />
+    <HBox>
+      <Button mnemonicParsing="false" onAction="#handleReplaceAllAction" text="Replace all" />
+      <TextField fx:id="fxidExtensions" promptText="Extensions selection (for example: txt,java)" HBox.hgrow="ALWAYS" />
+    </HBox>
+    <HBox>
+     <TitledPane animated="false" collapsible="false" text="Return Characters">
+       <HBox>
+        <fx:define>
+         <ToggleGroup fx:id="fxCrlfOptionsToggleGroup" />
+        </fx:define>
+         <RadioButton fx:id="fxidReturnCharactorsDoNothing" text="Do nothing   " toggleGroup="$fxCrlfOptionsToggleGroup" />
+         <RadioButton fx:id="fxidWindowsToUnix" text="Windows2UNIX   " toggleGroup="$fxCrlfOptionsToggleGroup" />
+         <RadioButton fx:id="fxidUnixToWindows" text="UNIX2Windows   " toggleGroup="$fxCrlfOptionsToggleGroup" />
+       </HBox>
+     </TitledPane>
+     <TitledPane animated="false" collapsible="false" text="Options">
+        <HBox>
+        <CheckBox fx:id="fxidRecursive" selected="true" text="Recursive" />
+        </HBox>
+     </TitledPane>
+    </HBox>
+    <HBox>
+        <Label text="Prior line must contain: " />
+        <TextField fx:id="fxidPriorLineMustContain" promptText="Text that the prior line must contain, if replacment is to be done." HBox.hgrow="ALWAYS" />
+    </HBox>
+  </VBox>
+  </center>
+</BorderPane>

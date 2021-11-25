@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="400.0" prefWidth="653.0"
+ xmlns="http://javafx.com/javafx/11.0.1"
+ xmlns:fx="http://javafx.com/fxml/1"
+ fx:controller="com.panopset.marin.apps.fw.FwScene">
+ <top>
+  <VBox>
+   <HBox>
+    <Label text="Template:" />
+    <fx:include fx:id="fwFileselect"
+     source="../PanFileSelectorFX.fxml"
+     HBox.hgrow="ALWAYS" />
+    <Button fx:id="fwStep" text="Step">
+     <tooltip>
+      <Tooltip
+       text="Debug Flywheel using selected file as top template." />
+     </tooltip>
+    </Button>
+    <Button fx:id="fwRun" text="Run">
+     <tooltip>
+      <Tooltip
+       text="Run Flywheel using selected file as top template." />
+     </tooltip>
+    </Button>
+   </HBox>
+   <HBox>
+    <Label text="Output:" />
+    <fx:include fx:id="fwDirselect"
+     source="../PanDirSelectorFX.fxml"
+     HBox.hgrow="ALWAYS" />
+   </HBox>
+   <HBox fx:id="fwPrompters">
+   </HBox>
+  </VBox>
+ </top>
+ <center>
+  <SplitPane dividerPositions="0.25">
+   <ScrollPane fitToHeight="true" fitToWidth="true">
+    <TextArea fx:id="fwInput" promptText="Input list">
+     <font>
+      <Font name="Monospaced Regular" size="13.0" />
+     </font>
+    </TextArea>
+   </ScrollPane>
+   <SplitPane dividerPositions="0.5">
+    <ScrollPane fitToHeight="true" fitToWidth="true">
+     <TextArea fx:id="fwTemplate"/>
+    </ScrollPane>
+    <ScrollPane fitToHeight="true" fitToWidth="true">
+     <TextArea fx:id="fwOutput" editable="false"
+      promptText="Output" />
+    </ScrollPane>
+   </SplitPane>
+  </SplitPane>
+ </center>
+ <bottom>
+  <VBox>
+   <HBox>
+    <VBox>
+     <CheckBox fx:id="fwLineBreaks" text="Line breaks" />
+     <CheckBox fx:id="fwListBreaks" text="List breaks" />
+    </VBox>
+    <TextField fx:id="fwTokens" promptText="Tokens" />
+    <TextField fx:id="fwSplitz"
+     promptText="Comma separated input line split widths"
+     HBox.hgrow="ALWAYS" />
+   </HBox>
+   <HBox>
+    <Button fx:id="fwClear" text="Clear">
+     <tooltip><Tooltip text="Clear list, template, and output." /></tooltip>
+    </Button>
+    <Button fx:id="fwClearAll" text="Clear all">
+     <tooltip><Tooltip text="Clear everything." /></tooltip>
+    </Button>
+    <Label text="   Samples: " />
+    <ComboBox fx:id="cbSamples"></ComboBox>
+    <Label text="   Append function: " />
+    <ComboBox fx:id="cbFunctions"></ComboBox>
+   </HBox>
+  </VBox>
+ </bottom>
+</BorderPane>

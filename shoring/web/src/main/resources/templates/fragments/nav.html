@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+ <link rel="stylesheet" href="../../../../../../../html/css/a.css" type="text/css">
+ <title>nav</title>
+</head>
+
+<div style="height: 32px" th:fragment="menuBarFragment">
+
+<nav class="menubar">
+  <ul>
+    <li class="pad0 index"><a href="./home"><img id="panopset32" th:src="${static_host} + 'images/panopset.png'" src="../../../../../../../html/images/panopset.png" alt="PANOPSET"/></a></li>
+    <li><div class="msep">&nbsp;</div></li>
+    <li id="pagetitle">home</li>
+    <li><div class="msep">&nbsp;</div></li>
+    <li class="padl linkdown"><a href="#">web <span>&#8227;</span></a>
+     <ul>    
+      <li><a href="./flywheel">flywheel</a></li>
+      <li><a href="./scrambler">scrambler</a></li>
+     </ul>
+    </li>
+    <li><div class="msep">&nbsp;</div></li>
+    <li class="padl linkdown"><a href="#">app <span>&#8227;</span></a>
+     <ul>    
+      <li><a href="./checksum">checksum</a></li>
+      <li><a href="./lowerclass">lowerclass</a></li>
+      <li><a href="./blackjack">blackjack</a></li>
+     </ul>
+    </li>
+    <li><div class="msep">&nbsp;</div></li>
+    <li class="padl linkdown"><a href="#">about <span>&#8227;</span></a>
+     <ul>    
+      <li><a href="./desk">desktop applications</a></li>
+      <li><a href="./build">building your own</a></li>
+      <li><a href="./about">panopset</a></li>
+      <li><a href="./news">news</a></li>
+     </ul>
+    </li>
+    <li><div class="msep">&nbsp;</div></li>
+    <li class="padl"><a class="dsheight100" href="./download">download</a></li>
+<!--
+    <li class="padl design"><a class="design" href="./design">design</a></li>
+    <li><div class="msep">&nbsp;</div></li>
+    <li class="padl linkdown"><a href="#">Links <span>&#8227;</span></a>
+      <ul>
+        <li><a href="#">HTML &#8227;</a>
+          <ul>
+            <li><a href="https://validator.w3.org/">HTML validator</a></li>
+            <li><a href="https://search.google.com/test/mobile-friendly">Google's mobile friendly test</a></li>
+          </ul>
+        <li><a href="#">CSS &#8227;</a>
+          <ul>
+            <li><a href="https://css-tricks.com/solved-with-css-dropdown-menus/">css-tricks.com solved-with-css-dropdown-menus</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+-->
+    <li><div class="msep">&nbsp;</div></li>
+    <li class="padl"><button id="ptoggle" onclick="toggleScreens()">printer</button></li>
+  </ul>
+  <span id="clock"></span>
+  <script>
+   /* Inspired by https://www.w3schools.com/js/tryit.asp?filename=tryjs_timing_clock */
+   function startTime() {
+    const today = new Date();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let h = today.getHours();
+    ampm = 'AM';
+    if (h > 12) {
+     h = h - 12;
+     ampm = 'PM';
+    }
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+//  document.getElementById('clock').innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + h + ":" + m + ":" + s + "  " + ampm +  "  " + today.toLocaleDateString("en-US", options);
+    document.getElementById('clock').innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;" + h + ":" + m + ":" + s + "  " + ampm ;
+    setTimeout(startTime, 1000);
+   }
+
+   function checkTime(i) {
+    if (i < 10) {i = "0" + i};
+    return i;
+   }
+
+   startTime();
+  </script>
+</nav>
+
+</div></html>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="panMenuBar" xmlns="http://javafx.com/javafx/8.0.172-ea"
+
+      xmlns:fx="http://javafx.com/fxml/1"
+
+
+      fx:controller="com.panopset.fxapp.PanMenuFX">
+
+  <MenuBar fx:id="menubar">
+    <Menu fx:id="fileMenu" text="_File">
+      <MenuItem onAction="#handleNewAction" text="_New" />
+      <MenuItem onAction="#handleOpenAction" text="_Open" />
+      <MenuItem onAction="#handleSaveAction" text="_Save" />
+      <MenuItem onAction="#handleSaveAsAction" text="Save as" mnemonicParsing="false"/>
+      <MenuItem onAction="#handleCloseAction" text="_Close" />
+      <MenuItem onAction="#handleQuitAction" text="_Quit" />
+    </Menu>
+    <Menu fx:id="fontMenu" mnemonicParsing="false" text="Font">
+      <CheckMenuItem fx:id="fmSmall" mnemonicParsing="false" onAction="#handleFmSmallAction" text="small" />
+      <CheckMenuItem fx:id="fmMedium" mnemonicParsing="false" onAction="#handleFmMediumAction" text="medium" />
+      <CheckMenuItem fx:id="fmLarge" mnemonicParsing="false" onAction="#handleFmLargeAction" text="large" />
+      <CheckMenuItem fx:id="fmSuper" mnemonicParsing="false" onAction="#handleFmSuperAction" text="super" />
+      <CheckMenuItem fx:id="fmCinema" mnemonicParsing="false" onAction="#handleFmCinemaAction" text="cinema" />
+    </Menu>
+    <Menu mnemonicParsing="false" text="Help">
+      <MenuItem mnemonicParsing="false" onAction="#handleHmLogAction" text="Show log" />
+      <MenuItem mnemonicParsing="false" onAction="#handleHmAboutAction" text="About" />
+    </Menu>
+  </MenuBar>
+
+  <HBox fx:id="menubarStatusPane" HBox.hgrow="ALWAYS"
+  >
+   <TextField fx:id="menubarStatusMessage" editable="false" HBox.hgrow="ALWAYS" focusTraversable="false"
+              style="-fx-background-color: #000000;-fx-text-fill: #99ff99"
+   />
+  </HBox>
+</HBox>
