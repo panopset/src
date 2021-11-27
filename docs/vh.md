@@ -4,6 +4,10 @@ Some versions, with insignificant functional changes, are not listed here.
 
 # History
 
+# 1.0.9 (2021.11.06)
+
+* Add some kotlin to the mix.  Start minpin project.
+
 # 1.0.8 (2021.10.16)
 
 * flywheel: Parameters from application launch.

@@ -31,13 +31,15 @@ public class VersionClassGenerator {
   private void updatePoms() {
     updateProject("../shoring");
     updateProject("compat");
+    updateProject("db");
     updateProject("blackjackEngine");
+    updateProject("minpin");
     updateProject("lowerclass");
     updateProject("flywheel");
     updateProject("fxapp");
     updateProject("desk");
     updateProject("panopset");
-    updateProject("flywheel-web");
+    updateProject("web");
     updateProject("joist");
   }
 
