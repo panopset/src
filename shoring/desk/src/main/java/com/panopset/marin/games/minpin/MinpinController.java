@@ -1,6 +1,5 @@
 package com.panopset.marin.games.minpin;
 
-import com.panopset.minpin.back.dna.SomeType;
 import com.panopset.minpin.back.dna.SourceType;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -18,7 +17,7 @@ public class MinpinController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            foo.setText("" + SomeType.INPUT.name());
+            foo.setText("" + SourceType.INTERNAL.name());
         });
     }
 }
