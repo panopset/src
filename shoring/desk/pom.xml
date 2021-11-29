@@ -19,6 +19,10 @@
   </dependency>
   <dependency>
    <groupId>com.panopset</groupId>
+   <artifactId>minpin</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>com.panopset</groupId>
    <artifactId>flywheel</artifactId>
   </dependency>
   <dependency>
