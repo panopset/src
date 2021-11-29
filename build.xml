@@ -4,6 +4,13 @@
  <target name="site" depends="init, clean, copy_jar, copy_installer, checksums">
  </target>
  
+ <target name="version" depends="init">
+  <echo message="Creating AppVersion.java." />
+  <java dir="./shoring/compat" classpath="${PAN_CP}" fork="true" classname="com.panopset.marin.bootstrap.VersionClassGenerator">
+   <arg value="${PV}" />
+  </java>
+ </target>
+
  <target name="copy_jar" depends="init">
   <echo message="copying panopset.jar to home." />
   <copy tofile="${JAR_CP}">

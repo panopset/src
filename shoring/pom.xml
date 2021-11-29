@@ -12,7 +12,7 @@
  <description>Panopset Parent</description>
  <groupId>com.panopset</groupId>
  <artifactId>shoring</artifactId>
- <version>1.0.8</version>
+ <version>1.0.9</version>
  <packaging>pom</packaging>
  <properties>
   <!-- These properties need to be copied to web/pom.xml, since that project 
