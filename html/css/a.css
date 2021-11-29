@@ -15,7 +15,7 @@
  --panfgtxt: #dff;
  --panpage: #ff0;
 
- --border: #000;
+ --border: #333;
 
  --lnktd0: none;
  --lnktd1: underline;
@@ -25,8 +25,9 @@
  --panhltbg: #333;
 
 }
-html, body {
- margin: 0;
+
+html {
+ background-color: var(--border);
  height: 100%;
 }
 
@@ -34,7 +35,8 @@ body {
  background-color: var(--bgd);
  color: var(--fgd);
  font-size: 22px;
- margin: 0;
+ margin: 1px;
+ height: 99%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -164,8 +166,8 @@ textarea.dsfill {
 }
 
 table {
- border-collapse: collapse;
  display: table;
+ border-spacing: 8px 0;
 }
 
 tbody {
