@@ -10,7 +10,6 @@
  </parent>
  <groupId>com.panopset</groupId>
  <artifactId>web</artifactId>
- <version>1.0.8</version>
  <description>Panopset web server</description>
  <dependencies>
   <dependency>
