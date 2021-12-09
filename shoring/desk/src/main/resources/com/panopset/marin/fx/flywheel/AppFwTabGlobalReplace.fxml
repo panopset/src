@@ -41,7 +41,15 @@
     </HBox>
     <HBox>
         <Label text="Prior line must contain: " />
-        <TextField fx:id="fxidPriorLineMustContain" promptText="Text that the prior line must contain, if replacment is to be done." HBox.hgrow="ALWAYS" />
+    </HBox>
+    <HBox>
+        <TextField fx:id="fxidPriorLineMustContain" promptText="Text that the prior line must contain, if replacement is to be done." HBox.hgrow="ALWAYS" />
+    </HBox>
+    <HBox>
+        <Label text="Replacement line must contain: " />
+    </HBox>
+    <HBox>
+        <TextField fx:id="fxidReplacementLineMustContain" promptText="Text that the replacement line must contain, if replacement is to be done." HBox.hgrow="ALWAYS" />
     </HBox>
   </VBox>
   </center>

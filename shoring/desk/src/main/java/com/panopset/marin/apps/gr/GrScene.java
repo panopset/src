@@ -37,6 +37,7 @@ import javafx.scene.layout.VBox;
     }
     GlobalReplaceProcessor te = new GlobalReplaceProcessor();
     te.setPriorLineMustContain(fxidPriorLineMustContain.getText());
+    te.setReplacementLineMustContain(fxidReplacementLineMustContain.getText());
     try {
       te.process(grdirselectController.getDirectory(), fxidFromText.getText(),
 
@@ -87,5 +88,8 @@ import javafx.scene.layout.VBox;
 
   @FXML
   TextField fxidPriorLineMustContain;
+
+  @FXML
+  TextField fxidReplacementLineMustContain;
 
 }

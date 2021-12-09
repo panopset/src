@@ -15,6 +15,15 @@
     <fx:include fx:id="fwFileselect"
      source="../PanFileSelectorFX.fxml"
      HBox.hgrow="ALWAYS" />
+
+    <Button fx:id="fwFilter" text="Filter">
+     <tooltip>
+      <Tooltip
+              text="Simple list filter, paste list items you don't want in the center." />
+     </tooltip>
+    </Button>
+
+    <!--
     <Button fx:id="fwStep" text="Step">
      <tooltip>
       <Tooltip
@@ -27,6 +36,7 @@
        text="Run Flywheel using selected file as top template." />
      </tooltip>
     </Button>
+    -->
    </HBox>
    <HBox>
     <Label text="Output:" />
