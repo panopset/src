@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <title>Panopset</title>
 <link rel="shortcut icon" href="/images/logo16.png" />
@@ -85,6 +85,24 @@
   $('#result').val('');
   $('#samples').val('Choose');
   $('#functions').val('Choose');
+ }
+
+ function filterLines() {
+  let out = '';
+  const a00 = $('#listStr').val().split('\n')
+  const a01 = $('#template').val().split('\n');
+  for (let i00 = 0; i00 < a00.length; i00++) {
+   for (let i01 = 0; i01 < a01.length; i01++) {
+    const inpstr = a00[i00];
+    const fltstr = a01[i01];
+    if (inpstr === fltstr) {
+
+    } else {
+     out = out + inpstr + '\n';
+    }
+   }
+  }
+  $('#result').val(out);
  }
 
  function setDirty() {

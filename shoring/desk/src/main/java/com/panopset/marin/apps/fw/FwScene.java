@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.function.IntFunction;
 
 import com.panopset.compat.Fileop;
+import com.panopset.compat.Listop;
 import com.panopset.compat.Logop;
 import com.panopset.compat.Stringop;
 import com.panopset.flywheel.Command;
@@ -88,13 +89,19 @@ public class FwScene extends SceneUpdater {
     }
   }
 
-  private void doStep() {
-    getContext().doStep();
+  private void doFilter() {
+    String input = fwInput.getText();
+    String filter = fwTemplate.getText();
+    fwOutput.setText(new Listop().filter(input, filter));
   }
 
-  private void doRun() {
-    getContext().doRun();
-  }
+//  private void doStep() {
+//    getContext().doStep();
+//  }
+//
+//  private void doRun() {
+//    getContext().doRun();
+//  }
 
   private boolean isReadyToProcessFile() {
     if (Stringop.isBlank(templateFile)) {
@@ -121,7 +128,7 @@ public class FwScene extends SceneUpdater {
             reset();
             return;
           }
-          Platform.runLater(() -> fwRun.setDisable(true));
+          //Platform.runLater(() -> fwRun.setDisable(true));
           File targetDirectory = new File(targetDir);
           if (!targetDirectory.isDirectory()) {
             Logop.warn(String.format("%s is not a directory path.", targetDir));
@@ -195,7 +202,7 @@ public class FwScene extends SceneUpdater {
 
         private void pause() {
           JavaFXapp.getZombie().addStopAction(quickRelease);
-          fwRun.setDisable(false);
+          //fwRun.setDisable(false);
           getFlywheel().pause();
         }
 
@@ -205,7 +212,7 @@ public class FwScene extends SceneUpdater {
             getFlywheel().releasePause();
           }
           JavaFXapp.getZombie().removeStopAction(quickRelease);
-          fwRun.setDisable(false);
+          //fwRun.setDisable(false);
         }
 
         private final Runnable quickRelease = () -> getFlywheel().releasePause();
@@ -298,8 +305,9 @@ public class FwScene extends SceneUpdater {
     fwListBreaks.setOnAction(event -> triggerUpdate());
     fwClear.setOnAction(event -> doClear());
     fwClearAll.setOnAction(event -> doClearAll());
-    fwStep.setOnAction(event -> doStep());
-    fwRun.setOnAction(event -> doRun());
+    fwFilter.setOnAction(event -> doFilter());
+//    fwStep.setOnAction(event -> doStep());
+//    fwRun.setOnAction(event -> doRun());
     new FxSampleLoader().loadUpSamplesComboBox(cbSamples, fwInput, fwTemplate, fwLineBreaks,
         fwListBreaks, fwTokens, fwSplitz);
     new FxFunctionLoader().loadUpFunctions(cbFunctions, fwTemplate);
@@ -318,10 +326,7 @@ public class FwScene extends SceneUpdater {
   PanDirSelectorFX fwDirselectController;
 
   @FXML
-  Button fwStep;
-
-  @FXML
-  Button fwRun;
+  Button fwFilter;
 
   @FXML
   HBox fwPrompters;

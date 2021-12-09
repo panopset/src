@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><title>Panopset</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"><head><title>Panopset</title>
 <link rel="stylesheet" href="../../../../../../../html/css/a.css" type="text/css">
 </head>
 <body th:object="${fwInput}">
@@ -21,7 +21,8 @@
      th:text="${fws.desc}"
      ></option>
     </select>
-    <button type="button" onClick="clearAllFields()">Clear</button>
+   <button type="button" onClick="clearAllFields()">Clear</button>
+   <button type="button" onClick="filterLines()">Filter</button>
   </div>
   <div class="row">
    <div class="cellh">

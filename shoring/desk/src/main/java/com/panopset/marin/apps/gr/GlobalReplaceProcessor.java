@@ -17,6 +17,7 @@ import com.panopset.compat.Stringop;
 public class GlobalReplaceProcessor {
   private final List<LineFilter> filters = new ArrayList<>();
   private String priorLineMustContain;
+  private String replacementLineMustContain;
 
   public void addLineFilter(LineFilter lineFilter) {
     filters.add(lineFilter);
@@ -95,5 +96,16 @@ public class GlobalReplaceProcessor {
       priorLineMustContain = "";
     }
     return priorLineMustContain;
+  }
+
+  public void setReplacementLineMustContain(String replacementLineMustContain) {
+    this.replacementLineMustContain = replacementLineMustContain;
+  }
+
+  public String getReplacementLineMustContain() {
+    if (replacementLineMustContain == null) {
+    	replacementLineMustContain = "";
+    }
+    return replacementLineMustContain;
   }
 }
