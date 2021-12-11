@@ -15,14 +15,14 @@ public class Listop {
         }
 
         StringBuffer sb = new StringBuffer();
-        for (String  inp :  Stringop.stringToList(input)) {
+        FOR: for (String  inp :  Stringop.stringToList(input)) {
             for (String fs : Stringop.stringToList(filter)) {
                 if (inp.equals(fs)) {
-                    continue;
+                    continue FOR;
                 }
-                sb.append(inp);
-                sb.append(Stringop.getEol());
             }
+            sb.append(inp);
+            sb.append(Stringop.getEol());
         }
         return sb.toString();
     }

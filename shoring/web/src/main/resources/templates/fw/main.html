@@ -91,12 +91,13 @@
   let out = '';
   const a00 = $('#listStr').val().split('\n')
   const a01 = $('#template').val().split('\n');
+  loop:
   for (let i00 = 0; i00 < a00.length; i00++) {
    for (let i01 = 0; i01 < a01.length; i01++) {
     const inpstr = a00[i00];
     const fltstr = a01[i01];
     if (inpstr === fltstr) {
-
+     continue loop;
     } else {
      out = out + inpstr + '\n';
     }
