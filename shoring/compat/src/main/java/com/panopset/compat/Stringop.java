@@ -427,7 +427,6 @@ public class Stringop {
 			char c0 = expected.charAt(i);
 			char c1 = value.charAt(i);
 			if (c0 == c1) {
-				continue;
 			} else {
 				return String.format("At position %d, expected %s, but was %s", i, String.format("%04x", (int) c0),
 						String.format("%04x", (int) c1));

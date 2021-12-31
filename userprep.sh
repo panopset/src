@@ -1,13 +1,13 @@
 if [ "$1" = "" ]; then
  echo 'Please specify a server, defined in ~/.com.panopset.deploy.properties'
- exit
+ exit 2
 fi
 
 . ~/.com.panopset.deploy.properties
 
 if [ "$PAN_USR" = "" ]; then
  echo 'Please define properties, see documentation in docs/servers/local/README.md.'
- exit
+ exit 2
 fi
 
 # Create the adduser.sh command for your new server

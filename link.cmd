@@ -10,7 +10,6 @@ set MP=^
 %R%/org/openjfx/javafx-web/%FXV%/javafx-web-%FXV%-%FX_ARCH%.jar;^
 %R%/org/openjfx/javafx-swing/%FXV%/javafx-swing-%FXV%-%FX_ARCH%.jar;^
 %R%/org/openjfx/javafx-media/%FXV%/javafx-media-%FXV%-%FX_ARCH%.jar;^
-%R%/org/jetbrains/kotlin/kotlin-stdlib/%KV%/kotlin-stdlib-%KV%.jar;^
 %R%/com/google/code/gson/gson/%GSONV%/gson-%GSONV%.jar;^
 %R%/com/panopset/compat/%PV%/compat-%PV%.jar;^
 %R%/com/panopset/desk/%PV%/desk-%PV%.jar;^

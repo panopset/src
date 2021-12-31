@@ -1,13 +1,14 @@
 package com.panopset.marin.games.minpin;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.panopset.minpin.back.dna.SourceType;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MinpinController implements Initializable {
 
