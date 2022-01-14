@@ -24,7 +24,6 @@ import com.panopset.compat.JavaVersionChart;
 import com.panopset.compat.Jsonop;
 import com.panopset.compat.Logop;
 import com.panopset.compat.NameValuePair;
-import com.panopset.compat.SortedMapKey;
 import com.panopset.compat.Stringop;
 import com.panopset.compat.TextScrambler;
 import com.panopset.compat.UrlHelper;

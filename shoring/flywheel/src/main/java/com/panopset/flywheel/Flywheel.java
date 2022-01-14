@@ -194,8 +194,6 @@ public final class Flywheel implements MapProvider {
     }
   }
 
-  private InputStream inputStream;
-
   private File targetDirectory;
 
   public File getTargetDirectory() {
@@ -632,10 +630,6 @@ public final class Flywheel implements MapProvider {
     if (this.file != null && baseDirectoryPath == null) {
       baseDirectoryPath = Fileop.getParentDirectory(this.file);
     }
-  }
-
-  void setInputStream(InputStream value) {
-    inputStream = value;
   }
 
   /**

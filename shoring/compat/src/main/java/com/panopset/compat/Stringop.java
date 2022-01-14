@@ -87,6 +87,19 @@ public class Stringop {
 		}
 		return "";
 	}
+	
+	public static String toMaxLength(String value, int max) {
+		if (value == null) {
+			return "";
+		}
+		if (max < 1) {
+			return "";
+		}
+		if (value.length() > max) {
+			return value.substring(0, max);
+		}
+		return value;
+	}
 
 	public static String toUpperCase(final String value) {
 		return value.toUpperCase();

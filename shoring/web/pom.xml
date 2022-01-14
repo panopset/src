@@ -36,7 +36,6 @@
   <dependency>
    <groupId>com.panopset</groupId>
    <artifactId>flywheel</artifactId>
-   <version>${project.version}</version>
   </dependency>
   <dependency>
    <groupId>org.springframework.boot</groupId>

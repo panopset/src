@@ -2,16 +2,18 @@ package com.panopset.ophoneypot;
 
 import java.util.Date;
 
-public class DdsAttackRecord {
+public class Attack {
 	private Long timestamp;
 	private String callingIP;
+	private String targetIP;
 	private String category;
 	private String key;
 	private String value;
 
-	public DdsAttackRecord(String callingIP, String category, String key, String value) {
+	public Attack(String callingIP, String targetIP, String category, String key, String value) {
 		setTimestamp(new Date().getTime());
 		setCallingIP(callingIP);
+		setTargetIP(targetIP);
 		setCategory(category);
 		setKey(key);
 		setValue(value);
@@ -34,6 +36,17 @@ public class DdsAttackRecord {
 
 	public void setCallingIP(String callingIP) {
 		this.callingIP = callingIP;
+	}
+
+	public String getTargetIP() {
+		if (targetIP == null) {
+			targetIP = "";
+		}
+		return targetIP;
+	}
+
+	public void setTargetIP(String targetIP) {
+		this.targetIP = targetIP;
 	}
 
 	public String getCategory() {

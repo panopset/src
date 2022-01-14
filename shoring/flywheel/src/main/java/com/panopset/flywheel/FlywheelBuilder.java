@@ -51,7 +51,6 @@ public final class FlywheelBuilder {
    */
   public Flywheel construct() {
     Flywheel flywheel = new Flywheel(getStringLineSupplier());
-    flywheel.setInputStream(inputStream);
     flywheel.setBaseDirectoryPath(getBaseDirectoryPath());
     flywheel.mergeMap(map);
     flywheel.setReplacements(replacements);
