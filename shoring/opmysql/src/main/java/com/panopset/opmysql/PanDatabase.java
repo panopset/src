@@ -16,7 +16,7 @@ public class PanDatabase {
 
 	public String getUrl() {
 		if (url == null) {
-			url = String.format("jdbc:mysql://%s", System.getenv().get("PDBURL"));
+			url = String.format("jdbc:mysql://%s", getConfig("PDBURL"));
 		}
 		return url;
 	}
@@ -25,7 +25,7 @@ public class PanDatabase {
 
 	public String getUser() {
 		if (user == null) {
-			user = System.getenv().get("PDBUSR");
+			user = getConfig("PDBUSR");
 		}
 		return user;
 	}
@@ -34,7 +34,7 @@ public class PanDatabase {
 
 	public String getPwd() {
 		if (pwd == null) {
-			pwd = System.getenv().get("PDBPWD");
+			pwd = getConfig("PDBPWD");
 		}
 		return pwd;
 	}
@@ -69,5 +69,13 @@ public class PanDatabase {
 			}
 		}
 		return conn;
+	}
+
+	private String getConfig(String key) {
+		String rtn = System.getProperty(key);
+		if (rtn == null) {
+			rtn = System.getenv().get(key);
+		}
+		return rtn;
 	}
 }
