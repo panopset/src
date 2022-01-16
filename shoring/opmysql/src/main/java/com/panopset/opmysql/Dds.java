@@ -21,17 +21,16 @@ public abstract class Dds {
 	private static final String TABLE_NAME = "TABLE_NAME";
 	private static final String FIELD_DDS = "FIELD_DDS";
 
-	private static final String CREATE_TABLE = """
-			create table if not exists ${TABLE_NAME} (
-			 id int unsigned auto_increment not null,
-			${FIELD_DDS}
-			 primary key (id)
-			)
-			""";
+	private static final String CREATE_TABLE = 
+			"create table if not exists ${TABLE_NAME} ( " +
+			" id int unsigned auto_increment not null, " +
+			"${FIELD_DDS} " +
+			" primary key (id) " +
+			") ";
+			
 
-	private static final String DROP_TABLE = """
-			drop table if exists ${TABLE_NAME}s
-			""";
+	private static final String DROP_TABLE = 
+			"drop table if exists ${TABLE_NAME}";
 
 	private String createTableStatement;
 
@@ -42,16 +41,6 @@ public abstract class Dds {
 		}
 		return createTableStatement;
 	}
-
-	// TODO abstract/rename.
-	static final String INSERT_ATTACK_RECORD = """
-			insert into ${TABLE_NAME} (
-			 date, calling_ip, category, attack_key, attack_value
-			)
-			values (
-			 ?, ?, ?, ?, ?, ?
-			)
-			""";
 	
 	private String valuesMap;
 	
