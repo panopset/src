@@ -1,7 +1,8 @@
 package com.panopset.opspring;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 public class HttpHelper {
 
