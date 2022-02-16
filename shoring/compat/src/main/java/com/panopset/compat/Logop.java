@@ -25,7 +25,7 @@ public enum Logop {
 
   private boolean isDebugging;
 
-  private final List<Listener> listeners = new ArrayList<>();
+  private final List<LogListener> listeners = new ArrayList<>();
 
   public static Deque<LogEntry> getStack() {
     return INSTANCE.stack;
@@ -74,7 +74,7 @@ public enum Logop {
     dspmsg(msg);
   }
 
-  public static void addLogListener(Listener listener) {
+  public static void addLogListener(LogListener listener) {
     INSTANCE.listeners.add(listener);
   }
 
@@ -86,7 +86,7 @@ public enum Logop {
     getLogger().log(Level.SEVERE, ex.getMessage(), ex);
     ex.printStackTrace();
     LogEntry logEntry = new LogEntry(Alert.RED, Level.SEVERE, ex.getMessage());
-    for (Listener listener : INSTANCE.listeners) {
+    for (LogListener listener : INSTANCE.listeners) {
       listener.log(logEntry);
     }
     logalog(logEntry);
@@ -94,14 +94,14 @@ public enum Logop {
 
   private void report(LogEntry logRecord) {
     getLogger().log(logRecord.getLevel(), logRecord.getMessage());
-    for (Listener listener : INSTANCE.listeners) {
+    for (LogListener listener : INSTANCE.listeners) {
       listener.log(logRecord);
     }
     logalog(logRecord);
   }
 
   private void clearListeners() {
-    for (Listener listener : INSTANCE.listeners) {
+    for (LogListener listener : INSTANCE.listeners) {
       listener.log(new LogEntry(Alert.GREEN, Level.INFO, ""));
     }
   }
@@ -110,7 +110,7 @@ public enum Logop {
     return INSTANCE.logger;
   }
 
-  public interface Listener {
+  public interface LogListener {
     void log(LogEntry logEntry);
   }
 

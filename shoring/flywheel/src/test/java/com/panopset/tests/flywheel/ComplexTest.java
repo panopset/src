@@ -9,43 +9,22 @@ import com.panopset.flywheel.FlywheelBuilder;
 
 public class ComplexTest {
 
-  /**
-   * <b>complexText.txt</b>.
-   */
-  public static final String TEMPLATE = "complexTest.txt";
+	public static final String TEMPLATE = "complexTest.txt";
+	public static final String OUTPUT = "outdir/complexOut.html";
+	public static final String EXPECTED = "complexTestExpected.html";
+	private static final String FOO = "foo";
+	private static final String BAR = "bar";
 
-  /**
-   * <b>complexTextExpected.html</b>.
-   */
-  public static final String EXPECTED = "complexTestExpected.html";
+	@Test
+	void testVariableDefinition() throws IOException {
+		Flywheel script = new FlywheelBuilder().construct();
+		script.put(FOO, BAR);
+		script.exec();
+		assertEquals(BAR, script.get(FOO));
+	}
 
-  /**
-   * <b>foo</b>.
-   */
-  private static final String FOO = "foo";
-
-  /**
-   * <b>bar</b>.
-   */
-  private static final String BAR = "bar";
-
-  /**
-   * Variable definition.
-   */
-  @Test
-  void testApp() throws IOException {
-    Flywheel script = new FlywheelBuilder().construct();
-    script.put(FOO, BAR);
-    script.exec();
-    assertEquals(BAR, script.get(FOO));
-  }
-
-  /**
-   * Test script.
-   */
-  @Test
-  void testScript() throws IOException {
-    SimpleTest.comparisonTest(TEMPLATE, "outdir/complexOut.html", EXPECTED);
-  }
+	void testScript() throws IOException {
+		new SimpleTest().comparisonTest(TEMPLATE, "outdir/complexOut.html", EXPECTED);
+	}
 
 }

@@ -2,7 +2,6 @@ package com.panopset.flywheel;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +12,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Stack;
 import java.util.TreeMap;
+
 import com.panopset.compat.Fileop;
 import com.panopset.compat.Logop;
 import com.panopset.compat.MapProvider;

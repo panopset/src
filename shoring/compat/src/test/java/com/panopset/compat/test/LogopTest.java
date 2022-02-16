@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import com.panopset.compat.Fileop;
 import com.panopset.compat.Logop;
-import com.panopset.compat.Logop.Listener;
+import com.panopset.compat.Logop.LogListener;
 import com.panopset.compat.Logop.LogEntry;
 import com.panopset.compat.Stringop;
 
@@ -16,7 +16,7 @@ public class LogopTest {
 
   LogEntry lr;
 
-  final Listener listener = new Listener() {
+  final LogListener listener = new LogListener() {
     @Override
     public void log(LogEntry logEntry) {
       lr = logEntry;

@@ -1,56 +1,43 @@
 package com.panopset.tests.flywheel;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
+
 import org.junit.jupiter.api.Test;
-import com.panopset.compat.Fileop;
+
 import com.panopset.compat.Stringop;
-import com.panopset.flywheel.Flywheel;
-import com.panopset.flywheel.FlywheelBuilder;
+import com.panopset.tests.transformer.FlywheelTemplateToFileTest;
+import com.panopset.tests.transformer.FlywheelTemplateToTextTransformerTest;
+import com.panopset.tests.transformer.StandardPackagePath;
 
 public final class BufferTest {
-  public static final String SIMPLEONECHAR = "simpleOneChar.txt";
-  public static final String SIMPLETWOLINES = "simpleTwoLines.txt";
 
+	public static final String SIMPLEONECHAR = "simpleOneChar.txt";
+	public static final String SIMPLETWOLINES = "simpleTwoLines.txt";
 
-  @Test
-  void testSimpleOneChar() throws IOException {
-    StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().withWriter(sw)
-        .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLEONECHAR)).construct();
-    script.exec();
-    assertEquals("x" + Stringop.getEol(), sw.toString());
-  }
+	@Test
+	void testSimpleOneChar() throws IOException {
+		String expected = String.format("x%s", Stringop.getEol());
+		new FlywheelTemplateToTextTransformerTest(this.getClass().getPackageName(), SIMPLEONECHAR, expected).test();
+	}
 
-  @Test
-  void testTwoLines() throws IOException {
-    StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().withWriter(sw)
-        .file(new File(SimpleTest.TEST_FILE_PATH + SIMPLETWOLINES)).construct();
-    script.exec();
-    assertEquals("x" + Stringop.getEol() + "y" + Stringop.getEol(), sw.toString());
-  }
+	@Test
+	void testTwoLines() throws IOException {
+		String expected = "x" + Stringop.getEol() + "y" + Stringop.getEol();
+		new FlywheelTemplateToTextTransformerTest(this.getClass().getPackageName(), SIMPLETWOLINES, expected).test();
+	}
 
+	@Test
+	void testSimpleBuffer() throws IOException {
+		new FlywheelTemplateToFileTest(this.getClass().getPackageName(), SimpleTest.SIMPLETEST, SimpleTest.SIMPLEOUT, SimpleTest.EXPECTED).test();
+		String expected = new StandardPackagePath(this.getClass().getPackageName()).getRezStr(SimpleTest.EXPECTED);
+		new FlywheelTemplateToTextTransformerTest(this.getClass().getPackageName(), SimpleTest.SIMPLETEST, expected).test();
+		new FlywheelTemplateToFileTest(this.getClass().getPackageName(), SimpleTest.SIMPLETEST, SimpleTest.SIMPLEOUT, SimpleTest.EXPECTED).test();
+	}
 
-  @Test
-  void testSimpleBuffer() throws IOException {
-    StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().withWriter(sw)
-        .file(new File(SimpleTest.TEST_FILE_PATH + SimpleTest.SIMPLETEST)).construct();
-    script.exec();
-    assertEquals(Fileop.readTextFile(SimpleTest.TEST_FILE_PATH + SimpleTest.EXPECTED),
-        sw.toString());
-  }
-
-  @Test
-  void testComplexBuffer() throws IOException {
-    StringWriter sw = new StringWriter();
-    Flywheel script = new FlywheelBuilder().withWriter(sw)
-        .file(new File(SimpleTest.TEST_FILE_PATH + ComplexTest.TEMPLATE)).construct();
-    script.exec();
-    assertEquals(Fileop.readTextFile(SimpleTest.TEST_FILE_PATH + ComplexTest.EXPECTED),
-        sw.toString());
-  }
+	@Test
+	void testComplexBuffer() throws IOException {
+		String expected = new StandardPackagePath(this.getClass().getPackageName()).getRezStr(ComplexTest.EXPECTED);
+		new FlywheelTemplateToTextTransformerTest(this.getClass().getPackageName(), ComplexTest.TEMPLATE, expected).test();
+		new FlywheelTemplateToFileTest(this.getClass().getPackageName(), ComplexTest.TEMPLATE, ComplexTest.OUTPUT, ComplexTest.EXPECTED).test();
+	}
 }

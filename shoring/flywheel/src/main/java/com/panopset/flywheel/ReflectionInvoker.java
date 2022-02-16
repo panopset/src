@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 import com.panopset.compat.Logop;
 import com.panopset.compat.MapProvider;
+import com.panopset.compat.Stringop;
 
 public class ReflectionInvoker {
 
@@ -29,7 +30,7 @@ public class ReflectionInvoker {
       String val = key;
       if (pmapProvider != null) {
         String str = pmapProvider.get(key);
-        if (str != null) {
+        if (Stringop.isPopulated(str)) {
           val = str;
         }
       }

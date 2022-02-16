@@ -9,11 +9,14 @@ public class UrlHelper {
       URL url;
       try {
         url = new URL(urlStr);
-      } catch (MalformedURLException e) {
-        Logop.warn(String.format("Bad URL: %s, %s",urlStr, e.getMessage()));
+        HttpGETclient client = new HttpGETclient(url);
+        return client.getResponse();
+      } catch (MalformedURLException mue) {
+        Logop.warn(String.format("Bad URL: %s, %s",urlStr, mue.getMessage()));
         return "";
+      } catch (Exception ex) {
+    	Logop.warn(ex);
+    	return "";
       }
-      HttpGETclient client = new HttpGETclient(url);
-      return client.getResponse();
   }
 }

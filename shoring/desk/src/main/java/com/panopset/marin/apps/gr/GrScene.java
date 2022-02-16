@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.panopset.compat.Logop;
 import com.panopset.compat.Stringop;
 import com.panopset.fxapp.PanDirSelectorFX;
+import com.panopset.gp.GlobalReplaceProcessor;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -35,13 +36,13 @@ import javafx.scene.layout.VBox;
     } else if (fxidWindowsToUnix.isSelected()) {
       Stringop.setEol(Stringop.LINE_FEED);
     }
-    GlobalReplaceProcessor te = new GlobalReplaceProcessor();
+    GlobalReplaceProcessor te = new GlobalReplaceProcessor(grdirselectController.getDirectory(), fxidFromText.getText(),
+
+            fxidToText.getText(), fxidExtensions.getText(), fxidRegex.getText(), fxidRecursive.isSelected());
     te.setPriorLineMustContain(fxidPriorLineMustContain.getText());
     te.setReplacementLineMustContain(fxidReplacementLineMustContain.getText());
     try {
-      te.process(grdirselectController.getDirectory(), fxidFromText.getText(),
-
-          fxidToText.getText(), fxidExtensions.getText(), fxidRegex.getText(), fxidRecursive.isSelected());
+      te.process();
     } catch (IOException e) {
       Logop.error(e);
     }

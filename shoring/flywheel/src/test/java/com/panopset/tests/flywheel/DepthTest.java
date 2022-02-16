@@ -7,15 +7,15 @@ public final class DepthTest {
 
   @Test
   void testDepth() throws IOException {
-    SimpleTest.comparisonTest("depthTest.txt", "depthTest01.txt",
+    new SimpleTest().comparisonTest("depthTest.txt", "depthTest01.txt",
         "depthTest01Expected.txt");
-    SimpleTest.comparisonTest("depthTest.txt", "depthTest02.txt",
+    new SimpleTest().comparisonTest("depthTest.txt", "depthTest02.txt",
         "depthTest02Expected.txt");
   }
 
   @Test
   void testDeeper() throws IOException {
-    SimpleTest.comparisonTest("deepTest.txt", "deepTest.txt",
+    new SimpleTest().comparisonTest("deepTest.txt", "deepTest.txt",
         "deepTestExpected.txt");
   }
 }

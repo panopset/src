@@ -11,7 +11,7 @@ public final class ListTest {
 
   @Test
   void testListCommand() throws IOException {
-    SimpleTest.comparisonTest("listTest01.txt", "listTest.txt", "listTestExpected.html");
+    new SimpleTest().comparisonTest("listTest01.txt", "listTest.txt", "listTestExpected.html");
   }
 
   @Test

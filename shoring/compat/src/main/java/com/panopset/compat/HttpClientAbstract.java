@@ -47,7 +47,7 @@ public abstract class HttpClientAbstract {
 			try {
 				responseCode = con.getResponseCode();
 				responseMessage = con.getResponseMessage();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				Logop.error(e);
 			}
 			con.disconnect();

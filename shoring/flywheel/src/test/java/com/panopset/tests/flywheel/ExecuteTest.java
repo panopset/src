@@ -7,7 +7,7 @@ public class ExecuteTest  {
 
   @Test
   void testExecuteCommand() throws IOException {
-    SimpleTest.comparisonTest("executeTest.txt", "executeTest.txt",
+    new SimpleTest().comparisonTest("executeTest.txt", "executeTest.txt",
         "executeTestExpected.txt");
   }
 }

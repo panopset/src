@@ -10,7 +10,7 @@ public class DoubleFileTest {
    */
   @Test
   void testDoubleFileGeneration() throws IOException {
-    SimpleTest
+    new SimpleTest()
         .comparisonTest("doubleFileTest.txt", new String[] { "dft0.txt",
             "dft1.txt" }, new String[] { 
               "dft_expected0.txt",

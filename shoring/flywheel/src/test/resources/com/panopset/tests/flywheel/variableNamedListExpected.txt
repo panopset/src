@@ -1,19 +1,22 @@
 
-x y
+x,y 
 zango
 y x
 b a
 j i
 bango
-a b
+
+a,b 
 zango
 y x
 b a
 j i
 bango
-i j
+
+i,j 
 zango
 y x
 b a
 j i
 bango
+

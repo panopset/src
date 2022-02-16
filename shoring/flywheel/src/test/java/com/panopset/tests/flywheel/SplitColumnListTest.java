@@ -19,7 +19,8 @@ public final class SplitColumnListTest {
     String expected = "6#Zonk7#Bonk\n";
     String[] inp = new String[] { "${@l splitList.txt}${2}#${3}${@q}" };
     String results = new FlywheelBuilder().withLineFeedRules(LineFeedRules.LINE_BREAKS)
-        .baseDirectoryPath("src/test/resources/com/panopset/flywheel")
+    		// TODO use testing framework.
+        .baseDirectoryPath("src/test/resources/com/panopset/tests/flywheel")
         .map(ReservedWords.SPLITS, "13,14").input(inp).construct().exec();
     assertEquals(expected, results);
   }

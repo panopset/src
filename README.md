@@ -1,5 +1,27 @@
 [![Panopset](html/images/panopset.png)](https://panopset.com)
 
+
+Quick ad idea, somebody on the phone:  
+
+
+    "Thanks, just how did you get that report so quickly, some kind of template engine?"  
+    
+    ... pause...
+    
+    "Pancakes Flypaper?"
+    
+    ... pause...
+    
+    "Panopwho Flywhere?"
+    
+    que the new age dramatic music, blank screen, slowly filling with...
+    
+               *** Panopset Flywheel ***
+    a multi-platform open source tedium killer.
+    
+
+# src
+
 Source code for Panopset desktop applications, 
 and the [panopset.com](https://panopset.com) website itself.
 
