@@ -10,8 +10,8 @@ Create, in your home directory, a file called .com.panopset.deploy.properties, w
     PAN_USR=<your .ssh/config defined user for the deployment host.>
     PAN_PWD=<ONLY needed for the initial server creation steps, not content deployment.>
     
-    PAN_STATIC_DOMAIN=panopset.com
-    PAN_DYNAMIC_DOMAIN=panopset.com
+    PSD=panopset.com
+    PDD=panopset.com
     # As defined in .ssh/config:
     # PSS stands for Panopset Static Server.
     PSS=static
