@@ -14,7 +14,7 @@ Quick ad idea, somebody on the phone:
     
     "Panopwho Flywhere?"
     
-    que the new age dramatic music, blank screen, slowly filling with...
+    queue the new age music, blank screen, slowly filling with...
     
                *** Panopset Flywheel ***
     a multi-platform open source tedium killer.
