@@ -34,7 +34,23 @@ public class FileProcessor {
 	}
 
 	public boolean exec() {
+		if (isRecursive) {
+			return recursiveExec(targetFile);
+		}
 		return new Report(targetFile, lineFilters).exec();
+	}
+
+	private boolean recursiveExec(File rFile) {
+		if (rFile.isDirectory()) {
+			for (File f : rFile.listFiles()) {
+				if (!recursiveExec(f)) {
+					return false;
+				}
+			}
+		} else {
+			return new Report(rFile, lineFilters).exec();
+		}
+		return true;
 	}
 
 	public void addFilters(List<LineFilter> filters) {

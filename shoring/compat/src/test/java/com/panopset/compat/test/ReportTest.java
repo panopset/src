@@ -13,36 +13,24 @@ import com.panopset.compat.Stringop;
 
 public class ReportTest {
 
+  static final String FOOEOL = Stringop.appendEol(Stringop.FOO);
+  static final String BAREOL = Stringop.appendEol(Stringop.BAR);
   static final File temp = FileopTest.tempFile;
   static final File temp0 = new File("./temp0.txt");
-  static final LineFilter barFilter = new LineFilter() {
-
-    @Override
-    public String filter(String str) {
-      return Stringop.BAR;
-    }
-    
-  };
-  static final LineFilter fooFilter = new LineFilter() {
-
-    @Override
-    public String filter(String str) {
-      return Stringop.FOO;
-    }
-    
-  };
+  static final LineFilter barFilter = str -> Stringop.BAR;
+  static final LineFilter fooFilter = str -> Stringop.FOO;
 
   @Test
   void test() throws IOException {
     Fileop.write(Stringop.FOO, temp);
     String result = Fileop.readTextFile(temp);
-    Assertions.assertEquals(Stringop.appendEol(Stringop.FOO), result);
+    Assertions.assertEquals(FOOEOL, result);
     Report report = new Report(temp, temp0, barFilter);
     Assertions.assertTrue(report.exec());
     result = Fileop.readTextFile(temp);
-    Assertions.assertEquals(Stringop.appendEol(Stringop.FOO), result);
+    Assertions.assertEquals(FOOEOL, result);
     result = Fileop.readTextFile(temp0);
-    Assertions.assertEquals(Stringop.appendEol(Stringop.BAR), result);
+    Assertions.assertEquals(BAREOL, result);
     cleanup();
   }
 

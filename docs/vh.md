@@ -4,7 +4,7 @@
 
 # 1.0.9 (2021.12.31)
 
-* Minimum Java version upgraded from 11 to 17, other enhancements.
+* Minimum Java version upgraded from 11 to 17, bug fixes.
 
 # 1.0.8 (2021.10.16)
 

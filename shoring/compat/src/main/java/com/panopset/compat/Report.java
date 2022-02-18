@@ -26,7 +26,7 @@ public class Report {
 	}
 
 	public Report(File fromFile, File toFile, LineFilter lineFilter) {
-		this(fromFile, lineFilter);
+		this(fromFile, toFile);
 		lfs.add(lineFilter);
 	}
 
