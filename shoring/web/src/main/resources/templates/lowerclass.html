@@ -16,13 +16,17 @@ fragments/nav :: menuBarFragment
 </p>
 </div>
 
-<div class="content2">
+<div class="inset">
 
 <div class="dsline">
 
 <h1>Lowerclass</h1>
 
-<pre th:text="${chart}"/>
+ <p>
+  Not a web application, available on the <a href="/desk">desktop</a> of your choice.
+ </p>
+
+ <pre th:text="${chart}"></pre>
 
 <p>
 A lowerclass report looks like this:
@@ -33,6 +37,6 @@ A lowerclass report looks like this:
 
 </div>
 
+</div>
 <div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
-
 </body></html>

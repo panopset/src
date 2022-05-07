@@ -30,6 +30,30 @@ This tells the dynamic server where to find its static content.  If you are not 
 after your server is created.
 
 
+# Preparing local system
+
+
+    sudo apt install nginx
+    sudo chown -R $USER /var/www
+    sudo chown -R $USER /etc/nginx
+    vim /etc/nginx/sites-available/default
+
+Change it to listen to port 8090.
+
+    sudo service nginx restart
+
+Verify port 8081 and 8090 are active:
+
+
+    sudo netstat -tulpn
+
+
+Deploy static on port 8090 nginx, dynamic on 8081, on your local box:
+
+
+    ./run.sh
+
+
 ## Build Script
 
 To build and stage the desktop applications, and their json info files, run the build script for your platform:

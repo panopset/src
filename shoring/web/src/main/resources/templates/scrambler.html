@@ -27,7 +27,8 @@ fragments/nav :: menuBarFragment
  <label>
  &nbsp;Passphrase:&nbsp;
  </label>
- <input id="passphrase" class="dsflex1" type="text" name="passphrase"/>
+ <input id="passphrase" class="dsflex1" type="password" name="passphrase"/>
+ <label for="showPwdCB"><input id="showPwdCB" th:value="showPwd" onchange="refreshShowPwd()" type="checkbox">Show.</label>
 </div>
  
 <div class="dsline" th:replace="fragments/body :: redalert">
@@ -65,7 +66,6 @@ presented on this web page. Your raw text is not copied and stored anywhere.
 It is not best practices to trust the prior statement, so a safer thing for you to do
 would be to download the application, and run it on your PC. The absolute safest thing to do would be to build the application
 from source, so you could verify that your unencrypted text is not stored anywhere.</p>
-</p>
 </header>
 </div>
  
@@ -73,6 +73,16 @@ from source, so you could verify that your unencrypted text is not stored anywhe
 </div>
 
 <script>
+
+ function refreshShowPwd() {
+  if ($('#showPwdCB').is(':checked')) {
+   $('#passphrase').prop('type', 'text')
+  } else {
+   $('#passphrase').prop('type', 'password')
+   //$('#passphrase').type = 'text'
+    //document.getElementById('passphrase').type = 'text';
+  }
+ }
 
  var dft_koi = '10000';
  var koi = dft_koi;
@@ -159,6 +169,7 @@ from source, so you could verify that your unencrypted text is not stored anywhe
   $('#nzr_config').hide();
   $('#nzr_main_000').show();
   $('#nzr_main_001').show();
+  refreshShowPwd();
  }
  
  function showHelp() {
@@ -179,6 +190,8 @@ from source, so you could verify that your unencrypted text is not stored anywhe
  }
 
 </script>
+
+</div>
 
 <div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
 

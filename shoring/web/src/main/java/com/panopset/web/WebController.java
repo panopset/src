@@ -65,6 +65,7 @@ public class WebController {
   static final String NEWS = "news";
   static final String ABOUT = "about";
   static final String BUILD = "build";
+  static final String LYNX = "lynx";
 
   static final String VERSION = "version";
   static final String FW_FORM_ATTR = "fwInput";
@@ -166,6 +167,12 @@ public class WebController {
   public String scrambler(Model model, HttpServletResponse response) {
     init(model);
     return SCRAMBLER;
+  }
+
+  @GetMapping({ "/lynx", "/lynx.htm", "/lynx.html" })
+  public String lynx(Model model, HttpServletResponse response) {
+    init(model);
+    return LYNX;
   }
 
   @GetMapping({ "/checksum", "/checksum.htm", "/checksum.html" })
@@ -292,7 +299,7 @@ public class WebController {
 
   private void setupHomeDirPfx(HttpServletRequest request, Model model) {
     var ua = request.getHeader("User-Agent");
-    if (ua.toLowerCase().indexOf("win") > -1) {
+    if (ua.toLowerCase().contains("win")) {
       model.addAttribute(HOMEDIRPFX, "%USERPROFILE%\\");
       model.addAttribute(USERPATHSEP, "\\");
     } else {

@@ -16,11 +16,15 @@ fragments/nav :: menuBarFragment
 </p>
 </div>
 
-<div class="content2">
+<div class="inset">
 
 <div class="dsline">
 
 <h1>Checksum</h1>
+
+ <p>
+  Not a web application, available on the <a href="/desk">desktop</a> of your choice.
+ </p>
 
 <img alt="Checksum" src="images/checksum.png" th:src="${static_host} + 'images/checksum.png'"/>
 
@@ -29,6 +33,6 @@ fragments/nav :: menuBarFragment
 
 </div>
 
+</div>
 <div th:replace="fragments/footer :: google_stats" th:remove="tag"></div>
-
 </body></html>
