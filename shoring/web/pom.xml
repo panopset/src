@@ -11,20 +11,17 @@
 	</parent>
 	<groupId>com.panopset</groupId>
 	<artifactId>web</artifactId>
-	<version>1.0.9</version>
+	<version>1.1</version>
 	<description>Panopset web server</description>
 	<properties>
 		<!-- These properties are copied from ../pom.xml. -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>17</java.version>
+		<java.version>18</java.version>
 		<maven.compiler.version>3.8.1</maven.compiler.version>
 		<junit.version>5.8.2</junit.version>
 		<mockito.version>4.3.1</mockito.version>
 		<commons-lang3.version>3.12.0</commons-lang3.version>
-		<spring.version>2.6.3</spring.version>
-		<!-- update ../deploy.properties as well. -->
-		<fx.v>19-ea+2</fx.v>
-		<gson.version>2.9.0</gson.version>
+		<spring.version>2.6.7</spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,7 +54,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<version>${spring.version}</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -73,7 +69,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring.version}</version>
 				<configuration>
 					<executable>true</executable>
 				</configuration>

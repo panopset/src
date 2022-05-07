@@ -41,6 +41,8 @@ public class VersionClassGenerator {
     updateProject("panopset");
     updateProject("web");
     updateProject("joist");
+    updateProject("opmysql");
+    updateProject("joist");
   }
 
   private void updateProject(String project) {
