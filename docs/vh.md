@@ -2,6 +2,11 @@
 
 # History
 
+# 1.1 (2022.02.22)
+
+* Minimum Java version upgraded from 17 to 18.
+* Dependency upgrades.
+
 # 1.0.9 (2021.12.31)
 
 * Minimum Java version upgraded from 11 to 17, bug fixes.
