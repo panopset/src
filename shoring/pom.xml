@@ -33,14 +33,11 @@
 	</licenses>
 	<modules>
 		<module>compat</module>
-		<module>opmysql</module>
 		<module>opspring</module>
 		<module>fxapp</module>
 		<module>blackjackEngine</module>
-		<module>minpin</module>
 		<module>lowerclass</module>
 		<module>flywheel</module>
-		<module>db</module>
 		<module>desk</module>
 		<module>joist</module>
 		<module>panopset</module>
@@ -66,11 +63,6 @@
 			<dependency>
 				<groupId>com.panopset</groupId>
 				<artifactId>blackjackEngine</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.panopset</groupId>
-				<artifactId>minpin</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
