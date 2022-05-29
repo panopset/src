@@ -22,7 +22,7 @@
 		<mockito.version>4.3.1</mockito.version>
 		<commons-lang3.version>3.12.0</commons-lang3.version>
 		<!-- update ../deploy.properties as well. -->
-		<fx.v>19-ea+6</fx.v>
+		<fx.v>19-ea+7</fx.v>
 		<gson.version>2.9.0</gson.version>
 	</properties>
 	<licenses>
