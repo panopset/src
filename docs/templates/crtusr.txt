@@ -22,7 +22,7 @@ ${@f SITE_DN}server {
  server_name ${SITE_DN} www.${SITE_DN};
 
  location /beam/ {
-  proxy_pass http://localhost:8080/beam/;
+  proxy_pass http://localhost:8080/;
  }
 
  location / {
