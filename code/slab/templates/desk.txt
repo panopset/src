@@ -51,7 +51,7 @@ Publish something that utilizes a closed source enhancement.
 Use blackjackEngine to drive a real money game.
 </li>
 </ul>
-<p>See the Panopset <a href="https://github.com/panopset/pan/blob/main/LICENSE">license</a> for details.</p>
+<p>See the Panopset <a href="https://github.com/panopset/${GN}/blob/main/LICENSE">license</a> for details.</p>
 
 
 </div>

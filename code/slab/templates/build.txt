@@ -3,7 +3,7 @@
 <p>
 
 Using the open <a href="https://github.com/panopset/pan">source code</a>, you may
-<a href="https://github.com/panopset/pan/blob/main/docs/build.md">build</a> a platform installer,
+<a href="https://github.com/panopset/${GN}/blob/main/docs/build.md">build</a> a platform installer,
 an all-in-one jar, or run it directly from an IDE.
 
 </p>

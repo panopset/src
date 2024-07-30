@@ -5,7 +5,7 @@
 <p>
 If you don't see your platform listed, or if your system doesn't allow unsigned installers, you may
 <a href="/build.html">build</a> your own, or run it directly from the
-<a href="https://github.com/panopset/pan">source</a>.
+<a href="https://github.com/panopset/${GN}">source</a>.
 </p>
 
 ${downloadsTable}
@@ -13,7 +13,7 @@ ${downloadsTable}
 <h1>versions</h1>
 
 <p>
-help-&gt;about, from any Panopset desktop application, will give you the <a href="https://github.com/panopset/pan/blob/main/docs/vh.md">version</a>.
+help-&gt;about, from any Panopset desktop application, will give you the <a href="https://github.com/panopset/${GN}/blob/main/docs/vh.md">version</a>.
 </p>
 <h2>Running Panopset Desktop Applications</h2>
 
