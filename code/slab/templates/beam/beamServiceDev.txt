@@ -1,0 +1,1 @@
+${@t loadProps.txt}${@p ispwd}${WKSN_PWD}${@q}${@t beamService.txt}
