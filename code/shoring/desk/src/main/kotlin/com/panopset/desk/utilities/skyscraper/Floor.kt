@@ -10,6 +10,7 @@ import kotlin.collections.ArrayList
 
 
 class Floor(val fxDoc: FxDoc) {
+    lateinit var panCheckboxMenu: PanCheckboxMenu
     val urlTextField: TextField = createPanInputTextFieldHGrow(fxDoc, "url",
         "Please enter a URL", "URL of the API you wish to test.")
     val urlOutField: TextField = createPanOutputTextFieldHGrow(fxDoc, "url",

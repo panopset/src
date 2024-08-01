@@ -13,7 +13,6 @@ import kotlin.collections.ArrayList
 
 class Skyscraper : PanopsetBrandedAppTran() {
     private val floorMap = HashMap<FxDoc, Floor>()
-    private lateinit var panCheckboxMenu: PanCheckboxMenu
     private fun getFloor(fxDoc: FxDoc): Floor {
         var rtn = floorMap[fxDoc]
         if (rtn == null) {
@@ -32,10 +31,9 @@ class Skyscraper : PanopsetBrandedAppTran() {
     override fun doAfterShow(fxDoc: FxDoc) {
         Thread {
             Thread.sleep(400)
-            // TODO:  gotta be a better way! envMapKey is blank on first go....
             Platform.runLater {
                 val floor = getFloor(fxDoc)
-                updateEnvironmentWithProps(floor, panCheckboxMenu.currentSelection)
+                updateEnvironmentWithProps(floor, floor.panCheckboxMenu.currentSelection)
             }
         }.start()
     }
@@ -48,11 +46,11 @@ class Skyscraper : PanopsetBrandedAppTran() {
     }
 
     private fun createEnvMenu(floor: Floor): Menu {
-        panCheckboxMenu = createPanEnvMenu(floor, "Env")
+        floor.panCheckboxMenu = createPanEnvMenu(floor, "Env")
         if (floor.envMap.isEmpty()) {
-            return createEnvHelpMenu(floor, panCheckboxMenu.menu.text)
+            return createEnvHelpMenu(floor, floor.panCheckboxMenu.menu.text)
         }
-        return panCheckboxMenu.menu
+        return floor.panCheckboxMenu.menu
     }
 
     private fun createPanEnvMenu(floor: Floor, menuName: String): PanCheckboxMenu {

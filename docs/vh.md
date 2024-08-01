@@ -2,6 +2,12 @@
 
 # History
 
+## 1.3.9 (2024.08.01)
+* Bug fixes:
+  * Skyscraper environment substitution on load fails.
+* Enhancements:
+  * Dependency updates.  
+
 ## 1.3.7 (2024.06.08)
 * Ongoing work on Skyscraper.
 
