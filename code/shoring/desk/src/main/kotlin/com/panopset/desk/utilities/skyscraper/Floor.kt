@@ -21,13 +21,22 @@ class Floor(val fxDoc: FxDoc) {
     val bodyTextArea = createPersistentPanTextArea(fxDoc, "body",
     "Please enter a BODY for POSTs", "BODY you wish to POST to the API.")
     val envMap: SortedMap<String, MutableMap<String, String>> = Collections.synchronizedSortedMap(TreeMap())
+    private var envMapKey = ""
 
-    fun updateUrlOutTFfromUrlTextField(envMapKay: String) {
-        updateUrlOutTFfromFreshValue(envMapKay, urlTextField.text)
+    init {
+        urlTextField.textProperty().addListener { _, oldValue, newValue ->
+            updateUrlOutTFfromUrlTextField(envMapKey)
+            println("textfield changed from $oldValue to $newValue, envMapKey: $envMapKey.")
+        }
     }
 
-    private fun updateUrlOutTFfromFreshValue(envMapKay: String, newValue: String) {
-        val props = envMap[envMapKay]
+    fun updateUrlOutTFfromUrlTextField(envMapKey: String) {
+        this.envMapKey = envMapKey
+        updateUrlOutTFfromFreshValue(envMapKey, urlTextField.text)
+    }
+
+    private fun updateUrlOutTFfromFreshValue(envMapKey: String, newValue: String) {
+        val props = envMap[envMapKey]
         if (props.isNullOrEmpty()) {
             updateUrlOutTFdirect(newValue)
         } else {

@@ -9,7 +9,6 @@ import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileInputStream
 import java.util.*
-import kotlin.collections.HashMap
 
 fun loadEnvironments(envMap: MutableMap<String, MutableMap<String, String>>) {
     val baseDirectory = establishBaseDirectory()

@@ -107,7 +107,7 @@ class Skyscraper : PanopsetBrandedAppTran() {
                     "context=beam\n\n" +
                     "In this example, your URL would then look like this: \n\n" +
                     "\${protocol}\${server}\${port}\${context}/af\n\n" +
-                    "For the control freaks out there, if you wish to change the environment\n" +
+                    "If you wish to change the environment\n" +
                     "definitions directory, create an environment variable on your system with the key:\n\n" +
                     PANOPSET_SKYSCRAPER_ENVS
             )
