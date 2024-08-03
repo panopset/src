@@ -24,8 +24,7 @@ class GenerateSite {
         FlywheelBuilder().file(File(args[0])).targetDirectory(File(args[1]))
             .map("previewBlurb", blurb)
             .map("downloadsTable", GenerateDownloadsTable().createDownloadsTable("/var/www/html/downloads"))
-            .map("appVersion", AppVersion.getVersion())
-            .map("buildNumber", AppVersion.getBuildNumber())
+            .map("fullVersion", AppVersion.getFullVersion())
             .map(props2map(Fileop.loadProps(File("deploy.properties"))))
             .construct().exec()
     }

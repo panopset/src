@@ -6,7 +6,7 @@ class Version {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            println(AppVersion.getVersion())
+            println(AppVersion.getFullVersion())
         }
     }
 }

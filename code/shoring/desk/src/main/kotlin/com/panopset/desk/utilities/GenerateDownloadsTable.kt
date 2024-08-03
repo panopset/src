@@ -1,6 +1,7 @@
 package com.panopset.desk.utilities
 
 import com.google.gson.reflect.TypeToken
+import com.panopset.compat.AppVersion
 import com.panopset.compat.Fileop
 import com.panopset.compat.Jsonop
 import com.panopset.marin.secure.checksums.ChecksumType
@@ -29,12 +30,13 @@ class GenerateDownloadsTable {
         sw.append("<table>")
         for (e in platformDownloadMap.entries) {
             sw.append("<tr><td colspan=\"4\" class=\"menuBar\"><b>${e.key}</b></td>\n")
-            sw.append("<tr><th>Type</th><th>Download</th><th>Bytes</th>")
+            sw.append("<tr><th>Type</th><th>Download</th><th>Version</th><th>Bytes</th>")
             sw.append("<th>SHA-512</th></tr>")
             for (platformDownload in e.value.platformDownloads) {
                 val artifactType = platformDownload.artifactType
                 val artifactName = platformDownload.artifactName
                 val relPath = platformDownload.relPath
+                val version = AppVersion.getFullVersion()
                 val byteCount = platformDownload.byteCount
                 val sha512 = platformDownload.sha512
 
@@ -42,6 +44,8 @@ class GenerateDownloadsTable {
                 sw.append(artifactType)
                 sw.append("</td><td nowrap>\n")
                 sw.append("<a href=\"/downloads/$relPath$artifactName\">$artifactName</a>")
+                sw.append("</td><td>\n")
+                sw.append(version)
                 sw.append("</td><td>\n")
                 sw.append(byteCount)
                 sw.append("</td><td class=\"dsw99\"><input class=\"output2\" type=\"text\" value=\"")

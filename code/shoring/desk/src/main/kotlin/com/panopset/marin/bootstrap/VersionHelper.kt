@@ -1,7 +1,6 @@
 package com.panopset.marin.bootstrap
 
 import com.panopset.compat.AppVersion.getVersion
-import com.panopset.compat.Logz
 import com.panopset.compat.Stringop
 import com.panopset.compat.Trinary
 import com.panopset.compat.UrlHelper

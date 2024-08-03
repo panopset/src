@@ -528,12 +528,8 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
                 "Stringop", "check4match", "\${@e check4match(foo,bar,matches,doesnotmatch)}"
             )
             defineTemplateAllowedReflection(
-                "getVersion", "com.panopset.compat",
-                "AppVersion", "getVersion", "\${@e getVersion()}"
-            )
-            defineTemplateAllowedReflection(
-                "getBuild", "com.panopset.compat",
-                "AppVersion", "getBuildNumber", "\${@e getBuildNumber()}"
+                "getFullVersion", "com.panopset.compat",
+                "AppVersion", "getFullVersion", "\${@e getFullVersion()}"
             )
             defineTemplateAllowedReflection(
                 "capund", "com.panopset.compat", "Stringop",

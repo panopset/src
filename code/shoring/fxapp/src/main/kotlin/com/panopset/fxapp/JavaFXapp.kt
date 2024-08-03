@@ -1,8 +1,6 @@
 package com.panopset.fxapp
 
 import com.panopset.compat.*
-import com.panopset.compat.AppVersion.getBuildNumber
-import com.panopset.compat.AppVersion.getVersion
 import com.panopset.fxapp.AnchorFactory.addAnchor
 import com.panopset.fxapp.AnchorFactory.findAnchor
 import com.panopset.fxapp.AnchorFactory.getAnchors
@@ -135,7 +133,7 @@ object JavaFXapp {
             DeskApp4XFactory.panApplication.getApplicationDisplayName()
         )
         alert.headerText = DeskApp4XFactory.panApplication.getDescription()
-        alert.contentText = "Version ${getVersion()} build ${getBuildNumber()}." +
+        alert.contentText = "Version " + AppVersion.getFullVersion() +
                 "\n\n " +
                 "\u00a9 1996-2024 Karl Dinwiddie.\n\n" +
 
@@ -146,11 +144,9 @@ object JavaFXapp {
                 " \n" +
                 "This program is distributed in the hope that it will be useful, \n" +
                 "but WITHOUT ANY WARRANTY; without even the implied warranty of \n" +
-                "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the \n" +
-                "GNU General Public License for more details. \n" +
+                "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \n" +
                 " \n" +
-                "You should have received a copy of the GNU General Public License \n" +
-                "along with this program.  If not, see <https://www.gnu.org/licenses/>."
+                "See <https://panopset.com/license> for more details."
         val stage = alert.dialogPane.scene.window as Stage
         stage.icons.add(dds!!.createFaviconImage())
         stage.scene.root.style = fxDoc.scene.root.style
