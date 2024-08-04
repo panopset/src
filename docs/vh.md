@@ -2,6 +2,10 @@
 
 # History
 
+## 1.4 available on panopset.net only at this time, as a preview release.
+* stay tuned...
+
+
 ## 1.3.9 (2024.08.01)
 * Bug fixes:
   * Skyscraper environment substitution on load fails.
