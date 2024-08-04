@@ -15,6 +15,10 @@ object AppVersion {
         return "${panopset_desk_build}"
     }
 
+    fun getFullVersion(): String {
+        return "\${getVersion()} \${getBuildNumber()}."
+    }
+
     @JvmStatic
     fun main(vararg args: String?) {
         if (args.isNotEmpty()) {

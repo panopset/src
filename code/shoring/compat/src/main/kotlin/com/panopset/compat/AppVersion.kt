@@ -15,6 +15,10 @@ object AppVersion {
         return "202408040447"
     }
 
+    fun getFullVersion(): String {
+        return "${getVersion()} ${getBuildNumber()}."
+    }
+
     @JvmStatic
     fun main(vararg args: String?) {
         if (args.isNotEmpty()) {
