@@ -2,8 +2,9 @@
 
 # Panopset Continuous Integration Manual
 
-   cd code
-   vim deploy.properties
+
+    cd code
+    vim deploy.properties
 
 
 * Update deploy.properties with the new version.
