@@ -1,4 +1,4 @@
-[home](../../README.md) ~ [shoring](../README.md)
+[home](../../README.md)
 
 # [blackjackEngine](https://panopset.com/maven/blackjackEngine/index.html)
 

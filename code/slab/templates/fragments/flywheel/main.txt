@@ -88,7 +88,7 @@ bar
       data-templateText="${@e check4match(foo,w0,text or variable if they match,text or variable if they don&#39;t match)}
 "
       data-lineBreaks="true"
-      data-listBreaks="false"
+      data-listBreaks="true"
      >check4match</option>
      <option data-listText="Let&#39;s say you want to &quot;grab&quot; only things &quot;in quotes&quot;
 Then you could &quot;use the regex&quot; &quot;function&quot;.

@@ -1,4 +1,4 @@
 desc=check4match
 lineBreaks=true
-listBreaks=false
+listBreaks=true
 tokens=
