@@ -8,11 +8,13 @@
 * Update docs/vh.html.
 * Verify SITE_DN is where you want to publish:
 
+edit dev.properties, with this command:
+
 
     ../p.sh
 
 
-* next:
+next:
 
 
     ./generateVersion.sh
