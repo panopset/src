@@ -1,6 +1,6 @@
 [home](../../README.md)
 
-# [blackjackEngine](https://panopset.com/maven/blackjackEngine/index.html)
+# [blackjackEngine](https://panopset.com/dox/site/blackjackEngine/index.html)
 
 Blackjack engine used for Panopset Blackjack.
 
