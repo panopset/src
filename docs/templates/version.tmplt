@@ -16,7 +16,7 @@ object AppVersion {
     }
 
     fun getFullVersion(): String {
-        return "\${getVersion()} \${getBuildNumber()}."
+        return getVersion() + " " + getBuildNumber()
     }
 
     @JvmStatic
