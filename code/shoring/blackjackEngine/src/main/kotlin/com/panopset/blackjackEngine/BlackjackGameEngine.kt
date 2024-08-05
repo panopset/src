@@ -204,7 +204,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
             return false
         }
         if (handPlayer != null) {
-            if (!handPlayer.isInitialDeal) {
+            if (!handPlayer.isInitialDeal()) {
                 dealerMessage = msg.surrenderImpossibleMsg
                 return false
             }
@@ -220,10 +220,10 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         }
         bankroll.subtract(handPlayer.wager.initialBet)
         val splitHand = HandPlayer( Wager(handPlayer.wager))
-        val splitCard = handPlayer.remove(1)
+        val splitCard = handPlayer.removeSecondCard()
         handPlayer.dealCard(deal(true))
         handPlayer.setSplit()
-        if (handPlayer.cards[0].isAce && !(config.isResplitAcesAllowed && handPlayer.cards[1].isAce)) {
+        if (handPlayer.getFirstCard().isAce && !(config.isResplitAcesAllowed && handPlayer.getSecondCard().isAce)) {
             if (!config.isSplitAcePlayable) {
                 handPlayer.stand()
             }
@@ -234,16 +234,16 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         splitHand.action = CMD_SPLIT
         player.hands.add(splitHand)
         if (splitCard.isAce) {
-            if (!(config.isResplitAcesAllowed && splitHand.cards[1].isAce)) {
+            if (!(config.isResplitAcesAllowed && splitHand.getSecondCard().isAce)) {
                 if (!config.isSplitAcePlayable) {
                     splitHand.stand()
                 }
             }
         }
-        if (handPlayer.value == 21) {
+        if (handPlayer.getHandValue() == 21) {
             handPlayer.stand()
         }
-        if (splitHand.value == 21) {
+        if (splitHand.getHandValue() == 21) {
             splitHand.stand()
         }
         return true
@@ -560,18 +560,14 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     fun isCountVeryPositive(): Boolean {
         return countingSystems.getTrueCount() > config.strategicVeryPositiveCount
     }
-    fun getChipsIncludingHands(): Long {
-      return bankroll.getChips() + bankroll.getLiveValue(getCycle().players)
-    }
 
     fun getCurrentSnapshot(): CycleSnapshot {
-        return CycleSnapshot(cloneState(""))
-    }
-
-    private fun getNewActionCycleSnapshot(action: String): CycleSnapshot? {
-        lastActionSnapshot = CycleSnapshot(cloneState(action))
         return lastActionSnapshot
     }
 
-    var lastActionSnapshot: CycleSnapshot? = null
+    private fun getNewActionCycleSnapshot(action: String) {
+        lastActionSnapshot = CycleSnapshot(cloneState(action))
+    }
+
+    var lastActionSnapshot: CycleSnapshot = CycleSnapshot(cloneState(""))
 }

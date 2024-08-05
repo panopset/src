@@ -62,7 +62,7 @@ internal class Settlement(
     }
 
     private fun settleNotSurrenderedHand(handPlayer: HandPlayer) {
-        if (handPlayer.value == handDealer.value) {
+        if (handPlayer.getHandValue() == handDealer.getHandValue()) {
             if (handPlayer.isNatural21()) {
                 bge.incrementStreak()
                 if (handDealer.isNatural21()) {
@@ -75,7 +75,7 @@ internal class Settlement(
                 handPlayer.message = msg.pushMsg
                 bge.incrementStreak()
             }
-        } else if (handDealer.value > 21 || handPlayer.value > handDealer.value) {
+        } else if (handDealer.getHandValue() > 21 || handPlayer.getHandValue() > handDealer.getHandValue()) {
             bge.incrementStreak()
             if (handPlayer.isNatural21()) {
                 handPlayer.message = msg.blackjackMsg

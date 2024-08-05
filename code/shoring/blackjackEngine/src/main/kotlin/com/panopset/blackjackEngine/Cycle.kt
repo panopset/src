@@ -29,7 +29,7 @@ class Cycle internal constructor(
     override fun toString(): String {
         val sw = StringWriter()
         sw.append("Dealer: ")
-        sw.append(String.format("%s%n", dealer.cards))
+        sw.append(String.format("%s%n", dealer.getCards()))
         for ((i, p) in players.withIndex()) {
             sw.append(String.format("Player %d: %s%n", i, p.toString()))
         }
@@ -47,7 +47,7 @@ class Cycle internal constructor(
     }
 
     fun getRecommendedAction(): String {
-        return if (dealer.isFinal || !dealer.hasCards()) {
+        return if (dealer.isFinal() || !dealer.hasCards()) {
             CMD_DEAL
         } else {
             strategy.getRecommendation(getCurrentSituation(getActivePlayerHand()))
@@ -91,7 +91,7 @@ class Cycle internal constructor(
         for (player in players) {
             checkFor21(player)
         }
-        if (dealer.value == 21) {
+        if (dealer.getHandValue() == 21) {
             finish()
         }
     }
@@ -105,7 +105,7 @@ class Cycle internal constructor(
             }
         } else {
             for (playerHand in player.hands) {
-                if (playerHand.value == 21) {
+                if (playerHand.getHandValue() == 21) {
                     player.activeHand?.stand()
                 }
             }
@@ -123,19 +123,19 @@ class Cycle internal constructor(
     }
 
     private fun completeCycle() {
-        if (!dealer.isFinal) {
+        if (!dealer.isFinal()) {
             prepareSettlement()
         }
     }
 
     private fun prepareSettlement() {
-        BlackjackShoe.show(dealer.cards[0], countingSystems)
+        BlackjackShoe.show(dealer.getFirstCard(), countingSystems)
         resolvePlayerBlackjacks()
-        while (!dealer.isFinal) {
-            if (dealer.value < 17) {
+        while (!dealer.isFinal()) {
+            if (dealer.getHandValue() < 17) {
                 dealer.dealCard(bge.deal(true))
-            } else if (dealer.value == 17) {
-                if (blackjackConfiguration.isDealerHitSoft17 && dealer.isSoft) {
+            } else if (dealer.getHandValue() == 17) {
+                if (blackjackConfiguration.isDealerHitSoft17 && dealer.isSoft()) {
                     dealer.dealCard(bge.deal(true))
                 } else {
                     dealer.stand()

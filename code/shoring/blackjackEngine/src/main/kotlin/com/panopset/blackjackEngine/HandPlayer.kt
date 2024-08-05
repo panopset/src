@@ -2,7 +2,8 @@ package com.panopset.blackjackEngine
 
 import com.panopset.compat.Logz
 
-class HandPlayer(val wager: Wager) : Hand() {
+class HandPlayer(val wager: Wager) {
+    private val hand = Hand()
     var isSplit = false
     var isSurrendered = false
     var isSelectedEvenMoney = false
@@ -12,19 +13,28 @@ class HandPlayer(val wager: Wager) : Hand() {
         isSplit = handPlayer.isSplit
         isSurrendered = handPlayer.isSurrendered
         isSelectedEvenMoney = handPlayer.isSelectedEvenMoney
-        isFinal = handPlayer.isFinal
+        hand.isFinal = handPlayer.hand.isFinal
         action = handPlayer.action
         message = handPlayer.message
-        val iterator = handPlayer.cards.iterator()
+        val iterator = handPlayer.hand.getIterator()
+        val cardsToAddToHand = ArrayList<BlackjackCard>()
         while (iterator.hasNext()) {
-            dealCard(iterator.next())
+            val card = iterator.next()
+            cardsToAddToHand.add(card)
+        }
+        for (card in cardsToAddToHand) {
+            dealCard(card)
         }
     }
 
-    override fun isNatural21(): Boolean {
+    fun removeSecondCard(): BlackjackCard {
+        return hand.cards.removeAt(1)
+    }
+
+    fun isNatural21(): Boolean {
         return if (isSplit) {
             false
-        } else super.isNatural21()
+        } else hand.isNatural21()
     }
 
     fun setSplit() {
@@ -32,8 +42,8 @@ class HandPlayer(val wager: Wager) : Hand() {
     }
 
     var message: String = promptDeal
-    override fun dealCard(card: BlackjackCard) {
-        super.dealCard(card)
+    fun dealCard(card: BlackjackCard) {
+        hand.dealCard(card)
         message = ""
     }
 
@@ -49,7 +59,7 @@ class HandPlayer(val wager: Wager) : Hand() {
 //        }
 
     fun canDouble(configIsDoubleAfterSplitAllowed: Boolean): Boolean {
-        if (!isInitialDeal) {
+        if (!hand.isInitialDeal) {
             return false
         }
         return if (isSplit) {
@@ -61,11 +71,11 @@ class HandPlayer(val wager: Wager) : Hand() {
 
     fun surrender() {
         isSurrendered = true
-        stand()
+        hand.stand()
     }
 
     fun isBustedOrSurrenderred(): Boolean {
-        return if (super.isBusted()) {
+        return if (hand.isBusted()) {
             true
         } else {
             isSurrendered
@@ -73,7 +83,7 @@ class HandPlayer(val wager: Wager) : Hand() {
     }
 
     fun standWithEvenMoney() {
-        stand()
+        hand.stand()
         isSelectedEvenMoney = true
     }
 
@@ -83,7 +93,7 @@ class HandPlayer(val wager: Wager) : Hand() {
         get() = isCardFacesSplittable(true)
 
     private fun isCardFacesSplittable(includeMessage: Boolean): Boolean {
-        if (cards.size != 2) {
+        if (hand.cards.size != 2) {
             if (includeMessage) {
                 Logz.warn("Can't split a hit hand")
             }
@@ -97,8 +107,52 @@ class HandPlayer(val wager: Wager) : Hand() {
         return true
     }
 
+    fun isBusted(): Boolean {
+        return hand.isBusted()
+    }
+
+    fun stand() {
+        hand.stand()
+    }
+
+    fun getFirstCard(): BlackjackCard {
+        return hand.cards[0]
+    }
+
+    fun getSecondCard(): BlackjackCard {
+        return hand.cards[1]
+    }
+
+    fun getHandValue(): Int {
+        return hand.value
+    }
+
+    fun isInitialDeal(): Boolean {
+        return hand.isInitialDeal
+    }
+
+    fun hasCards(): Boolean {
+        return hand.hasCards()
+    }
+
+    fun getBlackjackCards(): List<BlackjackCard> {
+        return hand.cards
+    }
+
+    fun isFinal(): Boolean {
+        return hand.isFinal
+    }
+
+    fun isSoft(): Boolean {
+        return hand.isSoft
+    }
+
+    fun isDone(): Boolean {
+        return hand.isDone()
+    }
+
     private val isFaceMatch: Boolean
-        get() = cards[0].card.face == cards[1].card.face
+        get() = hand.cards[0].card.face == hand.cards[1].card.face
     val isDoubleDowned: Boolean
         get() = wager.isDoubledDown
 

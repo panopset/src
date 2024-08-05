@@ -2,6 +2,7 @@
 
 /blackjack, confirm GN variable picked up, fix remainder of /pan refs.
 
+* AutoTest.targetStakeTest:53 » ConcurrentModification
 * pan -> src in github.
 * Fix skyscraper field synch bug.
 * chisel to create dev.properties if it doesn't exist.

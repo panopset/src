@@ -72,9 +72,9 @@ class MessagesTest {
     fun testDoubleDown() {
         bge.getShoe().stackTheDeckFromList(doubleDown())
         Assertions.assertTrue(bge.getShoe().isTheDeckStacked())
-        Assertions.assertFalse(bge.getCycle().players[0].hands[0].isInitialDeal)
+        Assertions.assertFalse(bge.getCycle().players[0].hands[0].isInitialDeal())
         bge.exec(CMD_DEAL)
-        Assertions.assertTrue(bge.getCycle().getActivePlayer()!!.activeHand!!.isInitialDeal)
+        Assertions.assertTrue(bge.getCycle().getActivePlayer()!!.activeHand!!.isInitialDeal())
         Assertions.assertTrue(bge.getCycle().getActivePlayer()!!.activeHand!!.canDouble(bge.config.isDoubleAfterSplitAllowed))
         Assertions.assertTrue(bge.getCycle().dealer.upCard.card.isShowing)
         Assertions.assertFalse(bge.getCycle().dealer.downCard.card.isShowing)

@@ -29,9 +29,9 @@ class LayoutPlayer(tile: Tile?, cardDim: IntArray?, cs: CycleSnapshot?, chipDim:
                 var cardsWidth = 0
                 for (p in cs.getPlayers()) {
                     for (h in p.hands) {
-                        if (!h.cards.isEmpty()) {
-                            cardsWidth = cardsWidth + cardW
-                            cardsWidth = cardsWidth + cardSpacer * h.cards.size
+                        if (h.getBlackjackCards().isNotEmpty()) {
+                            cardsWidth += cardW
+                            cardsWidth += cardSpacer * h.getBlackjackCards().size
                         }
                     }
                 }

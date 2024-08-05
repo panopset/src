@@ -110,7 +110,7 @@ class FeltPainter {
         val o = LayoutDealer(t, intArrayOf(cptr.cardWidth, cptr.cardHeight), cs)
         g.fill = Color.BLACK
 
-        val iterator = cs.getDealer().cards.iterator()
+        val iterator = cs.getDealer().get
         while (iterator.hasNext()) {
             val bc = iterator.next()
             o.nextDealerX?.let { cptr.paintCard(g, bc.card, it, 0) }
@@ -139,7 +139,7 @@ class FeltPainter {
             val activeHand = p.activeHand
             for (h in p.hands) {
                 val handFirstCardX = cardX
-                val iterator = h.cards.iterator()
+                val iterator = h.getBlackjackCards().iterator()
                 while (iterator.hasNext()) {
                     val bc = iterator.next()
                     cptr.paintCard(g, bc.card, cardX, o.playerY!! - o.cardH)
@@ -174,7 +174,7 @@ class FeltPainter {
                         )
                     }
                 }
-                if (activeHand != null && h == activeHand && !h.isFinal) {
+                if (activeHand != null && h == activeHand && !h.isFinal()) {
                     fg00 = Color.BLACK
                     fg01 = Color.YELLOW
                     if (!arrowHasBeenDrawn) {

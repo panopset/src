@@ -2,14 +2,25 @@ package com.panopset.blackjackEngine
 
 import java.io.StringWriter
 
-abstract class Hand {
+class Hand {
     var value = 0
         private set
 
     var isSoft = false
 
     val cards: MutableList<BlackjackCard> = ArrayList()
-    open fun isNatural21(): Boolean {
+
+    fun getIterator(): Iterator<BlackjackCard> {
+        val rtn = ArrayList<BlackjackCard>()
+
+        //TODO: ConcurrentModificationException
+        for (card in cards) {
+            rtn.add(card)
+        }
+        return rtn.iterator()
+    }
+
+    fun isNatural21(): Boolean {
         return isInitialDeal && value == MAX
     }
 
@@ -28,7 +39,7 @@ abstract class Hand {
         return cards.removeAt(i)
     }
 
-    open fun dealCard(card: BlackjackCard) {
+    fun dealCard(card: BlackjackCard) {
         cards.add(card)
         if (cards.size > 1) {
             setValue()
@@ -52,7 +63,7 @@ abstract class Hand {
         }
     }
 
-    open fun isDone(): Boolean {
+    fun isDone(): Boolean {
         return isBusted() || value == MAX
     }
 

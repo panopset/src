@@ -71,7 +71,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         if (rtn != null) {
             return rtn
         }
-        if (s.handPlayer.isSoft) {
+        if (s.handPlayer.isSoft()) {
             rtn = findSoftStrategyLine(s)
         }
         return rtn ?: findHardStrategyLine(s)
@@ -81,8 +81,8 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         if (s.handPlayer == null) {
             return false
         }
-        if (s.handPlayer.isInitialDeal && s.handPlayer.isCardFacesSplittable) {
-            val v = s.handPlayer.cards[0].hardValue
+        if (s.handPlayer.isInitialDeal() && s.handPlayer.isCardFacesSplittable) {
+            val v = s.handPlayer.getFirstCard().hardValue
             return v != 5 && v != 10
         }
         return false
@@ -92,7 +92,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         if (s.handPlayer == null) {
             return null
         }
-        val cv = s.handPlayer.getHardValueOf(0)
+        val cv = s.handPlayer.getFirstCard().hardValue
         var key = "$cv,$cv"
         if (key == "1,1") {
             key = "A,A"
@@ -104,7 +104,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         if (s.handPlayer == null) {
             return null
         }
-        val v = s.handPlayer.value
+        val v = s.handPlayer.getHandValue()
         val key = if (v > 19) "20+" else v.toString()
         return strategyLines!![StratCat.SOFT]!![key]
     }
@@ -113,7 +113,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         if (s.handPlayer == null) {
             return null
         }
-        val v = s.handPlayer.value
+        val v = s.handPlayer.getHandValue()
         val key = if (v > 17) {
             "18+"
         } else if (v < 8) {

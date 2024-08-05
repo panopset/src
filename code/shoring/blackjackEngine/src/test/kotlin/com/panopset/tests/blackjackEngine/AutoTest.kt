@@ -37,13 +37,13 @@ class AutoTest {
             override val decks: Int
                 get() = 1
             override val targetStakeInWholeDollars: Int
-                get() = 1000
+                get() = 10000
             override val strategicVeryNegativeCount: Int
                 get() = 4
             override val strategicVeryPositiveCount: Int
                 get() = 4
             override val largeBetInWholeDollars: Int
-                get() = 200
+                get() = 50
         })
         bge.exec(CMD_AUTO)
         synchronized(bge) {

@@ -21,10 +21,8 @@ class Player(val wager: Wager) {
 
     override fun toString(): String {
         val sw = StringWriter()
-        var i = 0
-        for (h in hands) {
-            sw.append(String.format("Player #%d: cards:%s value: %d ", i, h.cards, h.value))
-            i++
+        for ((i, h) in hands.withIndex()) {
+            sw.append(String.format("Player #%d: cards:%s value: %d ", i, h.getBlackjackCards(), h.getHandValue()))
         }
         return sw.toString()
     }
@@ -33,7 +31,7 @@ class Player(val wager: Wager) {
     val activeHand: HandPlayer?
         get() {
             for (h in hands) {
-                if (!h.isFinal) {
+                if (!h.isFinal()) {
                     return h
                 }
             }

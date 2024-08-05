@@ -10,6 +10,7 @@ class CycleController(val g: BlackjackGameEngine) {
         return sw.toString()
     }
 
+    @Synchronized
     fun getCycle(g: BlackjackGameEngine, strategy: Strategy): Cycle {
         if (cycle == null) {
             cycle = Cycle(g, strategy)
@@ -22,10 +23,12 @@ class CycleController(val g: BlackjackGameEngine) {
         cycle = null
     }
 
+    @Synchronized
     fun cloneDealer(): HandDealer {
         return HandDealer(cycle?.dealer ?: HandDealer())
     }
 
+    @Synchronized
     fun clonePlayers(): List<Player> {
         val clonedPlayers = ArrayList<Player>()
         if (cycle == null) {
