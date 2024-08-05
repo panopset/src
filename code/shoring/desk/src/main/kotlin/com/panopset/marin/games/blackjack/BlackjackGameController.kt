@@ -3,7 +3,6 @@ package com.panopset.marin.games.blackjack
 import com.panopset.blackjackEngine.CMD_AUTO
 import com.panopset.blackjackEngine.CycleSnapshot
 import com.panopset.compat.Zombie
-import com.panopset.compat.dspmsglg
 import com.panopset.desk.games.bj.BlackjackFxControls
 import com.panopset.fxapp.FontManagerFX
 import com.panopset.fxapp.FxDoc
@@ -98,10 +97,6 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
         if (!Zombie.isActive) {
             g.fill = Color.DARKRED
             g.fillRect(0.0, 0.0, layoutWidth.toDouble(), layoutHeight.toDouble())
-            return null
-        }
-        if (bge.lastActionSnapshot == null) {
-            bge.lastActionSnapshot = bge.getCurrentSnapshot()
             return null
         }
         val rtn = bge.lastActionSnapshot

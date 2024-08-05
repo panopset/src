@@ -146,7 +146,7 @@ object JavaFXapp {
                 "but WITHOUT ANY WARRANTY; without even the implied warranty of \n" +
                 "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \n" +
                 " \n" +
-                "See <https://panopset.com/license> for more details."
+                "See <https://github.com/panopset/src/blob/main/LICENSE> for more details."
         val stage = alert.dialogPane.scene.window as Stage
         stage.icons.add(dds!!.createFaviconImage())
         stage.scene.root.style = fxDoc.scene.root.style

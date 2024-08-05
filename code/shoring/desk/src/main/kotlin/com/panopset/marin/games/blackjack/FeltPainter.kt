@@ -110,7 +110,7 @@ class FeltPainter {
         val o = LayoutDealer(t, intArrayOf(cptr.cardWidth, cptr.cardHeight), cs)
         g.fill = Color.BLACK
 
-        val iterator = cs.getDealer().get
+        val iterator = cs.getDealer().getCards().iterator()
         while (iterator.hasNext()) {
             val bc = iterator.next()
             o.nextDealerX?.let { cptr.paintCard(g, bc.card, it, 0) }
