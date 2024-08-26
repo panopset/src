@@ -532,6 +532,10 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
                 "AppVersion", "getFullVersion", "\${@e getFullVersion()}"
             )
             defineTemplateAllowedReflection(
+                "getVersion", "com.panopset.compat",
+                "AppVersion", "getVersion", "\${@e getVersion()}"
+            )
+            defineTemplateAllowedReflection(
                 "capund", "com.panopset.compat", "Stringop",
                 "capund", "\${@e capund(MakeThisCapUnderscore)}"
             )

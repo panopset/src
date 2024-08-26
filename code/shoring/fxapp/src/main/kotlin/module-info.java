@@ -4,7 +4,8 @@ module com.panopset.fxapp {
   requires transitive javafx.controls;
   requires transitive javafx.graphics;
     requires kotlin.stdlib;
+    requires java.desktop;
 
-  exports com.panopset.fxapp;
+    exports com.panopset.fxapp;
   exports com.panopset.sample;
 }

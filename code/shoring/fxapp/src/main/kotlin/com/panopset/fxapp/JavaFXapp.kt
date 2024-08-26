@@ -6,6 +6,7 @@ import com.panopset.fxapp.AnchorFactory.findAnchor
 import com.panopset.fxapp.AnchorFactory.getAnchors
 import com.panopset.fxapp.AnchorFactory.removeAnchor
 import javafx.application.Platform
+import javafx.event.EventHandler
 import javafx.scene.Scene
 import javafx.scene.control.*
 import javafx.scene.control.Alert.AlertType
@@ -15,12 +16,17 @@ import javafx.scene.layout.BorderPane
 import javafx.scene.layout.FlowPane
 import javafx.stage.FileChooser
 import javafx.stage.Stage
+import java.awt.Desktop
 import java.io.File
+import java.io.IOException
 import java.io.StringWriter
+import java.net.URI
+import java.net.URISyntaxException
 import java.net.URLDecoder
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import java.util.*
+
 
 object JavaFXapp {
 
@@ -132,8 +138,8 @@ object JavaFXapp {
             "About %s %s", DeskApp4XFactory.panApplication.getCompanyName(),
             DeskApp4XFactory.panApplication.getApplicationDisplayName()
         )
-        alert.headerText = DeskApp4XFactory.panApplication.getDescription()
-        alert.contentText = "Version " + AppVersion.getFullVersion() +
+        val contentHeader = Label(DeskApp4XFactory.panApplication.getDescription())
+        val contentTextArea = TextArea("Version " + AppVersion.getFullVersion() +
                 "\n\n " +
                 "\u00a9 1996-2024 Karl Dinwiddie.\n\n" +
 
@@ -144,13 +150,33 @@ object JavaFXapp {
                 " \n" +
                 "This program is distributed in the hope that it will be useful, \n" +
                 "but WITHOUT ANY WARRANTY; without even the implied warranty of \n" +
-                "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \n" +
-                " \n" +
-                "See <https://github.com/panopset/src/blob/main/LICENSE> for more details."
+                "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \n\n" +
+                "Please click the link below for the full license, it will open in your default browser.")
+
+        val licenceLink = Hyperlink(licenseLinkText)
+        licenceLink.onAction = EventHandler {
+            if (Desktop.isDesktopSupported()) {
+                Thread {
+                    try {
+                        Desktop.getDesktop().browse(URI(licenseLinkText))
+                    } catch (e1: IOException) {
+                        e1.printStackTrace()
+                    } catch (e1: URISyntaxException) {
+                        e1.printStackTrace()
+                    }
+                }.start()
+            }
+        }
+        val contentBorderPane = BorderPane()
+        contentBorderPane.top = contentHeader
+        contentBorderPane.center = contentTextArea
+        contentBorderPane.bottom = licenceLink
+        contentTextArea.isEditable = false
         val stage = alert.dialogPane.scene.window as Stage
         stage.icons.add(dds!!.createFaviconImage())
         stage.scene.root.style = fxDoc.scene.root.style
         alert.dialogPane.setPrefSize(600.0, 400.0);
+        alert.dialogPane.content = contentBorderPane
         alert.showAndWait()
     }
 
@@ -290,3 +316,5 @@ object JavaFXapp {
         removeAnchor(fxDoc)
     }
 }
+
+const val licenseLinkText = "https://github.com/panopset/src/blob/main/LICENSE"

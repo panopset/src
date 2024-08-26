@@ -10,12 +10,14 @@ class Chisel: PanopsetBrandedAppTran() {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            LowerClass().go()
+            Chisel().go()
         }
     }
 
     override fun createDynapane(fxDoc: FxDoc): Pane {
-        return BorderPane()
+        val b: BorderPane = createStandardMenubarBorderPane(fxDoc)
+        b.center = BorderPane()
+        return b
     }
 
     override fun getApplicationDisplayName(): String {
