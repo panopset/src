@@ -18,16 +18,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Keep this in synch with
-           docs/setup.md
            ../beam/gradle.properties
            ../beam/build.gradle
            ../deploy.properties
            ../legacy/pom.xml
         -->
         <java.version>21</java.version>
-        <kotlin.version>2.0.0</kotlin.version>
+        <kotlin.version>2.0.20</kotlin.version>
         <dokka.version>1.9.10</dokka.version>
-        <fx.v>23-ea+22</fx.v>
+        <fx.v>24-ea+5</fx.v>
         <gson.version>2.11.0</gson.version>
 
         <maven.compiler.version>3.11.0</maven.compiler.version>
