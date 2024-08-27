@@ -31,7 +31,6 @@ if [ "$INSTALLER_PFX" = "" ]; then
 fi
 
 echo SITE_DN is $SITE_DN
-echo SITE_NAME is $SITE_NAME
 echo Panopset version is ${PV}
 export INSTALLER="${INSTALLER_PFX}${PV}${INSTALLER_SFX}"
 export PCI_JSON="pci_${INSTALLER}.json"

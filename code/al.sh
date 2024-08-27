@@ -13,7 +13,8 @@ mkdir -p /var/www/html/dox/site
 
 # Build Application Linux including dokka, link and build the app.
 # Use bal.sh if you are in a hurry.
-. ./bald.sh
+#. ./bald.sh
+. ./bal.sh
 
 # Copy the all-in-one jar to the home directory.
 cp legacy/target/axe-jar-with-dependencies.jar ~/panopset.jar
