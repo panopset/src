@@ -1,5 +1,6 @@
 package com.panopset.desk.utilities
 
+import com.panopset.desk.utilities.chisel.ChiselPane
 import com.panopset.fxapp.FxDoc
 import com.panopset.marin.fx.PanopsetBrandedAppTran
 import javafx.scene.layout.BorderPane
@@ -16,7 +17,7 @@ class Chisel: PanopsetBrandedAppTran() {
 
     override fun createDynapane(fxDoc: FxDoc): Pane {
         val b: BorderPane = createStandardMenubarBorderPane(fxDoc)
-        b.center = BorderPane()
+        b.center = ChiselPane(fxDoc).createPane()
         return b
     }
 
