@@ -129,9 +129,10 @@ object JavaFXapp {
     }
 
     private fun doAbout(fxDoc: FxDoc) {
+        val appDisplayName = DeskApp4XFactory.panApplication.getApplicationDisplayName()
+        val companyName = DeskApp4XFactory.panApplication.getCompanyName()
         val alert = Alert(AlertType.INFORMATION)
-        val appName = DeskApp4XFactory.panApplication.getCompanyName()
-        val bannerImageName = appName.lowercase(Locale.getDefault())
+        val bannerImageName = companyName.lowercase(Locale.getDefault())
         val bannerImage = Image(javaClass.getResourceAsStream("/$bannerImageName.png"))
         alert.graphic = ImageView(bannerImage)
         alert.title = String.format(
@@ -176,6 +177,7 @@ object JavaFXapp {
         stage.icons.add(dds!!.createFaviconImage())
         stage.scene.root.style = fxDoc.scene.root.style
         alert.dialogPane.setPrefSize(600.0, 400.0);
+        alert.dialogPane.headerText = appDisplayName
         alert.dialogPane.content = contentBorderPane
         alert.showAndWait()
     }

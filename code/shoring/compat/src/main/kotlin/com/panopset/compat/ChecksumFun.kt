@@ -20,12 +20,16 @@ private fun digestFromStream(md: MessageDigest, fis: FileInputStream): String {
     return convertBytesToHex(mdbytes)
 }
 
-private fun convertBytesToHex(byts: ByteArray): String {
+fun convertBytesToHex(byts: ByteArray): String {
     val sb = StringBuilder()
     for (byt in byts) {
-        sb.append(Integer.toString((byt.toInt() and 0xff) + 0x100, 16).substring(1))
+        sb.append(convertBytToHex(byt))
     }
     return sb.toString()
+}
+
+fun convertBytToHex(byt: Byte): String {
+    return ((byt.toInt() and 0xff) + 0x100).toString(16).substring(1)
 }
 
 private fun getDigestOf(file: File, algorithm: String): String {
