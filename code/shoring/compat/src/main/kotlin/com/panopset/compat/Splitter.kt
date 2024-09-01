@@ -62,7 +62,13 @@ fun fixedLengths(commaSeparatedLineSplitWidths: String): Splitter {
         }
         return Splitter(splitWidths)
     }
-    return Splitter(parseInt( commaSeparatedLineSplitWidths))
+    try {
+        val splitInt = parseInt(commaSeparatedLineSplitWidths)
+        return Splitter(splitInt)
+    } catch(e: Exception) {
+        Logz.errorEx(e)
+        return Splitter(0)
+    }
 }
 
 fun fixedLength(lineSplitWidth: Int): Splitter {
