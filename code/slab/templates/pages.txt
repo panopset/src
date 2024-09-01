@@ -1,6 +1,8 @@
 index,Panopset
+product,Panopset Product Overview
 flywheel,Panopset Flywheel
 skyscraper,Panopset Skyscraper
+chisel,Panopset Chisel
 scrambler,Panopset Scrambler
 checksum,Panopset Checksum
 lowerclass,Panopset Lowerclass
@@ -8,7 +10,7 @@ blackjack,Panopset Blackjack
 desk,${pdaTitle}
 build,${pdaTitle}
 license,${pdaTitle}
-news,${pdaTitle}
+news,Panopset News
 downloads,${pdaTitle} Downloads
 lynx,links
 

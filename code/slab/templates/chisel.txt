@@ -1,0 +1,16 @@
+<div class="inset">
+
+<h1>Chisel</h1>
+
+${deskBlurb}
+
+<p>
+<img src="/images/chisel.png" alt="chisel image"/>
+</p>
+
+
+<p>
+Quick view of some basic network, environment and system information of your PC.
+</p>
+
+</div>
