@@ -3,6 +3,7 @@ package com.panopset.compat
 import java.io.File
 
 object Logz {
+    val debugging = false
 
     var logzDsiplayer: LogDisplayer = LogzDisplayerCMD
 
@@ -27,7 +28,9 @@ object Logz {
     }
 
     fun debug(msg: String) {
-        logzDsiplayer.debug(msg)
+        if (debugging) {
+            logzDsiplayer.debug(msg)
+        }
     }
 
     fun dspmsg(msg: String) {

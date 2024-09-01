@@ -27,7 +27,11 @@ class FxDoc : Anchor, LogDisplayer {
     fun closeWindow() {
         saveWindow()
         closingSaveComplete = true
-        stage.close()
+        try {
+            stage.close()
+        } catch (e: Exception) {
+            Logz.errorEx(e)
+        }
     }
 
     fun saveWindow() {

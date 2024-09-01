@@ -26,9 +26,9 @@ There are many ways to use Flywheel, for example:
 <ul><li>
 On the web, for quick copy paste tasks. (Click the &quot;Got it!&quot; button above left, to go back to the online Flywheel form, to try it out.)
 <ul><li>
-Since panopset.com itself is on a cheap server with no guaranteed availability, you are encouraged to <a href="https://github.com/panopset/pan">host your own</a> for ensured availability.
+Since panopset.com itself is on a cheap server with no guaranteed availability, you are encouraged to <a href="https://github.com/panopset/src">host your own</a> for ensured availability.
 </li></ul><li>
-As a JavaFX application, called using the Java 9 Jigsaw way.  You will need to build that from <a href="https://github.com/panopset/pan">source</a>.
+As a JavaFX application, called using the Java 9 Jigsaw way.  You will need to build that from <a href="https://github.com/panopset/src">source</a>.
 </li><li>
 As a JavaFX application, <a href="/utilities">called</a> using the traditional way, from an all-in-one jar.  You will need to <a href="/download">download</a> or build panopset.jar, for your system.
 </li><li>

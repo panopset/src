@@ -2,7 +2,7 @@
 
 <h1>Desktop Application License</h1>
 <p>
-Panopset desktop software is currently free, for anyone who can't afford it, and <a href="https://github.com/panopset/pan">open source</a>,
+Panopset desktop software is currently free, for anyone who can't afford it, and <a href="https://github.com/panopset/src">open source</a>,
 under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 <a href="https://github.com/panopset/${GN}/blob/main/LICENSE">license</a>,
 slightly modified with two provisions related to the Blackjack module.
 </p><p>
@@ -21,12 +21,12 @@ memory solely for the purpose of your immediate data processing cycle.  That inf
 stored anywhere.  When using Panopset desktop applications, nothing is transmitted outbound behind the scenes, except
 a request for version information, from the server to your application, so that it may flag you if you need an 
 upgrade.  All other Panopset desktop software processing is done using web traffic and files that you select, and in
-local RAM. All of this is <a href="https://github.com/panopset/pan">open source</a>, allowing for easy verification.
+local RAM. All of this is <a href="https://github.com/panopset/src">open source</a>, allowing for easy verification.
 </p>
 
 <h2>Documentation</h2>
 
-    <p>See the Panopset <a href="https://github.com/panopset/pan">source code</a>,
+    <p>See the Panopset <a href="https://github.com/panopset/src">source code</a>,
         for documentation of active Panopset projects.</p>
 
 <h1>Financials</h1>

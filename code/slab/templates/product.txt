@@ -1,7 +1,7 @@
 <div class="inset">
 
 <p>
-100% open <a href="https://github.com/panopset/pan">source</a>,
+100% open <a href="https://github.com/panopset/src">source</a>,
 and free for anyone who can't afford the <a href="/license.html">license</a>.
 </p>
 
@@ -40,14 +40,6 @@ and free for anyone who can't afford the <a href="/license.html">license</a>.
     <td>&bull;</td>
     <td>&nbsp;</td>
     <td>Skyscraper API client.</td>
-   </tr>
-
-   <tr>
-    <td><a href="/chisel.html">chisel</a> <b>New!</b></td>
-    <td>&nbsp;</td>
-    <td>&bull;</td>
-    <td>&nbsp;</td>
-    <td>PC Console</td>
    </tr>
 
    <tr>

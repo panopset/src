@@ -36,7 +36,10 @@ public final class ReservedWords {
    * in CommandList.
    */
   public static final String SPLITS = "com.panopset.flywheel.splits";
-
+  /**
+   * MAC Address
+   */
+  public static final String MACAddress = "com.panopset.MACAddress";
   /**
    * Prevent instantiation.
    */

@@ -2,8 +2,28 @@ ${previewBlurb}
 
 <div class="inset">
 
+<h2>When there is nothing artificial about your ideas...</h2>
+<h1>Flywheel</h1>
 <p>
- <b>Some kind of mission statement, but I just wanna code for now.</b>
+Flywheel unleashes something much more powerful than AI: your mind.
 </p>
-
+<p>
+A freeform template processor, with a simple shell script like syntax, it takes the tedium out of your work, freeing
+up your creative energy.
+</p>
+<p>
+With flywheel, you never write the same thing twice.
+<ul><li>
+There is a <a href="./flywheel.html">web version</a>, for quick tasks that wouldn't be so quick without it,
+</li><li>
+a script version, fw, which is <a href="https://github.com/panopset/src/blob/main/code/slab/templates/driver.txt">used</a>
+to <a href="https://github.com/panopset/src/blob/main/code/dwl.sh">publish</a> this site, and the
+</li><li>
+<a href="./downloads.html">desktop</a> version
+which has additional capabilities and features, just a tab away.
+</li></ul>
+</p>
+<p>
+<img src="./images/fwsys.png" alt="Flywheel System tab"/>
+</p>
 </div>

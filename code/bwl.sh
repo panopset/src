@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build Website for Linux:
+# Build Website:
 
 function deployLocalJavadocs () {
   cp -r shoring/target/site/* "$1/dox/site/"

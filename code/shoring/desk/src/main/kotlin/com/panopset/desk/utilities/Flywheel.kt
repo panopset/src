@@ -32,6 +32,7 @@ class Flywheel : PanopsetBrandedAppTran() {
         rtn.tabs.add(TabListAudit(fxDoc).createTab())
         rtn.tabs.add(TabStract(fxDoc).createTab())
         rtn.tabs.add(TabGlobalOptions().createTab(fxDoc))
+        rtn.tabs.add(TabChisel().createTab(fxDoc))
         return rtn
     }
     companion object {

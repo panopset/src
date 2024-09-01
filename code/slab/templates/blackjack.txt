@@ -12,7 +12,7 @@ basic strategy, I don't care about the outcome of the hand,
 just whether or not I made the correct decision.
 </p><p>
 It is entirely your responsibility to independently 
-<a href="https://github.com/panopset/${GN}/tree/main/code/shoring/blackjackEngine">verify</a>
+<a href="https://github.com/panopset/src/blob/main/code/shoring/blackjackEngine/src/main/kotlin/com/panopset/blackjackEngine/BlackjackGameEngine.kt">verify</a>
 its accuracy.
 </p><h2>
 The only claim made about this game is that it will only lead you to ruin, whether or not it has any bugs.
@@ -21,6 +21,15 @@ That said, a link to
 <a href="http://gamblersanonymous.com">Gamblers Anonymous</a>
 should serve to provide a far better disclaimer, than the 
 poor words of an old gambler.
+</p>
+<p>
+Blackjack is incredibly tedious and tough to beat these days, but I still love the game and go play once in a while.
+I see people come and go and make incredibly bad decisions, not splitting 8's etc.
+Usually I eventually lose my stake, but I tend to last
+longer than the average players. I don't understand why someone would ever sit down at a blackjack table without at
+least having the basic strategy memorized. This game helps you memorize the basic strategy, and has card counting
+simulation scenarios for you to try, but I wrote those a long time ago when you could still find good tables with
+reasonable rules. Nowadays, you can't even re-split aces anywhere anymore, so what's the point, right?
 </p>
 
  <hr/>

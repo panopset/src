@@ -2,7 +2,7 @@
 <h1>Build</h1>
 <p>
 
-Using the open <a href="https://github.com/panopset/pan">source code</a>, you may
+Using the open <a href="https://github.com/panopset/src">source code</a>, you may
 <a href="https://github.com/panopset/${GN}/blob/main/docs/build.md">build</a> a platform installer,
 an all-in-one jar, or run it directly from an IDE.
 

@@ -2,10 +2,12 @@ package com.panopset.compat
 
 import java.io.StringWriter
 import java.net.NetworkInterface
-import kotlin.experimental.and
 
 object NetworkInfo {
     private val netInts = ArrayList<NetInt>()
+    var maca = ""
+    var netSummary = ""
+    var netVerbose = ""
     init {
         for (ni in NetworkInterface.networkInterfaces()) {
             val netInt = if (ni.hardwareAddress == null) {
@@ -22,6 +24,7 @@ object NetworkInfo {
             }
             netInts.add(netInt)
         }
+        createNetSummary(false)
     }
 
     override fun toString(): String {
@@ -29,14 +32,25 @@ object NetworkInfo {
     }
 
     fun createNetSummary(verbose: Boolean): String {
+        if (verbose) {
+            if (netVerbose.isNotEmpty()) {
+                return netVerbose
+            }
+        } else {
+            if (netSummary.isNotEmpty()) {
+                return netSummary
+            }
+        }
         val sw = StringWriter()
         for (netInt in netInts) {
             if (netInt.maca.isNotEmpty()) {
                 if (verbose) {
-                    sw.append("Network Interface Card (NIC) Medium Access Control (MAC) Address: ${netInt.maca}\n")
+                    sw.append("Network Interface Card (NIC) Medium Access Control MAC Address, \n" +
+                            ": Flywheel variable com.panopset.MACAddress: ${netInt.maca}\n")
                 } else {
-                    sw.append("MAC Address: ${netInt.maca}\n")
+                    sw.append("Flywheel variable com.panopset.MACAddress: ${netInt.maca}\n")
                 }
+                this.maca = netInt.maca
             }
             sw.append(netInt.name)
             if (verbose) {
@@ -48,6 +62,11 @@ object NetworkInfo {
                 sw.append(addInfo.ipAddress)
             }
             sw.append("\n\n")
+        }
+        if (verbose) {
+            netVerbose = sw.toString()
+        } else {
+            netSummary = sw.toString()
         }
         return sw.toString()
     }
