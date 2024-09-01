@@ -15,9 +15,9 @@ With flywheel, you never have to write the same thing twice.
 There is a <a href="./flywheel.html">web version</a>, for quick tasks that wouldn't be so quick without it,
 </li><li>
 a script version, fw, which is <a href="https://github.com/panopset/src/blob/main/code/slab/templates/driver.txt">used</a>
-to <a href="https://github.com/panopset/src/blob/main/code/dwl.sh">publish</a> this site, and the
+to publish this site, and the
 </li><li>
-<a href="./downloads.html">desktop</a> version,which has additional capabilities and features just a tab away.
+<a href="./downloads.html">desktop</a> version, flywheel, which has additional capabilities and features just a tab away.
 </li></ul>
 </p>
 </div>
