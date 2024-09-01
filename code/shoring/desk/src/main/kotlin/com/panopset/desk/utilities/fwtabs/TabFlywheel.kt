@@ -9,6 +9,7 @@ import com.panopset.fxapp.*
 import com.panopset.marin.apps.fw.FxFunctionLoader
 import com.panopset.marin.apps.fw.FxSampleLoader
 import javafx.beans.value.ObservableValue
+import javafx.event.EventHandler
 import javafx.scene.control.CheckBox
 import javafx.scene.control.ComboBox
 import javafx.scene.control.SplitPane
@@ -74,13 +75,21 @@ class TabFlywheel(fxDoc: FxDoc): SceneUpdater(fxDoc) {
         val rtn = FontManagerFX.registerTab(Tab("Flywheel"))
         val bp = BorderPane()
         rtn.content = bp
-
         bp.top = createTopPane()
         bp.center = createCenterPane(fxDoc)
         bp.bottom = createBottomPane()
-
         rtn.content = bp
+        addSomeEventHandlers()
         return rtn
+    }
+
+    private fun addSomeEventHandlers() {
+        fwListBreaks.onAction = EventHandler {
+            doUpdate()
+        }
+        fwLineBreaks.onAction = EventHandler {
+            doUpdate()
+        }
     }
 
     private fun createTopPane(): VBox {
