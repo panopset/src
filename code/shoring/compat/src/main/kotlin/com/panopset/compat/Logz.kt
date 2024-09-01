@@ -3,7 +3,7 @@ package com.panopset.compat
 import java.io.File
 
 object Logz {
-    val debugging = false
+    var debugging = false
 
     var logzDsiplayer: LogDisplayer = LogzDisplayerCMD
 

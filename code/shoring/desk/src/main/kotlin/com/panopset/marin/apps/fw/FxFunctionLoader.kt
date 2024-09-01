@@ -1,8 +1,8 @@
 package com.panopset.marin.apps.fw
 
-import com.panopset.flywheel.Flywheel.Companion.defineAllowedScriptCalls
 import com.panopset.flywheel.FlywheelFunction
 import com.panopset.flywheel.ReflectionInvoker.Companion.all
+import com.panopset.flywheel.ScriptSecurity
 import javafx.event.EventHandler
 import javafx.scene.control.ComboBox
 import javafx.scene.control.TextArea
@@ -19,7 +19,7 @@ class FxFunctionLoader {
     }
 
     private fun populateDropdown(cbFunctions: ComboBox<FlywheelFunction>) {
-        defineAllowedScriptCalls()
+        ScriptSecurity.defineAllowedScriptCalls()
         cbFunctions.items.add(FlywheelFunction())
 
         val allBut_dt: MutableCollection<FlywheelFunction> = Collections.synchronizedSortedSet(TreeSet())

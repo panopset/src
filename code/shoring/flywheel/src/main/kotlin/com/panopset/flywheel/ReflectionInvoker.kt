@@ -219,7 +219,7 @@ class ReflectionInvoker {
 
         val all: Collection<FlywheelFunction>
             get() {
-                Flywheel.defineAllowedScriptCalls()
+                ScriptSecurity.defineAllowedScriptCalls()
                 return map.values
             }
         private val map: SortedMap<String, FlywheelFunction> = Collections.synchronizedSortedMap(TreeMap())

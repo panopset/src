@@ -29,6 +29,7 @@ class LogopTest {
         Assertions.assertEquals(Level.INFO, stacklg.peek().level)
         Logz.errorEx(Exception(Stringop.FOO))
         Assertions.assertEquals(Level.SEVERE, stacklg.peek().level)
+        Logz.debugging = true
         Logz.debug(Stringop.FOO)
         Assertions.assertEquals(Level.FINE, stacklg.peek().level)
         Logz.warn(Stringop.FOO)
@@ -55,5 +56,6 @@ class LogopTest {
         Logz.clear()
         Logz.debug(Stringop.FOO)
         Assertions.assertEquals(1, stacklg.size)
+        Logz.debugging = false
     }
 }
