@@ -2,10 +2,6 @@ package com.panopset.flywheel
 
 import com.panopset.flywheel.ReflectionInvoker.Companion.defineTemplateAllowedReflection
 
-/**
- * The Flywheel exec command is too powerful to just let it run loose in the web,
- * so we register all allowed methods here.
- */
 object ScriptSecurity {
     private var defined = false
 
