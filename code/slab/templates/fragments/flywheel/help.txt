@@ -112,7 +112,7 @@ command, which contains the path to the map, then pass it to the m command. For 
 
 <p>
 Click anywhere in the image above to advance the slideshow, which
-demonstrates a typical Flywheel <a href="https://github.com/panopset/flywheel_tasks/blob/main/nginx/README.md">use case</a>.
+demonstrates a typical Flywheel <a href="https://github.com/panopset/src/tree/main/docs/uses/flywheel/nginx">use case</a>.
 </p>
 
 <h2>History</h2>
