@@ -3,6 +3,8 @@ package com.panopset.desk.utilities
 import com.panopset.compat.*
 import com.panopset.flywheel.FlywheelBuilder
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class GenerateSite {
@@ -26,7 +28,10 @@ class GenerateSite {
             .map("downloadsTable", GenerateDownloadsTable().createDownloadsTable("/var/www/html/downloads"))
             .map("appVersion", AppVersion.getVersion())
             .map("fullVersion", AppVersion.getFullVersion())
+            .map("dashDate", dashDateFormat.format(Date()))
             .map(props2map(Fileop.loadProps(File("deploy.properties"))))
             .construct().exec()
     }
+
+    private val dashDateFormat = SimpleDateFormat("yyyy-MM-dd")
 }

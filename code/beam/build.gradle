@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.panopset'
-version = '0.0.1-SNAPSHOT'
+version = project.properties["panopset.version"]
 
 java {
 	toolchain {

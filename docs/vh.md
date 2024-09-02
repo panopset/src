@@ -2,6 +2,9 @@
 
 # History
 
+## 1.4.2 (2024.09.01)
+* Dependency updates.
+
 ## 1.4.1 (2024.08.31)
 * Bug fixes:
   * Flywheel desktop version line breaks and list breaks checkbox refresh.
@@ -21,20 +24,6 @@
 ## 1.3.7 (2024.06.08)
 * Ongoing work on Skyscraper.
 
-## 1.3.6 (2024.05.26)
-
-* Bug fixes:
-  * Fixed bug with "save as...".
-* Enhancements:
-  * Dependency updates.
-  * Ongoing work on Skyscraper.
-
-## 1.3.5 (2024.05.16)
-* Bug fixes:
-  * Fixed bug with launching from legacy panopset.jar.
-* Enhancements:
-  * Dependency updates.
-  * Ongoing work on Skyscraper.
 
 ## ****************************
 Detailed version history only kept for a few months, so you can see recent bug fixes.

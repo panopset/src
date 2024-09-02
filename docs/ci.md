@@ -1,14 +1,10 @@
 [home](../README.md)
 
 # Panopset Continuous Integration Manual
-
 * Update code/deploy.properties with the new version.
   * PV: new version.
-  * RV: prior version.
 * Update docs/vh.html.
 * Verify SITE_DN is where you want to publish:
-
-...
 
 
     ../p.sh
