@@ -39,7 +39,6 @@
    <li class="padLeft linkDown"><a href="#">app <span>&#8227;</span></a>
     <ul>
      <li><a href="./skyscraper.html">skyscraper</a></li>
-     <li><a href="./chisel.html">chisel</a></li>
      <li><a href="./checksum.html">checksum</a></li>
      <li><a href="./lowerclass.html">lowerclass</a></li>
      <li><a href="./blackjack.html">blackjack</a></li>
