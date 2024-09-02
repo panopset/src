@@ -25,7 +25,7 @@
    </li>
    <li><div class="menuSeparator">&nbsp;</div></li>
    <li><div class="menuSeparator">&nbsp;</div></li>
-   <li><a href="./product.html">&nbsp;&nbsp;&nbsp;Product Overview&nbsp;&nbsp;&nbsp;</a></li>
+   <li><a href="./product.html">&nbsp;&nbsp;&nbsp;Products&nbsp;&nbsp;&nbsp;</a></li>
    <li><div class="menuSeparator">&nbsp;</div></li>
    <li><div class="menuSeparator">&nbsp;</div></li>
    <li class="padLeft linkDown"><a href="#">web <span>&#8227;</span></a>
