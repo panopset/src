@@ -14,7 +14,6 @@ next:
 
 
     ./generateVersion.sh
-    ../u.sh
 
 
 Follow instructions in the comments of
