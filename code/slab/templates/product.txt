@@ -1,11 +1,7 @@
 <div class="inset">
-
 <p>
-100% open <a href="https://github.com/panopset/src">source</a>,
-and free for anyone who can't afford the <a href="/license.html">license</a>.
+Current version is ${fullVersion}.
 </p>
-
-<h1 class="menuBar">&nbsp;Product Overview</h1>
 
   <table>
 
@@ -109,9 +105,4 @@ and free for anyone who can't afford the <a href="/license.html">license</a>.
 <p>
 &nbsp;
 </p>
-
-<p>
-Current version is ${fullVersion}.
-</p>
-
 </div>

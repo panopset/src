@@ -1,16 +1,16 @@
 ${previewBlurb}
 
 <div class="inset">
-<p>When you require something less artificial... </p>
-<p>...something that unleashes you own creativity, instead of some semi-random automatic glorified swag...</p>
+
 <h2>keep it real with</h2>
 <h1>Panopset Flywheel</h1>
 <p>
-A freeform template processor, with a simple shell script like syntax, it takes the tedium out of your work, freeing
-up your creative energy.
+With flywheel, you never have to write the same thing twice.
 </p>
 <p>
-With flywheel, you never have to write the same thing twice.
+A freeform template processor, with a simple shell script like syntax,
+it takes the tedium out of your work, freeing
+up your creative energy.
 </p>
 
 <ul><li>
@@ -20,8 +20,7 @@ Cross platform.
 </li><li>
 <a href="./license.html">Inexpensive</a>, and free for anyone who can't afford it.
 </li><li>
-Totally reliable, because the templates are designed by something better than AI: your mind.
- Nothing artificial or unpredictable about it.
+No artificial ingredients, templates are designed by something more reliable, and real: your mind.
 </li></ul>
 
 <p>Both the <a href="./flywheel.html">web</a> and desktop application versions provide a few samples, that put the major features just a dropdown selection away for reference.</p>
