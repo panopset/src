@@ -33,8 +33,6 @@ class GenerateAppInfo {
     }
 }
 
-
-
 private fun generateJsonFor(file: File) {
     val name = file.name
     for (platform in PlatformMap().map.values) {
@@ -42,15 +40,18 @@ private fun generateJsonFor(file: File) {
             val targetFile = File("/var/www/html/downloads/pci_$name.json")
             val targetFileForOneJar = File("/var/www/html/downloads/${platform.fxArch}OneJar.json")
             checkParent(targetFileForOneJar)
-            val json = Jsonop<Map<String, String>>().toJson(createList(platform.platformName, file))
-            val jsonForOneJar = Jsonop<Map<String, String>>().toJson(createList(platform.platformName,
-                File("/var/www/html/downloads/${platform.fxArch}/panopset.jar")))
-            Fileop.write(json, targetFile)
-            Fileop.write(jsonForOneJar, targetFileForOneJar)
+            if (!targetFile.exists()) {
+                val json = Jsonop<Map<String, String>>().toJson(createList(platform.platformName, file))
+                Fileop.write(json, targetFile)
+            }
+            if (!targetFileForOneJar.exists()) {
+                val json = Jsonop<Map<String, String>>().toJson(createList(platform.platformName,
+                    File("/var/www/html/downloads/${platform.fxArch}/panopset.jar")))
+                Fileop.write(json, targetFileForOneJar)
+            }
         }
     }
 }
-
 
 fun createList(platformName: String, installerFile: File): Map<String, String> {
     val map = HashMap<String, String>()
