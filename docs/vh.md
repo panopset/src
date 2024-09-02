@@ -5,7 +5,7 @@
 ## 1.4.1 (2024.08.31)
 * Bug fixes:
   * Flywheel desktop version line breaks and list breaks checkbox refresh.
-* Ehancements:
+* Enhancements:
   * Flywheel System tab to provide network, env, and system info. 
 
 ## 1.4 (2024.08.05)

@@ -3,7 +3,7 @@ ${previewBlurb}
 <div class="inset">
 
 <p>Keep it real with</p>
-<h1>Panopset <a href="./flywheel.html">Flywheel</a></h1>
+<h1>Panopset <a href="./flywheel.html">Flywheel.</a></h1>
 <p>
 With flywheel, you never have to write the same thing twice.
 </p>
