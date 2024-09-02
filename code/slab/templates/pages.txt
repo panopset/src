@@ -2,7 +2,7 @@ index,Panopset
 product,Panopset Product Overview
 flywheel,Panopset Flywheel
 skyscraper,Panopset Skyscraper
-chisel,Panopset Chisel
+about,About Panopset
 scrambler,Panopset Scrambler
 checksum,Panopset Checksum
 lowerclass,Panopset Lowerclass
@@ -11,6 +11,6 @@ desk,${pdaTitle}
 build,${pdaTitle}
 license,${pdaTitle}
 news,Panopset News
-downloads,${pdaTitle} Downloads
+downloads,Panopset Downloads
 lynx,links
 
