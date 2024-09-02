@@ -12,22 +12,18 @@ up your creative energy.
 <p>
 With flywheel, you never have to write the same thing twice.
 </p>
-<p>Both the web and desktop application versions provide a few samples, that put the major features just a dropdown selection away for reference.</p>
 
-<table><tr><td>
-<a href="./flywheel.html">Web</a>
-</td><td>
-For quick tasks, that would be far from so quick, without it.
-</td></tr><tr><td>
-Command line
-</td><td>
-For iterative tasks, such as publishing content updates.
-</td></tr><tr><td>
-Application
-</td><td>
-For design work.
-</td></tr></table>
-<p></p>
+<ul><li>
+Open source, fully customizable.
+</li><li>
+Cross platform.
+</li><li>
+<a href="./license.html">Inexpensive</a>, and free for anyone who can't afford it.
+</li><li>
+Totally reliable, because the templates are designed by something better than AI: your mind.
+ Nothing artificial or unpredictable about it.
+</li></ul>
 
+<p>Both the <a href="./flywheel.html">web</a> and desktop application versions provide a few samples, that put the major features just a dropdown selection away for reference.</p>
 
 </div>
