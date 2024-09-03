@@ -14,7 +14,7 @@ local RAM. All of this is <a href="https://github.com/panopset/src">open source<
 <h2>Documentation</h2>
 
     <p>See the Panopset <a href="https://github.com/panopset/src">source code</a>,
-        home page for a list of Panopset, including sample use cases.</p>
+        for a list of Panopset manuals, including use case samples.</p>
 
 
 <h1>Contact</h1>
