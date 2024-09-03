@@ -23,6 +23,6 @@ Cross platform.
 No artificial ingredients, templates are designed by something more reliable, and real: your mind.
 </li></ul>
 
-<p>Both the <a href="./flywheel.html">web</a> and desktop application versions provide a few samples, that put the major features just a dropdown selection away for reference.</p>
+<p>Common use case samples are a dropdown selection away.</p>
 
 </div>

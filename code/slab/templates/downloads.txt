@@ -20,7 +20,7 @@ help-&gt;about, from any Panopset desktop application, will give you the <a href
 <h3>Using a platform specific installer.</h3>
 
 <p>
-Substitute flywheel, with the <a href="https://panopset.com">Panopset</a> application name of your choice.
+Substitute flywheel, with the Panopset <a href="./product.html">application</a> name of your choice.
 Here are the
 default paths to the Panopset Flywheel application, for these PC platforms:
 </p>
