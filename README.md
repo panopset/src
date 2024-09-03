@@ -21,3 +21,4 @@ The base directory for this project contains these scripts:
 * [Desktop Applications Build](docs/build.md).
 * [Website Deployment Manual](docs/deploy.md).
 * [Continuous Integration Manual](docs/ci.md)
+* [Samples](docs/uses/README.md)

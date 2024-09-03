@@ -106,7 +106,7 @@ command, which contains the path to the map, then pass it to the m command. For 
 
 <h2>Use case</h2>
 <p>
-<img id="slide" src="/images/homeslides/slide010.jpg" alt="Panopset"/>
+<img id="slide" src="/images/homeslides/slide009.jpg" alt="Panopset"/>
 <p/>
 
 
@@ -124,7 +124,7 @@ It was moved to Java right around the dawn of Java, and has been refined off and
 </div>
 <script>
 
-var slides = ["slide000.jpg","slide001.jpg","slide002.jpg","slide003.jpg","slide005.jpg","slide006.jpg","slide007.jpg","slide008.jpg","slide009.jpg","slide010.jpg"];
+var slides = ["slide000.jpg","slide001.jpg","slide002.jpg","slide003.jpg","slide005.jpg","slide006.jpg","slide007.jpg","slide008.jpg","slide009.jpg"];
 
 var pindx = slides.length - 1;
 var auto = true;

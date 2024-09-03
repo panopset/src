@@ -5,6 +5,8 @@
 
 Since [1.0.6](../../vh.md).
 
+__Global Replace__ is a tab under the Flywheel desktop application, see image below.
+
 ## A Situation
 
 You're coding along and your Sonar Lint plugin tells you you should remove the public
