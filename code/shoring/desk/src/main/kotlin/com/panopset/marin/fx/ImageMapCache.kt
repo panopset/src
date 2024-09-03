@@ -2,23 +2,22 @@ package com.panopset.marin.fx
 
 import com.panopset.compat.Logz
 import javafx.scene.image.Image
+import javafx.scene.image.WritableImage
 
 object ImageMapCache {
 
-    private fun find(key: String, path: String): Image? {
+    private fun find(key: String, path: String): Image {
         var rtn = map[key]
         if (rtn == null) {
             rtn = try {
                 Image(javaClass.getResource(path)?.toExternalForm())
             } catch (iae: IllegalArgumentException) {
                 Logz.errorMsg(path, iae)
-                return null
+                WritableImage(0, 0)
             }
-            if (rtn != null) {
-                map[key] = rtn
-            }
+            map[key] = rtn?: WritableImage(0, 0)
         }
-        return rtn
+        return rtn?: WritableImage(0, 0)
     }
 
     private val map: MutableMap<String, Image> = HashMap()
