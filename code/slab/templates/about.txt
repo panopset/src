@@ -14,26 +14,9 @@ local RAM. All of this is <a href="https://github.com/panopset/src">open source<
 <h2>Documentation</h2>
 
     <p>See the Panopset <a href="https://github.com/panopset/src">source code</a>,
-        for documentation of active Panopset projects.</p>
+        home page for a list of Panopset, including sample use cases.</p>
 
-<h1>Financials</h1>
-<p>Panopset is privately held, has never had debt, and operates on a sustainable cost model.</p>
-<h2>Expenses</h2>
-<ul><li>
- 8 dollars a month for a <a href="https://digitalocean.com">DigitalOcean</a> server.
-</li><li>
- Less than 50 dollars a year for <a href="https://domains.squarespace.com/">SquareSpace</a> domain registration fees.
-</li></ul>
-<h2>Revenue</h2>
-<p>
-The plan is simple, give it away for free to drive adoption, then sell out to a FAANG.
-If that ever happens, those who actually paid their <a href="./license.html">license</a> fees, will receive a nice email in response.
-</p>
-<h2>Taxes</h2>
-<p>
-<img src="/images/smFlag.png" alt="US Flag"/>&nbsp;&nbsp;No overseas accounts, nothing under the table, and no creative accounting.
-Panopset is proud to always pay our fair share of taxes.
-</p>
+
 <h1>Contact</h1>
 <ul><li>
 <a href="https://www.linkedin.com/in/karldinwiddie/">Karl Dinwiddie</a>, <a href="mailto:karldinwiddie@gmail.com"><b>CEO</b></a> and founder.
