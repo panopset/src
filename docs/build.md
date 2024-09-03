@@ -29,8 +29,10 @@ To set up your git environment:
     git config --global user.email <email>
     git config --global user.name 'your name'
 
-
+All build scripts are in the code folder:
     
+
+    cd code
 
 
 # Linux
