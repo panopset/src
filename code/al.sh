@@ -10,6 +10,7 @@ git pull
 
 rm -rf /var/www/html/*
 mkdir -p /var/www/html/dox/site
+. ./clearJsons.sh
 
 # Build Application Linux including dokka, link and build the app.
 # Use bal.sh if you are in a hurry.

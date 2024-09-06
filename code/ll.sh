@@ -23,7 +23,7 @@ $R/com/panopset/skyscraper/$PV/skyscraper-$PV.jar:\
 $R/com/panopset/flywheel/$PV/flywheel-$PV.jar:\
 $R/com/panopset/fxapp/$PV/fxapp-$PV.jar
 
-echo jpackage \
+jpackage \
   -n panopset \
   -p $JAVA_HOME/jmods:$MP \
   -m com.panopset.desk/com.panopset.compat.AppVersion \
