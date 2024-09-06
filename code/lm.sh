@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./appMac.properties
+. ./appmac.properties
 . ./deploy.properties
 export R=$HOME/.m2/repository
 

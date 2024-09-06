@@ -1,4 +1,4 @@
-call readProps.cmd appWin.properties
+call readProps.cmd appwin.properties
 call readProps.cmd deploy.properties
 call readProps.cmd %USERPROFILE%\Documents\panopset\dev.properties
 

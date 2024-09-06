@@ -41,11 +41,11 @@ private fun generateJsonFor(file: File) {
             val targetFileForOneJar = File("/var/www/html/downloads/${platform.fxArch}OneJar.json")
             checkParent(targetFileForOneJar)
             if (!targetFile.exists()) {
-                val json = Jsonop<Map<String, String>>().toJson(createList(platform.platformName, file))
+                val json = Jsonop<Map<String, String>>().toJson(createJsonMap(platform.fxArch, file))
                 Fileop.write(json, targetFile)
             }
             if (!targetFileForOneJar.exists()) {
-                val json = Jsonop<Map<String, String>>().toJson(createList(platform.platformName,
+                val json = Jsonop<Map<String, String>>().toJson(createJsonMap(platform.fxArch,
                     File("/var/www/html/downloads/${platform.fxArch}/panopset.jar")))
                 Fileop.write(json, targetFileForOneJar)
             }
@@ -53,9 +53,9 @@ private fun generateJsonFor(file: File) {
     }
 }
 
-fun createList(platformName: String, installerFile: File): Map<String, String> {
+fun createJsonMap(fxArch: String, installerFile: File): Map<String, String> {
     val map = HashMap<String, String>()
-    map["platform"] = platformName
+    map["fxArch"] = fxArch
     map["version"] = AppVersion.getFullVersion()
     map["bytes"] = byteCount(installerFile)
     map[ChecksumType.SHA512.key] = sha512(installerFile)

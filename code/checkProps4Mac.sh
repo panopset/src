@@ -1,4 +1,4 @@
 if [ "$INSTALLER_PFX" = "" ]; then
-. ./appMac.properties
+. ./appmac.properties
 fi
 . ./checkPropsUnix.sh

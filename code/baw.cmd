@@ -1,6 +1,6 @@
 @echo off
 rem Build application for Windows.
-call readProps.cmd appWin.properties
+call readProps.cmd appwin.properties
 call readProps.cmd deploy.properties
 call mvn -f shoring clean install
 call mvn -f legacy clean install
