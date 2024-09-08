@@ -2,8 +2,9 @@
 
 # History
 
-## 1.4.2 (2024.09.01)
-* Dependency updates.
+## 1.4.4 (2024.09.07)
+* Enhancements:
+  * Add Linux RPM build.
 
 ## 1.4.1 (2024.08.31)
 * Bug fixes:
@@ -19,10 +20,7 @@
 * Bug fixes:
   * Skyscraper environment substitution on load fails.
 * Enhancements:
-  * Dependency updates.  
-
-## 1.3.7 (2024.06.08)
-* Ongoing work on Skyscraper.
+  * Dependency updates.
 
 
 ## ****************************

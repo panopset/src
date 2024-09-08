@@ -7,12 +7,13 @@
 * Verify SITE_DN is where you want to publish:
 
 
-    ../p.sh
+    ./p.sh
 
 
 next:
 
 
+    cd code
     ./generateVersion.sh
 
 
