@@ -3,7 +3,7 @@
 . ./deploy.properties
 export R=$HOME/.m2/repository
 
-# update ll.sh, lw.cmd, and shoring/pom.xml deploy.properties as well.
+# update ll.sh, llrpm.sh, lw.cmd, and shoring/pom.xml deploy.properties as well.
 export MP=\
 $R/org/jetbrains/kotlin/kotlin-stdlib/$KV/kotlin-stdlib-$KV.jar:\
 $R/org/jetbrains/kotlin/kotlin-reflect/$KV/kotlin-reflect-$KV.jar:\

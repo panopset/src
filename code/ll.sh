@@ -6,7 +6,7 @@ export R=$HOME/.m2/repository
 echo "Repository base is $R "
 echo "PV is $PV"
 
-# update lw.cmd, lm.sh, and shoring/pom.xml deploy.properties as well.
+# update lrpm.sh, lw.cmd, lm.sh, and shoring/pom.xml deploy.properties as well.
 export MP=\
 $R/org/jetbrains/kotlin/kotlin-stdlib/$KV/kotlin-stdlib-$KV.jar:\
 $R/org/jetbrains/kotlin/kotlin-reflect/$KV/kotlin-reflect-$KV.jar:\

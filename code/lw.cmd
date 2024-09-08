@@ -1,6 +1,6 @@
 @echo off
 set R=%USERPROFILE%\.m2\repository
-rem update ll.sh, lm.sh, and shoring/pom.xml deploy.properties as well.
+rem update ll.sh, llrpm.sh lm.sh, and shoring/pom.xml deploy.properties as well.
 set MP=^
 %R%/org/jetbrains/kotlin/kotlin-stdlib/%KV%/kotlin-stdlib-%KV%.jar;^
 %R%/org/jetbrains/kotlin/kotlin-reflect/%KV%/kotlin-reflect-%KV%.jar;^

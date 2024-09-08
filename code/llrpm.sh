@@ -6,7 +6,7 @@ export R=$HOME/.m2/repository
 echo "Repository base is $R "
 echo "PV is $PV"
 
-# update lw.cmd, lm.sh, and shoring/pom.xml deploy.properties as well.
+# update ll.sh, lw.cmd, lm.sh, and shoring/pom.xml deploy.properties as well.
 export MP=\
 $R/org/jetbrains/kotlin/kotlin-stdlib/$KV/kotlin-stdlib-$KV.jar:\
 $R/org/jetbrains/kotlin/kotlin-reflect/$KV/kotlin-reflect-$KV.jar:\
@@ -22,6 +22,8 @@ $R/com/panopset/blackjackEngine/$PV/blackjackEngine-$PV.jar:\
 $R/com/panopset/skyscraper/$PV/skyscraper-$PV.jar:\
 $R/com/panopset/flywheel/$PV/flywheel-$PV.jar:\
 $R/com/panopset/fxapp/$PV/fxapp-$PV.jar
+
+echo JAVA_HOME is $JAVA_HOME
 
 jpackage \
   -n panopset \
@@ -44,7 +46,7 @@ jpackage \
   --add-launcher lowerclass=launchers/lowerclass.properties \
   --app-version "$PV" \
   --dest target \
-  --linux-package-name Panopset \
+  --linux-package-name panopset \
   --linux-shortcut \
   --resource-dir shoring/desk/src/main/resources \
 #  --verbose
