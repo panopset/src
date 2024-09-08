@@ -35,9 +35,9 @@ All build scripts are in the code folder:
     cd code
 
 
-# Linux
+# Linux DEB
 
-Build application for Linux:
+For Debian Linux systems:
 
 
     ./bal.sh
@@ -45,10 +45,20 @@ Build application for Linux:
 
 You can use [sdkman](https://sdkman.io/) to install the requirements.
 
+# Linux RPM
+
+For RedHat/Fedora Linux systems:
+
+    ./balrpm.sh
+
+Requirements may be installed with the yum command:
+
+    sudo yum -y install java maven rpm-build vim gitk
+
 
 # Apple Macintosh
 
-Build application for Apple Macintosh:
+For Apple Macintosh:
 
 
     ./bam.sh
@@ -59,17 +69,17 @@ You can use [brew](https://brew.sh/) to install the requirements.
 
 # Microsoft Windows
 
-Build application for Windows:
+For Windows:
 
     baw.cmd
 
-On Windows systems, you can place a script in your home directory (%USERPROFILE%), to set your %PATH% to point
+You can place a script in your home directory (%USERPROFILE%), to set your %PATH% to point
 to the requirements. Here is what mine looks like:  [setenv.cmd](platforms/win/setenv.cmd). You would make adjustments
 for your installation directories, unless you follow the same conventions. Keeping versions out of the path
 makes your upgrades a much simpler process.
 
 
-On Windows, if you don't already have Windows developer tools installed, you'll also need [WiX](https://en.wikipedia.org/wiki/WiX), if you want the application installer (.msi file on Windows) to be built.
+If you don't already have Windows developer tools installed, you'll also need [WiX](https://en.wikipedia.org/wiki/WiX), if you want the application installer (.msi file on Windows) to be built.
 
 
 

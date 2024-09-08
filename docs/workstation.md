@@ -33,6 +33,21 @@ Place the following in ~/Documents/panopset/dev.properties:
 ## ssh Configuration
 
 
+If you don't have a .ssh folder yet:
+
+
+    mkdir ~/.ssh
+    chmod 700 ~/.ssh
+    cd ~/.ssh
+
+
+On any of your private key files:
+
+
+    chmod 400 <your private key file>
+    
+
+
 
 Edit your ssh config file, on your PC
 
