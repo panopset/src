@@ -15,14 +15,14 @@ ${downloadsTable}
 <h3>Using a platform specific installer.</h3>
 
 <p>
-Substitute flywheel, in the launch path for your platform listed above,
+Substitute flywheel, in the <b>Launch path</b> for your platform listed above,
 with the Panopset <a href="./product.html">application</a> name of your choice.
 </p>
 
 <h3>Using your own JRE.</h3>
 <p>
 If you download the panopset.jar file for your platform, or <a href="build.html">build</a> it,
-place panopset.jar in your home directory, and do the same except for the Java command for your platform,
+place panopset.jar in your home directory, and do the same except for the <b>Java command</b> for your platform,
 as listed above.
 </p>
 
