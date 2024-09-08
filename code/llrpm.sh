@@ -42,9 +42,9 @@ jpackage \
   --add-launcher checksum=launchers/checksum.properties \
   --add-launcher scrambler=launchers/scrambler.properties \
   --add-launcher lowerclass=launchers/lowerclass.properties \
-  --app-version $PV \
+  --app-version "$PV" \
   --dest target \
-  --linux-deb-maintainer karldinwiddie@gmail.com \
+  --linux-package-name Panopset \
   --linux-shortcut \
   --resource-dir shoring/desk/src/main/resources \
 #  --verbose

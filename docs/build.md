@@ -57,6 +57,10 @@ Requirements may be installed with the yum command:
 
     sudo yum -y install java maven rpm-build vim gitk
 
+Put this at the end of /etc/bashrc, and reboot:
+
+    export JAVA_HOME=/etc/alternatives/jre
+
 
 # Apple Macintosh
 
