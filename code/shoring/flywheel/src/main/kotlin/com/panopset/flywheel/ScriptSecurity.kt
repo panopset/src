@@ -66,5 +66,9 @@ object ScriptSecurity {
             "replaceAll", "com.panopset.compat", "Stringop",
             "replaceAll", "\${@e replaceAll(text, foo, bar)}"
         )
+        defineTemplateAllowedReflection(
+            "genappinf", "com.panopset.desk.utilities", "GenerateAppInfo",
+            "genappinf", "\${@e genappinf()}"
+        )
     }
 }

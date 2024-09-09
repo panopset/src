@@ -5,3 +5,6 @@ export LTGT="/var/www/html/downloads/"
 mkdir -p $LTGT/$PLATFORM_KEY
 cp ./target/* $LTGT
 cp ~/panopset.jar $LTGT/$PLATFORM_KEY/
+# Build Checksums Linux.
+. ./bcl.sh
+

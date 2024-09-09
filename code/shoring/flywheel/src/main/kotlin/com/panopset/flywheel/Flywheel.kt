@@ -5,7 +5,6 @@ import com.panopset.compat.Rezop
 import com.panopset.compat.Stringop.getEol
 import com.panopset.compat.Stringop.getNextJvmUniqueIDstr
 import com.panopset.compat.Stringop.isPopulated
-import com.panopset.flywheel.ReflectionInvoker.Companion.defineTemplateAllowedReflection
 import java.io.File
 import java.io.IOException
 import java.io.StringWriter

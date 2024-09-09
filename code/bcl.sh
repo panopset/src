@@ -1,5 +1,2 @@
 #!/bin/bash
-# Build Content Locally
-. ./checkProps4Linux.sh
-# Generate app Info
-/opt/panopset/bin/gi
+/opt/panopset/bin/fw gcl.txt

@@ -15,9 +15,6 @@ mvn -f shoring site
 # Synch up the remote and local downloads to temp
 . ./synchDownloads.sh
 
-# Build Checksums Linux.
-. ./bcl.sh
-
 # Build Website Linux. We only need to build the website on the
 # primary dev box, which is always Linux.
 #   * Copies over the documentation from the prior step, and
