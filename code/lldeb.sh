@@ -33,7 +33,6 @@ jpackage \
   --description "Panopset desktop applications." \
   --add-launcher version=launchers/version.properties \
   --add-launcher gs=launchers/gs.properties \
-  --add-launcher gi=launchers/gi.properties \
   --add-launcher gv=launchers/gv.properties \
   --add-launcher fw=launchers/fw.properties \
   --add-launcher flywheel=launchers/flywheel.properties \

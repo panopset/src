@@ -1,2 +1,2 @@
 #!/bin/bash
-/opt/panopset/bin/fw gclrpm.txt
+/opt/panopset/bin/fw gclrpm.txt ~/temp
