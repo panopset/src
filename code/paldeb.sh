@@ -1,10 +1,5 @@
 #!/bin/bash
 . ./checkProps4Linux.sh
-#Linux only, send it to downloads for web publication.
-export LTGT="/var/www/html/downloads/"
-mkdir -p $LTGT/$PLATFORM_KEY
-cp ./target/* $LTGT
-cp ~/panopset.jar $LTGT/$PLATFORM_KEY/
-# Build Checksums Linux.
-. ./bcl.sh
-
+rsync -avuzh  ./target/* $TGT_HTML/downloads/
+rsync -avuzh  ~/panopset.jar $TGT_HTML/downloads/$PLATFORM_KEY/
+rsync -avuzh  ./legacy/target/*.json $TGT_HTML/downloads/
