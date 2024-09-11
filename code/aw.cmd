@@ -7,4 +7,4 @@ rem Build application for Windows.
 call baw.cmd
 
 rem Build checksum files for Windows.
-call bcm.cmd
+call bcw.cmd
