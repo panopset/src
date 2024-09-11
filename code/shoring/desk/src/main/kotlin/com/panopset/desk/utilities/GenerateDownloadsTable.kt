@@ -88,17 +88,15 @@ class GenerateDownloadsTable {
                     map[e.key] = e.value
                 }
                 val ifn = map["ifn"] ?: return platformDownloadMap
-                val fxArch = map["fxArch"] ?: return platformDownloadMap
-                val archProps = loadPropsFor(fxArch)
+//                val fxArch = map["fxArch"] ?: return platformDownloadMap
+                val platformKey = map["platformKey"] ?: return platformDownloadMap
+                val archProps = loadPropsFor(platformKey)
                 val dspOrd = archProps.getProperty("DSPORD")
 
                 val bytes = map["bytes"] ?: return platformDownloadMap
                 val sha512 = map[ChecksumType.SHA512.key] ?: return platformDownloadMap
 
-
-                // TODO: the json needs the platform properties key, not the platform name.
-
-                addPlatformIfNecessary(fxArch, platformDownloadMap).platformDownloads.add(
+                addPlatformIfNecessary(platformKey, platformDownloadMap).platformDownloads.add(
                     PlatformDownload(dspOrd, artifactType, ifn, relPath, bytes, sha512)
                 )
             }
