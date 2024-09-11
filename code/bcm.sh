@@ -1,2 +1,2 @@
 #!/bin/bash
-/opt/panopset/bin/gi appmac
+/Applications/panopset.app/Contents/MacOS/gi appmac
