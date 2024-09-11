@@ -1,4 +1,4 @@
 if [ "$INSTALLER_PFX" = "" ]; then
-. ./applinuxRPM.properties
+. ./applinuxrpm.properties
 fi
 . ./checkPropsUnix.sh
