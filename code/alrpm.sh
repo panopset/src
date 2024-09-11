@@ -17,6 +17,6 @@ git pull
 # Build checksum files for RPM Linux.
 . ./bclrpm.sh
 
-# Publixh Application RPM Linux.
+# Publish Application RPM Linux.
 . ./palrpm.sh
 
