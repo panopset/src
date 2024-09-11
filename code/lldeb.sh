@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./applinux.properties
+. ./applinuxdeb.properties
 . ./deploy.properties
 export R=$HOME/.m2/repository
 
@@ -35,6 +35,7 @@ jpackage \
   --add-launcher gs=launchers/gs.properties \
   --add-launcher gv=launchers/gv.properties \
   --add-launcher fw=launchers/fw.properties \
+  --add-launcher gi=launchers/gi.properties \
   --add-launcher flywheel=launchers/flywheel.properties \
   --add-launcher blackjack=launchers/blackjack.properties \
   --add-launcher skyscraper=launchers/skyscraper.properties \

@@ -9,7 +9,7 @@ rm -rf target
 mkdir target
 
 git pull
-. ./checkProps4Linux.sh
+. ./checkProps4LinuxDEB.sh
 
 # Build Application DEB Linux.
 . ./baldeb.sh

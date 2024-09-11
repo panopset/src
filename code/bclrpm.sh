@@ -1,2 +1,2 @@
 #!/bin/bash
-/opt/panopset/bin/fw gclrpm.txt ~/temp
+/opt/panopset/bin/gi applinuxrpm

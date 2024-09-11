@@ -1,1 +1,1 @@
-"C:\Program Files\panopset\fw" gcw.txt %USERPROFILE%\temp
+"C:\Program Files\panopset\gi" appwin

@@ -1,2 +1,2 @@
 #!/bin/bash
-/opt/panopset/bin/fw gcm.txt ~/temp
+/opt/panopset/bin/gi appmac

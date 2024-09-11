@@ -1,4 +1,4 @@
 if [ "$INSTALLER_PFX" = "" ]; then
-. ./applinux.properties
+. ./applinuxdeb.properties
 fi
 . ./checkPropsUnix.sh
