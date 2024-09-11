@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./applinux.properties
+. ./applinuxrpm.properties
 . ./deploy.properties
 export R=$HOME/.m2/repository
 
