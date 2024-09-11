@@ -1,4 +1,3 @@
 #!/bin/bash
-. ./checkProps4Linux.sh
-rsync -avuzh --include "*/" --exclude="*" --include="*.json" $TGT_HTML/downloads ~/temp/
-rsync -avuzh --include "*/" --exclude="*" --include="*.json" /var/www/html/downloads ~/temp/
+. ./checkProps4LinuxDEB.sh
+rsync -a --exclude={'*.jar','*.deb','*.rpm','*.dmg','*.msi'} --include="*.json" $TGT_HTML/downloads /var/www/html/

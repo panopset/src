@@ -5,11 +5,10 @@ echo dev.properties:
 cat ${HOME}/Documents/panopset/dev.properties
 
 git pull
-. ./checkProps4Linux.sh
+. ./checkProps4LinuxDEB.sh
 
 rm -rf /var/www/html/*
 mkdir -p /var/www/html/dox/site
-. ./clearJsons.sh
 mvn -f shoring site
 
 # Synch up the remote and local downloads to temp
@@ -25,8 +24,8 @@ mvn -f shoring site
 # uses Flywheel to generate the web pages.
 . ./dwl.sh
 
-# Deploy the HATEOAS REST app.  Only from Linux here too.
-. ./deployBeam.sh
+# Uncomment to deploy the HATEOAS REST app as well.
+# . ./deployBeam.sh
 
 # Publish Website Linux. rsync /var/www/html up to the server ${SITE_NAME}.
 # Again, only on Linux do we do this.
