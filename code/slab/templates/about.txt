@@ -4,7 +4,7 @@
 <p>
 While using the tools available on this site, information that you enter into fields is 100% transmitted
 through <a href="https://letsencrypt.org/">letsencrypt</a> secured https, and processed in server
-memory solely for the purpose of your immediate data processing cycle.  That information is not
+memory only for the purpose of your immediate data processing cycle.  That information is not
 stored anywhere.  When using Panopset desktop applications, nothing is transmitted outbound behind the scenes, except
 a request for version information, from the server to your application, so that it may flag you if you need an
 upgrade.  All other Panopset desktop software processing is done using web traffic and files that you select, and in

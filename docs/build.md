@@ -40,7 +40,7 @@ All build scripts are in the code folder:
 For Debian Linux systems:
 
 
-    ./bal.sh
+    ./baldeb.sh
 
 
 You can use [sdkman](https://sdkman.io/) to install the requirements.
@@ -62,17 +62,6 @@ Put this at the end of /etc/bashrc, and reboot:
     export JAVA_HOME=/etc/alternatives/jre
 
 
-# Apple Macintosh
-
-For Apple Macintosh:
-
-
-    ./bam.sh
-
-
-You can use [brew](https://brew.sh/) to install the requirements.
-
-
 # Microsoft Windows
 
 For Windows:
@@ -87,5 +76,12 @@ makes your upgrades a much simpler process.
 
 If you don't already have Windows developer tools installed, you'll also need [WiX](https://en.wikipedia.org/wiki/WiX), if you want the application installer (.msi file on Windows) to be built.
 
+# Apple Macintosh
+
+For Apple Macintosh:
 
 
+    ./bam.sh
+
+
+You can use [brew](https://brew.sh/) to install the requirements.
