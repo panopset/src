@@ -52,7 +52,7 @@ class GenerateDownloadsTable {
                 sw.append(byteCount)
                 sw.append("</td><td class=\"dsw99\"><input class=\"output2\" type=\"text\" value=\"")
                 sw.append(sha512)
-                sw.append("\"</input></td></tr>")
+                sw.append("\"></input></td></tr>")
                 if (firstTime) {
                     sw.append("<tr><td colspan=\"2\"><pre>Launch path:</pre></td><td colspan=\"3\"><pre>${launchPath}flywheel</pre></td></tr>")
                 } else {
