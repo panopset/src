@@ -4,7 +4,7 @@
 
 If you would like to simply download and run Panopset Desktop applications, they are available on the [downloads](https://panopset.com/downloads.html) page.
 
-Those who wish to build the Panopset Desktop application from the source, would run one of these scripts.
+Those who wish to build the Panopset Desktop application from the source, you would run one of these scripts.
 It will deploy:
 
 * an all-in one panopset.jar to your home directory, and
