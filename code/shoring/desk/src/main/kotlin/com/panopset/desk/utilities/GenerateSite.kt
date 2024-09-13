@@ -29,9 +29,11 @@ class GenerateSite {
             .map("appVersion", AppVersion.getVersion())
             .map("fullVersion", AppVersion.getFullVersion())
             .map("dashDate", dashDateFormat.format(Date()))
+            .map("timestamp", timestampFormat.format((Date())))
             .map(props2map(Fileop.loadProps(File("deploy.properties"))))
             .construct().exec()
     }
 
     private val dashDateFormat = SimpleDateFormat("yyyy-MM-dd")
+    private val timestampFormat = SimpleDateFormat("yyyyMMddhhmm")
 }

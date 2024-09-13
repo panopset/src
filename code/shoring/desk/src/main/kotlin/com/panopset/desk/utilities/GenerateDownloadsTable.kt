@@ -88,7 +88,6 @@ class GenerateDownloadsTable {
                     map[e.key] = e.value
                 }
                 val ifn = map["ifn"] ?: return platformDownloadMap
-//                val fxArch = map["fxArch"] ?: return platformDownloadMap
                 val platformKey = map["platformKey"] ?: return platformDownloadMap
                 val archProps = loadPropsFor(platformKey)
                 val dspOrd = archProps.getProperty("DSPORD")
