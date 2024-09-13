@@ -47,8 +47,6 @@ You can use [sdkman](https://sdkman.io/) to install the requirements.
 
 # Linux RPM
 
-__Work in progress for version 1.4.4__
-
 For RedHat/Fedora Linux systems:
 
     ./balrpm.sh
