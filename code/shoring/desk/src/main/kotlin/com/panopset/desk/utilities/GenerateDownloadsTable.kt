@@ -116,14 +116,14 @@ class GenerateDownloadsTable {
 
 private fun addPlatformIfNecessary(
     platformDisplayOrder: String,
-    key: String,
+    platformKey: String,
     platformDownloadCollectionMap: MutableMap<String, PlatformDownloadCollection>
 ): PlatformDownloadCollection {
-    if (platformDownloadCollectionMap.containsKey(key)) {
-        return platformDownloadCollectionMap[key]!!
+    if (platformDownloadCollectionMap.containsKey(platformDisplayOrder)) {
+        return platformDownloadCollectionMap[platformDisplayOrder]!!
     }
-    val rtn = PlatformDownloadCollection(platformDisplayOrder, key)
-    platformDownloadCollectionMap[key] = rtn
+    val rtn = PlatformDownloadCollection(platformDisplayOrder, platformKey)
+    platformDownloadCollectionMap[platformDisplayOrder] = rtn
     return rtn
 }
 
