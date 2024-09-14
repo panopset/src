@@ -1,4 +1,4 @@
 #!/bin/bash
-. ./checkProps4Linux.sh
+. ./checkProps4LinuxDEB.sh
 echo "publishing to $TGT_HTML"
 rsync -avuzh /var/www/html/ $TGT_HTML/

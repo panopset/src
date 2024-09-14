@@ -73,8 +73,10 @@ class GenerateDownloadsTable {
             if (f.isFile && f.extension == "json") {
                 var artifactType: String
                 var relPath = ""
+                var artifactDisplayOrder = 0
                 val i = f.name.indexOf("OneJar")
                 if (i > -1) {
+                    artifactDisplayOrder++
                     artifactType = "jar"
                     relPath = "${f.name.substring(0, i)}/"
                 } else {
@@ -90,13 +92,13 @@ class GenerateDownloadsTable {
                 val ifn = map["ifn"] ?: return platformDownloadMap
                 val platformKey = map["platformKey"] ?: return platformDownloadMap
                 val archProps = loadPropsFor(platformKey)
-                val dspOrd = archProps.getProperty("DSPORD")
+                val platformDisplayOrder = archProps.getProperty("DSPORD")
 
                 val bytes = map["bytes"] ?: return platformDownloadMap
                 val sha512 = map[ChecksumType.SHA512.key] ?: return platformDownloadMap
 
-                addPlatformIfNecessary(platformKey, platformDownloadMap).platformDownloads.add(
-                    PlatformDownload(dspOrd, artifactType, ifn, relPath, bytes, sha512)
+                addPlatformIfNecessary(platformDisplayOrder, platformKey, platformDownloadMap).platformDownloads.add(
+                    PlatformDownload("$artifactDisplayOrder", artifactType, ifn, relPath, bytes, sha512)
                 )
             }
         }
@@ -113,19 +115,20 @@ class GenerateDownloadsTable {
 }
 
 private fun addPlatformIfNecessary(
+    platformDisplayOrder: String,
     key: String,
     platformDownloadCollectionMap: MutableMap<String, PlatformDownloadCollection>
 ): PlatformDownloadCollection {
     if (platformDownloadCollectionMap.containsKey(key)) {
         return platformDownloadCollectionMap[key]!!
     }
-    val rtn = PlatformDownloadCollection(key)
+    val rtn = PlatformDownloadCollection(platformDisplayOrder, key)
     platformDownloadCollectionMap[key] = rtn
     return rtn
 }
 
 private data class PlatformDownload(
-    val platformOrder: String,
+    val artifactDisplayOrder: String,
     val artifactType: String,
     val artifactName: String,
     val relPath: String,
@@ -133,10 +136,16 @@ private data class PlatformDownload(
     val sha512: String
 ) : Comparable<PlatformDownload> {
     override fun compareTo(other: PlatformDownload): Int {
-        return "$platformOrder$artifactType".compareTo("${other.platformOrder}${other.artifactType}")
+        return "$artifactDisplayOrder$artifactType".compareTo("${other.artifactDisplayOrder}${other.artifactType}")
     }
 }
 
-private data class PlatformDownloadCollection(val platformName: String) {
+private data class PlatformDownloadCollection(
+    val platformDisplayOrder: String,
+    val platformName: String
+) : Comparable<PlatformDownloadCollection> {
     val platformDownloads: SortedSet<PlatformDownload> = Collections.synchronizedSortedSet(TreeSet())
+    override fun compareTo(other: PlatformDownloadCollection): Int {
+        return this.platformDisplayOrder.compareTo(other.platformDisplayOrder)
+    }
 }
