@@ -2,6 +2,8 @@
 
 # History
 
+## 1.4.5 (2024.09)
+
 ## 1.4.4 (2024.09.07)
 * Enhancements:
   * Add Linux RPM build.
