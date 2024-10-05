@@ -44,7 +44,7 @@ jpackage \
   --add-launcher lowerclass=launchers/lowerclass.properties \
   --app-version $PV \
   --dest target \
-  --linux-deb-maintainer karldinwiddie@gmail.com \
+  --linux-deb-maintainer karl@panopset.com \
   --linux-shortcut \
   --resource-dir shoring/desk/src/main/resources \
 #  --verbose

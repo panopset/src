@@ -19,6 +19,6 @@ local RAM. All of this is <a href="https://github.com/panopset/src">open source<
 
 <h1>Contact</h1>
 <ul><li>
-<a href="https://www.linkedin.com/in/karldinwiddie/">Karl Dinwiddie</a>, <a href="mailto:karldinwiddie@gmail.com"><b>CEO</b></a> and founder.
+<a href="https://www.linkedin.com/in/karldinwiddie/">Karl Dinwiddie</a>, <a href="mailto:karl@panopset.com"><b>CEO</b></a> and founder.
 </li></ul>
 </div>

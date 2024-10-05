@@ -6,7 +6,7 @@ Panopset desktop software is currently free, for anyone who can't afford it, and
 under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 <a href="https://github.com/panopset/${GN}/blob/main/LICENSE">license</a>,
 slightly modified with two provisions related to the Blackjack module.
 </p><p>
-If you and/or your business is doing fine, it is $25.00 per year.  Proof of <a href="mailto:karldinwiddie@gmail.com">payment</a> is the license.
+If you and/or your business is doing fine, it is $25.00 per year.  Proof of <a href="mailto:karl@panopset.com">payment</a> is the license.
 </p><p>
 Limited offer: $100.00 for a lifetime license, per user.
 The first 1,000 who pay for a special permanent license, also get a numbered signed certificate

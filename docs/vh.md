@@ -2,7 +2,7 @@
 
 # History
 
-## 1.4.5 (2024.09
+Not all versions listed, just those with enhancements or bug fixes worth noting here.
 
 ## 1.4.4 (2024.09.07)
 * Enhancements:
@@ -23,11 +23,6 @@
   * Skyscraper environment substitution on load fails.
 * Enhancements:
   * Dependency updates.
-
-
-## ****************************
-Detailed version history only kept for a few months, so you can see recent bug fixes.
-## ****************************
 
 ## 1.0.1 (2021.08.07)
 
