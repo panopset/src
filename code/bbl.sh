@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build Beam for Linux
-. ./checkProps4Linux.sh
+. ./checkProps4LinuxDEB.sh
 /opt/panopset/bin/fw ./slab/templates/beam/beamServiceDev.txt temp/beam/dev
 /opt/panopset/bin/fw ./slab/templates/beam/beamServicePrd.txt temp/beam/prd
 gradle -p beam clean build
