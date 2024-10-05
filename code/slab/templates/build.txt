@@ -20,12 +20,12 @@ To run the apps directly from your system java command, include panopset.jar in 
 the application class you wish to run:
 
 <pre>
-java -jar cp ~/panopset.jar checksum
-java -jar cp ~/panopset.jar scrambler
-java -jar cp ~/panopset.jar lowerclass
-java -jar cp ~/panopset.jar flywheel
-java -jar cp ~/panopset.jar skyscraper
-java -jar cp ~/panopset.jar blackjack
+java -cp ~/panopset.jar checksum
+java -cp ~/panopset.jar scrambler
+java -cp ~/panopset.jar lowerclass
+java -cp ~/panopset.jar flywheel
+java -cp ~/panopset.jar skyscraper
+java -cp ~/panopset.jar blackjack
 </pre>
 
 <p>
