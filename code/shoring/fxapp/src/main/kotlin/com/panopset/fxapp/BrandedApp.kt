@@ -2,6 +2,7 @@ package com.panopset.fxapp
 
 import com.panopset.compat.HiddenFolder
 import com.panopset.compat.Logz
+import javafx.application.Platform
 import javafx.collections.ObservableList
 import javafx.event.EventHandler
 import javafx.scene.control.*
@@ -19,7 +20,7 @@ abstract class BrandedApp: PanApplication(), AppDDSFX {
 
     abstract fun createDynapane(fxDoc: FxDoc): Pane
 
-    abstract fun updateVersionMessage()
+    abstract fun updateVersionMessage(fxDoc: FxDoc)
 
     fun go() {
         HiddenFolder.companyName = getCompanyName().trim().lowercase().replace(" ", "_")
@@ -36,7 +37,7 @@ abstract class BrandedApp: PanApplication(), AppDDSFX {
         private fun setDarkTheme(fxDoc: FxDoc, button: Button) {
             button.text = "printer"
             fxDoc.scene.root.style = darkTheme;
-            menuBarStatusMessage.style = "${FontManagerFX.getCurrentBaseStyle()}; -fx-text-fill: #00dd00"
+            menuBarStatusMessage.style = "${FontManagerFX.getCurrentBaseStyle()}; -fx-text-fill: #88dd00"
         }
 
         private fun setLightTheme(fxDoc: FxDoc, button: Button) {
@@ -54,6 +55,7 @@ abstract class BrandedApp: PanApplication(), AppDDSFX {
                 }
             }
             FontManagerFX.register(button)
+            Platform.runLater { setDarkTheme(fxDoc, button) }
         }
     }
 
@@ -91,7 +93,7 @@ abstract class BrandedApp: PanApplication(), AppDDSFX {
         panMenuBar.children.add(createMenuBarFx(fxDoc))
         panMenuBar.children.add(ThemeButtonWrapper(fxDoc, fxDoc.menuBarStatusMessage).button)
         panMenuBar.children.add(createMenuBarStatusPane(fxDoc.menuBarStatusMessage))
-        updateVersionMessage()
+        updateVersionMessage(fxDoc)
         return panMenuBar
     }
 

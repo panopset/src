@@ -19,7 +19,6 @@ The build script will also place panopset.jar in your home directory.
 To run the apps directly from your system java command, include panopset.jar in your classpath, and specify
 the application class you wish to run:
 
-${@p javacmd}java -cp ~/panopset.jar ${@q}
 <pre>
 ${javacmd}checksum
 ${javacmd}scrambler

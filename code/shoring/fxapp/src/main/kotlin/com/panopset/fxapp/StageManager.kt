@@ -4,6 +4,7 @@ import com.panopset.compat.KEY_WINDOW_DIMS
 import com.panopset.compat.Stringop
 import com.panopset.compat.parseDelimToDoubleArray
 import com.panopset.fxapp.AnchorFactory.removeAnchor
+import javafx.application.Platform
 import javafx.event.EventHandler
 import javafx.geometry.Point2D
 import javafx.scene.Scene

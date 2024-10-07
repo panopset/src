@@ -10,7 +10,7 @@ import javafx.scene.control.Tab
 
 class SampleApp: BrandedApp() {
 
-    override fun updateVersionMessage() {
+    override fun updateVersionMessage(fxDoc: FxDoc) {
         Logz.info("Green log entry.")
         Logz.debug("Yellow log entry.")
         Logz.warn("Orange log entry.")

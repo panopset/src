@@ -120,14 +120,6 @@ object FontManagerFX {
         }
     }
 
-    fun registerTabPane(tabPane: TabPane) {
-        if (tabPanes.contains(tabPane)) {
-            Logz.debug("Ignoring duplicate FontManagerFX registration of tabPane " + tabPane.id)
-        } else {
-            tabPanes.add(tabPane)
-        }
-    }
-
     fun registerTab(tab: Tab): Tab {
         if (tabs.contains(tab)) {
             Logz.debug("Ignoring duplicate FontManagerFX registration of tab " + tab.id)
@@ -145,18 +137,15 @@ object FontManagerFX {
         }
     }
 
-    val size: Int
-        get() = fontSize.value
+    val size = fontSize.value
 
     fun setFontSize(fontSize: FontSize) {
         this.fontSize = fontSize
         updateAllFontSizes()
     }
 
-    val imgRatio: Double
-        get() = fontSize.imgRatio
-    val svgRatio: Double
-        get() = fontSize.svgRatio
+    val imgRatio: Double = fontSize.imgRatio
+    val svgRatio: Double = fontSize.svgRatio
 
     private fun getCurrentMessageStyle(logEntry: LogEntry): String {
         var colorStyle = FONT_GREEN
@@ -184,7 +173,6 @@ object FontManagerFX {
         this.logEntry = logEntry
         Platform.runLater {
             menubarStatusMessage.style = getCurrentMessageStyle(logEntry)
-            menubarStatusMessage.text = logEntry.message
         }
     }
 }
