@@ -5,6 +5,8 @@ import com.panopset.fxapp.AnchorFactory.addAnchor
 import com.panopset.fxapp.AnchorFactory.findAnchor
 import com.panopset.fxapp.AnchorFactory.getAnchors
 import com.panopset.fxapp.AnchorFactory.removeAnchor
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.licenseLinkText
 import javafx.application.Platform
 import javafx.event.EventHandler
 import javafx.scene.Scene
@@ -62,7 +64,9 @@ object JavaFXapp {
             addAndShow(stage)
         }
         Platform.runLater {
-            logStage = createLogStage(fxDoc ?: LogzDisplayerCMD)
+            if (fxDoc != null) {
+                logStage = createLogStage(fxDoc)
+            }
         }
     }
 
@@ -184,7 +188,7 @@ object JavaFXapp {
 
     private var logStage: Stage? = null
 
-    private fun createLogStage(logzDsiplayer: LogDisplayer): Stage {
+    fun createLogStage(fxDoc: FxDoc): Stage {
 
         val rtn = Stage()
         rtn.title = "Logs"
@@ -193,25 +197,24 @@ object JavaFXapp {
 
         val logTa = TextArea() // TODO: Rename
         logTa.promptText = "Click refresh to load log from file."
-        val clearLog = createPanButton(
-            logzDsiplayer, {
+        val clearLog = createPanButton(fxDoc, {
                 Logz.clear()
                 logTa.text = ""
             },
             "Clear", false, "Clear logs."
         )
-        val refreshLog = createPanButton(
-            logzDsiplayer, { update(logTa) },
+        val refreshLog = createPanButton(fxDoc,
+            { update(logTa) },
             "Refresh", false, "Refresh log."
         )
 
-        FontManagerFX.register(logTa)
+        FontManagerFX.register(fxDoc, logTa)
 
         val topFlow = FlowPane()
 
         topFlow.children.add(refreshLog)
         topFlow.children.add(clearLog)
-        topFlow.children.add(createPanButton(logzDsiplayer, {
+        topFlow.children.add(createPanButton(fxDoc, {
             logTa.text = SysInfo.toString()
         }, "System", false, ""))
         borderPane.top = topFlow
@@ -232,7 +235,7 @@ object JavaFXapp {
     }
 
     private fun update(logTa: TextArea) {
-        logTa.text = getEntryStackAsTextlg()
+        logTa.text = Logpan.getEntryStackAsTextlg()
     }
 
     private fun doShowLog(fxDoc: FxDoc) {
@@ -318,5 +321,3 @@ object JavaFXapp {
         removeAnchor(fxDoc)
     }
 }
-
-const val licenseLinkText = "https://github.com/panopset/src/blob/main/LICENSE"

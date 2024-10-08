@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.logging.Level
 
-class LogEntry(val alert: LogopAlert, val level: Level, val message: String) {
+class LogEntry(val alert: AlertColor, val level: Level, val message: String) {
     val timestamp = Date()
 
     override fun toString(): String {

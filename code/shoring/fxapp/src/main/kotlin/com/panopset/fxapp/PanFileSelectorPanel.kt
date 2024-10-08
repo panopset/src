@@ -2,6 +2,9 @@ package com.panopset.fxapp
 
 import com.panopset.compat.Fileop.getCanonicalPath
 import com.panopset.compat.Stringop.USH
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldHGrow
+import com.panopset.fxapp.PanComponentFactory.decorateFileInputTextForMouse
 import javafx.scene.control.Tooltip
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority

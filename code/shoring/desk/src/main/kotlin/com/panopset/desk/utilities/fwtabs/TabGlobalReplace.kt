@@ -5,6 +5,13 @@ import com.panopset.compat.Logz
 import com.panopset.compat.Stringop
 import com.panopset.compat.Transformer
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldHGrow
+import com.panopset.fxapp.PanComponentFactory.createPanLabel
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
+import com.panopset.fxapp.PanComponentFactory.createPanVBox
+import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
 import com.panopset.gp.GlobalReplaceProcessor
 import com.panopset.gp.PriorAndReplacementLineMustContainFilter
 import javafx.application.Platform
@@ -33,7 +40,7 @@ class TabGlobalReplace(val fxDoc: FxDoc) {
         grFromStrings = createPersistentPanTextArea(fxDoc, "fxidFromStrings", "Strings to replace.", "List of Strings to replace.")
         grToStrings = createPersistentPanTextArea(fxDoc, "fxidToStrings", "Replacement Strings.", "List of replacement Strings.")
         grFromText = createPersistentPanTextArea(fxDoc, "fxidFromText", "Input text.", "Input text, if file or directory is not selected.")
-        grToText = createPanTextArea("Output text.", "Output text, if file or directory is not selected.")
+        grToText = createPanTextArea(fxDoc,"Output text.", "Output text, if file or directory is not selected.")
         grExtensions = createPanInputTextFieldHGrow(fxDoc, "fxidExtensions", "Only select files with these comma separated extensions.",
             "Leave out the leading period, for example \"java,kt\".")
         grRegex = createPanInputTextFieldHGrow(fxDoc, "fxidRegex", "Use this regex to select files.", "File extension selection is ignored, if this field is filled out.")
@@ -41,7 +48,7 @@ class TabGlobalReplace(val fxDoc: FxDoc) {
             "Enter text that the prior line must contain.", "Text that the prior line must contain, if replacement is to be done.")
         grReplacementLineMustContain = createPanInputTextFieldHGrow(fxDoc, "fxidReplacementLineMustContain",
             "Enter text that the replacement line must contain.", "Text that the replacement line must contain, if replacement is to be done.")
-        val rtn = FontManagerFX.registerTab(Tab("Global Replace"))
+        val rtn = FontManagerFX.registerTab(fxDoc, Tab("Global Replace"))
         val bp = BorderPane()
         bp.center = createMainBox()
         rtn.content = bp
@@ -58,9 +65,9 @@ class TabGlobalReplace(val fxDoc: FxDoc) {
                     "Replace all", false, "Please make sure everything is backed up first, there is no going back."),
                 grExtensions),
             grRegex,
-            createPanLabel("Prior line must contain:"),
+            createPanLabel(fxDoc,"Prior line must contain:"),
             createPanHBox(grPriorLineMustContain),
-            createPanLabel("Replacement lines must contain:"),
+            createPanLabel(fxDoc,"Replacement lines must contain:"),
             createPanHBox(grReplacementLineMustContain))
     }
 

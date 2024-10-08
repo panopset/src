@@ -6,6 +6,17 @@ import com.panopset.compat.Stringop
 import com.panopset.compat.standardWierdErrorMessage
 import com.panopset.flywheel.*
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextField
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldHGrow
+import com.panopset.fxapp.PanComponentFactory.createPanLabel
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPanSplitPane
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
+import com.panopset.fxapp.PanComponentFactory.createPanVBox
+import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
 import com.panopset.marin.apps.fw.FxFunctionLoader
 import com.panopset.marin.apps.fw.FxSampleLoader
 import javafx.beans.value.ObservableValue
@@ -49,7 +60,7 @@ class TabFlywheel(fxDoc: FxDoc): SceneUpdater(fxDoc) {
         fwDirSelect = PanDirSelectorPanel(fxDoc, "fwDirselect")
         fwInput = createPersistentPanTextArea(fxDoc, "fwInput", "Input list", "Run the filter or template on this input list.")
         fwTemplate = createPersistentPanTextArea(fxDoc, "fwTemplate", "Please enter a flywheel template here.", "Paste and/or edit your freeform flywheel template here, results will immediately appear on the right.")
-        fwOutput = createPanTextArea("Results will appear here.", "The template to the left is applied to each line in the list to the far left.")
+        fwOutput = createPanTextArea(fxDoc,"Results will appear here.", "The template to the left is applied to each line in the list to the far left.")
         fwLineBreaks = createPanCheckBox(fxDoc, "fwLineBreaks", "Line breaks", "Uncheck this for a flat line output.")
         fwListBreaks = createPanCheckBox(fxDoc, "fwListBreaks", "List breaks", "Check this for line breaks after each list line output.")
         fwTokens = createPanInputTextField(fxDoc, "fwTokens", "Tokens", "Tokens used to separate input lines. See Tokens, from the Samples dropdown menu, for an example.")
@@ -72,7 +83,7 @@ class TabFlywheel(fxDoc: FxDoc): SceneUpdater(fxDoc) {
         comboFunctions = ComboBox()
         FxFunctionLoader().loadUpFunctions(comboFunctions, fwTemplate)
 
-        val rtn = FontManagerFX.registerTab(Tab("Flywheel"))
+        val rtn = FontManagerFX.registerTab(fxDoc, Tab("Flywheel"))
         val bp = BorderPane()
         rtn.content = bp
         bp.top = createTopPane()
@@ -96,12 +107,12 @@ class TabFlywheel(fxDoc: FxDoc): SceneUpdater(fxDoc) {
         return createPanVBox(
 
             createPanHBox(
-                createPanLabel("Template:"),
+                createPanLabel(fxDoc,"Template:"),
                 fwFileSelect.pane,
             ),
 
             createPanHBox(
-                createPanLabel("Output:"),
+                createPanLabel(fxDoc,"Output:"),
                 fwDirSelect.pane,
             )
 
@@ -129,7 +140,7 @@ class TabFlywheel(fxDoc: FxDoc): SceneUpdater(fxDoc) {
                 createPanButton(fxDoc, {doClear()}, "Clear", false, "Clear the list, template, and options."),
                 createPanButton(fxDoc, {doClearAll()}, "Clear all", false, "Clear the file selection, list, template, and option."),
                 createPanButton(fxDoc, {doFilter()}, "Filter", true, ""),
-                createPanLabel("Samples: "),
+                createPanLabel(fxDoc,"Samples: "),
                 comboSamples,
                 comboFunctions
             )

@@ -1,6 +1,9 @@
 package com.panopset.fxapp
 
 import com.panopset.compat.Fileop
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldHGrow
+import com.panopset.fxapp.PanComponentFactory.decorateFileInputTextForMouse
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Priority
 import javafx.stage.DirectoryChooser

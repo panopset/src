@@ -3,6 +3,14 @@ package com.panopset.desk.utilities.fwtabs
 import com.panopset.compat.Logz
 import com.panopset.compat.Stringop.getEol
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanFlowPane
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldHGrow
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPanSplitPane
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
+import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
 import javafx.scene.control.*
 import javafx.scene.layout.BorderPane
 import java.io.BufferedReader
@@ -20,7 +28,7 @@ class TabStract(val fxDoc: FxDoc) {
         stractFlatten = createPanCheckBox(fxDoc, "stract_flatten", "Flatten", "Place extracted column entries on one line.")
         stractBreaks = createPanInputTextFieldHGrow(fxDoc, "stractBreaks", "Add a return character after each character specified here.", "")
         stractSrc = createPersistentPanTextArea(fxDoc, "stract_src", "Paste something you wish one column out of, here.", "Select a column from the top line, then press the \"Extract\" button.")
-        stractOut = createPanTextArea("Output will appear here.", "See text area at the left for more information.")
+        stractOut = createPanTextArea(fxDoc,"Output will appear here.", "See text area at the left for more information.")
         stractGoButton = createPanButton(fxDoc, {
             val i = stractSrc.selection.start
             val j = stractSrc.selection.end
@@ -40,7 +48,7 @@ class TabStract(val fxDoc: FxDoc) {
         )
         bp.center = createPanSplitPane(fxDoc, "stractSplitLoc",
             createPanScrollPane(stractSrc), createPanScrollPane(stractOut))
-        val rtn = FontManagerFX.registerTab(Tab("Stract"))
+        val rtn = FontManagerFX.registerTab(fxDoc, Tab("Stract"))
         rtn.content = bp
         return rtn
     }

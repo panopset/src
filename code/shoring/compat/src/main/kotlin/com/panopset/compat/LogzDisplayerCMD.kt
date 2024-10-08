@@ -4,39 +4,39 @@ import java.io.File
 
 object LogzDisplayerCMD : LogDisplayer {
     override fun dspmsg(msg: String) {
-        dspmsglg(msg)
+        Logpan.dspmsglg(msg)
     }
 
     override fun warn(msg: String) {
-        warnlg(msg)
+        Logpan.warnlg(msg)
     }
 
     override fun debug(msg: String) {
-        debuglg(msg)
+        Logpan.debuglg(msg)
     }
 
     override fun errorMsg(msg: String, throwable: Throwable) {
-        errorMsglg(msg, throwable)
+        Logpan.errorMsglg(msg, throwable)
     }
 
     override fun errorMsg(msg: String, file: File) {
-        errorMsglg(msg, file)
+        Logpan.errorMsglg(msg, file)
     }
 
     override fun errorMsg(msg: String) {
-        errorMsglg(msg)
+        Logpan.errorMsglg(msg)
     }
 
     override fun errorMsg(file: File, throwable: Throwable) {
-        errorMsglg(file, throwable)
+        Logpan.errorMsglg(file, throwable)
     }
 
     override fun errorEx(throwable: Throwable) {
-        errorExlg(throwable)
+        Logpan.errorExlg(throwable)
     }
 
     override fun getPriorMessage(): String {
-        return stacklg.peek().message
+        return Logpan.stacklg.peek().message
     }
 
     override fun green(msg: String) {
@@ -44,6 +44,6 @@ object LogzDisplayerCMD : LogDisplayer {
     }
 
     override fun clear() {
-        stacklg.clear()
+        Logpan.stacklg.clear()
     }
 }

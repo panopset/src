@@ -50,7 +50,7 @@ class TextScrambler {
                 field = try {
                     SecretKeyFactory.getInstance(keyAlgorithm)
                 } catch (e: NoSuchAlgorithmException) {
-                    errorExlg(e)
+                    Logpan.errorExlg(e)
                     throw RuntimeException(e)
                 }
             }

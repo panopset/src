@@ -4,7 +4,7 @@ import com.panopset.compat.KEY_WINDOW_DIMS
 import com.panopset.compat.Stringop
 import com.panopset.compat.parseDelimToDoubleArray
 import com.panopset.fxapp.AnchorFactory.removeAnchor
-import javafx.application.Platform
+import com.panopset.fxapp.PanComponentFactory.panDarkTheme
 import javafx.event.EventHandler
 import javafx.geometry.Point2D
 import javafx.scene.Scene
@@ -37,9 +37,9 @@ object StageManager : StageIcon {
         stage.height = h
         val scene = Scene(DeskApp4XFactory.appDDSFX.createPane(fxDoc, deskApp4FX), w, h)
         fxDoc.scene = scene
-        fxDoc.scene.root.style = darkTheme;
+        fxDoc.scene.root.style = panDarkTheme;
         stage.scene = scene
-        FontManagerFX.updateAllFontSizes()
+        FontManagerFX.updateAllFontSizes(fxDoc)
         var stillVisible = false
         for (screen in Screen.getScreens()) {
             if (screen.bounds.contains(loc) || (screen.bounds.contains(center))) {
@@ -67,5 +67,3 @@ object StageManager : StageIcon {
         return d
     }
 }
-
-const val darkTheme = "-fx-base:black"

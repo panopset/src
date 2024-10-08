@@ -3,6 +3,11 @@ package com.panopset.desk.utilities.skyscraper
 import com.panopset.compat.HttpCommMethod
 import com.panopset.flywheel.FlywheelBuilder
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanChoiceBox
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldHGrow
+import com.panopset.fxapp.PanComponentFactory.createPanOutputTextFieldHGrow
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
+import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
 import javafx.application.Platform
 import javafx.scene.control.TextField
 import java.util.*
@@ -15,7 +20,7 @@ class Floor(val fxDoc: FxDoc) {
         "Please enter a URL", "URL of the API you wish to test.")
     val urlOutField: TextField = createPanOutputTextFieldHGrow(fxDoc, "url",
         "URL after ENV (environment) variable substitution.")
-    val responseTextArea = createPanTextArea()
+    val responseTextArea = createPanTextArea(fxDoc)
     val postMethodChoiceBox = createPanChoiceBox(fxDoc, "postMethod", httpMethods)
     val headerTextArea = createPersistentPanTextArea(fxDoc, "headers",
         "Please enter headers.", "Header format is key:value")

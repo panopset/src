@@ -3,6 +3,9 @@ package com.panopset.compat
 import java.io.File
 
 interface LogDisplayer {
+    fun info(msg: String) {
+        dspmsg(msg)
+    }
     fun dspmsg(msg: String)
     fun warn(msg: String)
     fun clear()

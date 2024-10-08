@@ -2,6 +2,11 @@ package com.panopset.desk.utilities.fwtabs
 
 import com.panopset.compat.deleteLines
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanLabel
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
 import javafx.scene.control.Button
 import javafx.scene.control.Tab
 import javafx.scene.control.TextArea
@@ -20,7 +25,7 @@ class TabLineRemover(val fxDoc: FxDoc) {
             "Text to search for, to determine which lines get deleted, go here.",
             "It is a good idea to back everything up before proceeding."
             )
-        val rtn = FontManagerFX.registerTab(Tab("Line Remover"))
+        val rtn = FontManagerFX.registerTab(fxDoc, Tab("Line Remover"))
         val bp = BorderPane()
         bp.top = createTopVBox()
         bp.center = createPanScrollPane(lrSearchCriteria)
@@ -34,7 +39,7 @@ class TabLineRemover(val fxDoc: FxDoc) {
             lrFileOrDirSelect.pane,
             lrRemoveLinesButton)
         )
-        rtn.children.add(createPanLabel("USE WITH CAUTION, clicking Remove Lines is irreversible."))
+        rtn.children.add(createPanLabel(fxDoc,"USE WITH CAUTION, clicking Remove Lines is irreversible."))
         return rtn
     }
 

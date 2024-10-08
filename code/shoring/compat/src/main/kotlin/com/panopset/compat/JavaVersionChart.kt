@@ -16,7 +16,7 @@ class JavaVersionChart {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            dspmsglg(chart)
+            Logpan.dspmsglg(chart)
         }
 
         private val chart = JavaVersionChart().print()

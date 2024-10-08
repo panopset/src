@@ -3,6 +3,11 @@ package com.panopset.desk.utilities
 import com.panopset.compat.Logz
 import com.panopset.fxapp.*
 import com.panopset.desk.utilities.lowerclass.VersionParser
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
 import com.panopset.marin.fx.PanopsetBrandedAppTran
 import javafx.application.Platform
 import javafx.scene.control.Button
@@ -29,7 +34,7 @@ class LowerClass : PanopsetBrandedAppTran() {
 
     override fun createDynapane(fxDoc: FxDoc): Pane {
         lcReport = createPanButton(fxDoc, { refresh() }, "Report", false, "Generate report.")
-        lcOut = createPanTextArea("Report on selected file or directory to appear here.",
+        lcOut = createPanTextArea(fxDoc, "Report on selected file or directory to appear here.",
             "Please click the Report button, after selecting jar file or class directory.")
         lcFileOrDirSelect = PanFileOrDirSelectorPanel(fxDoc, "lcFileOrDirSelect")
         lcDetails = createPanCheckBox(fxDoc, "lcDetails", "details")

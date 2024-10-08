@@ -1,13 +1,19 @@
 package com.panopset.desk.games.bj
 
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanChoiceBox
+import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldWithDefaultValue
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
+import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
+import com.panopset.fxapp.PanComponentFactory.setChoiceBoxChoices
 import com.panopset.marin.games.blackjack.BlackjackGameController
 import com.panopset.marin.games.blackjack.BlackjackGameEngineFactory
 import javafx.scene.control.TextField
 
 class BlackjackFxControls(val fxDoc: FxDoc) {
 
-    val taCountingSystems = createPanTextArea()
+    val taCountingSystems = createPanTextArea(fxDoc)
     val taBasicStrategy = createPersistentPanTextArea(fxDoc, "taBasic", "", "")
     val cbCountingSystems = createPanChoiceBox(fxDoc, "cb_counting_systems")
 

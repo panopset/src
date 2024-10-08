@@ -2,12 +2,15 @@ package com.panopset.fxapp
 
 import com.panopset.compat.*
 import com.panopset.compat.Stringop.getEol
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanRadioButton
+import com.panopset.fxapp.PanComponentFactory.createPanTitledPane
 import javafx.event.EventHandler
 import javafx.scene.control.ToggleGroup
 import javafx.scene.control.Tooltip
 
 class ReturnCharTitledPane(val fxDoc: FxDoc) {
-    val pane = createPanTitledPane("Return Characters")
+    val pane = createPanTitledPane(fxDoc, "Return Characters")
 
     private val tg = ToggleGroup()
     private val returnCharactersDoNothing = createPanRadioButton(tg,

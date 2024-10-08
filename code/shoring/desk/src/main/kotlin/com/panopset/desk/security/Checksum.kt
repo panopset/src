@@ -3,6 +3,11 @@ package com.panopset.desk.security
 import com.panopset.compat.Logz
 import com.panopset.compat.TextProcessor
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
 import com.panopset.marin.fx.PanopsetBrandedAppTran
 import com.panopset.marin.secure.checksums.ChecksumReport
 import com.panopset.marin.secure.checksums.ChecksumType
@@ -29,7 +34,7 @@ class Checksum : PanopsetBrandedAppTran() {
     override fun createDynapane(fxDoc: FxDoc): Pane {
         val csCheckBoxesHBox = HBox()
         var isAllOn = true
-        val csOut = createPanTextArea()
+        val csOut = createPanTextArea(fxDoc)
         val csCheckBoxes = ArrayList<CheckBox>()
         for (cst in ChecksumType.entries) {
             val cb = createPanCheckBox(fxDoc, "id_cb${cst.name}", cst.name)

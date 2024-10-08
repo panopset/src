@@ -1,9 +1,8 @@
 package com.panopset.sample
 
-import com.panopset.compat.Logz
 import com.panopset.fxapp.BrandedApp
 import com.panopset.fxapp.FxDoc
-import com.panopset.fxapp.createPanTabPane
+import com.panopset.fxapp.PanComponentFactory.createPanTabPane
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
 import javafx.scene.control.Tab
@@ -11,10 +10,10 @@ import javafx.scene.control.Tab
 class SampleApp: BrandedApp() {
 
     override fun updateVersionMessage(fxDoc: FxDoc) {
-        Logz.info("Green log entry.")
-        Logz.debug("Yellow log entry.")
-        Logz.warn("Orange log entry.")
-        Logz.errorMsg("Red log entry.")
+        fxDoc.dspmsg("Green log entry.")
+        fxDoc.debug("Yellow log entry.")
+        fxDoc.warn("Orange log entry.")
+        fxDoc.errorMsg("Red log entry.")
     }
 
     override fun createDynapane(fxDoc: FxDoc): Pane {

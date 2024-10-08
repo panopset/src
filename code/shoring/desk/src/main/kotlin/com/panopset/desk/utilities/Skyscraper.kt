@@ -3,6 +3,10 @@ package com.panopset.desk.utilities
 import com.panopset.compat.*
 import com.panopset.desk.utilities.skyscraper.*
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanSplitPane
+import com.panopset.fxapp.PanComponentFactory.createPanVBoxHGrow
 import com.panopset.marin.fx.*
 import javafx.application.Platform
 import javafx.collections.ObservableList

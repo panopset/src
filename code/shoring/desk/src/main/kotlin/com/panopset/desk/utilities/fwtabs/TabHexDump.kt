@@ -1,7 +1,18 @@
 package com.panopset.desk.utilities.fwtabs
 
 import com.panopset.compat.*
-import com.panopset.fxapp.*
+import com.panopset.fxapp.FontManagerFX
+import com.panopset.fxapp.FxDoc
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanIntTextFieldWithDefaultValue
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
+import com.panopset.fxapp.PanComponentFactory.createPanVBox
+import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
+import com.panopset.fxapp.PanFileSelectorPanel
+import com.panopset.fxapp.SceneUpdater
 import javafx.application.Platform
 import javafx.beans.value.ObservableValue
 import javafx.event.EventHandler
@@ -36,14 +47,14 @@ class TabHexDump(fxDoc: FxDoc): SceneUpdater(fxDoc) {
         hdWidth = createPanIntTextFieldWithDefaultValue(fxDoc, "hd_width", "0",
             "Width", "Dump width.")
         hdText = createPersistentPanTextArea(fxDoc, "hd_text", "Text", "Input text to dump.")
-        hdDump = createPanTextArea("Dump", "Dump of text to the left will appear here when you click the dump button.")
+        hdDump = createPanTextArea(fxDoc,"Dump", "Dump of text to the left will appear here when you click the dump button.")
 
         hdText.textProperty()
             .addListener { _: ObservableValue<out String?>?, _: String?, _: String? -> triggerAnUpdate() }
         hdSpace.onAction = EventHandler { triggerAnUpdate() }
         hdChars.onAction = EventHandler { triggerAnUpdate() }
 
-        val rtn = FontManagerFX.registerTab(Tab("Hex Dump"))
+        val rtn = FontManagerFX.registerTab(fxDoc, Tab("Hex Dump"))
         val bp = BorderPane()
         bp.top = createTopPane()
         bp.center = createCenterPane()

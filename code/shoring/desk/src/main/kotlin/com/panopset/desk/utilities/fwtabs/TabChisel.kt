@@ -7,7 +7,7 @@ import javafx.scene.control.Tab
 
 class TabChisel {
     fun createTab(fxDoc: FxDoc): Tab {
-        val rtn = FontManagerFX.registerTab(Tab("System"))
+        val rtn = FontManagerFX.registerTab(fxDoc, Tab("System"))
         rtn.content = ChiselPane(fxDoc).createPane()
         return rtn
     }

@@ -30,7 +30,7 @@ object SysInfo {
         try {
             name = InetAddress.getLocalHost().canonicalHostName
         } catch (e: UnknownHostException) {
-            errorExlg(e)
+            Logpan.errorExlg(e)
         }
         val runtime = Runtime.getRuntime()
         addValueToMapIfExists(map, "HostName", name)

@@ -1,8 +1,8 @@
 package com.panopset.fxapp
 
 import com.panopset.compat.HiddenFolder
+import com.panopset.compat.Logpan
 import com.panopset.compat.Zombie
-import com.panopset.compat.dspmsglg
 import javafx.application.Application
 import javafx.application.Platform
 import javafx.stage.Stage
@@ -15,7 +15,7 @@ class DeskApp4FX: Application() {
             setUserAgentStylesheet(STYLESHEET_MODENA)
             JavaFXapp.launch(stage)
         } catch (eiie: ExceptionInInitializerError) {
-            dspmsglg(DeskApp4XFactory.panApplication.getApplicationDisplayName() + " Already running, exiting.")
+            Logpan.dspmsglg(DeskApp4XFactory.panApplication.getApplicationDisplayName() + " Already running, exiting.")
             Platform.runLater {
                 Zombie.stop()
                 stage.close()

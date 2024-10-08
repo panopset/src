@@ -2,6 +2,7 @@ package com.panopset.fxapp
 
 import com.panopset.compat.HiddenFolder
 import com.panopset.compat.Logz
+import com.panopset.fxapp.PanComponentFactory.panDarkTheme
 import javafx.application.Platform
 import javafx.collections.ObservableList
 import javafx.event.EventHandler
@@ -15,8 +16,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 abstract class BrandedApp: PanApplication(), AppDDSFX {
-
-    private lateinit var deskApp4X: DeskApp4FX
 
     abstract fun createDynapane(fxDoc: FxDoc): Pane
 
@@ -32,30 +31,37 @@ abstract class BrandedApp: PanApplication(), AppDDSFX {
         JavaFXapp.doLaunch()
     }
 
-    class ThemeButtonWrapper(fxDoc: FxDoc, private val menuBarStatusMessage: TextField) {
+    class ThemeButtonWrapper(val fxDoc: FxDoc, val fxDocMessage: FxDocMessage) {
+        //val menuBarStatusMessage = fxDocMessage.mbStatusMessage
         val button = Button()
-        private fun setDarkTheme(fxDoc: FxDoc, button: Button) {
+        private fun setDarkTheme(button: Button) {
             button.text = "printer"
-            fxDoc.scene.root.style = darkTheme;
-            menuBarStatusMessage.style = "${FontManagerFX.getCurrentBaseStyle()}; -fx-text-fill: #88dd00"
+            fxDoc.scene.root.style = panDarkTheme
+            fxDocMessage.refresh()
+            //val style = "${FontManagerFX.getCurrentBaseStyle()}; -fx-text-fill: #88dd00"
+            //menuBarStatusMessage.style = style
+            //println("current message ${fxDocMessage.theCurrentMessage} is ${menuBarStatusMessage.text} id: ${Integer.toHexString(hashCode())}")
         }
 
-        private fun setLightTheme(fxDoc: FxDoc, button: Button) {
+        private fun setLightTheme(button: Button) {
             button.text = "screen"
             fxDoc.scene.root.style = "";
-            menuBarStatusMessage.style = "${FontManagerFX.getCurrentBaseStyle()}; -fx-text-fill: #339933"
+            fxDocMessage.refresh()
+            //val style = "${FontManagerFX.getCurrentBaseStyle()}; -fx-text-fill: #339933"
+            //menuBarStatusMessage.style = style
+            //println("current message ${fxDocMessage.theCurrentMessage} is ${menuBarStatusMessage.text} id: ${Integer.toHexString(hashCode())}")
         }
         init {
             button.text = "printer"
             button.onAction = EventHandler {
                 if (button.text.indexOf("een") > -1) {
-                    setDarkTheme(fxDoc, button)
+                    setDarkTheme(button)
                 } else {
-                    setLightTheme(fxDoc, button)
+                    setLightTheme(button)
                 }
             }
-            FontManagerFX.register(button)
-            Platform.runLater { setDarkTheme(fxDoc, button) }
+            FontManagerFX.register(fxDoc, button)
+            Platform.runLater { setDarkTheme(button) }
         }
     }
 
@@ -84,38 +90,27 @@ abstract class BrandedApp: PanApplication(), AppDDSFX {
     fun createStandardMenubarBorderPane(fxDoc: FxDoc): BorderPane {
         val borderPane = BorderPane()
         borderPane.top = createMenuBar(fxDoc)
+        Platform.runLater {
+            updateVersionMessage(fxDoc)
+        }
         return borderPane
     }
 
     private fun createMenuBar(fxDoc: FxDoc): HBox {
         val panMenuBar = HBox()
-        fxDoc.menuBarStatusMessage = createPanOutputTextField()
         panMenuBar.children.add(createMenuBarFx(fxDoc))
-        panMenuBar.children.add(ThemeButtonWrapper(fxDoc, fxDoc.menuBarStatusMessage).button)
-        panMenuBar.children.add(createMenuBarStatusPane(fxDoc.menuBarStatusMessage))
-        updateVersionMessage(fxDoc)
+        panMenuBar.children.add(ThemeButtonWrapper(fxDoc, fxDoc.fxDocMessage).button)
+        panMenuBar.children.add(fxDoc.fxDocMessage.createMenuBarStatusPane())
         return panMenuBar
-    }
-
-    private fun createMenuBarStatusPane(menuBarStatusMessage: TextField): HBox {
-        val menuBarStatusPane = HBox()
-        menuBarStatusMessage.isFocusTraversable = false
-        menuBarStatusMessage.isEditable = false
-        menuBarStatusMessage.id = MBSM
-        FontManagerFX.register(menuBarStatusMessage)
-        HBox.setHgrow(menuBarStatusPane, Priority.ALWAYS)
-        HBox.setHgrow(menuBarStatusMessage, Priority.ALWAYS)
-        menuBarStatusPane.children.add(menuBarStatusMessage)
-        return menuBarStatusPane
     }
 
     private fun createMenuBarFx(fxDoc: FxDoc): MenuBar {
         val menuBar = MenuBar()
         menuBar.menus.add(createFileMenu(fxDoc))
         addAppMenus(fxDoc, menuBar.menus)
-        menuBar.menus.add(createFontMenu())
+        menuBar.menus.add(createFontMenu(fxDoc))
         menuBar.menus.add(createHelpMenu(fxDoc))
-        FontManagerFX.registerMenubar(menuBar)
+        FontManagerFX.registerMenubar(fxDoc, menuBar)
         return menuBar
     }
 
@@ -135,14 +130,14 @@ abstract class BrandedApp: PanApplication(), AppDDSFX {
         return menu
     }
 
-    private fun createFontMenu(): Menu {
+    private fun createFontMenu(fxDoc: FxDoc): Menu {
         val cmf = object: PanCheckboxMenuFactory("Font") {
             override fun assignAction(
                 panCheckboxMenuItem: PanCheckboxMenuItem,
                 panCheckboxMenu: PanCheckboxMenu
             ) {
                 panCheckboxMenuItem.checkboxMenuItem.onAction = EventHandler {
-                    FontManagerFX.setFontSize(FontSize.findFromName(panCheckboxMenuItem.checkboxMenuItem.text.uppercase()))
+                    FontManagerFX.setFontSize(fxDoc, FontSize.findFromName(panCheckboxMenuItem.checkboxMenuItem.text.uppercase()))
                     panCheckboxMenu.setTheCurrentSelection(panCheckboxMenuItem.checkboxMenuItem.text)
                 }
             }

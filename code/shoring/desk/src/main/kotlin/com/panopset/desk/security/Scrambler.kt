@@ -4,6 +4,16 @@ import com.panopset.compat.Logz
 import com.panopset.compat.Stringop
 import com.panopset.compat.TextScrambler
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanIntTextFieldWithDefaultValue
+import com.panopset.fxapp.PanComponentFactory.createPanLabel
+import com.panopset.fxapp.PanComponentFactory.createPanPwdField
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPanStackPane
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
+import com.panopset.fxapp.PanComponentFactory.createPanTransientField
 import com.panopset.marin.fx.PanopsetBrandedAppTran
 import javafx.scene.control.*
 import javafx.scene.layout.BorderPane
@@ -22,25 +32,25 @@ class Scrambler : PanopsetBrandedAppTran() {
         unscrambleButton = createPanButton(fxDoc, {doUnscramble()}, "_Unscramble", true, "Unscramble the given text, using the given password.")
         scrambleButton = createPanButton(fxDoc, {doScramble()}, "_Scramble", true, "Scramble the given text, using the given password.")
         showPwdCheckbox = createPanCheckBox(fxDoc, "showPwd", "Show")
-        passwordField = createPanPwdField()
-        passwordShow = createPanTransientField()
+        passwordField = createPanPwdField(fxDoc)
+        passwordShow = createPanTransientField(fxDoc)
         passwordField.textProperty().bindBidirectional(passwordShow.textProperty())
         passwordField.visibleProperty().bind(showPwdCheckbox.selectedProperty().not())
         passwordShow.visibleProperty().bind(showPwdCheckbox.selectedProperty())
-        taInOutMessage = createPanTextArea()
+        taInOutMessage = createPanTextArea(fxDoc)
         tfKoi = createPanIntTextFieldWithDefaultValue(fxDoc,"koi", "10000",
             "Please enter a numeric value.", "Default is 10000, recommend you change that for added security.")
         val b: BorderPane = createStandardMenubarBorderPane(fxDoc)
-        b.center = createCenter()
+        b.center = createCenter(fxDoc)
         return b
     }
-    private fun createCenter(): BorderPane {
+    private fun createCenter(fxDoc: FxDoc): BorderPane {
         val bp = BorderPane()
         bp.top = createPanHBox(unscrambleButton, scrambleButton,
-            createPanLabel("  Passphrase:"), createPanStackPane(passwordField, passwordShow),
+            createPanLabel(fxDoc, "  Passphrase:"), createPanStackPane(passwordField, passwordShow),
             showPwdCheckbox)
         bp.center = createPanScrollPane(taInOutMessage)
-        bp.bottom = createPanHBox(createPanLabel("   Key obtention interations: "),
+        bp.bottom = createPanHBox(createPanLabel(fxDoc,"   Key obtention interations: "),
             tfKoi)
         return bp
     }

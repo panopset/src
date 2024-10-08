@@ -3,6 +3,11 @@ package com.panopset.desk.utilities.chisel
 import com.panopset.compat.NetworkInfo
 import com.panopset.compat.convertBytesToHex
 import com.panopset.fxapp.*
+import com.panopset.fxapp.PanComponentFactory.createPanButton
+import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
+import com.panopset.fxapp.PanComponentFactory.createPanHBox
+import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
+import com.panopset.fxapp.PanComponentFactory.createPanTextArea
 import javafx.application.Platform
 import javafx.event.EventHandler
 import javafx.scene.control.CheckBox
@@ -18,7 +23,7 @@ class ChiselPane(private val fxDoc: FxDoc) {
     private var lastCommand = LastCommand.NET
 
     fun createPane(): BorderPane {
-        outputTA = createPanTextArea()
+        outputTA = createPanTextArea(fxDoc)
         verboseCheckBox = createPanCheckBox(fxDoc, "chiselVBCB", "Verbose", "Expand acronyms in the output.")
         verboseCheckBox.onAction = EventHandler {
             when (lastCommand) {

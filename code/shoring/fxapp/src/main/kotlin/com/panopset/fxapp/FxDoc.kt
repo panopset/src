@@ -1,14 +1,23 @@
 package com.panopset.fxapp
 
 import com.panopset.compat.*
+import javafx.scene.Node
 import javafx.scene.Scene
-import javafx.scene.control.TextField
+import javafx.scene.control.MenuBar
+import javafx.scene.control.Tab
+import javafx.scene.control.TabPane
 import javafx.stage.Stage
 import java.io.File
+import java.util.logging.Level
 
 class FxDoc : Anchor, LogDisplayer {
+    var logEntry: LogEntry = LogEntry(AlertColor.GRN, Level.INFO, "")
+    var mbs: MutableList<MenuBar> = ArrayList()
+    var nodes: MutableList<Node> = ArrayList()
+    var tabPanes: MutableList<TabPane> = ArrayList()
+    var tabs: MutableList<Tab> = ArrayList()
     val stage: Stage
-    lateinit var menuBarStatusMessage: TextField
+    val fxDocMessage: FxDocMessage = FxDocMessage(fxDoc = this)
     lateinit var scene: Scene
     private var closingSaveComplete = false
 
@@ -46,8 +55,7 @@ class FxDoc : Anchor, LogDisplayer {
     }
 
     override fun dspmsg(msg: String) {
-        menuBarStatusMessage.style = "-fx-text-fill: green;"
-        menuBarStatusMessage.text = msg
+        fxDocMessage.setMsg(msg)
     }
 
     override fun warn(msg: String) {
@@ -59,7 +67,7 @@ class FxDoc : Anchor, LogDisplayer {
     }
 
     override fun getPriorMessage(): String {
-        return menuBarStatusMessage.text
+        return fxDocMessage.getPriorMessage()
     }
 
     override fun green(msg: String) {
@@ -67,28 +75,23 @@ class FxDoc : Anchor, LogDisplayer {
     }
 
     override fun errorMsg(msg: String, throwable: Throwable) {
-        menuBarStatusMessage.style = "-fx-text-fill: red;"
-        menuBarStatusMessage.text = msg
+        fxDocMessage.setErrorMsg(msg)
     }
 
     override fun errorMsg(msg: String, file: File) {
-        menuBarStatusMessage.style = "-fx-text-fill: red;"
-        menuBarStatusMessage.text = "$msg,\n${file.absolutePath}"
+        fxDocMessage.setErrorMsg(msg)
     }
 
     override fun errorMsg(msg: String) {
-        menuBarStatusMessage.style = "-fx-text-fill: red;"
-        menuBarStatusMessage.text = msg
+        fxDocMessage.setErrorMsg(msg)
     }
 
     override fun errorMsg(file: File, throwable: Throwable) {
-        menuBarStatusMessage.style = "-fx-text-fill: red;"
-        menuBarStatusMessage.text = "${throwable.message},\n${file.absolutePath}"
+        fxDocMessage.setErrorMsg("${throwable.message},\n${file.absolutePath}")
     }
 
     override fun errorEx(throwable: Throwable) {
-        menuBarStatusMessage.style = "-fx-text-fill: red;"
-        menuBarStatusMessage.text = "${throwable.message}"
+        fxDocMessage.setErrorMsg("${throwable.message}")
     }
 
     override fun debug(msg: String) {

@@ -110,7 +110,7 @@ private fun createErrorResponse(responseCode: Int, errorMessage: String): HttpRe
 }
 
 fun createErrorResponse(responseCode: Int, throwable: Throwable, newURL: String): HttpResponsePackage {
-    val errorMessage = "$responseCode: $newURL \n\n ${getStackTracelg(throwable)}"
+    val errorMessage = "$responseCode: $newURL \n\n ${Logpan.getStackTracelg(throwable)}"
     Logz.errorMsg(errorMessage)
     return HttpResponsePackage(responseCode, errorMessage)
 }

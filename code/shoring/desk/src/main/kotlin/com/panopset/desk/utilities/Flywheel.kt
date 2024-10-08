@@ -2,7 +2,7 @@ package com.panopset.desk.utilities
 
 import com.panopset.desk.utilities.fwtabs.*
 import com.panopset.fxapp.FxDoc
-import com.panopset.fxapp.createPanTabPane
+import com.panopset.fxapp.PanComponentFactory.createPanTabPane
 import com.panopset.marin.fx.PanopsetBrandedAppTran
 import javafx.scene.control.TabPane
 import javafx.scene.layout.BorderPane

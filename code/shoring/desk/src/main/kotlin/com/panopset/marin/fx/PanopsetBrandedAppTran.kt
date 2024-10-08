@@ -1,12 +1,10 @@
 package com.panopset.marin.fx
 
 import com.panopset.compat.AppVersion
-import com.panopset.compat.Logz
 import com.panopset.compat.Trinary
 import com.panopset.fxapp.BrandedApp
 import com.panopset.fxapp.FxDoc
 import com.panopset.marin.bootstrap.VersionHelper
-import javafx.scene.control.TextField
 
 abstract class PanopsetBrandedAppTran: BrandedApp() {
 
