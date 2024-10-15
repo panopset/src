@@ -4,6 +4,12 @@
 
 Not all versions listed, just those with enhancements or bug fixes worth noting here.
 
+## 1.4.7 (2024.10.06)
+* Bug fixes:
+  * Blackjack crashes when multiple simulation windows are open.
+* Enhancements:
+  * Menu bar message handling improvements.
+
 ## 1.4.4 (2024.09.07)
 * Enhancements:
   * Add Linux RPM build.

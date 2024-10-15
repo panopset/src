@@ -8,11 +8,13 @@ import java.util.*
 open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val config: BlackjackConfiguration) {
     constructor(config: BlackjackConfiguration) : this(LogzDisplayerCMD, config)
 
+    private val blackjackShoe = BlackjackShoe()
+
     /**
      * Only needed for JUnit tests.
      */
     fun getShoe(): BlackjackShoe {
-        return BlackjackShoe
+        return blackjackShoe
     }
 
     var metrics = Metrics()
@@ -59,7 +61,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     fun deal(isShowing: Boolean): BlackjackCard {
-        return BlackjackShoe.deal(isShowing, countingSystems)
+        return blackjackShoe.deal(isShowing, countingSystems)
     }
 
     private fun reset() {
@@ -71,9 +73,9 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         ct.reset()
         bankroll.reset()
         countingSystems.resetCount()
-        BlackjackShoe.numberOfDecks = config.decks
+        blackjackShoe.numberOfDecks = config.decks
         resetNextBet()
-        BlackjackShoe.shuffle()
+        blackjackShoe.shuffle()
         Logz.clear()
     }
 
@@ -187,7 +189,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private fun hit(handPlayer: HandPlayer) {
-        handPlayer.dealCard(BlackjackShoe.deal(true, countingSystems))
+        handPlayer.dealCard(blackjackShoe.deal(true, countingSystems))
         if (handPlayer.isBusted()) {
             handPlayer.message = msg.bustedMsg
             handPlayer.wager.lost()
@@ -223,7 +225,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         val splitCard = handPlayer.removeSecondCard()
         handPlayer.dealCard(deal(true))
         handPlayer.setSplit()
-        if (handPlayer.getFirstCard().isAce && !(config.isResplitAcesAllowed && handPlayer.getSecondCard().isAce)) {
+        if (handPlayer.getFirstCard().isAce() && !(config.isResplitAcesAllowed && handPlayer.getSecondCard().isAce())) {
             if (!config.isSplitAcePlayable) {
                 handPlayer.stand()
             }
@@ -233,8 +235,8 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         splitHand.setSplit()
         splitHand.action = CMD_SPLIT
         player.hands.add(splitHand)
-        if (splitCard.isAce) {
-            if (!(config.isResplitAcesAllowed && splitHand.getSecondCard().isAce)) {
+        if (splitCard.isAce()) {
+            if (!(config.isResplitAcesAllowed && splitHand.getSecondCard().isAce())) {
                 if (!config.isSplitAcePlayable) {
                     splitHand.stand()
                 }
@@ -254,7 +256,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
             dealerMessage = msg.doubleImpossibleMsg
             return false
         }
-        handPlayer.dealCard(BlackjackShoe.deal(true, countingSystems))
+        handPlayer.dealCard(blackjackShoe.deal(true, countingSystems))
         handPlayer.stand()
         bankroll.subtract(handPlayer.wager.initialBet)
         doubleDownWager(handPlayer)
@@ -314,7 +316,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private val isShuffleNeeded: Boolean
-        get() = BlackjackShoe.remaining() < BlackjackShoe.cut()
+        get() = blackjackShoe.remaining() < blackjackShoe.cut()
 
     fun setNextBet(value: Int) {
         nextBet = value
@@ -419,9 +421,9 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     fun shuffle() {
-        BlackjackShoe.shuffle()
+        blackjackShoe.shuffle()
         countingSystems.resetCount()
-        dealerMessage = if (BlackjackShoe.isTheDeckStacked()) {
+        dealerMessage = if (blackjackShoe.isTheDeckStacked()) {
             "Shuffled and stacked deck for debugging"
         } else {
             msg.shuffledMsg

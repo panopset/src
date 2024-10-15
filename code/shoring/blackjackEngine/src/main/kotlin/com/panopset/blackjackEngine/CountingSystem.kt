@@ -24,10 +24,10 @@ class CountingSystem(val name: String, dta: String, val selection: Int) : Compar
     }
 
     fun count(blackjackCard: BlackjackCard) {
-        if (blackjackCard.isAce) {
+        if (blackjackCard.isAce()) {
             count += vals["A"]!!
         } else {
-            var valRep = String.format("%d", blackjackCard.softValue)
+            var valRep = String.format("%d", blackjackCard.getSoftValue())
             if ("10" == valRep) {
                 valRep = "T"
             }

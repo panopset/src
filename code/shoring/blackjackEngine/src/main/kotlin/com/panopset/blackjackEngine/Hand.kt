@@ -25,7 +25,7 @@ class Hand {
     }
 
     fun getHardValueOf(i: Int): Int {
-        return cards[i].hardValue
+        return cards[i].getHardValue()
     }
 
     fun hasCards(): Boolean {
@@ -51,8 +51,8 @@ class Hand {
         var margin = 0
         isSoft = false
         for (card in cards) {
-            value += card.hardValue
-            if (card.isAce) {
+            value += card.getHardValue()
+            if (card.isAce()) {
                 margin += 10
             }
         }

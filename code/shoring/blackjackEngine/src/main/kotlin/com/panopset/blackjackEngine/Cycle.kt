@@ -10,6 +10,7 @@ class Cycle internal constructor(
     private val countingSystems = bge.countingSystems
     val dealer = HandDealer()
     val msg: BlackjackMessages = bge.config.messages
+    val blackjackShoe = bge.getShoe()
 
     val players: ArrayList<Player> = ArrayList()
 
@@ -74,14 +75,14 @@ class Cycle internal constructor(
     fun deal() {
         placeBets()
         for (p in players) {
-            p.activeHand?.dealCard(BlackjackShoe.deal(true, countingSystems))
+            p.activeHand?.dealCard(blackjackShoe.deal(true, countingSystems))
             bge.reportNewHand()
         }
-        dealer.dealCard(BlackjackShoe.deal(false, countingSystems))
+        dealer.dealCard(blackjackShoe.deal(false, countingSystems))
         for (p in players) {
-            p.activeHand?.dealCard(BlackjackShoe.deal(true, countingSystems))
+            p.activeHand?.dealCard(blackjackShoe.deal(true, countingSystems))
         }
-        dealer.dealCard(BlackjackShoe.deal(true, countingSystems))
+        dealer.dealCard(blackjackShoe.deal(true, countingSystems))
         checkFor21()
         isDealt = true
         isActive = true
@@ -97,7 +98,7 @@ class Cycle internal constructor(
     }
 
     private fun checkFor21(player: Player) {
-        if (dealer.upCard.isAce && bge.config.isEvenMoneyOnBlackjackVace) {
+        if (dealer.upCard.isAce() && bge.config.isEvenMoneyOnBlackjackVace) {
             for (playerHand in player.hands) {
                 if (playerHand.isNatural21()) {
                     playerHand.standWithEvenMoney()
@@ -129,7 +130,7 @@ class Cycle internal constructor(
     }
 
     private fun prepareSettlement() {
-        BlackjackShoe.show(dealer.getFirstCard(), countingSystems)
+        blackjackShoe.show(dealer.getFirstCard(), countingSystems)
         resolvePlayerBlackjacks()
         while (!dealer.isFinal()) {
             if (dealer.getHandValue() < 17) {

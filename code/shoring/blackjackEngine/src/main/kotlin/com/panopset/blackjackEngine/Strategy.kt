@@ -82,7 +82,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
             return false
         }
         if (s.handPlayer.isInitialDeal() && s.handPlayer.isCardFacesSplittable) {
-            val v = s.handPlayer.getFirstCard().hardValue
+            val v = s.handPlayer.getFirstCard().getHardValue()
             return v != 5 && v != 10
         }
         return false
@@ -92,7 +92,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         if (s.handPlayer == null) {
             return null
         }
-        val cv = s.handPlayer.getFirstCard().hardValue
+        val cv = s.handPlayer.getFirstCard().getHardValue()
         var key = "$cv,$cv"
         if (key == "1,1") {
             key = "A,A"

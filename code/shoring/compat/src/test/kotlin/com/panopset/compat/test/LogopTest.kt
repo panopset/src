@@ -1,6 +1,9 @@
 package com.panopset.compat.test
 
 import com.panopset.compat.*
+import com.panopset.compat.Logpan.getEntryStackAsTextlg
+import com.panopset.compat.Logpan.getStackTraceAndCauseslg
+import com.panopset.compat.Logpan.stacklg
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.util.logging.Level

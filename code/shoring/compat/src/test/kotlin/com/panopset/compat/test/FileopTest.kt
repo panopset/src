@@ -1,6 +1,8 @@
 package com.panopset.compat.test
 
 import com.panopset.compat.*
+import com.panopset.compat.Logpan.clearlg
+import com.panopset.compat.Logpan.stacklg
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

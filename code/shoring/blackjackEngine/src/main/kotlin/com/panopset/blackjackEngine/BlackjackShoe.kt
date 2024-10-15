@@ -1,6 +1,6 @@
 package com.panopset.blackjackEngine
 
-object BlackjackShoe {
+class BlackjackShoe {
     var numberOfDecks = 1
         set(value) {
             field = value

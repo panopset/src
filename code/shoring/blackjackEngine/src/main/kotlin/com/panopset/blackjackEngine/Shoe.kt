@@ -42,7 +42,11 @@ class Shoe(val numberOfDecks: Int) {
         if (cards.size < cut()) {
             shuffle()
         }
-        return cards.removeAt(0)
+        var rtn = cards.removeAt(0)
+        if (rtn == null) {
+            shuffle()
+        }
+        return rtn
     }
 
     fun cut(): Int {

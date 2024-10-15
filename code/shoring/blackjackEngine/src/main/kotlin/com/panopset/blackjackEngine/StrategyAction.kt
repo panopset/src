@@ -48,7 +48,7 @@ class StrategyAction(situation: Situation, private val casinoRules: CasinoRules)
             }
             if (hand.isInitialDeal()) {
                 for (card in hand.getBlackjackCards()) {
-                    if (card.hardValue == 10) {
+                    if (card.getHardValue() == 10) {
                         return CMD_HIT
                     }
                 }
@@ -69,7 +69,7 @@ class StrategyAction(situation: Situation, private val casinoRules: CasinoRules)
                 return CMD_STAND
             }
             for (card in hand.getBlackjackCards()) {
-                if (card.hardValue == 4 || card.hardValue == 5) {
+                if (card.getHardValue() == 4 || card.getHardValue() == 5) {
                     return CMD_STAND
                 }
             }

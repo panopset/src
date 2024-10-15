@@ -31,7 +31,7 @@ class StrategyLine(val stratCat: StratCat, val source: String, private val confi
     }
 
     private fun getTextForDealerUpCard(card: BlackjackCard): String {
-        return getStrategyLineElements()[card.softValue - 1]
+        return getStrategyLineElements()[card.getSoftValue() - 1]
     }
 
 
