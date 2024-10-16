@@ -31,24 +31,18 @@ Not all versions listed, just those with enhancements or bug fixes worth noting 
   * Dependency updates.
 
 ## 1.0.1 (2021.08.07)
-
 * Switched version designations to be consistent with
 [Microsoft standards](https://msdn.microsoft.com/en-us/library/aa370859%28v=VS.85%29.aspx), 
 with the publication of panopset-1.0.1.msi.  Apple doesn't like 0 in the major version, so starting with 1.0.1.
 
-
 ## 2021.07.03
-
 * Introduce platform installers.
 
 ## 2021.05.30
-
 * Entire project restructured, and set up as Java 9 modules.
 
 ## 2000 something
-
 * Flywheel was moved to Java.
 
 ## 1996
-
 * First version of Flywheel was written as an MPW tool on the Apple Macintosh platform.

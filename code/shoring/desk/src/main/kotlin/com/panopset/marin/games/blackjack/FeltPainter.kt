@@ -32,8 +32,8 @@ class FeltPainter {
 
     private var blackjackTable = BlackjackTable(600, 500, cptr.cardHeight)
 
-    fun draw(logDisplayer: LogDisplayer, cs: CycleSnapshot?, g: GraphicsContext, width: Int, height: Int) {
-        if (cs == null || width.toDouble() == 0.0 || height.toDouble() == 0.0) {
+    fun draw(logDisplayer: LogDisplayer, cs: CycleSnapshot, g: GraphicsContext, width: Int, height: Int) {
+        if (width.toDouble() == 0.0 || height.toDouble() == 0.0) {
             return
         }
         if (!(width == lastWidth && height == lastHeight)) {
@@ -42,6 +42,7 @@ class FeltPainter {
             lastHeight = height
         }
         verticalSeparator = (FontManagerFX.size * 1.2).toInt()
+        println("Vertical separator is $verticalSeparator")
         if (Stringop.isPopulated(cs.getMistakeMessage())) {
             g.fill = Color.DARKRED
         } else {
@@ -101,7 +102,7 @@ class FeltPainter {
         g.fillText(commander.toString(), x.toDouble(), y.toDouble())
     }
 
-    val commander = BlackjackCmdBinder()
+    private val commander = BlackjackCmdBinder()
     private fun paintDealer(g: GraphicsContext, t: Tile, cs: CycleSnapshot) {
         if (dbg) {
             g.fill = Color.RED
@@ -213,8 +214,8 @@ class FeltPainter {
         )
     }
 
-    var dbg = false
-    fun paintChips(g: GraphicsContext, t: Tile?, cs: CycleSnapshot) {
+    private var dbg = false
+    private fun paintChips(g: GraphicsContext, t: Tile?, cs: CycleSnapshot) {
         if (t == null) {
             return
         }
@@ -233,11 +234,11 @@ class FeltPainter {
         var y = t.top + verticalSeparator
         for (s in cs.getStatusChipsVertical()) {
             g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
-            y = y + verticalSeparator
+            y += verticalSeparator
         }
         for (s in cs.getGameStatusVertical()) {
             g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
-            y = y + verticalSeparator
+            y += verticalSeparator
         }
     }
 

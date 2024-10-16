@@ -52,18 +52,27 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
                 }
 
     var lastUpdate: Long = 0
+    private var oneSecond: Long = 0
+
     private fun startPaintCycle() {
         Platform.runLater { timer.start() }
     }
 
     private fun isDirty(): Boolean {
+        if (fontSize != FontManagerFX.size) {
+            fontSize = FontManagerFX.size
+            dirty = true
+        }
         if (!dirty) {
             if (paintedSnapshot != bge.lastActionSnapshot) {
                 paintedSnapshot = bge.lastActionSnapshot
                 dirty = true
             }
-            if (fontSize != FontManagerFX.size) {
-                fontSize = FontManagerFX.size
+        }
+        if (!dirty) {
+            val currentTime = Date().time
+            if (currentTime - oneSecond > 1000) {
+                oneSecond = currentTime
                 dirty = true
             }
         }
@@ -107,10 +116,8 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
         if (!isDirty()) {
             return null
         }
-        fp.draw(fxDoc, rtn, g, layoutWidth, layoutHeight)
+        FeltPainter().draw(fxDoc, rtn, g, layoutWidth, layoutHeight)
         dirty = false
         return rtn
     }
-
-    private var fp: FeltPainter = FeltPainter()
 }
