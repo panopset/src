@@ -13,3 +13,4 @@ license,${pdaTitle}
 news,Panopset News
 downloads,Panopset Downloads
 links,links
+dox,Kotlin documentation

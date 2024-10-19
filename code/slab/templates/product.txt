@@ -92,7 +92,7 @@ Current version is ${fullVersion}.
   <ul><li>
    <a href="https://github.com/panopset/${GN}">Source</a>.
   </li><li>
-   <a href="dox/site/index.html">Kotlin documentation.</a>
+   <a href="/dox.html">Kotlin documentation.</a>
   </li></ul>
 
   <p>

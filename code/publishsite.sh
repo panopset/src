@@ -11,6 +11,9 @@ rm -rf /var/www/html/*
 mkdir -p /var/www/html/dox/site
 mvn -f shoring site
 
+# Uncomment to create dokka files
+# . ./dox.sh
+
 # Synch up the remote and local downloads to temp
 . ./synchDownloads.sh
 

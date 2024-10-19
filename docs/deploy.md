@@ -3,6 +3,7 @@
 This may be used to publish a mirror of panopset.com, or as a guide to build your own Kotlin JavaFX
 [WORA](https://en.wikipedia.org/wiki/Write_once,_run_anywhere) desktop software publication website.
 
+If you just want the application, see [Desktop Applications Build](build.md).
 
 ## Requirements
 
@@ -142,16 +143,16 @@ To test locally, run with the DEV profile, to put it on port 8090:
 
 ## Platform specific deployment
 
-On a mac it is:
+On a mac it is "all mac", which builds and publishes the application, and creates the checksums:
 
 
-    pam.sh
+    am.sh
 
 
 ... and on Windows it is
 
 
-    paw.sh
+    aw.sh
 
 
 # Multiple domains on one server
