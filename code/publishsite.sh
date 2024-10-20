@@ -9,10 +9,10 @@ git pull
 
 rm -rf /var/www/html/*
 mkdir -p /var/www/html/dox/site
-mvn -f shoring site
 
-# Uncomment to create dokka files
-# . ./dox.sh
+# Uncomment the next two lines to create dokka files
+#mvn -f shoring site
+#. ./dox.sh
 
 # Synch up the remote and local downloads to temp
 . ./synchDownloads.sh
@@ -28,7 +28,7 @@ mvn -f shoring site
 . ./dwl.sh
 
 # Uncomment to deploy the HATEOAS REST app as well.
-# . ./deployBeam.sh
+#. ./deployBeam.sh
 
 # Publish Website Linux. rsync /var/www/html up to the server ${SITE_NAME}.
 # Again, only on Linux do we do this.
