@@ -130,7 +130,9 @@ object FontManagerFX {
         }
     }
 
-    val size = fontSize.value
+    fun getSize(): Int {
+        return fontSize.value
+    }
 
     fun setFontSize(fxDoc: FxDoc, fontSize: FontSize) {
         this.fontSize = fontSize

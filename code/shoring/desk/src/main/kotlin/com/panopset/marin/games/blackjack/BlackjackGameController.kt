@@ -59,8 +59,8 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
     }
 
     private fun isDirty(): Boolean {
-        if (fontSize != FontManagerFX.size) {
-            fontSize = FontManagerFX.size
+        if (fontSize != FontManagerFX.getSize()) {
+            fontSize = FontManagerFX.getSize()
             dirty = true
         }
         if (!dirty) {

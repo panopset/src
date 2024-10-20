@@ -7,6 +7,7 @@ Not all versions listed, just those with enhancements or bug fixes worth noting 
 ## 1.4.7 (2024.10.06)
 * Bug fixes:
   * Blackjack crashes when multiple simulation windows are open.
+  * Blackjack line separation not updated, when new font size selected.
 * Enhancements:
   * Menu bar message handling improvements.
 

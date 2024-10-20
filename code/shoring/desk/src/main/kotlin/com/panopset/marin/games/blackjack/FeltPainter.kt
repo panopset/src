@@ -41,8 +41,7 @@ class FeltPainter {
             lastWidth = width
             lastHeight = height
         }
-        verticalSeparator = (FontManagerFX.size * 1.2).toInt()
-        println("Vertical separator is $verticalSeparator")
+        verticalSeparator = (FontManagerFX.getSize() * 1.2).toInt()
         if (Stringop.isPopulated(cs.getMistakeMessage())) {
             g.fill = Color.DARKRED
         } else {
@@ -80,7 +79,7 @@ class FeltPainter {
     private fun paintMistakeMessage(cs: CycleSnapshot, g: GraphicsContext, t: Tile, y: Int, vs: Int) {
         if (Stringop.isPopulated(cs.getMistakeMessage())) {
             g.fill = Color.YELLOW
-            g.font = Font.font("Monospaced", FontManagerFX.size.toDouble())
+            g.font = Font.font("Monospaced", FontManagerFX.getSize().toDouble())
             g.fillText(String.format("%s - dealer up card.", cs.getMistakeHeader()), 0.0, y.toDouble())
             g.fillText(
                 String.format("%s - basic strategy line for your hand.", cs.getMistakeMessage()),
