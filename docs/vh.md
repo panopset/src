@@ -4,7 +4,11 @@
 
 Not all versions listed, just those with enhancements or bug fixes worth noting here.
 
-## 1.4.7 (2024.10.06)
+## 1.4.8 (2024.10.20)
+* Bug fixes:
+  * Blank fields are not saved.
+
+## 1.4.7 (2024.10.20)
 * Bug fixes:
   * Blackjack crashes when multiple simulation windows are open.
   * Blackjack line separation not updated, when new font size selected.
