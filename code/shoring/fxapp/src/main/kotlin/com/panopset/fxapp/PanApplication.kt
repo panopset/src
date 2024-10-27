@@ -10,10 +10,8 @@ abstract class PanApplication {
 
     }
 
-    val applicationShortName: String
-        get() = this.javaClass.name.lowercase(Locale.getDefault())
-    val filesKey: String
-        get() = applicationShortName + "_files"
+    val applicationShortName = this.javaClass.name.lowercase(Locale.getDefault())
+    val filesKey = applicationShortName + "_files"
 
     var id = 0L
     fun getNextUniqueID(): Long {
