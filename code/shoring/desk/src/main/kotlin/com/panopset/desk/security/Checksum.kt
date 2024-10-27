@@ -21,7 +21,7 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
 import javafx.scene.layout.VBox
 
-class Checksum : BrandedApp (
+class Checksum: BrandedApp (
     object: ApplicationInfo {
         override fun getApplicationBranding(): ApplicationBranding {
             return PanopsetBranding()

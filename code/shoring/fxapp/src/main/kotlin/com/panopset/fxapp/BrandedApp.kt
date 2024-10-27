@@ -18,7 +18,7 @@ abstract class BrandedApp(private val applicationInfo: ApplicationInfo): PanAppl
 
     abstract fun createDynapane(fxDoc: FxDoc): Pane
 
-    fun updateVersionMessage(fxDoc: FxDoc) {
+    private fun updateVersionMessage(fxDoc: FxDoc) {
         applicationInfo.updateVersionMessage(fxDoc)
     }
 

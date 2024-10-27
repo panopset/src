@@ -11,7 +11,7 @@ import javafx.scene.control.TabPane
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
 
-class Flywheel : BrandedApp(
+class Flywheel: BrandedApp(
     object: ApplicationInfo {
         override fun getApplicationBranding(): ApplicationBranding {
             return PanopsetBranding()

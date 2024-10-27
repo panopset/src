@@ -15,11 +15,11 @@ class SampleApp: BrandedApp(object: ApplicationInfo {
     }
 
     override fun getApplicationDisplayName(): String {
-        return "Skyscraper"
+        return "SampleApp"
     }
 
     override fun getDescription(): String {
-        return "API tester. Scrape info from the clouds."
+        return "Sample application."
     }
 
     override fun updateVersionMessage(fxDoc: FxDoc) {

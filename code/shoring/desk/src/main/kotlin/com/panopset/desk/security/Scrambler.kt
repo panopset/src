@@ -19,7 +19,7 @@ import javafx.scene.control.*
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
 
-class Scrambler : BrandedApp(
+class Scrambler: BrandedApp(
     object: ApplicationInfo {
         override fun getApplicationBranding(): ApplicationBranding {
             return PanopsetBranding()
