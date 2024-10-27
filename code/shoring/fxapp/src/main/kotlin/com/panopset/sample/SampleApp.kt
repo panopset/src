@@ -1,5 +1,7 @@
 package com.panopset.sample
 
+import com.panopset.fxapp.ApplicationBranding
+import com.panopset.fxapp.ApplicationInfo
 import com.panopset.fxapp.BrandedApp
 import com.panopset.fxapp.FxDoc
 import com.panopset.fxapp.PanComponentFactory.createPanTabPane
@@ -7,7 +9,18 @@ import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
 import javafx.scene.control.Tab
 
-class SampleApp: BrandedApp() {
+class SampleApp: BrandedApp(object: ApplicationInfo {
+    override fun getApplicationBranding(): ApplicationBranding {
+        return SampleBranding()
+    }
+
+    override fun getApplicationDisplayName(): String {
+        return "Skyscraper"
+    }
+
+    override fun getDescription(): String {
+        return "API tester. Scrape info from the clouds."
+    }
 
     override fun updateVersionMessage(fxDoc: FxDoc) {
         fxDoc.dspmsg("Green log entry.")
@@ -15,6 +28,7 @@ class SampleApp: BrandedApp() {
         fxDoc.warn("Orange log entry.")
         fxDoc.errorMsg("Red log entry.")
     }
+}) {
 
     override fun createDynapane(fxDoc: FxDoc): Pane {
         val bp: BorderPane = createStandardMenubarBorderPane(fxDoc)
@@ -22,18 +36,6 @@ class SampleApp: BrandedApp() {
         tp.tabs.add(Tab("SomeTab"))
         bp.center = tp
         return bp
-    }
-
-    override fun getApplicationDisplayName(): String {
-        return "Sample"
-    }
-
-    override fun getDescription(): String {
-        return "Sample application."
-    }
-
-    override fun getCompanyName(): String {
-        return "ACME Anvils corporation"
     }
 
     companion object {

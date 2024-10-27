@@ -1,5 +1,6 @@
 package com.panopset.desk.utilities
 
+import com.panopset.PanopsetBranding
 import com.panopset.compat.*
 import com.panopset.desk.utilities.skyscraper.*
 import com.panopset.fxapp.*
@@ -7,7 +8,6 @@ import com.panopset.fxapp.PanComponentFactory.createPanButton
 import com.panopset.fxapp.PanComponentFactory.createPanHBox
 import com.panopset.fxapp.PanComponentFactory.createPanSplitPane
 import com.panopset.fxapp.PanComponentFactory.createPanVBoxHGrow
-import com.panopset.marin.fx.*
 import javafx.application.Platform
 import javafx.collections.ObservableList
 import javafx.event.EventHandler
@@ -15,7 +15,21 @@ import javafx.scene.control.*
 import javafx.scene.layout.*
 import kotlin.collections.ArrayList
 
-class Skyscraper : PanopsetBrandedAppTran() {
+class Skyscraper: BrandedApp(
+    object: ApplicationInfo {
+        override fun getApplicationBranding(): ApplicationBranding {
+            return PanopsetBranding()
+        }
+
+        override fun getApplicationDisplayName(): String {
+            return "Skyscraper"
+        }
+
+        override fun getDescription(): String {
+            return "API tester. Scrape info from the clouds."
+        }
+    }
+) {
     private val floorMap = HashMap<FxDoc, Floor>()
     private fun getFloor(fxDoc: FxDoc): Floor {
         var rtn = floorMap[fxDoc]
@@ -115,14 +129,6 @@ class Skyscraper : PanopsetBrandedAppTran() {
             )
         }, "Help"))
         return envMenu
-    }
-
-    override fun getApplicationDisplayName(): String {
-        return "Skyscraper"
-    }
-
-    override fun getDescription(): String {
-        return "API tester. Scrape info from the clouds."
     }
 
     private fun createMainBorderPaneCenter(fxDoc: FxDoc): BorderPane {

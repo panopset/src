@@ -11,15 +11,16 @@ import javafx.scene.image.Image
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
-import javafx.scene.layout.Priority
 import java.util.*
 import kotlin.collections.ArrayList
 
-abstract class BrandedApp: PanApplication(), AppDDSFX {
+abstract class BrandedApp(private val applicationInfo: ApplicationInfo): PanApplication(applicationInfo), AppDDSFX {
 
     abstract fun createDynapane(fxDoc: FxDoc): Pane
 
-    abstract fun updateVersionMessage(fxDoc: FxDoc)
+    fun updateVersionMessage(fxDoc: FxDoc) {
+        applicationInfo.updateVersionMessage(fxDoc)
+    }
 
     fun go() {
         HiddenFolder.companyName = getCompanyName().trim().lowercase().replace(" ", "_")

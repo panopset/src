@@ -2,10 +2,18 @@ package com.panopset.fxapp
 
 import java.util.*
 
-abstract class PanApplication {
-    abstract fun getCompanyName(): String
-    abstract fun getApplicationDisplayName(): String
-    abstract fun getDescription(): String
+abstract class PanApplication(private val applicationInfo: ApplicationInfo) {
+
+    fun getCompanyName(): String {
+        return applicationInfo.getApplicationBranding().getCompanyName()
+    }
+    fun getApplicationDisplayName(): String {
+        return applicationInfo.getApplicationDisplayName()
+    }
+    fun getDescription(): String {
+        return applicationInfo.getDescription()
+    }
+
     open fun doAfterShow(fxDoc: FxDoc) {
 
     }

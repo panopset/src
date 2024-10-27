@@ -1,13 +1,12 @@
-package com.panopset.marin.fx
+package com.panopset
 
 import com.panopset.compat.AppVersion
 import com.panopset.compat.Trinary
-import com.panopset.fxapp.BrandedApp
+import com.panopset.fxapp.ApplicationBranding
 import com.panopset.fxapp.FxDoc
 import com.panopset.marin.bootstrap.VersionHelper
 
-abstract class PanopsetBrandedAppTran: BrandedApp() {
-
+class PanopsetBranding: ApplicationBranding {
     override fun getCompanyName(): String {
         return "Panopset"
     }
@@ -33,5 +32,3 @@ abstract class PanopsetBrandedAppTran: BrandedApp() {
         }
     }
 }
-
-

@@ -1,5 +1,6 @@
 package com.panopset.desk.security
 
+import com.panopset.PanopsetBranding
 import com.panopset.compat.Logz
 import com.panopset.compat.Stringop
 import com.panopset.compat.TextScrambler
@@ -14,12 +15,25 @@ import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
 import com.panopset.fxapp.PanComponentFactory.createPanStackPane
 import com.panopset.fxapp.PanComponentFactory.createPanTextArea
 import com.panopset.fxapp.PanComponentFactory.createPanTransientField
-import com.panopset.marin.fx.PanopsetBrandedAppTran
 import javafx.scene.control.*
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
 
-class Scrambler : PanopsetBrandedAppTran() {
+class Scrambler : BrandedApp(
+    object: ApplicationInfo {
+        override fun getApplicationBranding(): ApplicationBranding {
+            return PanopsetBranding()
+        }
+
+        override fun getApplicationDisplayName(): String {
+            return "Scrambler"
+        }
+
+        override fun getDescription(): String {
+            return "Text scrambler."
+        }
+    }
+) {
     private lateinit var unscrambleButton: Button
     private lateinit var scrambleButton: Button
     private lateinit var taInOutMessage: TextArea
@@ -53,14 +67,6 @@ class Scrambler : PanopsetBrandedAppTran() {
         bp.bottom = createPanHBox(createPanLabel(fxDoc,"   Key obtention interations: "),
             tfKoi)
         return bp
-    }
-
-    override fun getApplicationDisplayName(): String {
-        return "Scrambler"
-    }
-
-    override fun getDescription(): String {
-        return "Text scrambler."
     }
 
     private fun doUnscramble() {

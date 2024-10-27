@@ -1,5 +1,6 @@
 package com.panopset.desk.security
 
+import com.panopset.PanopsetBranding
 import com.panopset.compat.Logz
 import com.panopset.compat.TextProcessor
 import com.panopset.fxapp.*
@@ -8,7 +9,6 @@ import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
 import com.panopset.fxapp.PanComponentFactory.createPanHBox
 import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
 import com.panopset.fxapp.PanComponentFactory.createPanTextArea
-import com.panopset.marin.fx.PanopsetBrandedAppTran
 import com.panopset.marin.secure.checksums.ChecksumReport
 import com.panopset.marin.secure.checksums.ChecksumType
 import javafx.application.Platform
@@ -21,15 +21,21 @@ import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
 import javafx.scene.layout.VBox
 
-class Checksum : PanopsetBrandedAppTran() {
+class Checksum : BrandedApp (
+    object: ApplicationInfo {
+        override fun getApplicationBranding(): ApplicationBranding {
+            return PanopsetBranding()
+        }
 
-    override fun getApplicationDisplayName(): String {
-        return "Checksum"
-    }
+        override fun getApplicationDisplayName(): String {
+            return "Checksum"
+        }
 
-    override fun getDescription(): String {
-        return "Validate files with various checksums you might typically encounter."
+        override fun getDescription(): String {
+            return "Validate files with various checksums you might typically encounter."
+        }
     }
+) {
 
     override fun createDynapane(fxDoc: FxDoc): Pane {
         val csCheckBoxesHBox = HBox()

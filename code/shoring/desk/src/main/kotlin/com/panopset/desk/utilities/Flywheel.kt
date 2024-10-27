@@ -1,22 +1,31 @@
 package com.panopset.desk.utilities
 
+import com.panopset.PanopsetBranding
 import com.panopset.desk.utilities.fwtabs.*
+import com.panopset.fxapp.ApplicationBranding
+import com.panopset.fxapp.ApplicationInfo
+import com.panopset.fxapp.BrandedApp
 import com.panopset.fxapp.FxDoc
 import com.panopset.fxapp.PanComponentFactory.createPanTabPane
-import com.panopset.marin.fx.PanopsetBrandedAppTran
 import javafx.scene.control.TabPane
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
 
-class Flywheel : PanopsetBrandedAppTran() {
+class Flywheel : BrandedApp(
+    object: ApplicationInfo {
+        override fun getApplicationBranding(): ApplicationBranding {
+            return PanopsetBranding()
+        }
 
-    override fun getApplicationDisplayName(): String {
-        return "Flywheel text utilities."
-    }
+        override fun getApplicationDisplayName(): String {
+            return "Flywheel text utilities."
+        }
 
-    override fun getDescription(): String {
-        return "Text processing utilities (flywheel, hexdump, global replace, list audit.)"
+        override fun getDescription(): String {
+            return "Text processing utilities (flywheel, hexdump, global replace, list audit.)"
+        }
     }
+) {
 
     override fun createDynapane(fxDoc: FxDoc): Pane {
         val b: BorderPane = createStandardMenubarBorderPane(fxDoc)
