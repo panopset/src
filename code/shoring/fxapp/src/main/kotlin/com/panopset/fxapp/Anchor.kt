@@ -29,20 +29,19 @@ abstract class Anchor(val application: PanApplication) {
     }
 
     fun setBoltValues() {
-        for ((key, value1) in bolts) {
-            val value: String = pmf[key!!]
-            value1.setBoltValue(value)
+        if (pmf.file.exists()) {
+            for ((key, value1) in boltBoxes) {
+                val value: String = pmf[key]
+                value1.setValue(value)
+            }
         }
         updateTitle()
     }
 
     fun saveDataToFile() {
-        for ((key, value1) in bolts) {
-            var value = value1.getBoltValue()
-            if (!Stringop.isPopulated(value)) {
-                value = value1.getBoltDefault()
-            }
-            pmf.put(key!!, value)
+        for ((key, value1) in boltBoxes) {
+            val value = value1.getValue()
+            pmf.put(key, value)
         }
         pmf.flush()
         globalPropsPut(JavaFXapp.GLOBAL_LAST_PARENT_DIR, pmf.file.parent)
@@ -60,7 +59,7 @@ abstract class Anchor(val application: PanApplication) {
         return pmf.file.name
     }
 
-    private val bolts: MutableMap<String?, Bolt> = HashMap()
+    private val boltBoxes: MutableMap<String, BoltBox> = HashMap()
     private val boltDefaults: MutableMap<String, String> = HashMap()
     var pmf = PersistentMapFile(File(createDefaultPath()))
 
@@ -84,7 +83,7 @@ abstract class Anchor(val application: PanApplication) {
     fun registerChoiceBox(keyChain: String, cb: ChoiceBox<String>) {
         val defaultValue = "" + cb.selectionModel.selectedIndex
 
-        registerData(keyChain, object: Bolt {
+        registerData(keyChain, BoltBox(object: Bolt {
             override fun getBoltValue(): String {
                 return "" + cb.selectionModel.selectedIndex
             }
@@ -99,13 +98,13 @@ abstract class Anchor(val application: PanApplication) {
                     cb.selectionModel.select(i)
                 }
             }
-        })
+        }))
     }
 
     fun registerCheckBox(keyChain: String, cb: CheckBox) {
         val defaultValue = "" + cb.isSelected
 
-        registerData(keyChain, object : Bolt {
+        registerData(keyChain, BoltBox(object : Bolt {
             override fun setBoltValue(value: String) {
                 if (Stringop.isPopulated(value)) {
                     val bv = value.toBoolean()
@@ -120,13 +119,13 @@ abstract class Anchor(val application: PanApplication) {
             override fun getBoltDefault(): String {
                 return defaultValue
             }
-        })
+        }))
     }
 
     fun registerToggleButton(keyChain: String, tb: ToggleButton) {
         val defaultValue = "" + tb.isSelected
 
-        registerData(keyChain, object : Bolt {
+        registerData(keyChain, BoltBox(object : Bolt {
             override fun setBoltValue(value: String) {
                 if (Stringop.isPopulated(value)) {
                     val bv = value.toBoolean()
@@ -141,7 +140,7 @@ abstract class Anchor(val application: PanApplication) {
             override fun getBoltDefault(): String {
                 return defaultValue
             }
-        })
+        }))
     }
 
     fun registerTextInputControl(keyChain: String, tf: TextInputControl) {
@@ -152,15 +151,12 @@ abstract class Anchor(val application: PanApplication) {
             tf.id = keyChain
         }
         val currentTextValue = tf.text
-        registerData(keyChain, object : Bolt {
+        registerData(keyChain, BoltBox(object : Bolt {
             override fun setBoltValue(value: String) {
                 Platform.runLater { tf.text = value }
             }
 
             override fun getBoltValue(): String {
-                if (tf.text.isEmpty()) {
-                    tf.text = getBoltDefault()
-                }
                 return tf.text
             }
 
@@ -170,12 +166,12 @@ abstract class Anchor(val application: PanApplication) {
                     currentTextValue
                 } else dft!!
             }
-        })
+        }))
     }
 
     fun registerSplitPaneLocations(keyChain: String, splitPane: SplitPane) {
         val currentValue = Arrays.toString(splitPane.dividerPositions)
-        registerData(keyChain, object : Bolt {
+        registerData(keyChain, BoltBox(object : Bolt {
             override fun setBoltValue(value: String) {
                 if (!Stringop.isPopulated(value)) {
                     return
@@ -199,12 +195,12 @@ abstract class Anchor(val application: PanApplication) {
             override fun getBoltDefault(): String {
                 return currentValue
             }
-        })
+        }))
     }
 
     fun registerTabSelected(keyChain: String, tabPane: TabPane) {
         val currentValue = tabPane.selectionModel.selectedIndex
-        registerData(keyChain, object : Bolt {
+        registerData(keyChain, BoltBox(object : Bolt {
             override fun getBoltValue(): String {
                 return "" + tabPane.selectionModel.selectedIndex
             }
@@ -223,10 +219,10 @@ abstract class Anchor(val application: PanApplication) {
             override fun getBoltDefault(): String {
                 return "" + currentValue
             }
-        })
+        }))
     }
 
-    fun registerData(key: String, bolt: Bolt) {
-        bolts.computeIfAbsent(key) { bolt }
+    fun registerData(key: String, boltBox: BoltBox) {
+        boltBoxes.computeIfAbsent(key) { boltBox }
     }
 }

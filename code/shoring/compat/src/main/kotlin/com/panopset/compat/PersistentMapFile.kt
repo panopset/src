@@ -58,7 +58,7 @@ class PersistentMapFile(newFile: File) : PersistentMap {
     private var props: Properties = Properties()
     fun load() {
         props.clear()
-        props = Propop.load( file)
+        props = Propop.load(file)
     }
 
     init {

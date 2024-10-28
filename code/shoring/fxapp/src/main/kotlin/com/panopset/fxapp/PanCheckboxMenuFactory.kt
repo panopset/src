@@ -25,7 +25,7 @@ abstract class PanCheckboxMenuFactory(val name: String) {
 
 
 
-        fxDoc.registerData(docKeyIfNotGlobal,  object : Bolt {
+        fxDoc.registerData(docKeyIfNotGlobal,  BoltBox(object : Bolt {
             override fun getBoltValue(): String {
                 return rtn.currentSelection
             }
@@ -37,7 +37,7 @@ abstract class PanCheckboxMenuFactory(val name: String) {
             override fun setBoltValue(value: String) {
                 rtn.setTheCurrentSelection(value)
             }
-        })
+        }))
         return rtn
     }
 
