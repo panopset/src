@@ -8,6 +8,7 @@ import javafx.collections.ObservableList
 import javafx.event.EventHandler
 import javafx.scene.control.*
 import javafx.scene.image.Image
+import javafx.scene.image.WritableImage
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.Pane
@@ -80,11 +81,10 @@ abstract class BrandedApp(private val applicationInfo: ApplicationInfo): PanAppl
         if (inputStream == null) {
             inputStream = javaClass.getResourceAsStream("/logo16.png")
         }
-        if (inputStream == null) {
-            Logz.errorMsg("Could not find image $logoName")
-            return null
+        return if (inputStream == null) {
+            WritableImage(16, 16)
         } else {
-            return Image(inputStream)
+            Image(inputStream)
         }
     }
 
