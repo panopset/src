@@ -24,7 +24,7 @@ class TabConfigCounting(val ctls: BlackjackFxControls) {
                 createPanTitledPane(ctls.fxDoc, "Counting system", ctls.cbCountingSystems),
                 createPanTitledPane(ctls.fxDoc, "Positive count large bet trigger", ctls.countPositive),
                 createPanTitledPane(ctls.fxDoc, "Negative count bail trigger", ctls.countNegative),
-                createPanLabel(ctls.fxDoc, "Set both count triggers to 0, to turn off card counting bet adjustments."),
+                createPanLabel(ctls.fxDoc, "Setting a count triggers to 0, or blank, will turn off card counting adjustments for that field."),
                 createPanLabel(ctls.fxDoc, "Counting system simulations work best with one player."),
                 createPanFlowPane(
                     createPanButton(ctls.fxDoc, {userReset(ctls)}, "Reset to default.", false, ""),
