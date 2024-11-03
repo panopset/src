@@ -124,6 +124,13 @@ file. Then:
     ./createDomain.sh
 
 
+Once that is done, you need to edit your /etc/nginx/sites-available/(site) file,
+and add the following before "location /beam/ {":
+
+
+    add_header 'Cache-control' 'max-age="86400"';
+
+
 ## Beam API deployment
 
 
@@ -143,13 +150,24 @@ To test locally, run with the DEV profile, to put it on port 8090:
 
 ## Platform specific deployment
 
-On a mac it is "all mac", which builds and publishes the application, and creates the checksums:
+To build and publishes the application, and generate the checksums, 
+run the script for the intended platform.
+
+On Debian based linux systems, it is "all linux (build scripts) deb":
+
+    aldeb.sh
+
+On RPM based linux systems, it is "all linux rpm":
+
+    alrpm.sh
+
+On a mac it is "all mac",
 
 
     am.sh
 
 
-... and on Windows it is
+... and on Windows it is "all windows":
 
 
     aw.sh

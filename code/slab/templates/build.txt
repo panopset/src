@@ -12,34 +12,6 @@ an all-in-one jar, or run it directly from an IDE.
 If you don't want to build your own, the installers are also available on the <a href="/downloads.html">downloads</a> page.
 </p>
 
-<h2>All-in one jar</h2>
-
-<p>
-The build script will also place panopset.jar in your home directory.
-To run the apps directly from your system java command, include panopset.jar in your classpath, and specify
-the application class you wish to run:
-
-<pre>
-${javacmd}checksum
-${javacmd}scrambler
-${javacmd}lowerclass
-${javacmd}flywheel
-${javacmd}skyscraper
-${javacmd}blackjack
-</pre>
-
-<p>
- or to execute Flywheel on a script, like this:
-</p>
-
-<pre>
-${javacmd}fw myScript.txt
-</pre>
-
-
-Substitute &quot;<b>~/</b>&quot; with &quot;<b>%USERPROFILE%</b>&quot; above, for Windows.
-
-<div>
 <h1>terms of use</h1>
 <p>
 For terms of use, please see the <a href="/license.html">License</a> page.
