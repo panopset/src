@@ -566,7 +566,9 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         if (config.strategicVeryPositiveCount == 0) {
             return false
         }
-        return countingSystems.getTrueCount() > config.strategicVeryPositiveCount
+        val trueCount = countingSystems.getTrueCount()
+        val veryPositiveCount = config.strategicVeryPositiveCount
+        return trueCount > veryPositiveCount
     }
 
     fun getCurrentSnapshot(): CycleSnapshot {
