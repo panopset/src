@@ -1,7 +1,6 @@
 package com.panopset.fxapp
 
 import com.panopset.compat.HiddenFolder
-import com.panopset.compat.Logz
 import com.panopset.fxapp.PanComponentFactory.panDarkTheme
 import javafx.application.Platform
 import javafx.collections.ObservableList

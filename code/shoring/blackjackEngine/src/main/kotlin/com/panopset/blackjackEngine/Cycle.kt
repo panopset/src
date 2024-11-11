@@ -17,9 +17,6 @@ class Cycle internal constructor(
     fun placeBets() {
         players.clear()
         for (i in 0 until blackjackConfiguration.seats) {
-            if (bge.isCountVeryNegative()) {
-                bge.triggerShuffleBeforeNextHand()
-            }
             val betAmount = BetAmountStrategy(bge).adjust()
             val player = Player( Wager(bge.bankroll.subtract(betAmount)))
             player.hands[0].wager.initialBet = betAmount

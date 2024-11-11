@@ -38,8 +38,6 @@ class AutoTest {
                 get() = 1
             override val targetStakeInWholeDollars: Int
                 get() = 10000
-            override val strategicVeryNegativeCount: Int
-                get() = 6
             override val strategicVeryPositiveCount: Int
                 get() = 6
             override val largeBetInWholeDollars: Int

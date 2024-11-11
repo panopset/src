@@ -19,9 +19,6 @@ class BlackjackFxControls(val fxDoc: FxDoc) {
 
     val countPositive = createPanInputTextFieldWithDefaultValue(fxDoc, "count_positive", "10",
         "", "")
-    val countNegative = createPanInputTextFieldWithDefaultValue(fxDoc, "count_negative", "-10",
-        "", "")
-
 
     val minimumBet = createPanInputTextFieldWithDefaultValue(fxDoc, "minimum_bet", "5", "", "")
     val largeBet = createPanInputTextFieldWithDefaultValue(fxDoc, "large_bet", "20", "", "")

@@ -39,14 +39,13 @@ class Shoe(val numberOfDecks: Int) {
             Logz.warn("Stacked deck in use, for testing.")
             return stackedDeckForTesting.removeAt(0)
         }
+        if (cards.isEmpty()) {
+            shuffle()
+        }
         if (cards.size < cut()) {
             shuffle()
         }
-        var rtn = cards.removeAt(0)
-        if (rtn == null) {
-            shuffle()
-        }
-        return rtn
+        return cards.removeAt(0)
     }
 
     fun cut(): Int {

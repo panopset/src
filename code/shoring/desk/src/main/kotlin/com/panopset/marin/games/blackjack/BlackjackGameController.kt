@@ -1,6 +1,7 @@
 package com.panopset.marin.games.blackjack
 
 import com.panopset.blackjackEngine.CMD_AUTO
+import com.panopset.blackjackEngine.CMD_RESET
 import com.panopset.blackjackEngine.CycleSnapshot
 import com.panopset.compat.Zombie
 import com.panopset.desk.games.bj.BlackjackFxControls
@@ -18,6 +19,7 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
     val fxDoc: FxDoc = ctls.fxDoc
     val bge = ctls.bge
     var felt = Canvas()
+    var firstTime = true
 
     init {
         Zombie.addStopAction { timer.stop() }
@@ -109,7 +111,12 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
             return null
         }
         val rtn = bge.lastActionSnapshot
-        if (!gameStarted) {
+        if (gameStarted) {
+            if (firstTime) {
+                firstTime = false
+                bge.exec(CMD_RESET)
+            }
+        } else {
             felt.scene.onKeyPressed = EventHandler { keyEvent: KeyEvent -> handleKey(keyEvent) }
             gameStarted = true
         }

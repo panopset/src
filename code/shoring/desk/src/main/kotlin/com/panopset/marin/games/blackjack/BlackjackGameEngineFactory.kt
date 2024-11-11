@@ -111,10 +111,6 @@ class BlackjackGameEngineFactory {
                     }
                     return rtn.toInt()
                 }
-            override val strategicVeryNegativeCount: Int
-                get() {
-                    return Stringop.parseInt(ctls.countNegative.text)
-                }
             override val isBetIdeaDoubleAfterBust: Boolean
                 get() = ctls.betIdeaDoubleAfterBust.isSelected
             override val isBetIdeaLetItRideAfterTwoWins: Boolean

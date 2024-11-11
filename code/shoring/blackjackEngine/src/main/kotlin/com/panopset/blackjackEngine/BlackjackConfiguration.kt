@@ -27,7 +27,6 @@ interface BlackjackConfiguration {
     val betIncrementInWholeDollars: Int
     val reloadAmountInWholeDollars: Int
     val strategicVeryPositiveCount: Int
-    val strategicVeryNegativeCount: Int
     val isBetIdeaDoubleAfterBust: Boolean
     val isBetIdeaLetItRideAfterTwoWins: Boolean
     val messages: BlackjackMessages

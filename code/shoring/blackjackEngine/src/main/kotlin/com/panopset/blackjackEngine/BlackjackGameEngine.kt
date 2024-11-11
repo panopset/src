@@ -555,13 +555,6 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         Thread.sleep(i)
     }
 
-    fun isCountVeryNegative(): Boolean {
-        if (config.strategicVeryNegativeCount == 0) {
-            return false
-        }
-        return countingSystems.getTrueCount() < config.strategicVeryNegativeCount
-    }
-
     fun isCountVeryPositive(): Boolean {
         if (config.strategicVeryPositiveCount == 0) {
             return false

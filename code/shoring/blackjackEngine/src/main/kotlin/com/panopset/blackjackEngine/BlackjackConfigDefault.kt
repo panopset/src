@@ -25,7 +25,6 @@ open class BlackjackConfigDefault: BlackjackConfiguration {
     override var strategyData = Stringop.stringToList( defaultResources.defaultBasicStrategy)
     override var countingSystemData = Stringop.stringToList( defaultResources.defaultCountingSystems)
     override val strategicVeryPositiveCount = 10
-    override val strategicVeryNegativeCount = 10
     override var isShowCount = true
     override var messages: BlackjackMessages = BlackjackMessagesDft()
     override val isBetIdeaDoubleAfterBust = false
