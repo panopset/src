@@ -135,7 +135,7 @@ and add the following before "location /beam/ {":
 
 
     exit
-    ./al.sh
+    ./deployBeam.sh
     ./s.sh
     chmod +x *.sh
     sudo su
