@@ -8,11 +8,11 @@ package com.panopset.compat
 object AppVersion {
 
     fun getVersion(): String {
-        return "1.4.8"
+        return "1.4.9"
     }
 
     fun getBuildNumber(): String {
-        return "202410201249"
+        return "202411100445"
     }
 
     fun getFullVersion(): String {
