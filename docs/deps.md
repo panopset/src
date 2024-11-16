@@ -8,7 +8,9 @@
 
 ## Java 23
 
-Get the appropriate installer from [adoptium.net](https://adoptium.net/).
+On all platforms, you may get the appropriate installer from [adoptium.net](https://adoptium.net/),
+if it isn't available yet for the native software manager.
+
 
 On a mac, 
 
