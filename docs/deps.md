@@ -6,9 +6,28 @@
 
 * Replace code/slab/raw/js/jquery.js with current version.
 
-## Java 21 LTS
+## Java 23
 
-* Upgrade all 3 PC platforms, mac, linux, and windows.
+Get the appropriate installer from [adoptium.net](https://adoptium.net/).
+
+On a mac, 
+
+    brew install java
+
+will give you Java 23.
+
+
+On Debian based Linux systems, extract the downloaded OpenJDK23U-jdk_x64_linux_hotspot_23.0.1_11.tar.gz, then:
+
+    cd /usr/lib/jvm
+    sudo mv ~/Downloads/jdk-23.0.1+11/ .
+    sudo rm default-java
+    sudo ln -s jdk-23.0.1+11 default-java
+
+
+
+
+
 * code/shoring/pom.xml java.version
 * code/legacy/pom.xml java.version
 * code/beam/build.gradle languageVersion.
