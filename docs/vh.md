@@ -6,7 +6,7 @@ Not all versions listed, just those with enhancements or bug fixes worth noting 
 
 ## 1.4.9 In progress...
 * Upgrades
-  * Java 23, Maven 3.9.9
+  * Dependency/stack upgrades.
 * Bug fixes
   * Blackjack shuffle bug fix.
 
