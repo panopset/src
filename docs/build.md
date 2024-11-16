@@ -18,10 +18,10 @@ It will deploy:
 
 On a mac,
 
-    brew install java
+    brew install java maven
 
-will give you Java 23. 
-* [Maven 3.9.6](https://maven.apache.org/download.cgi)
+will give you Java 23 and maven 3.9.9.
+* [Maven 3.9.9](https://maven.apache.org/download.cgi)
 * [git](https://git-scm.com/)
 
 
