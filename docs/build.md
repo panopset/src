@@ -15,12 +15,6 @@ It will deploy:
 * [Java 23 JDK](https://adoptium.net/)
   * On all platforms, you may get the installer from [adoptium.net](https://adoptium.net/).
 
-
-On a mac,
-
-    brew install java maven
-
-will give you Java 23 and maven 3.9.9.
 * [Maven 3.9.9](https://maven.apache.org/download.cgi)
 * [git](https://git-scm.com/)
 
@@ -62,6 +56,8 @@ For RedHat/Fedora Linux systems:
 Requirements may be installed with the yum command:
 
     sudo yum -y install java maven rpm-build vim gitk
+    
+For current Java and Maven, [sdkman](https://sdkman.io/) will help.
 
 Put this at the end of /etc/bashrc, and reboot:
 
@@ -91,3 +87,7 @@ For Apple Macintosh:
 
 
 You can use [brew](https://brew.sh/) to install the requirements.
+
+    brew install java maven
+
+will give you Java 23 and maven 3.9.9.
