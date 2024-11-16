@@ -12,7 +12,15 @@ It will deploy:
 
 # Requirements
 
-* [Java 21 JDK](https://adoptium.net/)
+* [Java 23 JDK](https://adoptium.net/)
+  * On all platforms, you may get the installer from [adoptium.net](https://adoptium.net/).
+
+
+On a mac,
+
+    brew install java
+
+will give you Java 23. 
 * [Maven 3.9.6](https://maven.apache.org/download.cgi)
 * [git](https://git-scm.com/)
 
