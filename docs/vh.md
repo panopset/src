@@ -3,8 +3,14 @@
 # History
 
 Not all versions listed, just those with enhancements or bug fixes worth noting here.
+The dates are when the release was started. If downloaded from the preview site, panopset.net, they could be out of
+date later; panopset.com always has the final release.
 
-## 1.4.9 In progress...
+## 1.5.0 (2024.11.16)
+* Bug fixes
+  * Default values not getting picked up in new documents. 
+
+## 1.4.9 (2024.11.11)
 * Upgrades
   * Dependency/stack upgrades.
 * Bug fixes

@@ -9,14 +9,14 @@ class Cycle internal constructor(
     private val blackjackConfiguration: BlackjackConfiguration = bge.config
     private val countingSystems = bge.countingSystems
     val dealer = HandDealer()
-    val msg: BlackjackMessages = bge.config.messages
+    val msg: BlackjackMessages = bge.config.getMessages()
     val blackjackShoe = bge.getShoe()
 
     val players: ArrayList<Player> = ArrayList()
 
     fun placeBets() {
         players.clear()
-        for (i in 0 until blackjackConfiguration.seats) {
+        for (i in 0 until blackjackConfiguration.getSeats()) {
             val betAmount = BetAmountStrategy(bge).adjust()
             val player = Player( Wager(bge.bankroll.subtract(betAmount)))
             player.hands[0].wager.initialBet = betAmount
@@ -95,7 +95,7 @@ class Cycle internal constructor(
     }
 
     private fun checkFor21(player: Player) {
-        if (dealer.upCard.isAce() && bge.config.isEvenMoneyOnBlackjackVace) {
+        if (dealer.upCard.isAce() && bge.config.isEvenMoneyOnBlackjackVace()) {
             for (playerHand in player.hands) {
                 if (playerHand.isNatural21()) {
                     playerHand.standWithEvenMoney()
@@ -133,7 +133,7 @@ class Cycle internal constructor(
             if (dealer.getHandValue() < 17) {
                 dealer.dealCard(bge.deal(true))
             } else if (dealer.getHandValue() == 17) {
-                if (blackjackConfiguration.isDealerHitSoft17 && dealer.isSoft()) {
+                if (blackjackConfiguration.isDealerHitSoft17() && dealer.isSoft()) {
                     dealer.dealCard(bge.deal(true))
                 } else {
                     dealer.stand()
@@ -162,7 +162,7 @@ class Cycle internal constructor(
         var allHandsAreBlackjack = true
         for (h in handPlayer.hands) {
             if (!h.isBustedOrSurrenderred()) {
-                if (dealer.isNatural21() && !blackjackConfiguration.isEuropeanStyle) {
+                if (dealer.isNatural21() && !blackjackConfiguration.isEuropeanStyle()) {
                     h.stand()
                 } else {
                     if (h.isNatural21()) {

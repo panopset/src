@@ -21,10 +21,10 @@ class StrategyLine(val stratCat: StratCat, val source: String, private val confi
         return StrategyAction(
             situation,
             CasinoRules(
-                config.isLateSurrenderAllowed,
-                config.isDealerHitSoft17,
-                config.isDoubleAfterSplitAllowed,
-                config.decks
+                config.isLateSurrenderAllowed(),
+                config.isDealerHitSoft17(),
+                config.isDoubleAfterSplitAllowed(),
+                config.getDecks()
             )
         )
             .getRecommendedAction(getTextForDealerUpCard(situation.dealerUpCard))

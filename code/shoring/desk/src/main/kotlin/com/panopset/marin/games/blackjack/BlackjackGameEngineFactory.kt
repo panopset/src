@@ -11,110 +11,114 @@ class BlackjackGameEngineFactory {
     fun create(ctls: BlackjackFxControls): BlackjackGameEngine {
         val rtn = object: BlackjackGameEngine(ctls.fxDoc, object : BlackjackConfigDefault() {
             val blackjackConfigDefault = BlackjackConfigDefault()
-
-            override val isDoubleAfterSplitAllowed: Boolean
-                get() = ctls.doubleAfterSplit.isSelected
-            override val isResplitAcesAllowed: Boolean
-                get() = ctls.resplitAces.isSelected
-            override var strategyData: ArrayList<String>
-                get() {
-                    val dft = super.strategyData
-                    val ta = ctls.taBasicStrategy
-                    val text = ta.text
-                    if (Stringop.isBlank(text)) {
-                        return dft
-                    }
-                    val rtn = Stringop.stringToList( text)
-                    if (rtn != dft) {
-                        Logz.warn("Custom (or out of date) strategy data in use.  Go to config to reset.")
-                    }
-                    return rtn
+            override fun isDoubleAfterSplitAllowed(): Boolean {
+                return ctls.doubleAfterSplit.isSelected
+            }
+            override fun isResplitAcesAllowed(): Boolean {
+                return ctls.resplitAces.isSelected
+            }
+            override fun getStrategyData(): ArrayList<String> {
+                val dft = super.getStrategyData()
+                val ta = ctls.taBasicStrategy
+                val text = ta.text
+                if (Stringop.isBlank(text)) {
+                    ctls.taBasicStrategy.text = Stringop.listToString(dft)
+                    return dft
                 }
-                set(strategyData) {
-                    super.strategyData = strategyData
+                val rtn = Stringop.stringToList(text)
+                if (rtn != dft) {
+                    Logz.warn("Custom (or out of date) strategy data in use.  Go to config to reset.")
                 }
-            override var countingSystemData: ArrayList<String>
-                get() {
-                    val dft = super.countingSystemData
-                    val ta = ctls.taCountingSystems
-                    val text = ta.text
-                    if (Stringop.isBlank(text)) {
-                        return dft
-                    }
-                    val rtn = Stringop.stringToList( text)
-                    if (rtn != dft) {
-                        Logz.warn("Custom (or out of date) counting system data in use.  Go to config to reset.")
-                    }
-                    return rtn
+                return rtn
+            }
+            override fun getCountingSystemData(): ArrayList<String> {
+                val dft = super.getCountingSystemData()
+                val ta = ctls.taCountingSystems
+                val text = ta.text
+                if (Stringop.isBlank(text)) {
+                    return dft
                 }
-                set(countingSystemData) {
-                    super.countingSystemData = countingSystemData
+                val rtn = Stringop.stringToList( text)
+                if (rtn != dft) {
+                    Logz.warn("Custom (or out of date) counting system data in use.  Go to config to reset.")
                 }
-            override val seats: Int
-                get() = Stringop.parseInt( ctls.cbSeats.value, 1)
-            override val decks: Int
-                get() = Stringop.parseInt( ctls.cbDecks.value, 1)
-            override val isDealerHitSoft17: Boolean
-                get() = ctls.dealerHitsSoft17.isSelected
-            override val isBlackjack6to5: Boolean
-                get() = ctls.rule65.isSelected
-            override val isEvenMoneyOnBlackjackVace: Boolean
-                get() = ctls.ruleEvenMoney.isSelected
-            override val isLateSurrenderAllowed: Boolean
-                get() = ctls.ruleLateSurrender.isSelected
-            override val isEuropeanStyle: Boolean
-                get() = ctls.ruleEuropeanStyle.isSelected
-            override val isFastDeal: Boolean
-                get() = ctls.ruleFastDeal.isSelected
-            override val isBasicStrategyVariationsOnly: Boolean
-                get() = ctls.ruleVariations.isSelected
-            override var isShowCount: Boolean
-                get() = ctls.ruleShowCount.isSelected
-                set(isShowCount) {
-                    super.isShowCount = isShowCount
-                }
-
+                return rtn
+            }
+            override fun getSeats(): Int {
+                return Stringop.parseInt(ctls.cbSeats.value, super.getSeats())
+            }
+            override fun getDecks(): Int {
+                return Stringop.parseInt(ctls.cbDecks.value, super.getDecks())
+            }
+            override fun isDealerHitSoft17(): Boolean {
+                return ctls.dealerHitsSoft17.isSelected
+            }
+            override fun isBlackjack6to5(): Boolean {
+                return ctls.rule65.isSelected
+            }
+            override fun isEvenMoneyOnBlackjackVace(): Boolean {
+                return ctls.ruleEvenMoney.isSelected
+            }
+            override fun isLateSurrenderAllowed(): Boolean {
+                return ctls.ruleLateSurrender.isSelected
+            }
+            override fun isEuropeanStyle(): Boolean {
+                return ctls.ruleEuropeanStyle.isSelected
+            }
+            override fun isFastDeal(): Boolean {
+                return ctls.ruleFastDeal.isSelected
+            }
+            override fun isBasicStrategyVariationsOnly(): Boolean {
+                return ctls.ruleVariations.isSelected
+            }
+            override fun isShowCount(): Boolean {
+                return ctls.ruleShowCount.isSelected
+            }
             override fun toggleShowCount() {
                 ctls.ruleShowCount.isSelected = !ctls.ruleShowCount.isSelected
             }
-
-            override val largeBetInWholeDollars: Int
-                get() = Stringop.parseInt(
+            override fun getLargeBetInWholeDollars(): Int {
+                return Stringop.parseInt(
                     ctls.largeBet.text,
-                    blackjackConfigDefault.largeBetInWholeDollars
-                )
-            override val targetStakeInWholeDollars: Int
-                get() = Stringop.parseInt(
+                    blackjackConfigDefault.getLargeBetInWholeDollars())
+            }
+            override fun getTargetStakeInWholeDollars(): Int {
+                return Stringop.parseInt(
                     ctls.targetStake.text,
-                    blackjackConfigDefault.targetStakeInWholeDollars
+                    blackjackConfigDefault.getTargetStakeInWholeDollars()
                 )
-            override val minimumBetInWholeDollars: Int
-                get() = Stringop.parseInt(
+            }
+            override fun getMinimumBetInWholeDollars(): Int {
+                return Stringop.parseInt(
                     ctls.minimumBet.text,
-                    blackjackConfigDefault.minimumBetInWholeDollars
+                    blackjackConfigDefault.getMinimumBetInWholeDollars()
                 )
-            override val betIncrementInWholeDollars: Int
-                get() = Stringop.parseInt(
+            }
+            override fun getBetIncrementInWholeDollars(): Int {
+                return Stringop.parseInt(
                     ctls.minimumBet.text,
-                    blackjackConfigDefault.betIncrementInWholeDollars
+                    blackjackConfigDefault.getBetIncrementInWholeDollars()
                 )
-            override val reloadAmountInWholeDollars: Int
-                get() = Stringop.parseInt(
+            }
+            override fun getReloadAmountInWholeDollars(): Int {
+                return Stringop.parseInt(
                     ctls.reloadAmount.text,
-                    blackjackConfigDefault.reloadAmountInWholeDollars
+                    blackjackConfigDefault.getReloadAmountInWholeDollars()
                 )
-            override val strategicVeryPositiveCount: Int
-                get() {
+            }
+            override fun getStrategicVeryPositiveCount(): Int {
                     val rtn = ctls.countPositive.text
                     if (rtn.isEmpty()) {
-                        return super.strategicVeryPositiveCount
+                        return super.getStrategicVeryPositiveCount()
                     }
                     return rtn.toInt()
                 }
-            override val isBetIdeaDoubleAfterBust: Boolean
-                get() = ctls.betIdeaDoubleAfterBust.isSelected
-            override val isBetIdeaLetItRideAfterTwoWins: Boolean
-                get() = ctls.betideaLetItRide.isSelected
+            override fun isBetIdeaDoubleAfterBust(): Boolean {
+                return ctls.betIdeaDoubleAfterBust.isSelected
+            }
+            override fun isBetIdeaLetItRideAfterTwoWins(): Boolean {
+                return ctls.betideaLetItRide.isSelected
+            }
         }) {
             override fun exec(action: String) {
                 super.exec(action)

@@ -21,7 +21,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     val ct = CycleController(this)
     var strategy = Strategy(config)
     var countingSystems = CountingSystems(config)
-    private val msg: BlackjackMessages = config.messages
+    private val msg: BlackjackMessages = config.getMessages()
 
     val bankroll = Bankroll()
 
@@ -43,7 +43,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         return BlackjackGameState(
             bankroll.getChips(),
             bankroll.reloadCount,
-            config.reloadAmountInWholeDollars * 100,
+            config.getReloadAmountInWholeDollars() * 100,
             action,
             ct.cloneDealer(),
             players,
@@ -65,7 +65,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private fun reset() {
-        bankroll.reloadAmount = config.reloadAmountInWholeDollars * 100
+        bankroll.reloadAmount = config.getReloadAmountInWholeDollars() * 100
         if (bankroll.reloadAmount < 0) {
             throw RuntimeException()
         }
@@ -73,7 +73,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         ct.reset()
         bankroll.reset()
         countingSystems.resetCount()
-        blackjackShoe.numberOfDecks = config.decks
+        blackjackShoe.numberOfDecks = config.getDecks()
         resetNextBet()
         blackjackShoe.shuffle()
         Logz.clear()
@@ -132,7 +132,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
      * @param player Player.
      */
     private fun reasonThisGameExists(player: Player?) {
-        if (player == null && config.isFastDeal
+        if (player == null && config.isFastDeal()
             && !isAutomaticRunning() && "" == mistakeMessage) {
             exec(CMD_DEAL)
         }
@@ -201,7 +201,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private fun surrender(handPlayer: HandPlayer?): Boolean {
-        if (!config.isLateSurrenderAllowed) {
+        if (!config.isLateSurrenderAllowed()) {
             dealerMessage = msg.surrenderNotAllowedMsg
             return false
         }
@@ -225,8 +225,8 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         val splitCard = handPlayer.removeSecondCard()
         handPlayer.dealCard(deal(true))
         handPlayer.setSplit()
-        if (handPlayer.getFirstCard().isAce() && !(config.isResplitAcesAllowed && handPlayer.getSecondCard().isAce())) {
-            if (!config.isSplitAcePlayable) {
+        if (handPlayer.getFirstCard().isAce() && !(config.isResplitAcesAllowed() && handPlayer.getSecondCard().isAce())) {
+            if (!config.isSplitAcePlayable()) {
                 handPlayer.stand()
             }
         }
@@ -236,8 +236,8 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         splitHand.action = CMD_SPLIT
         player.hands.add(splitHand)
         if (splitCard.isAce()) {
-            if (!(config.isResplitAcesAllowed && splitHand.getSecondCard().isAce())) {
-                if (!config.isSplitAcePlayable) {
+            if (!(config.isResplitAcesAllowed() && splitHand.getSecondCard().isAce())) {
+                if (!config.isSplitAcePlayable()) {
                     splitHand.stand()
                 }
             }
@@ -252,7 +252,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private fun dbl(handPlayer: HandPlayer): Boolean {
-        if (!handPlayer.canDouble(config.isDoubleAfterSplitAllowed)) {
+        if (!handPlayer.canDouble(config.isDoubleAfterSplitAllowed())) {
             dealerMessage = msg.doubleImpossibleMsg
             return false
         }
@@ -323,7 +323,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private val wagerIncrement: Int
-        get() = config.betIncrementInWholeDollars * 100
+        get() = config.getBetIncrementInWholeDollars() * 100
 
     private fun increase() {
         setNextBet(getNextBet() + wagerIncrement)
@@ -392,7 +392,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         while (isAutomaticRunning() && Zombie.isActive) {
             val ra: String = getCycle().getRecommendedAction()
             if (CMD_DEAL == ra) {
-                val targetStake: Int = config.targetStakeInWholeDollars * 100
+                val targetStake: Int = config.getTargetStakeInWholeDollars() * 100
                 if (targetStake > 0 && bankroll.getStakeOutOfPlay() >= targetStake) {
                     Logz.green(
                         "Target stake of ${Stringop.getDollarString(targetStake.toLong())} " +
@@ -410,7 +410,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         if (isAutomaticRunning()) {
             return false
         }
-        if (config.isBasicStrategyVariationsOnly) {
+        if (config.isBasicStrategyVariationsOnly()) {
             val message =
                 "Please turn off \"Variations\" in the Configuration->Rules tab before running automatically."
             Logz.warn(message)
@@ -432,7 +432,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
 
     private var nextBet = 0
     private val minBet: Int
-        get() = 100 * config.minimumBetInWholeDollars
+        get() = 100 * config.getMinimumBetInWholeDollars()
 
     fun getNextBet(): Int {
         if (nextBet == 0) {
@@ -487,7 +487,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         sw.append("| Chips: ${Stringop.getDollarString(bankroll.getChips())}")
         sw.append("| Score: " + metrics.handsSinceLastMistake)
         sw.append(" (" + metrics.getHandsSinceLastMistakeRecord() + ")")
-        if (config.isShowCount) {
+        if (config.isShowCount()) {
             sw.append("| ")
             sw.append(countingSystems.findSelected().name)
             sw.append(": " + countingSystems.findSelected().count)
@@ -556,11 +556,11 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     fun isCountVeryPositive(): Boolean {
-        if (config.strategicVeryPositiveCount == 0) {
+        if (config.getStrategicVeryPositiveCount() == 0) {
             return false
         }
         val trueCount = countingSystems.getTrueCount()
-        val veryPositiveCount = config.strategicVeryPositiveCount
+        val veryPositiveCount = config.getStrategicVeryPositiveCount()
         return trueCount > veryPositiveCount
     }
 

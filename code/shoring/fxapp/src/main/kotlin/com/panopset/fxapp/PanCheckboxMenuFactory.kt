@@ -14,7 +14,7 @@ abstract class PanCheckboxMenuFactory(val name: String) {
 
 
 
-        val inival = fxDoc.pmf[docKeyIfNotGlobal]
+        val inival = fxDoc.pmf.getMapValue(docKeyIfNotGlobal)
 
 
 

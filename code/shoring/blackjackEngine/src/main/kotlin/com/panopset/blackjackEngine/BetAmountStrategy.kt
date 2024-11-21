@@ -7,12 +7,12 @@ class BetAmountStrategy(private val bge: BlackjackGameEngine) {
         var betAmount = bge.getNextBet()
         if (bge.isAutomaticRunning()) {
             if (bge.isCountVeryPositive()) {
-                betAmount = config.largeBetInWholeDollars * 100
+                betAmount = config.getLargeBetInWholeDollars() * 100
             }
-            if (config.isBetIdeaDoubleAfterBust && bge.isBustedPriorHand) {
+            if (config.isBetIdeaDoubleAfterBust() && bge.isBustedPriorHand) {
                 betAmount *= 2
             }
-            if (config.isBetIdeaLetItRideAfterTwoWins && bge.streak > 1) {
+            if (config.isBetIdeaLetItRideAfterTwoWins() && bge.streak > 1) {
                 betAmount *= 2
             }
         }

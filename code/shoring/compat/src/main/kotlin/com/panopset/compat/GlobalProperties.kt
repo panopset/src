@@ -36,7 +36,7 @@ fun globalPropsPut(key: String, value: String) {
 
 fun globalPropsGet(key: String): String {
     return try {
-        pmf[key]
+        pmf.getMapValue(key)
     } catch (e: IOException) {
         Logz.warn("$key not found, ${e.message}")
         ""

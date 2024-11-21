@@ -1,11 +1,11 @@
 package com.panopset.compat
 
-import java.io.IOException
-
 interface PersistentMap {
     fun put(key: String, value: String)
 
-    operator fun get(key: String): String
+    fun getMapValue(key: String): String
 
-    operator fun get(key: String, dft: String): String
+    fun getMapValue(key: String, dft: String): String
+
+    fun containsKey(key: String): Boolean
 }

@@ -31,8 +31,10 @@ abstract class Anchor(val application: PanApplication) {
     fun setBoltValues() {
         if (pmf.file.exists()) {
             for ((key, value1) in boltBoxes) {
-                val value: String = pmf[key]
-                value1.setValue(value)
+                if (pmf.containsKey(key)) {
+                    val value: String = pmf.getMapValue(key)
+                    value1.setValue(value)
+                }
             }
         }
         updateTitle()

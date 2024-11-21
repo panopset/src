@@ -34,7 +34,7 @@ class CountingSystems(blackjackConfiguration: BlackjackConfiguration) : Configur
     private fun populate() {
         systemCatalog.clear()
         var index = 0
-        for (s in blackjackConfiguration.countingSystemData) {
+        for (s in blackjackConfiguration.getCountingSystemData()) {
             if (s.length <= NAME_POS + 1 || s.indexOf("#") == 0) {
                 continue
             }

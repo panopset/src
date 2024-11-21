@@ -17,7 +17,7 @@ object StageManager : StageIcon {
         val stage = fxDoc.stage
         var isNew = true
         val dims = arrayOfNulls<Double>(4)
-        val windims: String = fxDoc.pmf[KEY_WINDOW_DIMS]
+        val windims: String = fxDoc.pmf.getMapValue(KEY_WINDOW_DIMS)
         if (Stringop.isPopulated(windims)) {
             isNew = false
             var i = 0

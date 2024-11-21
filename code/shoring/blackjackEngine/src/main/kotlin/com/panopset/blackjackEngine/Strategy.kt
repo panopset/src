@@ -32,7 +32,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
 
     private fun populateStrategyLineMap() {
         var reading = StratCat.NONE
-        for (s in Objects.requireNonNull(blackjackConfiguration.strategyData)) {
+        for (s in Objects.requireNonNull(blackjackConfiguration.getStrategyData())) {
             if (s.length < 1 || s.substring(0, 1) == "#") {
                 continue
             }
