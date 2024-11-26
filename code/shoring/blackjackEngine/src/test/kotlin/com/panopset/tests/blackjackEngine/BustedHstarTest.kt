@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test
 class BustedHstarTest {
     @Test
     fun testSingleDeck() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 1
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun getDecks(): Int {
+                return 1
+            }
         })
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), bustedHstarSingle())
         performDeviantActions(bge, arrayOf(CMD_DEAL, CMD_HIT, CMD_HIT), bustedHstarSingle())
@@ -23,9 +24,10 @@ class BustedHstarTest {
 
     @Test
     fun test() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun getDecks(): Int {
+                return 6
+            }
         })
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_HIT, CMD_STAND), bustedHstarSingle())
         performDeviantActions(bge, arrayOf(CMD_DEAL, CMD_HIT, CMD_HIT), bustedHstarSingle())

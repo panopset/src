@@ -15,6 +15,30 @@ abstract class Anchor(val application: PanApplication) {
         setPersistentMapFile(file)
     }
 
+    fun getStringValue(key: String): String {
+        val boltBox = boltBoxes[key]
+        val value = boltBox?.getValue() ?: ""
+        return value
+    }
+
+    fun getIntValue(key: String): Int {
+        val value = getStringValue(key)
+        val intValue = value.toInt()
+        return intValue
+    }
+
+    fun getBooleanValue(key: String): Boolean {
+        val value = getStringValue(key)
+        val booleanValue = value.toBoolean()
+        return booleanValue
+    }
+
+    fun getArrayListValue(key: String): ArrayList<String> {
+        val value = getStringValue(key)
+        val arrayListValue = Stringop.stringToList(value)
+        return arrayListValue
+    }
+
     fun setDefaultValue(key: String, value: String) {
         boltDefaults[key] = value
     }
@@ -82,12 +106,11 @@ abstract class Anchor(val application: PanApplication) {
         return "${application.applicationShortName}_Untitled${application.getNextUniqueID()}.properties"
     }
 
-    fun registerChoiceBox(keyChain: String, cb: ChoiceBox<String>) {
-        val defaultValue = "" + cb.selectionModel.selectedIndex
+    fun registerChoiceBox(keyChain: String, cb: ChoiceBox<String>, defaultValue: String) {
 
         registerData(keyChain, BoltBox(object: Bolt {
             override fun getBoltValue(): String {
-                return "" + cb.selectionModel.selectedIndex
+                return cb.value ?: defaultValue
             }
 
             override fun getBoltDefault(): String {
@@ -95,10 +118,7 @@ abstract class Anchor(val application: PanApplication) {
             }
 
             override fun setBoltValue(value: String) {
-                val i = Stringop.parseInt(value, 10)
-                if (i > -1) {
-                    cb.selectionModel.select(i)
-                }
+                cb.selectionModel.select(value)
             }
         }))
     }

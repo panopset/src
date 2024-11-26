@@ -12,12 +12,12 @@ class TabConfigRules {
         rtn.content = createPanVBox(
             createPanHBox(
                 createPanVBox(
-                    ctls.dealerHitsSoft17, ctls.resplitAces, ctls.doubleAfterSplit,
-                    createPanHBox(createPanLabel(ctls.fxDoc, "Decks: "), ctls.cbDecks)
+                    ctls.dealerHitsSoft17, ctls.resplitAces, ctls.splitAcePlayable, ctls.doubleAfterSplit,
+                    createPanHBox(createPanLabel(ctls.fxDoc, "Decks: "), ctls.chDecks)
                 ),
                 createPanVBox(
                     ctls.rule65, ctls.ruleLateSurrender, ctls.ruleVariations,
-                    createPanHBox(createPanLabel(ctls.fxDoc, "Seats: "), ctls.cbSeats)
+                    createPanHBox(createPanLabel(ctls.fxDoc, "Seats: "), ctls.chSeats)
                 ),
                 createPanVBox(
                     ctls.ruleShowCount, ctls.ruleEuropeanStyle, ctls.ruleFastDeal,
@@ -26,7 +26,7 @@ class TabConfigRules {
             ),
             createPanHBox(
                 createPanVBox(
-                    ctls.ruleEvenMoney, ctls.betIdeaDoubleAfterBust, ctls.betideaLetItRide,
+                    ctls.ruleEvenMoney,
                     createPanLabel(ctls.fxDoc, "* 'Bets' strategy simulations only work with one player.\"")
                 )
             )

@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test
 class FastDealTest {
     @Test
     fun test() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isFastDeal: Boolean
-                get() = true
+        val bge = BlackjackGameEngine(object: BlackjackConfigBaseTest() {
+            override fun isFastDeal(): Boolean {
+                return true
+            }
         })
         verifyRecommendedActionsFastDeal(
             bge, arrayOf(CMD_DEAL, CMD_DOUBLE), dealerBlackjack(),
@@ -19,9 +20,10 @@ class FastDealTest {
 
     @Test
     fun testMistake() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isFastDeal: Boolean
-                get() = true
+        val bge = BlackjackGameEngine(object: BlackjackConfigBaseTest() {
+            override fun isFastDeal(): Boolean {
+                return true
+            }
         })
         bge.getShoe().stackTheDeckFromList(stackSplit6_v_2())
         bge.exec(CMD_DEAL)
@@ -32,9 +34,10 @@ class FastDealTest {
     @Test
     @Throws(Exception::class)
     fun testAutomatic() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isFastDeal: Boolean
-                get() = true
+        val bge = BlackjackGameEngine(object: BlackjackConfigBaseTest() {
+            override fun isFastDeal(): Boolean {
+                return true
+            }
         })
         bge.exec(CMD_AUTO)
         synchronized(bge) { bge.waitMillis(100) }

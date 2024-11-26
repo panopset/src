@@ -16,16 +16,13 @@ interface BlackjackConfiguration {
     fun isFastDeal(): Boolean
     fun isBasicStrategyVariationsOnly(): Boolean
     fun isShowCount(): Boolean
-    fun toggleShowCount()
     fun getStrategyData(): ArrayList<String>
-    fun getCountingSystemData(): ArrayList<String>
+    fun getCountingSystems(): CountingSystems
     fun getLargeBetInWholeDollars(): Int
     fun getTargetStakeInWholeDollars(): Int
     fun getMinimumBetInWholeDollars(): Int
     fun getBetIncrementInWholeDollars(): Int
     fun getReloadAmountInWholeDollars(): Int
     fun getStrategicVeryPositiveCount(): Int
-    fun isBetIdeaDoubleAfterBust(): Boolean
-    fun isBetIdeaLetItRideAfterTwoWins(): Boolean
     fun getMessages(): BlackjackMessages
 }

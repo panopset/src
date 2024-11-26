@@ -75,7 +75,8 @@ class MessagesTest {
         Assertions.assertFalse(bge.getCycle().players[0].hands[0].isInitialDeal())
         bge.exec(CMD_DEAL)
         Assertions.assertTrue(bge.getCycle().getActivePlayer()!!.activeHand!!.isInitialDeal())
-        Assertions.assertTrue(bge.getCycle().getActivePlayer()!!.activeHand!!.canDouble(bge.config.isDoubleAfterSplitAllowed))
+        Assertions.assertTrue(bge.getCycle().getActivePlayer()!!.activeHand!!.canDouble(
+            bge.config.isDoubleAfterSplitAllowed()))
         Assertions.assertTrue(bge.getCycle().dealer.upCard.card.isShowing)
         Assertions.assertFalse(bge.getCycle().dealer.downCard.card.isShowing)
         bge.exec(CMD_DOUBLE)
@@ -92,9 +93,6 @@ class MessagesTest {
     }
 
     companion object {
-        var bge: BlackjackGameEngine = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-        })
+        var bge: BlackjackGameEngine = BlackjackGameEngine(BlackjackConfigDefault)
     }
 }

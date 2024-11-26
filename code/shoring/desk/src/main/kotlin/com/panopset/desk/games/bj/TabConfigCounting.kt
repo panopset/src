@@ -1,7 +1,6 @@
 package com.panopset.desk.games.bj
 
 import com.panopset.blackjackEngine.DefaultResources
-import com.panopset.compat.Logz
 import com.panopset.compat.Stringop
 import com.panopset.fxapp.*
 import com.panopset.fxapp.PanComponentFactory.createPanButton
@@ -11,7 +10,6 @@ import com.panopset.fxapp.PanComponentFactory.createPanLabel
 import com.panopset.fxapp.PanComponentFactory.createPanScrollPane
 import com.panopset.fxapp.PanComponentFactory.createPanTitledPane
 import com.panopset.fxapp.PanComponentFactory.createPanVBox
-import com.panopset.fxapp.PanComponentFactory.setChoiceBoxChoices
 import javafx.scene.control.Tab
 import javafx.scene.layout.BorderPane
 
@@ -21,7 +19,7 @@ class TabConfigCounting(val ctls: BlackjackFxControls) {
         val rtn = FontManagerFX.registerTab(ctls.fxDoc, Tab("Counting"))
         val topHbox = createPanHBox(
             createPanVBox(
-                createPanTitledPane(ctls.fxDoc, "Counting system", ctls.cbCountingSystems),
+                createPanTitledPane(ctls.fxDoc, "Counting system", ctls.chCountingSystems),
                 createPanTitledPane(ctls.fxDoc, "Positive count large bet trigger", ctls.countPositive),
                 createPanLabel(ctls.fxDoc, "Setting positive count trigger to 0, or blank, will turn off card counting adjustments."),
                 createPanLabel(ctls.fxDoc, "Counting system simulations work best with one player."),
@@ -42,25 +40,10 @@ class TabConfigCounting(val ctls: BlackjackFxControls) {
         bp.top = topHbox
         bp.center = createPanScrollPane(ctls.taCountingSystems)
         rtn.content = bp
-
-
-
-        val countingSystems = ctls.bge.countingSystems
         val countingSystemsText = ctls.taCountingSystems.text
         if (!Stringop.isPopulated(countingSystemsText)) {
             userReset(ctls)
         }
-        setChoiceBoxChoices(ctls.cbCountingSystems, countingSystems.keyNames)
-        ctls.cbCountingSystems.selectionModel.selectedIndexProperty()
-            .addListener { _, _, newIndex ->
-                Thread { // TODO: Replace Thread.
-                    val selectedIndex = newIndex.toInt()
-                    countingSystems.setSystemByKeyNamePosition(selectedIndex)
-                    Logz.info(String.format("Counting systems updated to %s.", countingSystems.findSelected().name))
-                }.start()
-            }
-
-        ctls.cbCountingSystems.selectionModel.select(3)
         return rtn
     }
 

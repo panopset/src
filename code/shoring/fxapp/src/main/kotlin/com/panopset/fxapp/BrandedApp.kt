@@ -62,7 +62,6 @@ abstract class BrandedApp(private val applicationInfo: ApplicationInfo): PanAppl
                 }
             }
             FontManagerFX.register(fxDoc, button)
-            Platform.runLater { setDarkTheme(button) }
         }
     }
 
@@ -90,9 +89,6 @@ abstract class BrandedApp(private val applicationInfo: ApplicationInfo): PanAppl
     fun createStandardMenubarBorderPane(fxDoc: FxDoc): BorderPane {
         val borderPane = BorderPane()
         borderPane.top = createMenuBar(fxDoc)
-        Platform.runLater {
-            updateVersionMessage(fxDoc)
-        }
         return borderPane
     }
 

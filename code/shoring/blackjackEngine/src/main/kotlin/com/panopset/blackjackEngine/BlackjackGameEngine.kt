@@ -8,6 +8,8 @@ import java.util.*
 open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val config: BlackjackConfiguration) {
     constructor(config: BlackjackConfiguration) : this(LogzDisplayerCMD, config)
 
+    var isReady = false
+
     private val blackjackShoe = BlackjackShoe()
 
     /**
@@ -19,9 +21,12 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
 
     var metrics = Metrics()
     val ct = CycleController(this)
-    var strategy = Strategy(config)
-    var countingSystems = CountingSystems(config)
     private val msg: BlackjackMessages = config.getMessages()
+
+
+    var strategy = Strategy(config)
+    var countingSystems = config.getCountingSystems()
+
 
     val bankroll = Bankroll()
 
@@ -156,7 +161,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
             }
 
             CMD_COUNT -> {
-                config.toggleShowCount()
+                config.isShowCount()
                 true
             }
 
@@ -482,6 +487,9 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     fun getGameStatus(): String {
+        if (!isReady){
+            return "initializing..."
+        }
         val sw = StringWriter()
         sw.append("| Stake: ${Stringop.getDollarString(bankroll.getStakeIncludingHands(getCycle().players))}")
         sw.append("| Chips: ${Stringop.getDollarString(bankroll.getChips())}")

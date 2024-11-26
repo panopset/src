@@ -9,12 +9,6 @@ class BetAmountStrategy(private val bge: BlackjackGameEngine) {
             if (bge.isCountVeryPositive()) {
                 betAmount = config.getLargeBetInWholeDollars() * 100
             }
-            if (config.isBetIdeaDoubleAfterBust() && bge.isBustedPriorHand) {
-                betAmount *= 2
-            }
-            if (config.isBetIdeaLetItRideAfterTwoWins() && bge.streak > 1) {
-                betAmount *= 2
-            }
         }
         return betAmount
     }

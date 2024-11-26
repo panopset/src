@@ -1,12 +1,80 @@
+BlackjackGameController 4328
+
+
+
+In JavaFXapp
+
+we have assemblerFxDoc and show.
+
+scene not initialized in show, specifically down at BrandedApp.init, which calls setDarkTheme, which we can put later.
+
+from BrandedApp:
+
+        Platform.runLater { setDarkTheme(button) } 
+        Platform.runLater { updateVersionMessage(fxDoc) }
+
+
+
+In StageManager, scene is initialized.
+
+
+* Put the defaults at the end in PanComponentFactory methods.
+
+
+
+    var strategy = Strategy(config)
+    var countingSystems = CountingSystems(config)
+
+
+TabConfigCounting
+
+
+bge:class     BlackjackGameEngine
+    class     Strategy
+    class     CountingSystems
+bc: interface BlackjackConfiguration
+fe: class     BlackjackFxControls
+    class     Blackjack
+    class     BrandedApp
+    class     StageManager
+    class     BlackjackGameController
+
+
+ctls.taCountingSystems.text = defaultCountingSystems = 
+ctls.cbCountingSystems = ctls.countingSystems.keyNames
+
+
+        val countingSystems = ctls.bge.countingSystems
+
+
+        setChoiceBoxChoices(ctls.chCountingSystems, countingSystems.keyNames)
+        ctls.chCountingSystems.selectionModel.selectedIndexProperty()
+            .addListener { _, _, newIndex ->
+                thread {
+                    val selectedIndex = newIndex.toInt()
+                    countingSystems.setSystemByKeyNamePosition(selectedIndex)
+                    Logz.info(String.format("Counting systems updated to %s.", countingSystems.findSelected().name))
+                }
+            }
+
+        ctls.chCountingSystems.selectionModel.select(3)
+
+
+Canvas@467856e0
+Canvas@4cd341a7
+
+BlackjackFxControls.felt      Canvas@467856e0
+BlackjackGameController.felt  aCanvas@45e8837b
+
+* Move BlackjackConfigDefault up to the interface.
+* Blackjack BLACKJACK_STAKE_KEY
+* Maybe we don't need Configurable anymore, with the decoupling of CountingSystems.
 * FxDoc pmf/path united.
 * Anchor bolts ?
 * 
 * Template source preload.
 
-* Kotlin/Java21: Pure virtual method called.
 * Check functionality of error.html.
-* Two system update to 1.2.4, with no broken links during upgrade.
-  * Document procedure. 
 * Redirect (proxy?) panopset.com/flywheel to panopset.com/flywheel.html
 * Duplicate version warnings.
 * registerMonitorLizardProcessor 

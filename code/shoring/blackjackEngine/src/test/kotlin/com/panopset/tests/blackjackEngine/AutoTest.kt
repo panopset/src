@@ -9,20 +9,23 @@ import org.junit.jupiter.api.Test
 class AutoTest {
     @Test
     fun test() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun getDecks(): Int {
+                return 6
+            }
         })
         testAutoRun(bge)
     }
 
     @Test
     fun testFromVariations() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-            override val isBasicStrategyVariationsOnly: Boolean
-                get() = true
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun getDecks(): Int {
+                return 6
+            }
+            override fun isBasicStrategyVariationsOnly(): Boolean {
+                return true
+            }
         })
         bge.exec(CMD_AUTO)
         Assertions.assertEquals(
@@ -33,15 +36,19 @@ class AutoTest {
 
     @Test
     fun targetStakeTest() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 1
-            override val targetStakeInWholeDollars: Int
-                get() = 10000
-            override val strategicVeryPositiveCount: Int
-                get() = 6
-            override val largeBetInWholeDollars: Int
-                get() = 200
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun getDecks(): Int {
+                return 1
+            }
+            override fun getTargetStakeInWholeDollars(): Int {
+                return 10000
+            }
+            override fun getStrategicVeryPositiveCount(): Int {
+                return 6
+            }
+            override fun getLargeBetInWholeDollars(): Int {
+                return 200
+            }
         })
         bge.exec(CMD_AUTO)
         synchronized(bge) {

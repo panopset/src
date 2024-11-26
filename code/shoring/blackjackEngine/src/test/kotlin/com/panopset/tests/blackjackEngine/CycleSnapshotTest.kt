@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 class CycleSnapshotTest {
     @Test
     fun test() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {})
+        val bge = BlackjackGameEngine(BlackjackConfigDefault)
         var cs = bge.getCurrentSnapshot()
         Assertions.assertEquals(30000, cs.getChips())
         bge.getShoe().stackTheDeckFromList(eightVersusFive())

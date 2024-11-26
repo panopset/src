@@ -10,14 +10,10 @@ import org.junit.jupiter.api.Test
 class ConfigTest {
     @Test
     fun test() {
-        val config: BlackjackConfiguration = BlackjackConfigDefault()
-        Assertions.assertTrue(config.isShowCount)
-        config.toggleShowCount()
-        Assertions.assertFalse(config.isShowCount)
-        config.toggleShowCount()
-        Assertions.assertTrue(config.isShowCount)
-        Assertions.assertEquals(5, config.betIncrementInWholeDollars)
-        Assertions.assertEquals(20, config.largeBetInWholeDollars)
+        val config: BlackjackConfiguration = BlackjackConfigDefault
+        Assertions.assertTrue(config.isShowCount())
+        Assertions.assertEquals(5, config.getBetIncrementInWholeDollars())
+        Assertions.assertEquals(20, config.getLargeBetInWholeDollars())
     }
 
     /**
@@ -26,8 +22,7 @@ class ConfigTest {
      */
     @Test
     fun deckStackerTest() {
-        val config: BlackjackConfiguration = object : BlackjackConfigDefault() {
-        }
+        val config = BlackjackConfigDefault
         val bge = BlackjackGameEngine(config)
         bge.getShoe().shoe.stackedDeck = "five_of_clubs\njack_of_hearts\nqueen of clubs\nten_of_hearts\nsix_of_clubs"
         bge.exec(CMD_SHUFFLE)

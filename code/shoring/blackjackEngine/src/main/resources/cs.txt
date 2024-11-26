@@ -2,9 +2,10 @@
  0  0  0  0  0  0  0  0  0  0 None
  0  0  0 +1  0  0  0  0  0 -1 Wizard Ace/5
 +1 +1 +1 +1 +1 +1  0  0 -1 -1 KO
-+1 +1 +1 +1 +1  0  0  0 -1 -1 Hi-Lo
++1 +1 +1 +1 +1  0  0  0 -1 -1 *Hi-Lo
  0 +1 +1 +1 +1  0  0  0 -1  0 Hi-Opt I
 +1 +1 +2 +2 +1 +1  0  0 -2  0 Hi-Opt II
 +1 +1 +2 +2 +2 +1  0  0 -2 -1 Zen Count
 +1 +1 +2 +2 +2 +1  0 -1 -2  0 Omega II
 # Table from http://en.wikipedia.org/wiki/Card_counting
+# * in front of the name of the system, indicates the current selection.

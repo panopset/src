@@ -63,6 +63,15 @@ object Stringop {
         return ""
     }
 
+    fun arrayToString(strArray: ArrayList<String>): String {
+        val sw = StringWriter()
+        for (s in strArray) {
+            sw.append(s)
+            sw.append("\n")
+        }
+        return sw.toString()
+    }
+
     fun arrayToList(strArray: Array<String>): List<String> {
         val rtn = ArrayList<String>()
         for (s in strArray) {
@@ -70,6 +79,15 @@ object Stringop {
         }
         return rtn
     }
+
+    fun listToArrayList(list: List<String>): ArrayList<String> {
+        val rtn = ArrayList<String>()
+        for (s in list) {
+            rtn.add(s)
+        }
+        return rtn
+    }
+
     fun upund(str: String): String {
         return str.uppercase(Locale.getDefault()).replace(" ".toRegex(), "_")
     }

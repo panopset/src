@@ -3,11 +3,12 @@ package com.panopset.blackjackEngine
 import com.panopset.compat.Logz
 import java.util.*
 
-class CountingSystems(blackjackConfiguration: BlackjackConfiguration) : Configurable(blackjackConfiguration) {
+class CountingSystems(val countingSystemsData: ArrayList<String>) {
 
     private var systemCatalog: MutableMap<String, CountingSystem> = Collections.synchronizedSortedMap(TreeMap())
     private var keys = Collections.synchronizedSortedSet(TreeSet<CountingSystem>())
     var keyNames = ArrayList<String>()
+    var defaultKey = ""
 
     init {
         populate()
@@ -32,15 +33,26 @@ class CountingSystems(blackjackConfiguration: BlackjackConfiguration) : Configur
     }
 
     private fun populate() {
+        var firstKey = ""
         systemCatalog.clear()
         var index = 0
-        for (s in blackjackConfiguration.getCountingSystemData()) {
+        for (s in countingSystemsData) {
             if (s.length <= NAME_POS + 1 || s.indexOf("#") == 0) {
                 continue
             }
-            val key = s.substring(NAME_POS).trim()
+            val isDefault = s.indexOf("*") > -1
+            val key = s.substring(if (isDefault) NAME_POS + 1 else NAME_POS).trim()
             val dta = s.substring(0, NAME_POS)
+            if (firstKey.isEmpty()) {
+                firstKey = key
+            }
             systemCatalog[key] = CountingSystem( key, dta, index++)
+            if (isDefault) {
+                defaultKey = key
+            }
+        }
+        if (defaultKey.isEmpty()) {
+            defaultKey = firstKey
         }
     }
 
@@ -62,7 +74,7 @@ class CountingSystems(blackjackConfiguration: BlackjackConfiguration) : Configur
                 return value.selection
             }
         }
-        return findSelectionNbr(DEFAULT_COUNTING_SYSTEM_KEY)
+        return findSelectionNbr(defaultKey)
     }
 
     fun findSelectionKey(selection: Int): String {
@@ -71,18 +83,33 @@ class CountingSystems(blackjackConfiguration: BlackjackConfiguration) : Configur
                 return value.name
             }
         }
-        return DEFAULT_COUNTING_SYSTEM_KEY
+        return defaultKey
     }
 
-    private var selected = systemCatalog[DEFAULT_COUNTING_SYSTEM_KEY]
+    private var selected = systemCatalog[defaultKey]
 
     fun findSelected(): CountingSystem {
-        return selected ?: systemCatalog[DEFAULT_COUNTING_SYSTEM_KEY] ?: pointOfNoReturn()
+        var foundKey = ""
+        for (key in systemCatalog.keys) {
+            if (key == defaultKey) {
+                foundKey = key
+            } else if (key == "*$defaultKey") {
+                foundKey = key
+            }
+        }
+        if (foundKey.indexOf("*") == 0) {
+            foundKey = foundKey.substring(1)
+        }
+        if (foundKey.isEmpty()) {
+            return pointOfNoReturn()
+        } else {
+            return systemCatalog[foundKey] ?: pointOfNoReturn()
+        }
     }
 
     private fun pointOfNoReturn(): CountingSystem {
         Logz.errorMsg("Failed to load counting systems from resource cs.txt.")
-        return CountingSystem( DEFAULT_COUNTING_SYSTEM_KEY, "+1 +1 +1 +1 +1  0  0  0 -1 -1 Hi-Lo", 4)
+        return CountingSystem( "Hi-Low", "+1 +1 +1 +1 +1  0  0  0 -1 -1 Hi-Lo", 4)
     }
 
     private fun setCountingSystem(position: Int) {
@@ -96,10 +123,9 @@ class CountingSystems(blackjackConfiguration: BlackjackConfiguration) : Configur
 
     fun reset() {
         populate()
-        selected = systemCatalog[DEFAULT_COUNTING_SYSTEM_KEY]
+        selected = systemCatalog[defaultKey]
         resetCount()
     }
 }
 
-const val DEFAULT_COUNTING_SYSTEM_KEY = "Hi-Lo"
 const val NAME_POS = 30

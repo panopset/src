@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class DsTest {
     @Test
     fun test() {
-        val bge = BlackjackGameEngine(BlackjackConfigDefault())
+        val bge = BlackjackGameEngine(BlackjackConfigDefault)
         bge.getShoe().shuffle()
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), soft18v3())
         Assertions.assertEquals(
@@ -55,7 +55,7 @@ class DsTest {
 
     @Test
     fun testDoubleNotAllowed() {
-        val bge = BlackjackGameEngine(BlackjackConfigDefault())
+        val bge = BlackjackGameEngine(BlackjackConfigDefault)
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_HIT, CMD_STAND), softHitTo18v3())
     }
 }

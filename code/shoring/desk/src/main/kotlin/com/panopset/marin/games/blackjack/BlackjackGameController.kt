@@ -1,5 +1,6 @@
 package com.panopset.marin.games.blackjack
 
+import com.panopset.blackjackEngine.BlackjackGameEngine
 import com.panopset.blackjackEngine.CMD_AUTO
 import com.panopset.blackjackEngine.CMD_RESET
 import com.panopset.blackjackEngine.CycleSnapshot
@@ -10,16 +11,17 @@ import com.panopset.fxapp.FxDoc
 import javafx.animation.AnimationTimer
 import javafx.application.Platform
 import javafx.event.EventHandler
-import javafx.scene.canvas.Canvas
 import javafx.scene.input.KeyEvent
 import javafx.scene.paint.Color
 import java.util.*
+import kotlin.concurrent.thread
 
-class BlackjackGameController(ctls: BlackjackFxControls) {
+class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameEngine) {
     val fxDoc: FxDoc = ctls.fxDoc
-    val bge = ctls.bge
-    var felt = Canvas()
+    var felt = ctls.felt
     var firstTime = true
+    private var gameReady = false
+    private var gameStarted = false
 
     init {
         Zombie.addStopAction { timer.stop() }
@@ -41,7 +43,6 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
     }
 
     private var fontSize = 0
-    private var gameStarted = false
     private var paintedSnapshot: CycleSnapshot? = null
     private var dirty = true
     private var timer: AnimationTimer = object : AnimationTimer() {
@@ -87,8 +88,13 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
 
     private var binding = false
 
+    var dbgcounter = 0L
+
     private fun paintFelt(): CycleSnapshot? {
         if (binding) {
+            return null
+        }
+        if (felt.parent == null) {
             return null
         }
         val layoutHeight = felt.parent.layoutBounds.height.toInt()
@@ -111,14 +117,21 @@ class BlackjackGameController(ctls: BlackjackFxControls) {
             return null
         }
         val rtn = bge.lastActionSnapshot
-        if (gameStarted) {
-            if (firstTime) {
-                firstTime = false
-                bge.exec(CMD_RESET)
+        if (!gameStarted) {
+            if (gameReady) {
+                felt.scene.onKeyPressed = EventHandler {
+                        keyEvent: KeyEvent -> handleKey(keyEvent)
+                }
+                gameStarted = true
+            } else {
+                if (firstTime) {
+                    firstTime = false
+                    thread {
+                        bge.exec(CMD_RESET)
+                        gameReady = true
+                    }
+                }
             }
-        } else {
-            felt.scene.onKeyPressed = EventHandler { keyEvent: KeyEvent -> handleKey(keyEvent) }
-            gameStarted = true
         }
         if (!isDirty()) {
             return null

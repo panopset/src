@@ -2,8 +2,8 @@ package com.panopset.blackjackEngine
 
 import com.panopset.compat.Stringop
 
-open class BlackjackConfigDefault: BlackjackConfiguration {
-    private var defaultResources = DefaultResources()
+object BlackjackConfigDefault: BlackjackConfiguration {
+    var defaultResources = DefaultResources()
     private var showCountVar = true
     override fun getLargeBetInWholeDollars(): Int {
      return 20
@@ -57,10 +57,10 @@ open class BlackjackConfigDefault: BlackjackConfiguration {
         return false
     }
     override fun getStrategyData(): ArrayList<String> {
-        return Stringop.stringToList( defaultResources.defaultBasicStrategy)
+        return Stringop.stringToList(defaultResources.defaultBasicStrategy)
     }
-    override fun getCountingSystemData(): ArrayList<String> {
-        return Stringop.stringToList( defaultResources.defaultCountingSystems)
+    override fun getCountingSystems(): CountingSystems {
+        return CountingSystems(Stringop.stringToList(defaultResources.defaultCountingSystems))
     }
     override fun getStrategicVeryPositiveCount(): Int {
         return 10
@@ -70,15 +70,6 @@ open class BlackjackConfigDefault: BlackjackConfiguration {
     }
     override fun getMessages(): BlackjackMessages {
         return BlackjackMessagesDft()
-    }
-    override fun isBetIdeaDoubleAfterBust(): Boolean {
-        return false
-    }
-    override fun isBetIdeaLetItRideAfterTwoWins(): Boolean {
-        return false
-    }
-    override fun toggleShowCount() {
-        showCountVar = !showCountVar
     }
 }
 

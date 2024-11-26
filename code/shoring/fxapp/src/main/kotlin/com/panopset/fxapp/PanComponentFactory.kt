@@ -75,6 +75,19 @@ object PanComponentFactory {
         return rtn
     }
 
+
+    fun createPanTextArea(fxDoc: FxDoc, prompt: String, ttt: String, dft: String): TextArea {
+        val rtn = createPanTextArea(fxDoc, prompt, ttt)
+        rtn.text = dft
+        return rtn
+    }
+
+    fun createPersistentPanTextArea(fxDoc: FxDoc, id: String, prompt: String, ttt: String, dft: String): TextArea {
+        val rtn = createPanTextArea(fxDoc, id, prompt, ttt)
+        rtn.text = dft
+        return rtn
+    }
+
     fun createPersistentPanTextArea(fxDoc: FxDoc, id: String, prompt: String, ttt: String): TextArea {
         val rtn = createPanTextArea(fxDoc)
         fxDoc.registerTextInputControl(id, rtn)
@@ -93,6 +106,12 @@ object PanComponentFactory {
         return rtn
     }
 
+    fun createPanCheckBox(fxDoc: FxDoc, id: String, text: String, ttt: String, dft: Boolean): CheckBox {
+        val rtn = createPanCheckBox(fxDoc, id, text, ttt)
+        rtn.isSelected = dft
+        return rtn
+    }
+
     fun createPanCheckBox(fxDoc: FxDoc, id: String, text: String, ttt: String): CheckBox {
         val rtn = createPanCheckBox(fxDoc, id, text)
         rtn.tooltip = Tooltip(ttt)
@@ -106,34 +125,23 @@ object PanComponentFactory {
         return rtn
     }
 
-    fun createPanChoiceBox(fxDoc: FxDoc, id: String): ChoiceBox<String> {
+    fun createPanChoiceBox(fxDoc: FxDoc, id: String, choices: ArrayList<String>, defaultValue: String): ChoiceBox<String> {
         val rtn = ChoiceBox<String>()
         FontManagerFX.register(fxDoc, rtn)
-        fxDoc.registerChoiceBox(id, rtn)
-        return rtn
-    }
-
-    fun createPanChoiceBox(fxDoc: FxDoc, id: String, choices: ArrayList<String>): ChoiceBox<String> {
-        val rtn = createPanChoiceBox(fxDoc, id)
+        fxDoc.registerChoiceBox(id, rtn, defaultValue)
         setChoiceBoxChoices(rtn, choices)
+        rtn.setValue(defaultValue)
         return rtn
     }
 
-    fun setChoiceBoxChoices(cb: ChoiceBox<String>, choices: List<String>?) {
-        if (choices != null) {
-            setChoiceBoxChoices(cb, *choices.toTypedArray())
-        }
-    }
-
-    fun setChoiceBoxChoices(cb: ChoiceBox<String>, vararg choices: String) {
-        val ol = FXCollections.observableArrayList(choices.toList())
-        cb.items = ol
-        val selected = cb.selectionModel.selectedIndex
+    private fun setChoiceBoxChoices(ch: ChoiceBox<String>, choices: ArrayList<String>) {
+        val ol = FXCollections.observableArrayList(choices)
+        ch.items = ol
+        val selected = ch.selectionModel.selectedIndex
         if (selected == -1) {
-            cb.selectionModel.select(0)
+            ch.selectionModel.select(0)
         }
     }
-
 
     fun createPanPwdField(fxDoc: FxDoc): PasswordField {
         val rtn = PasswordField()

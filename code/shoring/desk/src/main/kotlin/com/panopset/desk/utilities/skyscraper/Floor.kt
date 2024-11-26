@@ -21,7 +21,7 @@ class Floor(val fxDoc: FxDoc) {
     val urlOutField: TextField = createPanOutputTextFieldHGrow(fxDoc, "url",
         "URL after ENV (environment) variable substitution.")
     val responseTextArea = createPanTextArea(fxDoc)
-    val postMethodChoiceBox = createPanChoiceBox(fxDoc, "postMethod", httpMethods)
+    val postMethodChoiceBox = createPanChoiceBox(fxDoc, "postMethod", httpMethods, "")
     val headerTextArea = createPersistentPanTextArea(fxDoc, "headers",
         "Please enter headers.", "Header format is key:value")
     val bodyTextArea = createPersistentPanTextArea(fxDoc, "body",

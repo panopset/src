@@ -11,9 +11,10 @@ class AutoZombieTest {
 
     @Test
     fun testZombieStop() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun getDecks(): Int {
+                return 6
+            }
         })
         verifyInitialState(bge.metrics.handCount)
         bge.exec(CMD_SHUFFLE)

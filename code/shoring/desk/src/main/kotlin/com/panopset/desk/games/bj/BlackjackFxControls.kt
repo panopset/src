@@ -1,62 +1,71 @@
 package com.panopset.desk.games.bj
 
+import com.panopset.blackjackEngine.BlackjackConfigDefault
+import com.panopset.compat.Stringop
 import com.panopset.fxapp.*
 import com.panopset.fxapp.PanComponentFactory.createPanCheckBox
 import com.panopset.fxapp.PanComponentFactory.createPanChoiceBox
 import com.panopset.fxapp.PanComponentFactory.createPanInputTextFieldWithDefaultValue
-import com.panopset.fxapp.PanComponentFactory.createPanTextArea
 import com.panopset.fxapp.PanComponentFactory.createPersistentPanTextArea
-import com.panopset.fxapp.PanComponentFactory.setChoiceBoxChoices
-import com.panopset.marin.games.blackjack.BlackjackGameController
-import com.panopset.marin.games.blackjack.BlackjackGameEngineFactory
+import javafx.scene.canvas.Canvas
 import javafx.scene.control.TextField
 
 class BlackjackFxControls(val fxDoc: FxDoc) {
-
-    val taCountingSystems = createPanTextArea(fxDoc)
-    val taBasicStrategy = createPersistentPanTextArea(fxDoc, "taBasic", "", "")
-    val cbCountingSystems = createPanChoiceBox(fxDoc, "cb_counting_systems")
-
-    val countPositive = createPanInputTextFieldWithDefaultValue(fxDoc, "count_positive", "10",
-        "", "")
-
-    val minimumBet = createPanInputTextFieldWithDefaultValue(fxDoc, "minimum_bet", "5", "", "")
-    val largeBet = createPanInputTextFieldWithDefaultValue(fxDoc, "large_bet", "20", "", "")
-    val targetStake = createPanInputTextFieldWithDefaultValue(fxDoc, "target_stake", "10000", "", "")
-
-    val cbDecks = createPanChoiceBox(fxDoc, "cb_decks")
-    val cbSeats = createPanChoiceBox(fxDoc, "cb_seats")
-    val ruleEuropeanStyle = createPanCheckBox(fxDoc, "rule_is", "European Style.",
-        "Player always loses to dealer Blackjack, even in a push.")
-    val resplitAces = createPanCheckBox(fxDoc, "rspltaces", "Resplit Aces")
-    val ruleVariations = createPanCheckBox(fxDoc, "rule_vs", "Variations.")
-    val dealerHitsSoft17 = createPanCheckBox(fxDoc, "dealer_hits_soft_17", "Dealer hits soft 17.", "")
-    val ruleShowCount = createPanCheckBox(fxDoc, "rule_sc", "Show count.")
-    val rule65 = createPanCheckBox(fxDoc, "rule_65", "Blackjack pays 6 to 5.",
-        "Blackjack pays 6 to 5 instead of 3 to 2")
+    val felt = Canvas()
+    val taBasicStrategy = createPersistentPanTextArea(fxDoc, KEY_BASIC_STRATEGY_DATA, "", "", Stringop.arrayToString(BlackjackConfigDefault.getStrategyData()))
+    val taCountingSystems = createPersistentPanTextArea(fxDoc, KEY_COUNTING_SYSTEMS_DATA, "", "Entry with the * in front of the name, is the default.", Stringop.arrayToString(BlackjackConfigDefault.getCountingSystems().countingSystemsData))
+    val chCountingSystems = createPanChoiceBox(fxDoc, KEY_COUNTING_SYSTEMS_CHOICE_BOX, BlackjackConfigDefault.getCountingSystems().keyNames, BlackjackConfigDefault.getCountingSystems().defaultKey)
+    val countPositive = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_VERY_POSITIVE_COUNT, BlackjackConfigDefault.getStrategicVeryPositiveCount().toString(), "", "")
+    val minimumBet = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_MINIMUM_BET_IN_WHOLE_DOLLARS, BlackjackConfigDefault.getMinimumBetInWholeDollars().toString(), "", "")
+    val incrementBet = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_INCREMENT_BET_IN_WHOLE_DOLLARS, BlackjackConfigDefault.getBetIncrementInWholeDollars().toString(), "", "")
+    val largeBet = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_LARGE_BET_IN_WHOLE_DOLLARS, BlackjackConfigDefault.getLargeBetInWholeDollars().toString(), "", "")
+    val targetStake = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_TARGET_STAKE_IN_WHOLE_DOLLARS, BlackjackConfigDefault.getTargetStakeInWholeDollars().toString(), "", "")
+    val chDecks = createPanChoiceBox(fxDoc, KEY_NUMBER_OF_DECKS, Stringop.listToArrayList(listOf("1", "2", "6", "8")), BlackjackConfigDefault.getDecks().toString())
+    val chSeats = createPanChoiceBox(fxDoc, KEY_NUMBER_OF_SEATS, Stringop.listToArrayList(listOf("1", "2", "3", "4", "5", "6", "7")), BlackjackConfigDefault.getSeats().toString())
+    val ruleEuropeanStyle = createPanCheckBox(fxDoc, KEY_EUROPEAN_STYLE, "European Style.",
+        "Player always loses to dealer Blackjack, even in a push.", BlackjackConfigDefault.isEuropeanStyle())
+    val resplitAces = createPanCheckBox(fxDoc, KEY_RESPLIT_ACES, "Re-split Aces", "Re-split aces is very hard to find these days.", BlackjackConfigDefault.isResplitAcesAllowed())
+    val splitAcePlayable = createPanCheckBox(fxDoc, KEY_SPLIT_ACE_PLAYABLE, "Split Ace playable", "", BlackjackConfigDefault.isSplitAcePlayable())
+    val ruleVariations = createPanCheckBox(fxDoc, KEY_BASIC_STRATEGY_VARIATIONS_ONLY, "Variations.", "", BlackjackConfigDefault.isBasicStrategyVariationsOnly())
+    val dealerHitsSoft17 = createPanCheckBox(fxDoc, KEY_DEALER_HITS_SOFT_17, "Dealer hits soft 17.", "", BlackjackConfigDefault.isDealerHitSoft17())
+    val ruleShowCount = createPanCheckBox(fxDoc, KEY_IS_SHOW_COUNT, "Show count.", "", BlackjackConfigDefault.isShowCount())
+    val rule65 = createPanCheckBox(fxDoc, KEY_BLACKJACK_6_TO_5, "Blackjack pays 6 to 5.",
+        "Blackjack pays 6 to 5 instead of 3 to 2", BlackjackConfigDefault.isBlackjack6to5())
     val ruleEvenMoney = createPanCheckBox(fxDoc, "rule_even",
-        "Player takes even money, blackjack versus ace. (All the books say this is a bad idea.)")
-    val doubleAfterSplit = createPanCheckBox(fxDoc, "dblaftrsplit", "Double after split")
-    val ruleLateSurrender = createPanCheckBox(fxDoc, "rule_ls", "Late surrender.")
-    val ruleFastDeal = createPanCheckBox(fxDoc, "rule_fd", "Fast deal.",
+        "Player takes even money, blackjack versus ace.", "All the books say this is a bad idea.",
+        BlackjackConfigDefault.isEvenMoneyOnBlackjackVace())
+    val doubleAfterSplit = createPanCheckBox(fxDoc, KEY_DOUBLE_AFTER_SPLIT, "Double after split", "",
+        BlackjackConfigDefault.isDoubleAfterSplitAllowed())
+    val ruleLateSurrender = createPanCheckBox(fxDoc, KEY_IS_LATE_SURRENDER_ALLOWED,"Late surrender.", "",
+        BlackjackConfigDefault.isLateSurrenderAllowed())
+    val ruleFastDeal = createPanCheckBox(fxDoc, KEY_FAST_DEAL, "Fast deal.",
         "Skip showing hand result and just go to the next deal.  Having this option, by the way, " +
-                "is the whole reason I wrote this game.")
-    val betIdeaDoubleAfterBust = createPanCheckBox(fxDoc, "bet_idea_dab", "Bets*: Double after bust.")
-    val betideaLetItRide = createPanCheckBox(fxDoc, "bet_idea_lir", "Bets*: Let it ride after two wins.")
-    val reloadAmount: TextField = createPanInputTextFieldWithDefaultValue(fxDoc, "reload_amount", "300",
+                "is the whole reason I wrote this game.", BlackjackConfigDefault.isFastDeal())
+    val reloadAmount: TextField = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_RELOAD_AMOUNT_IN_WHOLE_DOLLARS,
+        BlackjackConfigDefault.getReloadAmountInWholeDollars().toString(),
         "Enter your initial stake.", "Initial stake, and reload amount, in dollars.")
-    val bge = BlackjackGameEngineFactory().create(this)
-
-
-    val bgc = BlackjackGameController(this)
-
-    init {
-        dealerHitsSoft17.isSelected = true
-        setChoiceBoxChoices(cbDecks, "1", "2", "6", "8")
-        setChoiceBoxChoices(cbSeats, "1", "2", "3", "4", "5", "6", "7")
-    }
-
-    fun update() {
-        bgc.update()
-    }
 }
+
+
+const val KEY_DOUBLE_AFTER_SPLIT = "dblaftrsplit"
+const val KEY_RESPLIT_ACES = "rspltaces"
+const val KEY_SPLIT_ACE_PLAYABLE = "spltaceplays"
+const val KEY_BASIC_STRATEGY_DATA = "taBasic"
+const val KEY_COUNTING_SYSTEMS_DATA = "taCountingSystems"
+const val KEY_COUNTING_SYSTEMS_CHOICE_BOX  = "cb_counting_systems"
+const val KEY_NUMBER_OF_DECKS = "cb_decks"
+const val KEY_NUMBER_OF_SEATS = "cb_seats"
+const val KEY_DEALER_HITS_SOFT_17 = "dealer_hits_soft_17"
+const val KEY_BLACKJACK_6_TO_5 = "rule_65"
+const val KEY_EVEN_MONEY_BLACKJACK_VS_ACE = "rule_65"
+const val KEY_IS_LATE_SURRENDER_ALLOWED = "rule_ls"
+const val KEY_EUROPEAN_STYLE = "rule_ls"
+const val KEY_FAST_DEAL = "rule_fd"
+const val KEY_BASIC_STRATEGY_VARIATIONS_ONLY = "rule_vs"
+const val KEY_IS_SHOW_COUNT = "rule_sc"
+const val KEY_MINIMUM_BET_IN_WHOLE_DOLLARS = "minimum_bet"
+const val KEY_INCREMENT_BET_IN_WHOLE_DOLLARS = "increment_bet"
+const val KEY_LARGE_BET_IN_WHOLE_DOLLARS = "large_bet"
+const val KEY_TARGET_STAKE_IN_WHOLE_DOLLARS = "target_stake"
+const val KEY_RELOAD_AMOUNT_IN_WHOLE_DOLLARS = "reload_amount"
+const val KEY_VERY_POSITIVE_COUNT = "count_positive"
