@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Test
 class ResetTest {
     @Test
     fun test() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-        })
+        val bge = BlackjackGameEngine(BlackjackConfigSixDeckTest)
         Assertions.assertEquals(0, bge.bankroll.getStakeIncludingHands(bge.getCycle().players))
         Assertions.assertEquals(30000, bge.bankroll.getChips())
         Assertions.assertFalse(bge.getCycle().isActive)
@@ -18,7 +15,7 @@ class ResetTest {
         bge.exec(CMD_DEAL)
         verifyPlayerCards(
             arrayOf(CardDefinition.FIVE_OF_CLUBS, CardDefinition.THREE_OF_CLUBS),
-            bge.getCurrentSnapshot().getPlayers()[0].hands[0].getBlackjackCards()
+            bge.takeAnewSnapshot().players[0].hands[0].getBlackjackCards()
         )
         Assertions.assertTrue(bge.getCycle().isActive)
         Assertions.assertEquals(0, bge.bankroll.getStakeIncludingHands(bge.getCycle().players))

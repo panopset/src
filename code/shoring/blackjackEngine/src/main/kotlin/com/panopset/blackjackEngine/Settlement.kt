@@ -12,7 +12,7 @@ internal class Settlement(
     init {
         blackjackConfiguration = bge.config
         handDealer = bge.getCycle().dealer
-        blackjackPayoff = if (bge.config.isBlackjack6to5) 1.2 else 1.5
+        blackjackPayoff = if (bge.config.isBlackjack6to5()) 1.2 else 1.5
     }
 
     fun settlePlayer() {
@@ -44,7 +44,7 @@ internal class Settlement(
     }
 
     private fun settleNonBustedHand(handPlayer: HandPlayer) {
-        if (handDealer.isNatural21() && blackjackConfiguration.isEuropeanStyle) {
+        if (handDealer.isNatural21() && blackjackConfiguration.isEuropeanStyle()) {
             handPlayer.message = msg.lostMsg
             handPlayer.wager.lost()
         } else {

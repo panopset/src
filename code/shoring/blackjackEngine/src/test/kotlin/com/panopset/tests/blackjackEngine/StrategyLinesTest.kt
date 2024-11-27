@@ -32,29 +32,17 @@ class StrategyLinesTest {
 
     @Test
     fun testSoft13v4() {
-        var bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-        })
+        var bge = BlackjackGameEngine(BlackjackConfigSixDeckTest)
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_HIT, CMD_STAND), soft13vs4())
-        bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 1
-        })
+        bge = BlackjackGameEngine(BlackjackConfigSingleDeckTest)
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), soft13vs4())
-        bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 1
-        })
+        bge = BlackjackGameEngine(BlackjackConfigSingleDeckTest)
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), soft13vs4())
     }
 
     @Test
     fun testSoft13vs4afterSplitAces() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-        })
+        val bge = BlackjackGameEngine(BlackjackConfigSixDeckTest)
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_SPLIT), soft13vs4afterSplitAces())
     }
 }

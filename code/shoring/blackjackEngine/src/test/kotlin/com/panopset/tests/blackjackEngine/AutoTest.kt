@@ -52,20 +52,20 @@ class AutoTest {
         })
         bge.exec(CMD_AUTO)
         synchronized(bge) {
-            var paintedSnapshot: CycleSnapshot? = null
+            var paintedSnapshot = BlackjackGameState()
             while (bge.isAutomaticRunning() && Zombie.isActive) {
                 bge.waitMillis(200)
-                val cycleSnapshot = bge.getCurrentSnapshot()
+                val cycleSnapshot = bge.takeAnewSnapshot()
                 if (cycleSnapshot != paintedSnapshot) {
                     paintedSnapshot = cycleSnapshot
                     println(
                         String.format(
                             "Stake: %s, Chips: %s Hands: %d ",
-                            Stringop.getDollarString(cycleSnapshot.getStakeIncludingHands()),
-                            Stringop.getDollarString(cycleSnapshot.getChips()), cycleSnapshot.getMetrics().handCount
+                            Stringop.getDollarString(cycleSnapshot.stakeIncludingHands),
+                            Stringop.getDollarString(cycleSnapshot.chips), cycleSnapshot.metrics.handCount
                         )
                     )
-                    Assertions.assertEquals(500, cycleSnapshot.getNextBet())
+                    Assertions.assertEquals(500, cycleSnapshot.nextBet)
                 }
             }
         }

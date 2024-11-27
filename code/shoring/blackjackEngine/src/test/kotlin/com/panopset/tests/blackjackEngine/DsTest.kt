@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test
 class DsTest {
     @Test
     fun test() {
-        val bge = BlackjackGameEngine(BlackjackConfigDefault)
+        val bge = BlackjackGameEngine(BlackjackConfigDefault())
+        if (!bge.config.isShowCount()) {
+            bge.toggleShowCount()
+        }
         bge.getShoe().shuffle()
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), soft18v3())
         Assertions.assertEquals(
@@ -50,12 +53,13 @@ class DsTest {
         bge.getShoe().stackTheDeckFromList(soft18v3())
         bge.shuffle()
         bge.exec(CMD_COUNT)
+        bge.toggleShowCount()
         Assertions.assertEquals("| Stake: $10.00| Chips: $310.00| Score: 1 (1)", bge.getGameStatus())
     }
 
     @Test
     fun testDoubleNotAllowed() {
-        val bge = BlackjackGameEngine(BlackjackConfigDefault)
+        val bge = BlackjackGameEngine(BlackjackConfigDefault())
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_HIT, CMD_STAND), softHitTo18v3())
     }
 }

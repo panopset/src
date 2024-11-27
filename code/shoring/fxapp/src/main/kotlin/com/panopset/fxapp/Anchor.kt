@@ -33,6 +33,14 @@ abstract class Anchor(val application: PanApplication) {
         return booleanValue
     }
 
+    fun toggle(key: String) {
+        val value = getStringValue(key)
+        val booleanValue = !value.toBoolean()
+        if (boltBoxes.containsKey(key)) {
+            boltBoxes[key]?.setValue(booleanValue.toString())
+        }
+    }
+
     fun getArrayListValue(key: String): ArrayList<String> {
         val value = getStringValue(key)
         val arrayListValue = Stringop.stringToList(value)

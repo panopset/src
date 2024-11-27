@@ -1,9 +1,9 @@
 package com.panopset.marin.oldswpkg.games.blackjack
 
-import com.panopset.blackjackEngine.CycleSnapshot
+import com.panopset.blackjackEngine.BlackjackGameState
 import com.panopset.compat.Tile
 
-abstract class Layout(val t: Tile, cardDim: IntArray, val cs: CycleSnapshot) {
+abstract class Layout(val t: Tile, cardDim: IntArray, val cs: BlackjackGameState) {
     val h: Int
     val w: Int
     val centerW: Int

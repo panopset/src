@@ -2,9 +2,9 @@ package com.panopset.blackjackEngine
 
 import com.panopset.compat.Stringop
 
-object BlackjackConfigDefault: BlackjackConfiguration {
+class BlackjackConfigDefault: BlackjackConfiguration {
     var defaultResources = DefaultResources()
-    private var showCountVar = true
+    private var sc = false
     override fun getLargeBetInWholeDollars(): Int {
      return 20
     }
@@ -66,8 +66,13 @@ object BlackjackConfigDefault: BlackjackConfiguration {
         return 10
     }
     override fun isShowCount(): Boolean {
-        return showCountVar
+        return sc
     }
+
+    override fun toggleShowCount() {
+        sc = !sc
+    }
+
     override fun getMessages(): BlackjackMessages {
         return BlackjackMessagesDft()
     }

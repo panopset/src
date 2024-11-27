@@ -10,9 +10,10 @@ import com.panopset.fxapp.FxDoc
 
 object BlackjackConfigurationFactory {
     fun create(fxDoc: FxDoc): BlackjackConfiguration {
-        object: BlackjackConfiguration {
+        val blackjackConfigDefault = BlackjackConfigDefault()
+        val rtn = object: BlackjackConfiguration {
             override fun getMessages(): BlackjackMessages {
-                return BlackjackConfigDefault.getMessages()
+                return BlackjackConfigDefault().getMessages()
             }
             override fun isDoubleAfterSplitAllowed(): Boolean {
                 return fxDoc.getBooleanValue(KEY_DOUBLE_AFTER_SPLIT)
@@ -25,7 +26,7 @@ object BlackjackConfigurationFactory {
             }
             override fun getStrategyData(): ArrayList<String> {
                 val rtn = fxDoc.getArrayListValue(KEY_BASIC_STRATEGY_DATA)
-                val dft = BlackjackConfigDefault.getStrategyData()
+                val dft = blackjackConfigDefault.getStrategyData()
                 if (rtn != dft) {
                     Logz.warn("Custom (or out of date) strategy data in use.  Go to config to reset.")
                 }
@@ -33,7 +34,7 @@ object BlackjackConfigurationFactory {
             }
             override fun getCountingSystems(): CountingSystems {
                 val countingSystems = CountingSystems(fxDoc.getArrayListValue(KEY_COUNTING_SYSTEMS_DATA))
-                val dft = BlackjackConfigDefault.getCountingSystems()
+                val dft = blackjackConfigDefault.getCountingSystems()
                 if (countingSystems.countingSystemsData != dft.countingSystemsData) {
                     Logz.warn("Custom (or out of date) counting system data in use.  Go to config to reset.")
                 }
@@ -69,6 +70,11 @@ object BlackjackConfigurationFactory {
             override fun isShowCount(): Boolean {
                 return fxDoc.getBooleanValue(KEY_IS_SHOW_COUNT)
             }
+
+            override fun toggleShowCount() {
+                fxDoc.toggle(KEY_IS_SHOW_COUNT)
+            }
+
             override fun getLargeBetInWholeDollars(): Int {
                 return fxDoc.getIntValue(KEY_LARGE_BET_IN_WHOLE_DOLLARS)
             }
@@ -88,6 +94,6 @@ object BlackjackConfigurationFactory {
                 return fxDoc.getIntValue(KEY_VERY_POSITIVE_COUNT)
             }
         }
-        return BlackjackConfigDefault
+        return rtn
     }
 }

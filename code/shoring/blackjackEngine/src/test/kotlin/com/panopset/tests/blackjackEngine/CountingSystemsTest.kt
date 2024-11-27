@@ -1,13 +1,12 @@
 package com.panopset.tests.blackjackEngine
 
 import com.panopset.blackjackEngine.*
-import com.panopset.blackjackEngine.BlackjackConfigDefault.defaultResources
 import com.panopset.compat.Stringop
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class CountingSystemsTest {
-    private val countingSystems = CountingSystems(Stringop.stringToList(defaultResources.defaultCountingSystems))
+    private val countingSystems = CountingSystems(Stringop.stringToList(DefaultResources().defaultCountingSystems))
 
     @Test
     @Throws(Exception::class)

@@ -3,7 +3,7 @@ package com.panopset.marin.games.blackjack
 import com.panopset.blackjackEngine.BlackjackGameEngine
 import com.panopset.blackjackEngine.CMD_AUTO
 import com.panopset.blackjackEngine.CMD_RESET
-import com.panopset.blackjackEngine.CycleSnapshot
+import com.panopset.blackjackEngine.BlackjackGameState
 import com.panopset.compat.Zombie
 import com.panopset.desk.games.bj.BlackjackFxControls
 import com.panopset.fxapp.FontManagerFX
@@ -43,7 +43,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
     }
 
     private var fontSize = 0
-    private var paintedSnapshot: CycleSnapshot? = null
+    private var paintedSnapshot: BlackjackGameState? = null
     private var dirty = true
     private var timer: AnimationTimer = object : AnimationTimer() {
                     override fun handle(now: Long) {
@@ -90,7 +90,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
 
     var dbgcounter = 0L
 
-    private fun paintFelt(): CycleSnapshot? {
+    private fun paintFelt(): BlackjackGameState? {
         if (binding) {
             return null
         }

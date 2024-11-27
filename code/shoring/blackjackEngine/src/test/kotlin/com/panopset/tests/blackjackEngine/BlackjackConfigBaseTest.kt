@@ -7,92 +7,98 @@ import com.panopset.blackjackEngine.CountingSystems
 import java.util.ArrayList
 
 open class BlackjackConfigBaseTest: BlackjackConfiguration {
+    private var sc = false
+    private val blackjackConfigDefault = BlackjackConfigDefault()
 
     override fun isDoubleAfterSplitAllowed(): Boolean {
-        return BlackjackConfigDefault.isDoubleAfterSplitAllowed()
+        return blackjackConfigDefault.isDoubleAfterSplitAllowed()
     }
 
     override fun isResplitAcesAllowed(): Boolean {
-        return BlackjackConfigDefault.isResplitAcesAllowed()
+        return blackjackConfigDefault.isResplitAcesAllowed()
     }
 
     override fun isSplitAcePlayable(): Boolean {
-        return BlackjackConfigDefault.isSplitAcePlayable()
+        return blackjackConfigDefault.isSplitAcePlayable()
     }
 
     override fun getSeats(): Int {
-        return BlackjackConfigDefault.getDecks()
+        return blackjackConfigDefault.getSeats()
     }
 
     override fun getDecks(): Int {
-        return BlackjackConfigDefault.getDecks()
+        return blackjackConfigDefault.getDecks()
     }
 
     override fun isDealerHitSoft17(): Boolean {
-        return BlackjackConfigDefault.isDealerHitSoft17()
+        return blackjackConfigDefault.isDealerHitSoft17()
     }
 
     override fun isBlackjack6to5(): Boolean {
-        return BlackjackConfigDefault.isBlackjack6to5()
+        return blackjackConfigDefault.isBlackjack6to5()
     }
 
     override fun isEvenMoneyOnBlackjackVace(): Boolean {
-        return BlackjackConfigDefault.isEvenMoneyOnBlackjackVace()
+        return blackjackConfigDefault.isEvenMoneyOnBlackjackVace()
     }
 
     override fun isLateSurrenderAllowed(): Boolean {
-        return BlackjackConfigDefault.isLateSurrenderAllowed()
+        return blackjackConfigDefault.isLateSurrenderAllowed()
     }
 
     override fun isEuropeanStyle(): Boolean {
-        return BlackjackConfigDefault.isEuropeanStyle()
+        return blackjackConfigDefault.isEuropeanStyle()
     }
 
     override fun isFastDeal(): Boolean {
-        return BlackjackConfigDefault.isFastDeal()
+        return blackjackConfigDefault.isFastDeal()
     }
 
     override fun isBasicStrategyVariationsOnly(): Boolean {
-        return BlackjackConfigDefault.isBasicStrategyVariationsOnly()
+        return blackjackConfigDefault.isBasicStrategyVariationsOnly()
     }
 
     override fun isShowCount(): Boolean {
-        return BlackjackConfigDefault.isShowCount()
+        return sc
+    }
+
+    override fun toggleShowCount() {
+        sc = !sc
     }
 
     override fun getStrategyData(): ArrayList<String> {
-        return BlackjackConfigDefault.getStrategyData()
+        return blackjackConfigDefault.getStrategyData()
     }
 
     override fun getCountingSystems(): CountingSystems {
-        return BlackjackConfigDefault.getCountingSystems()
+        return blackjackConfigDefault.getCountingSystems()
     }
 
     override fun getLargeBetInWholeDollars(): Int {
-        return BlackjackConfigDefault.getLargeBetInWholeDollars()
+        return blackjackConfigDefault.getLargeBetInWholeDollars()
     }
 
     override fun getTargetStakeInWholeDollars(): Int {
-        return BlackjackConfigDefault.getTargetStakeInWholeDollars()
+        return blackjackConfigDefault.getTargetStakeInWholeDollars()
     }
 
     override fun getMinimumBetInWholeDollars(): Int {
-        return BlackjackConfigDefault.getMinimumBetInWholeDollars()
+        return blackjackConfigDefault.getMinimumBetInWholeDollars()
     }
 
     override fun getBetIncrementInWholeDollars(): Int {
-        return BlackjackConfigDefault.getBetIncrementInWholeDollars()
+        return blackjackConfigDefault.getBetIncrementInWholeDollars()
     }
 
     override fun getReloadAmountInWholeDollars(): Int {
-        return BlackjackConfigDefault.getReloadAmountInWholeDollars()
+        return blackjackConfigDefault.getReloadAmountInWholeDollars()
     }
 
     override fun getStrategicVeryPositiveCount(): Int {
-        return BlackjackConfigDefault.getStrategicVeryPositiveCount()
+        return blackjackConfigDefault.getStrategicVeryPositiveCount()
     }
 
     override fun getMessages(): BlackjackMessages {
-        return BlackjackConfigDefault.getMessages()
+        return blackjackConfigDefault.getMessages()
     }
 }

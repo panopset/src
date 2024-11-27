@@ -1,6 +1,6 @@
 package com.panopset.marin.games.blackjack
 
-import com.panopset.blackjackEngine.CycleSnapshot
+import com.panopset.blackjackEngine.BlackjackGameState
 import com.panopset.blackjackEngine.promptDeal
 import com.panopset.compat.LogDisplayer
 import com.panopset.compat.Logz
@@ -32,7 +32,7 @@ class FeltPainter {
 
     private var blackjackTable = BlackjackTable(600, 500, cptr.cardHeight)
 
-    fun draw(logDisplayer: LogDisplayer, cs: CycleSnapshot, g: GraphicsContext, width: Int, height: Int) {
+    fun draw(logDisplayer: LogDisplayer, cs: BlackjackGameState, g: GraphicsContext, width: Int, height: Int) {
         if (width.toDouble() == 0.0 || height.toDouble() == 0.0) {
             return
         }
@@ -42,7 +42,7 @@ class FeltPainter {
             lastHeight = height
         }
         verticalSeparator = (FontManagerFX.getSize() * 1.2).toInt()
-        if (Stringop.isPopulated(cs.getMistakeMessage())) {
+        if (Stringop.isPopulated(cs.mistakeMessage)) {
             g.fill = Color.DARKRED
         } else {
             g.fill = Color.DARKGREEN
@@ -55,20 +55,20 @@ class FeltPainter {
         paintMsgLandscape(cs, g, blackjackTable.msgTile)
     }
 
-    private fun paintMsgLandscape(cs: CycleSnapshot, g: GraphicsContext, t: Tile) {
+    private fun paintMsgLandscape(cs: BlackjackGameState, g: GraphicsContext, t: Tile) {
         initGforMsg(cs, g, t)
         val y = t.bottom - verticalSeparator / 2
         paintMistakeMessage(cs, g, t, y, verticalSeparator)
     }
 
-    private fun initGforMsg(cs: CycleSnapshot, g: GraphicsContext, t: Tile) {
+    private fun initGforMsg(cs: BlackjackGameState, g: GraphicsContext, t: Tile) {
         if (dbg) {
             g.fill = Color.GRAY
             g.fillRect(t.left.toDouble(), t.top.toDouble(), t.width.toDouble(), t.bottom.toDouble())
         }
         g.fill = Color.BLACK
         g.font = font0
-        if (Stringop.isPopulated(cs.getMistakeMessage())) {
+        if (Stringop.isPopulated(cs.mistakeMessage)) {
             g.fill = Color.YELLOW
         } else {
             g.fill = Color.DARKBLUE
@@ -76,20 +76,20 @@ class FeltPainter {
         g.font = font0
     }
 
-    private fun paintMistakeMessage(cs: CycleSnapshot, g: GraphicsContext, t: Tile, y: Int, vs: Int) {
-        if (Stringop.isPopulated(cs.getMistakeMessage())) {
+    private fun paintMistakeMessage(cs: BlackjackGameState, g: GraphicsContext, t: Tile, y: Int, vs: Int) {
+        if (Stringop.isPopulated(cs.mistakeMessage)) {
             g.fill = Color.YELLOW
             g.font = Font.font("Monospaced", FontManagerFX.getSize().toDouble())
-            g.fillText(String.format("%s - dealer up card.", cs.getMistakeHeader()), 0.0, y.toDouble())
+            g.fillText(String.format("%s - dealer up card.", cs.mistakeHeader), 0.0, y.toDouble())
             g.fillText(
-                String.format("%s - basic strategy line for your hand.", cs.getMistakeMessage()),
+                String.format("%s - basic strategy line for your hand.", cs.mistakeMessage),
                 0.0, (y + vs).toDouble()
             )
             g.font = font0
-        } else if (Stringop.isPopulated(cs.getDealerMessage())) {
+        } else if (Stringop.isPopulated(cs.dealerMessage)) {
             g.fill = Color.WHITE
-            g.fillText(cs.getDealerMessage(), 0.0, y.toDouble())
-            Logz.warn(cs.getDealerMessage())
+            g.fillText(cs.dealerMessage, 0.0, y.toDouble())
+            Logz.warn(cs.dealerMessage)
         }
         val newY = y - vs
         paintKeyMeanings(g, t.left, newY)
@@ -102,7 +102,7 @@ class FeltPainter {
     }
 
     private val commander = BlackjackCmdBinder()
-    private fun paintDealer(g: GraphicsContext, t: Tile, cs: CycleSnapshot) {
+    private fun paintDealer(g: GraphicsContext, t: Tile, cs: BlackjackGameState) {
         if (dbg) {
             g.fill = Color.RED
             g.fillRect(t.left.toDouble(), t.top.toDouble(), t.width.toDouble(), t.bottom.toDouble())
@@ -110,14 +110,14 @@ class FeltPainter {
         val o = LayoutDealer(t, intArrayOf(cptr.cardWidth, cptr.cardHeight), cs)
         g.fill = Color.BLACK
 
-        val iterator = cs.getDealer().getCards().iterator()
+        val iterator = cs.handDealer.getCards().iterator()
         while (iterator.hasNext()) {
             val bc = iterator.next()
             o.nextDealerX?.let { cptr.paintCard(g, bc.card, it, 0) }
         }
     }
 
-    private fun paintPlayer(logDisplayer: LogDisplayer, g: GraphicsContext, t: Tile, cs: CycleSnapshot) {
+    private fun paintPlayer(logDisplayer: LogDisplayer, g: GraphicsContext, t: Tile, cs: BlackjackGameState) {
         if (dbg) {
             g.fill = Color.YELLOW
             g.fillRect(t.left.toDouble(), t.top.toDouble(), t.width.toDouble(), t.bottom.toDouble())
@@ -130,12 +130,12 @@ class FeltPainter {
         )
         var cardX = o.playerCardXstart!!
         var arrowHasBeenDrawn = false
-        if (cs.getPlayers().isEmpty()) {
+        if (cs.players.isEmpty()) {
             logDisplayer.dspmsg(promptDeal)
         } else {
             logDisplayer.clear()
         }
-        for (p in cs.getPlayers()) {
+        for (p in cs.players) {
             val activeHand = p.activeHand
             for (h in p.hands) {
                 val handFirstCardX = cardX
@@ -194,7 +194,7 @@ class FeltPainter {
         }
     }
 
-    private fun paintStatus(cs: CycleSnapshot, g: GraphicsContext, t: Tile) {
+    private fun paintStatus(cs: BlackjackGameState, g: GraphicsContext, t: Tile) {
         if (dbg) {
             g.fill = Color.BLUE
             g.fillRect(t.left.toDouble(), t.top.toDouble(), t.width.toDouble(), t.height.toDouble())
@@ -202,19 +202,19 @@ class FeltPainter {
         g.fill = Color.WHITE
         g.font = font0
         var y = t.top + verticalSeparator
-        for (s in cs.getGameStatusVertical()) {
+        for (s in cs.gameStatusVertical) {
             g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
             y += verticalSeparator
         }
         g.fillText(
-            String.format("  Action: %s", cs.getAction().uppercase(Locale.getDefault())),
+            String.format("  Action: %s", cs.action.uppercase(Locale.getDefault())),
             t.left.toDouble(),
             y.toDouble()
         )
     }
 
     private var dbg = false
-    private fun paintChips(g: GraphicsContext, t: Tile?, cs: CycleSnapshot) {
+    private fun paintChips(g: GraphicsContext, t: Tile?, cs: BlackjackGameState) {
         if (t == null) {
             return
         }
@@ -226,16 +226,16 @@ class FeltPainter {
         g.fillRoundRect(t.left.toDouble(), t.top.toDouble(), t.width.toDouble(), t.height.toDouble(), 20.0, 20.0)
         g.fill = Color.BLACK
         val lc = LayoutChips(t.left, t.bottom, chpptr.chipWidth, chpptr.chipHeight)
-        chpptr.paintChips(g, lc.chipXnextBet, lc.chipY, cs.getNextBet().toLong())
-        chpptr.paintChips(g, lc.chipXstack, lc.chipY, cs.getChips() - cs.getNextBet())
+        chpptr.paintChips(g, lc.chipXnextBet, lc.chipY, cs.nextBet.toLong())
+        chpptr.paintChips(g, lc.chipXstack, lc.chipY, cs.chips - cs.nextBet)
         g.fill = Color.WHITE
         g.font = font0
         var y = t.top + verticalSeparator
-        for (s in cs.getStatusChipsVertical()) {
+        for (s in cs.gameStatusVertical) {
             g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
             y += verticalSeparator
         }
-        for (s in cs.getGameStatusVertical()) {
+        for (s in cs.gameStatusVertical) {
             g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
             y += verticalSeparator
         }

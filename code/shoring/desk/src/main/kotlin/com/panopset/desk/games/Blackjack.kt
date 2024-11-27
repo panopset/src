@@ -76,7 +76,7 @@ class Blackjack: BrandedApp(
 //        ctls.chCountingSystems.selectionModel.select(3)
 
 
-        bge.isReady = true
+       // bge.isReady = true
 
         return bp
     }

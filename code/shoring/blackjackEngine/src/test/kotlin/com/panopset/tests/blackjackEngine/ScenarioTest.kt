@@ -8,10 +8,7 @@ class ScenarioTest {
 
     @Test
     fun testWithSingleDeck() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 1
-        })
+        val bge = BlackjackGameEngine(BlackjackConfigSingleDeckTest)
         Assertions.assertEquals(30000, bge.bankroll.getChips())
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), doubleDown())
         Assertions.assertEquals(29000, bge.bankroll.getChips())
@@ -37,26 +34,21 @@ class ScenarioTest {
 
     @Test
     fun testBlackjack() {
-        var bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isBlackjack6to5: Boolean
-                get() = false
-        })
+        var bge = BlackjackGameEngine(BlackjackConfigSingleDeckTest)
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL), playerBlackjack())
         Assertions.assertFalse(bge.getCycle().isActive)
         Assertions.assertEquals(30750, bge.bankroll.getChips())
-        bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isBlackjack6to5: Boolean
-                get() = true
-        })
+        bge = BlackjackGameEngine(BlackjackConfig6to5Test)
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL), playerBlackjack())
         Assertions.assertFalse(bge.getCycle().isActive)
         Assertions.assertEquals(30600, bge.bankroll.getChips())
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL), playerAndDealerBlackjack())
         Assertions.assertFalse(bge.getCycle().isActive)
         Assertions.assertEquals(30600, bge.bankroll.getChips())
-        bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isEuropeanStyle: Boolean
-                get() = true
+        bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun isEuropeanStyle(): Boolean {
+                return true
+            }
         })
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL), playerAndDealerBlackjack())
         Assertions.assertEquals(29500, bge.bankroll.getChips())
@@ -69,9 +61,10 @@ class ScenarioTest {
 
     @Test
     fun testBlackjackVs21total() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val seats: Int
-                get() = 2
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun getSeats(): Int {
+                return 2
+            }
         })
         bge.exec(CMD_INCREASE)
         verifyRecommendedActions(
@@ -92,11 +85,13 @@ class ScenarioTest {
 
     @Test
     fun testDealerStandsOnSoft17() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isDealerHitSoft17: Boolean
-                get() = false
-            override val decks: Int
-                get() = 1
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun isDealerHitSoft17(): Boolean {
+                return false
+            }
+            override fun getDecks(): Int {
+                return 1
+            }
         })
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), dealerSoft17_0())
         Assertions.assertEquals(
@@ -112,7 +107,7 @@ class ScenarioTest {
 
     @Test
     fun testDealerHitsOnSoft17() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {})
+        val bge = BlackjackGameEngine(BlackjackConfigDefault())
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), dealerSoft17_1())
         Assertions.assertFalse(bge.getCycle().isActive)
         Assertions.assertEquals(30000, bge.bankroll.getChips())
@@ -127,9 +122,10 @@ class ScenarioTest {
 
     @Test
     fun testEvenMoney() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isEvenMoneyOnBlackjackVace: Boolean
-                get() = true
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun isEvenMoneyOnBlackjackVace(): Boolean {
+                return true
+            }
         })
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL), playerAndDealerBlackjack())
         Assertions.assertEquals(500, bge.bankroll.getStakeIncludingHands(bge.getCycle().players))
@@ -144,5 +140,11 @@ class ScenarioTest {
             bge.getCycle().players[0].hands[0].message
         )
         Assertions.assertFalse(bge.getShoe().isTheDeckStacked())
+    }
+}
+
+object BlackjackConfig6to5Test: BlackjackConfigBaseTest() {
+    override fun isBlackjack6to5(): Boolean {
+        return true
     }
 }

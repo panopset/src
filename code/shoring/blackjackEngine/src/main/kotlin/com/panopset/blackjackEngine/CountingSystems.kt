@@ -89,22 +89,25 @@ class CountingSystems(val countingSystemsData: ArrayList<String>) {
     private var selected = systemCatalog[defaultKey]
 
     fun findSelected(): CountingSystem {
-        var foundKey = ""
-        for (key in systemCatalog.keys) {
-            if (key == defaultKey) {
-                foundKey = key
-            } else if (key == "*$defaultKey") {
-                foundKey = key
+        if (selected == null) {
+            var foundKey = ""
+            for (key in systemCatalog.keys) {
+                if (key == defaultKey) {
+                    foundKey = key
+                } else if (key == "*$defaultKey") {
+                    foundKey = key
+                }
+            }
+            if (foundKey.indexOf("*") == 0) {
+                foundKey = foundKey.substring(1)
+            }
+            if (foundKey.isEmpty()) {
+                selected = pointOfNoReturn()
+            } else {
+                selected = systemCatalog[foundKey] ?: pointOfNoReturn()
             }
         }
-        if (foundKey.indexOf("*") == 0) {
-            foundKey = foundKey.substring(1)
-        }
-        if (foundKey.isEmpty()) {
-            return pointOfNoReturn()
-        } else {
-            return systemCatalog[foundKey] ?: pointOfNoReturn()
-        }
+        return selected ?: pointOfNoReturn()
     }
 
     private fun pointOfNoReturn(): CountingSystem {

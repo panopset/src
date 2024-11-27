@@ -16,6 +16,7 @@ interface BlackjackConfiguration {
     fun isFastDeal(): Boolean
     fun isBasicStrategyVariationsOnly(): Boolean
     fun isShowCount(): Boolean
+    fun toggleShowCount()
     fun getStrategyData(): ArrayList<String>
     fun getCountingSystems(): CountingSystems
     fun getLargeBetInWholeDollars(): Int

@@ -17,23 +17,23 @@ class SplitNotAllowedTest {
         bge.exec(CMD_SPLIT)
         verifyPlayerCards(
             arrayOf(CardDefinition.TWO_OF_SPADES, CardDefinition.EIGHT_OF_DIAMONDS),
-            bge.getCurrentSnapshot().getPlayers()[0].hands[0].getBlackjackCards()
+            bge.takeAnewSnapshot().players[0].hands[0].getBlackjackCards()
         )
         Assertions.assertEquals(
             CardDefinition.TWO_OF_SPADES.face,
-            bge.getCurrentSnapshot().getPlayers()[0].activeHand!!.getBlackjackCards()[0].card.face
+            bge.takeAnewSnapshot().players[0].activeHand!!.getBlackjackCards()[0].card.face
         )
         Assertions.assertEquals(
             CardDefinition.TWO_OF_SPADES.suit,
-            bge.getCurrentSnapshot().getPlayers()[0].activeHand!!.getBlackjackCards()[0].card.suit
+            bge.takeAnewSnapshot().players[0].activeHand!!.getBlackjackCards()[0].card.suit
         )
         Assertions.assertEquals(
             CardDefinition.EIGHT_OF_DIAMONDS.face,
-            bge.getCurrentSnapshot().getPlayers()[0].activeHand!!.getBlackjackCards()[1].card.face
+            bge.takeAnewSnapshot().players[0].activeHand!!.getBlackjackCards()[1].card.face
         )
         Assertions.assertEquals(
             CardDefinition.EIGHT_OF_DIAMONDS.suit,
-            bge.getCurrentSnapshot().getPlayers()[0].activeHand!!.getBlackjackCards()[1].card.suit
+            bge.takeAnewSnapshot().players[0].activeHand!!.getBlackjackCards()[1].card.suit
         )
         Assertions.assertEquals(
             "Can't split cards that don't have the same face",

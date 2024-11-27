@@ -8,12 +8,7 @@ import org.junit.jupiter.api.Test
 class ScenarioSplitAces {
     @Test
     fun testWithSixDecks() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-            override val isResplitAcesAllowed: Boolean
-                get() = true
-        })
+        val bge = BlackjackGameEngine(BlackjackConfigSixDeckResplitAcesTest())
         Assertions.assertEquals("", bge.mistakeMessage)
         Assertions.assertEquals("", bge.mistakeHeader)
         Assertions.assertEquals("", bge.dealerMessage)
@@ -43,12 +38,7 @@ class ScenarioSplitAces {
 
     @Test
     fun testWithSixDecksResplitAcesAllowed() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-            override val isResplitAcesAllowed: Boolean
-                get() = true
-        })
+        val bge = BlackjackGameEngine(BlackjackConfigSixDeckResplitAcesTest())
         verifyRecommendedActions(
             bge, arrayOf(
                 CMD_DEAL, CMD_SPLIT, CMD_SPLIT
@@ -58,12 +48,7 @@ class ScenarioSplitAces {
 
     @Test
     fun testWithSingleDeckResplitAcesAllowed() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 1
-            override val isResplitAcesAllowed: Boolean
-                get() = true
-        })
+        val bge = BlackjackGameEngine(BlackjackConfigSingleDeckResplitAcesTest())
         Assertions.assertEquals(30000, bge.bankroll.getChips())
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), doubleDown())
         Assertions.assertEquals(29000, bge.bankroll.getChips())
@@ -91,11 +76,13 @@ class ScenarioSplitAces {
 
     @Test
     fun testWithDoubleAfterSplitNotAllowed6decks() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val isDoubleAfterSplitAllowed: Boolean
-                get() = false
-            override val isResplitAcesAllowed: Boolean
-                get() = true
+        val bge = BlackjackGameEngine(object : BlackjackConfigBaseTest() {
+            override fun isDoubleAfterSplitAllowed(): Boolean {
+                return false
+            }
+            override fun isResplitAcesAllowed(): Boolean {
+                return true
+            }
         })
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), doubleDown())
         verifyRecommendedActions(
@@ -117,10 +104,7 @@ class ScenarioSplitAces {
 
     @Test
     fun testWithResplitAcesNotAllowed6decks() {
-        val bge = BlackjackGameEngine(object : BlackjackConfigDefault() {
-            override val decks: Int
-                get() = 6
-        })
+        val bge = BlackjackGameEngine(BlackjackConfigSixDeckTest)
         bge.getShoe().stackTheDeckFromList(resplitAces())
         Assertions.assertFalse(bge.ct.isActive)
         Assertions.assertFalse(bge.ct.isDealt)
@@ -140,5 +124,23 @@ class ScenarioSplitAces {
         bge.exec(CMD_DEAL)
         println(bge.getShoe().dumpStack())
         Assertions.assertFalse(bge.getShoe().isTheDeckStacked())
+    }
+}
+
+class BlackjackConfigSixDeckResplitAcesTest: BlackjackConfigBaseTest() {
+    override fun getDecks(): Int {
+        return 6
+    }
+    override fun isResplitAcesAllowed(): Boolean {
+        return true
+    }
+}
+
+class BlackjackConfigSingleDeckResplitAcesTest: BlackjackConfigBaseTest() {
+    override fun getDecks(): Int {
+        return 1
+    }
+    override fun isResplitAcesAllowed(): Boolean {
+        return true
     }
 }

@@ -93,6 +93,6 @@ class MessagesTest {
     }
 
     companion object {
-        var bge: BlackjackGameEngine = BlackjackGameEngine(BlackjackConfigDefault)
+        var bge: BlackjackGameEngine = BlackjackGameEngine(BlackjackConfigDefault())
     }
 }

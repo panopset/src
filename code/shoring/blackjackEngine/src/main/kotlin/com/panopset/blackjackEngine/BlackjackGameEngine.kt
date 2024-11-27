@@ -8,7 +8,11 @@ import java.util.*
 open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val config: BlackjackConfiguration) {
     constructor(config: BlackjackConfiguration) : this(LogzDisplayerCMD, config)
 
-    var isReady = false
+    var action = ""
+
+    fun isReady(): Boolean {
+        return action.isNotEmpty()
+    }
 
     private val blackjackShoe = BlackjackShoe()
 
@@ -34,35 +38,12 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         Logz.logzDsiplayer = logDisplayer
         frontEndPreInitCheck()
         performAction(action)
-        getNewActionCycleSnapshot(action)
     }
 
     fun frontEndPreInitCheck() {
         if (bankroll.reloadAmount == 0) {
             reset()
         }
-    }
-
-    private fun cloneState(action: String): BlackjackGameState {
-        val players = ct.clonePlayers()
-        return BlackjackGameState(
-            bankroll.getChips(),
-            bankroll.reloadCount,
-            config.getReloadAmountInWholeDollars() * 100,
-            action,
-            ct.cloneDealer(),
-            players,
-            Metrics(metrics),
-            getNextBet(),
-            mistakeHeader,
-            mistakeMessage,
-            dealerMessage,
-            getGameStatusVertical(),
-            getGameStatusHorizontal(),
-            getStatusChipsVertical(),
-            getStatusChipsHorizontal(),
-            bankroll.getStakeIncludingHands(players)
-        )
     }
 
     fun deal(isShowing: Boolean): BlackjackCard {
@@ -85,6 +66,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private fun performAction(action: String) {
+        this.action = action
         if (performAdminAction(action)) {
             return
         }
@@ -487,7 +469,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     fun getGameStatus(): String {
-        if (!isReady){
+        if (!isReady()){
             return "initializing..."
         }
         val sw = StringWriter()
@@ -572,13 +554,14 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         return trueCount > veryPositiveCount
     }
 
-    fun getCurrentSnapshot(): CycleSnapshot {
+    var lastActionSnapshot = BlackjackGameState()
+
+    fun takeAnewSnapshot(): BlackjackGameState {
+        lastActionSnapshot = BlackjackGameState(this)
         return lastActionSnapshot
     }
 
-    private fun getNewActionCycleSnapshot(action: String) {
-        lastActionSnapshot = CycleSnapshot(cloneState(action))
+    fun toggleShowCount() {
+        config.toggleShowCount()
     }
-
-    var lastActionSnapshot: CycleSnapshot = CycleSnapshot(cloneState(""))
 }

@@ -1,9 +1,9 @@
 package com.panopset.marin.oldswpkg.games.blackjack
 
-import com.panopset.blackjackEngine.CycleSnapshot
+import com.panopset.blackjackEngine.BlackjackGameState
 import com.panopset.compat.Tile
 
-class LayoutPlayer(tile: Tile?, cardDim: IntArray?, cs: CycleSnapshot?, chipDim: IntArray) :
+class LayoutPlayer(tile: Tile?, cardDim: IntArray?, cs: BlackjackGameState?, chipDim: IntArray) :
     Layout(tile!!, cardDim!!, cs!!) {
     val chipW: Int
     val chipH: Int
@@ -27,7 +27,7 @@ class LayoutPlayer(tile: Tile?, cardDim: IntArray?, cs: CycleSnapshot?, chipDim:
         get() {
             if (field == null) {
                 var cardsWidth = 0
-                for (p in cs.getPlayers()) {
+                for (p in cs.players) {
                     for (h in p.hands) {
                         if (h.getBlackjackCards().isNotEmpty()) {
                             cardsWidth += cardW

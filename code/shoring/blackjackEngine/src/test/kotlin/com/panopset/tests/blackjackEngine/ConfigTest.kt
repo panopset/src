@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test
 class ConfigTest {
     @Test
     fun test() {
-        val config: BlackjackConfiguration = BlackjackConfigDefault
-        Assertions.assertTrue(config.isShowCount())
+        val config: BlackjackConfiguration = BlackjackConfigDefault()
+        Assertions.assertFalse(config.isShowCount())
         Assertions.assertEquals(5, config.getBetIncrementInWholeDollars())
         Assertions.assertEquals(20, config.getLargeBetInWholeDollars())
     }
@@ -22,8 +22,7 @@ class ConfigTest {
      */
     @Test
     fun deckStackerTest() {
-        val config = BlackjackConfigDefault
-        val bge = BlackjackGameEngine(config)
+        val bge = BlackjackGameEngine(BlackjackConfigDefault())
         bge.getShoe().shoe.stackedDeck = "five_of_clubs\njack_of_hearts\nqueen of clubs\nten_of_hearts\nsix_of_clubs"
         bge.exec(CMD_SHUFFLE)
         // Make sure the player knows there's a stacked deck.
