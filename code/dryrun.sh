@@ -1,6 +1,5 @@
 #!/bin/bash
-# Build and publish application for DEB Linux
-# See alrpm for RPM Linux, aw.cmd for Windows, and am.sh for Macintosh.
+# Dry run for aldeb.sh, doesn't publish artifacts to server.
 
 echo dev.properties:
 cat ${HOME}/Documents/panopset/dev.properties
@@ -17,5 +16,3 @@ git pull
 # Build checksum files for DEB Linux.
 . ./bcldeb.sh
 
-# Publish Application DEB Linux
-. ./paldeb.sh

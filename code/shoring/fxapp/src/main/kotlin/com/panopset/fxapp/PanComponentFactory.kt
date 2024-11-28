@@ -128,7 +128,7 @@ object PanComponentFactory {
     fun createPanChoiceBox(fxDoc: FxDoc, id: String, choices: ArrayList<String>, defaultValue: String): ChoiceBox<String> {
         val rtn = ChoiceBox<String>()
         FontManagerFX.register(fxDoc, rtn)
-        fxDoc.registerChoiceBox(id, rtn, defaultValue)
+        fxDoc.registerChoiceBox(id, rtn, defaultValue, choices)
         setChoiceBoxChoices(rtn, choices)
         rtn.setValue(defaultValue)
         return rtn

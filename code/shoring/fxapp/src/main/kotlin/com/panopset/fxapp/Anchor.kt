@@ -114,7 +114,7 @@ abstract class Anchor(val application: PanApplication) {
         return "${application.applicationShortName}_Untitled${application.getNextUniqueID()}.properties"
     }
 
-    fun registerChoiceBox(keyChain: String, cb: ChoiceBox<String>, defaultValue: String) {
+    fun registerChoiceBox(keyChain: String, cb: ChoiceBox<String>, defaultValue: String, choices: ArrayList<String>) {
 
         registerData(keyChain, BoltBox(object: Bolt {
             override fun getBoltValue(): String {
@@ -126,7 +126,11 @@ abstract class Anchor(val application: PanApplication) {
             }
 
             override fun setBoltValue(value: String) {
-                cb.selectionModel.select(value)
+                if (choices.contains(value)) {
+                    cb.selectionModel.select(value)
+                } else {
+                    Logz.warn("$value is not a valid choice for $keyChain")
+                }
             }
         }))
     }

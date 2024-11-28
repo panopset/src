@@ -87,6 +87,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
     }
 
     private var binding = false
+    //var dbgcount = 0L
 
     private fun paintFelt(): BlackjackGameState? {
         if (binding) {
@@ -107,7 +108,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
 //            g.fill = Color.BLANCHEDALMOND
 //            g.fillRect(0.0, 0.0, layoutWidth.toDouble(), layoutHeight.toDouble())
 //            g.fill = Color.DARKGREEN
-//            g.fillText("diags", 100.0, 100.0)
+//            g.fillText("diags ${dbgcount++}", 100.0, 100.0)
 
         if (!Zombie.isActive) {
             g.fill = Color.DARKRED
