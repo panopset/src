@@ -33,8 +33,11 @@ object BlackjackConfigurationFactory {
                 return rtn
             }
             override fun getCountingSystems(): CountingSystems {
-                val countingSystems = CountingSystems(fxDoc.getArrayListValue(KEY_COUNTING_SYSTEMS_DATA))
+                var countingSystems = CountingSystems(fxDoc.getArrayListValue(KEY_COUNTING_SYSTEMS_DATA))
                 val dft = blackjackConfigDefault.getCountingSystems()
+                if (countingSystems.countingSystemsData.isEmpty()) {
+                    countingSystems = CountingSystems(dft.countingSystemsData)
+                }
                 if (countingSystems.countingSystemsData != dft.countingSystemsData) {
                     Logz.warn("Custom (or out of date) counting system data in use.  Go to config to reset.")
                 }

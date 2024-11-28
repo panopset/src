@@ -88,8 +88,6 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
 
     private var binding = false
 
-    var dbgcounter = 0L
-
     private fun paintFelt(): BlackjackGameState? {
         if (binding) {
             return null
@@ -123,13 +121,13 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
                         keyEvent: KeyEvent -> handleKey(keyEvent)
                 }
                 gameStarted = true
+                thread {
+                    bge.exec(CMD_RESET)
+                    gameReady = true
+                }
             } else {
                 if (firstTime) {
                     firstTime = false
-                    thread {
-                        bge.exec(CMD_RESET)
-                        gameReady = true
-                    }
                 }
             }
         }
