@@ -51,6 +51,14 @@ class FeltPainter {
         paintChips(g, blackjackTable.chipTray, cs)
         paintStatus(cs, g, blackjackTable.statusTile)
         paintDealer(g, blackjackTable.dealerTile, cs)
+        if (dbg) {
+            g.fill = Color.YELLOW
+            val pt = blackjackTable.playerTile
+            g.fillRect(pt.left.toDouble(), pt.top.toDouble(), pt.width.toDouble(), pt.bottom.toDouble())
+            g.fill = Color.GRAY
+            val mt  = blackjackTable.msgTile
+            g.fillRect(mt.left.toDouble(), mt.top.toDouble(), mt.width.toDouble(), mt.bottom.toDouble())
+        }
         paintPlayer(logDisplayer, g, blackjackTable.playerTile, cs)
         paintMsgLandscape(cs, g, blackjackTable.msgTile)
     }
@@ -62,10 +70,6 @@ class FeltPainter {
     }
 
     private fun initGforMsg(cs: BlackjackGameState, g: GraphicsContext, t: Tile) {
-        if (dbg) {
-            g.fill = Color.GRAY
-            g.fillRect(t.left.toDouble(), t.top.toDouble(), t.width.toDouble(), t.bottom.toDouble())
-        }
         g.fill = Color.BLACK
         g.font = font0
         if (Stringop.isPopulated(cs.mistakeMessage)) {
@@ -118,10 +122,6 @@ class FeltPainter {
     }
 
     private fun paintPlayer(logDisplayer: LogDisplayer, g: GraphicsContext, t: Tile, cs: BlackjackGameState) {
-        if (dbg) {
-            g.fill = Color.YELLOW
-            g.fillRect(t.left.toDouble(), t.top.toDouble(), t.width.toDouble(), t.bottom.toDouble())
-        }
         g.fill = Color.BLACK
         val o = LayoutPlayer(
             t, intArrayOf(cptr.cardWidth, cptr.cardHeight), cs, intArrayOf(

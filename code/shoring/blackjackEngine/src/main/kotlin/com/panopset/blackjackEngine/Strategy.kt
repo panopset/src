@@ -4,12 +4,19 @@ import java.util.*
 
 class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(blackjackConfiguration) {
 
+    var rawData: List<String> = blackjackConfiguration.getStrategyData()
+    private var sls: Map<StratCat, MutableMap<String, StrategyLine>>? = createStrategyLineMap()
+
+    init {
+        populateStrategyLineMap()
+    }
+
+
     fun getRecommendation(s: Situation): String {
         val line = findStrategyLine(s)
         return line!!.getAction(s)
     }
 
-    private var sls: Map<StratCat, MutableMap<String, StrategyLine>>? = null
     private var hardHeader = ""
     private var softHeader = ""
     private var splitHeader = ""
@@ -21,19 +28,11 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         }
     }
 
-    val strategyLines: Map<StratCat, MutableMap<String, StrategyLine>>?
-        get() {
-            if (sls == null) {
-                sls = createStrategyLineMap()
-                populateStrategyLineMap()
-            }
-            return sls
-        }
 
     private fun populateStrategyLineMap() {
         var reading = StratCat.NONE
-        for (s in Objects.requireNonNull(blackjackConfiguration.getStrategyData())) {
-            if (s.length < 1 || s.substring(0, 1) == "#") {
+        for (s in rawData) {
+            if (s.isEmpty() || s.substring(0, 1) == "#") {
                 continue
             }
             if (StratCat.HARD.toString().equals(s.substring(0, 4), ignoreCase = true)) {
@@ -97,7 +96,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         if (key == "1,1") {
             key = "A,A"
         }
-        return strategyLines!![StratCat.SPLIT]!![key]
+        return sls!![StratCat.SPLIT]!![key]
     }
 
     private fun findSoftStrategyLine(s: Situation): StrategyLine? {
@@ -106,7 +105,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         }
         val v = s.handPlayer.getHandValue()
         val key = if (v > 19) "20+" else v.toString()
-        return strategyLines!![StratCat.SOFT]!![key]
+        return sls!![StratCat.SOFT]!![key]
     }
 
     private fun findHardStrategyLine(s: Situation): StrategyLine? {
@@ -121,7 +120,7 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         } else {
             v.toString()
         }
-        return strategyLines!![StratCat.HARD]!![key]
+        return sls!![StratCat.HARD]!![key]
     }
 
     private fun createStrategyLineMap(): Map<StratCat, MutableMap<String, StrategyLine>> {
