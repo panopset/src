@@ -15,7 +15,7 @@ class ResetTest {
         bge.exec(CMD_DEAL)
         verifyPlayerCards(
             arrayOf(CardDefinition.FIVE_OF_CLUBS, CardDefinition.THREE_OF_CLUBS),
-            bge.takeAnewSnapshot().players[0].hands[0].getBlackjackCards()
+            bge.getLatestSnapshot().players[0].hands[0].getBlackjackCards()
         )
         Assertions.assertTrue(bge.getCycle().isActive)
         Assertions.assertEquals(0, bge.bankroll.getStakeIncludingHands(bge.getCycle().players))

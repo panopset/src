@@ -9,11 +9,6 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     constructor(config: BlackjackConfiguration) : this(LogzDisplayerCMD, config)
 
     var action = ""
-
-    fun isReady(): Boolean {
-        return action.isNotEmpty()
-    }
-
     private val blackjackShoe = BlackjackShoe()
 
     /**
@@ -38,6 +33,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         Logz.logzDsiplayer = logDisplayer
         frontEndPreInitCheck()
         performAction(action)
+        takeAnewSnapshot()
     }
 
     fun frontEndPreInitCheck() {
@@ -120,7 +116,8 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
      */
     private fun reasonThisGameExists(player: Player?) {
         if (player == null && config.isFastDeal()
-            && !isAutomaticRunning() && "" == mistakeMessage) {
+            && !isAutomaticRunning() && "" == mistakeMessage
+        ) {
             exec(CMD_DEAL)
         }
     }
@@ -208,11 +205,13 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
             return false
         }
         bankroll.subtract(handPlayer.wager.initialBet)
-        val splitHand = HandPlayer( Wager(handPlayer.wager))
+        val splitHand = HandPlayer(Wager(handPlayer.wager))
         val splitCard = handPlayer.removeSecondCard()
         handPlayer.dealCard(deal(true))
         handPlayer.setSplit()
-        if (handPlayer.getFirstCard().isAce() && !(config.isResplitAcesAllowed() && handPlayer.getSecondCard().isAce())) {
+        if (handPlayer.getFirstCard().isAce() && !(config.isResplitAcesAllowed() && handPlayer.getSecondCard()
+                .isAce())
+        ) {
             if (!config.isSplitAcePlayable()) {
                 handPlayer.stand()
             }
@@ -456,22 +455,19 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     fun getStatusChipsVertical(): List<String> {
-            val rtn: MutableList<String> = ArrayList()
-            val st = StringTokenizer(getRawStatusChips(), "|")
-            while (st.hasMoreElements()) {
-                rtn.add(st.nextToken().trim { it <= ' ' })
-            }
-            return rtn
+        val rtn: MutableList<String> = ArrayList()
+        val st = StringTokenizer(getRawStatusChips(), "|")
+        while (st.hasMoreElements()) {
+            rtn.add(st.nextToken().trim { it <= ' ' })
         }
+        return rtn
+    }
 
     fun getStatusChipsHorizontal(): String {
         return getRawStatusChips().replace("|", "")
     }
 
     fun getGameStatus(): String {
-        if (!isReady()){
-            return "initializing..."
-        }
         val sw = StringWriter()
         sw.append("| Stake: ${Stringop.getDollarString(bankroll.getStakeIncludingHands(getCycle().players))}")
         sw.append("| Chips: ${Stringop.getDollarString(bankroll.getChips())}")
@@ -484,12 +480,13 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         }
         return sw.toString()
     }
+
     fun getRawStatusChips(): String {
-            val sw = StringWriter()
-            sw.append("  reloads: " + bankroll.reloadCount)
-            sw.append("|  Chips: " + Stringop.getDollarString(bankroll.getChips()))
-            sw.append("|  Next bet: " + Stringop.getDollarString(getNextBet().toLong()))
-            return sw.toString()
+        val sw = StringWriter()
+        sw.append("  reloads: " + bankroll.reloadCount)
+        sw.append("|  Chips: " + Stringop.getDollarString(bankroll.getChips()))
+        sw.append("|  Next bet: " + Stringop.getDollarString(getNextBet().toLong()))
+        return sw.toString()
     }
 
     fun reportNewHand() {
@@ -533,14 +530,6 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         return bankroll.getStakeIncludingHands(ct.cycle?.players)
     }
 
-    fun setAutomaticOnForTesting() {
-        startAutomaticThread()
-    }
-
-    fun clearAutomaticForTesting() {
-        stopAutomaticThread()
-    }
-
     fun waitMillis(i: Long) {
         Thread.sleep(i)
     }
@@ -554,11 +543,19 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         return trueCount > veryPositiveCount
     }
 
-    var lastActionSnapshot = BlackjackGameState()
+    private lateinit var lastActionSnapshot: BlackjackGameState
+    private var firstTime = true
 
-    fun takeAnewSnapshot(): BlackjackGameState {
-        lastActionSnapshot = BlackjackGameState(this)
+    fun getLatestSnapshot(): BlackjackGameState {
+        if (firstTime) {
+            takeAnewSnapshot()
+            firstTime = false
+        }
         return lastActionSnapshot
+    }
+
+    private fun takeAnewSnapshot() {
+        lastActionSnapshot = BlackjackGameState(this)
     }
 
     fun toggleShowCount() {

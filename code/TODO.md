@@ -37,10 +37,11 @@ bge:class     BlackjackGameEngine
     class     CountingSystems
 bc: interface BlackjackConfiguration
 fe: class     BlackjackFxControls
-    class     Blackjack
+    class     Blackjack (entry point)
     class     BrandedApp
     class     StageManager
     class     BlackjackGameController
+    class     FeltPainter (loop)
 
 
 ctls.taCountingSystems.text = defaultCountingSystems = 

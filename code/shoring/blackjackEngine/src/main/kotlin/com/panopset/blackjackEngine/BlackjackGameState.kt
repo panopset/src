@@ -18,23 +18,6 @@ data class BlackjackGameState(
     val statusChipsHorizontal: String,
     val stakeIncludingHands: Long
 ) {
-    constructor(): this(
-        0L,
-        0L,
-        0,
-        "",
-        HandDealer(),
-        ArrayList(),Metrics(),
-        0,
-        "",
-        "",
-        "",
-        ArrayList(),
-        "",
-        ArrayList(),
-        "",
-        0L
-    )
     constructor(bge: BlackjackGameEngine) : this(
         bge.bankroll.getChips(),
         bge.bankroll.reloadCount,
@@ -53,7 +36,6 @@ data class BlackjackGameState(
         bge.getStatusChipsHorizontal(),
         bge.bankroll.getStakeIncludingHands(bge.getCycle().players)
     )
-    var isPainted: Boolean = false
     fun isEmpty(): Boolean {
         return players.isEmpty()
     }

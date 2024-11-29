@@ -20,6 +20,6 @@ class RecommendedActionTest : SessionTest() {
         bge.exec(CMD_STAND)
         Assertions.assertEquals("soft 2  3  4  5  6  7  8  9  T  A ", bge.mistakeHeader)
         Assertions.assertEquals(" 13  H  H  H* Dh Dh H  H  H  H  H ", bge.mistakeMessage)
-        Assertions.assertEquals(CMD_STAND, bge.takeAnewSnapshot().action)
+        Assertions.assertEquals(CMD_STAND, bge.getLatestSnapshot().action)
     }
 }

@@ -19,9 +19,8 @@ import kotlin.concurrent.thread
 class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameEngine) {
     val fxDoc: FxDoc = ctls.fxDoc
     var felt = ctls.felt
-    var firstTime = true
-    private var gameReady = false
-    private var gameStarted = false
+    private var dirty = false
+    private var firstTime = true
 
     init {
         Zombie.addStopAction { timer.stop() }
@@ -44,7 +43,6 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
 
     private var fontSize = 0
     private var paintedSnapshot: BlackjackGameState? = null
-    private var dirty = true
     private var timer: AnimationTimer = object : AnimationTimer() {
                     override fun handle(now: Long) {
                         if (now - lastUpdate > 5000000L) {
@@ -67,12 +65,6 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
             dirty = true
         }
         if (!dirty) {
-            if (paintedSnapshot != bge.lastActionSnapshot) {
-                paintedSnapshot = bge.lastActionSnapshot
-                dirty = true
-            }
-        }
-        if (!dirty) {
             val currentTime = Date().time
             if (currentTime - oneSecond > 1000) {
                 oneSecond = currentTime
@@ -89,17 +81,17 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
     private var binding = false
     //var dbgcount = 0L
 
-    private fun paintFelt(): BlackjackGameState? {
+    private fun paintFelt() {
         if (binding) {
-            return null
+            return
         }
         if (felt.parent == null) {
-            return null
+            return
         }
         val layoutHeight = felt.parent.layoutBounds.height.toInt()
         val layoutWidth = felt.parent.layoutBounds.width.toInt()
         if (layoutHeight < 10 || layoutWidth < 10) {
-            return null
+            return
         }
         felt.width = layoutWidth.toDouble()
         felt.height = layoutHeight.toDouble()
@@ -113,30 +105,23 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
         if (!Zombie.isActive) {
             g.fill = Color.DARKRED
             g.fillRect(0.0, 0.0, layoutWidth.toDouble(), layoutHeight.toDouble())
-            return null
+            return
         }
-        val rtn = bge.lastActionSnapshot
-        if (!gameStarted) {
-            if (gameReady) {
+        if (isDirty()) {
+            if (firstTime) {
+                firstTime = false
                 felt.scene.onKeyPressed = EventHandler {
                         keyEvent: KeyEvent -> handleKey(keyEvent)
                 }
-                gameStarted = true
                 thread {
                     bge.exec(CMD_RESET)
-                    gameReady = true
-                }
-            } else {
-                if (firstTime) {
-                    firstTime = false
                 }
             }
+        } else {
+            return
         }
-        if (!isDirty()) {
-            return null
-        }
-        FeltPainter().draw(fxDoc, rtn, g, layoutWidth, layoutHeight)
+        FeltPainter().draw(fxDoc, bge.getLatestSnapshot(), g, layoutWidth, layoutHeight)
         dirty = false
-        return rtn
+        return
     }
 }

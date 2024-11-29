@@ -13,6 +13,7 @@ import com.panopset.fxapp.PanComponentFactory.createPanTabPane
 import com.panopset.marin.games.blackjack.BlackjackConfigurationFactory
 import com.panopset.marin.games.blackjack.BlackjackGameController
 import com.panopset.marin.games.blackjack.BlackjackGameEngineFactory
+import javafx.application.Platform
 import javafx.scene.control.TabPane
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.Pane
@@ -61,6 +62,10 @@ class Blackjack: BrandedApp(
 
 
         val bgc = BlackjackGameController(ctls, bge)
+
+        Platform.runLater({
+            bgc.update()
+        })
 
 //        ctls.chCountingSystems.selectionModel.selectedIndexProperty()
 //            .addListener { _, _, newIndex ->

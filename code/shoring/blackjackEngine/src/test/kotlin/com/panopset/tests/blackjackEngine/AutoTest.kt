@@ -52,10 +52,10 @@ class AutoTest {
         })
         bge.exec(CMD_AUTO)
         synchronized(bge) {
-            var paintedSnapshot = BlackjackGameState()
+            var paintedSnapshot = bge.getLatestSnapshot()
             while (bge.isAutomaticRunning() && Zombie.isActive) {
                 bge.waitMillis(200)
-                val cycleSnapshot = bge.takeAnewSnapshot()
+                val cycleSnapshot = bge.getLatestSnapshot()
                 if (cycleSnapshot != paintedSnapshot) {
                     paintedSnapshot = cycleSnapshot
                     println(
