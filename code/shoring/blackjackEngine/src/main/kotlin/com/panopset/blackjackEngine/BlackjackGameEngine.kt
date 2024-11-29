@@ -530,6 +530,9 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         return bankroll.getStakeIncludingHands(ct.cycle?.players)
     }
 
+    /**
+     * Testing only.
+     */
     fun waitMillis(i: Long) {
         Thread.sleep(i)
     }

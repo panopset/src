@@ -89,7 +89,7 @@ class FeltPainter {
         } else if (Stringop.isPopulated(cs.dealerMessage)) {
             g.fill = Color.WHITE
             g.fillText(cs.dealerMessage, 0.0, y.toDouble())
-            Logz.warn(cs.dealerMessage)
+            Logz.info(cs.dealerMessage)
         }
         val newY = y - vs
         paintKeyMeanings(g, t.left, newY)
@@ -213,7 +213,7 @@ class FeltPainter {
         )
     }
 
-    private var dbg = false
+    var dbg = true
     private fun paintChips(g: GraphicsContext, t: Tile?, cs: BlackjackGameState) {
         if (t == null) {
             return
@@ -231,10 +231,6 @@ class FeltPainter {
         g.fill = Color.WHITE
         g.font = font0
         var y = t.top + verticalSeparator
-        for (s in cs.gameStatusVertical) {
-            g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
-            y += verticalSeparator
-        }
         for (s in cs.gameStatusVertical) {
             g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
             y += verticalSeparator

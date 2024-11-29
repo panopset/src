@@ -39,6 +39,8 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
             }
         }
         bge.exec(action)
+        lastUpdate = 0
+        dirty = true
     }
 
     private var fontSize = 0
@@ -53,7 +55,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
                 }
 
     var lastUpdate: Long = 0
-    private var oneSecond: Long = 0
+    private var lastDirtyCheck: Long = 0
 
     private fun startPaintCycle() {
         Platform.runLater { timer.start() }
@@ -66,8 +68,8 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
         }
         if (!dirty) {
             val currentTime = Date().time
-            if (currentTime - oneSecond > 1000) {
-                oneSecond = currentTime
+            if (currentTime - lastDirtyCheck > 1000) {
+                lastDirtyCheck = currentTime
                 dirty = true
             }
         }
@@ -79,7 +81,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
     }
 
     private var binding = false
-    //var dbgcount = 0L
+    var dbgcount = 0L
 
     private fun paintFelt() {
         if (binding) {
@@ -97,10 +99,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
         felt.height = layoutHeight.toDouble()
         val g = felt.graphicsContext2D
 
-//            g.fill = Color.BLANCHEDALMOND
-//            g.fillRect(0.0, 0.0, layoutWidth.toDouble(), layoutHeight.toDouble())
-//            g.fill = Color.DARKGREEN
-//            g.fillText("diags ${dbgcount++}", 100.0, 100.0)
+
 
         if (!Zombie.isActive) {
             g.fill = Color.DARKRED
@@ -120,7 +119,11 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
         } else {
             return
         }
-        FeltPainter().draw(fxDoc, bge.getLatestSnapshot(), g, layoutWidth, layoutHeight)
+        val feltPainter = FeltPainter()
+        feltPainter.draw(fxDoc, bge.getLatestSnapshot(), g, layoutWidth, layoutHeight)
+        if (feltPainter.dbg) {
+            g.fillText("diags ${dbgcount++}", 100.0, 100.0)
+        }
         dirty = false
         return
     }
