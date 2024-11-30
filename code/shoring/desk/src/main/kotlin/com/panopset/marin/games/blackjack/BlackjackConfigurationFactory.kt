@@ -25,8 +25,10 @@ object BlackjackConfigurationFactory {
                 return fxDoc.getBooleanValue(KEY_RESPLIT_ACES)
             }
             override fun getStrategyData(): ArrayList<String> {
-                val rtn = fxDoc.getArrayListValue(KEY_BASIC_STRATEGY_DATA)
+                var rtn = fxDoc.getArrayListValue(KEY_BASIC_STRATEGY_DATA)
                 val dft = blackjackConfigDefault.getStrategyData()
+                if (rtn.isEmpty())
+                    rtn = dft
                 if (rtn != dft) {
                     Logz.warn("Custom (or out of date) strategy data in use.  Go to config to reset.")
                 }

@@ -6,8 +6,14 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
 
     var rawData: List<String> = blackjackConfiguration.getStrategyData()
     private var sls: Map<StratCat, MutableMap<String, StrategyLine>>? = createStrategyLineMap()
+    private lateinit var hardHeader: String
+    private lateinit var softHeader: String
+    private lateinit var splitHeader: String
 
     init {
+        if (rawData.isEmpty()) {
+            throw RuntimeException("no data for strategy found.")
+        }
         populateStrategyLineMap()
     }
 
@@ -17,9 +23,6 @@ class Strategy(blackjackConfiguration: BlackjackConfiguration) : Configurable(bl
         return line!!.getAction(s)
     }
 
-    private var hardHeader = ""
-    private var softHeader = ""
-    private var splitHeader = ""
     fun getHeaderFor(cat: StratCat?): String {
         return when (cat) {
             StratCat.SOFT -> softHeader
