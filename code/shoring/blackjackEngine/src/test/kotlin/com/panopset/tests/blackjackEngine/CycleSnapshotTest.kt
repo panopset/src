@@ -31,9 +31,10 @@ class CycleSnapshotTest {
         cs = bge.getLatestSnapshot()
         Assertions.assertEquals("Please select L=Deal", cs.dealerMessage)
         Assertions.assertEquals("Stake: $10.00", cs.gameStatusVertical[0])
-        Assertions.assertEquals("Chips: $310.00", cs.gameStatusVertical[1])
+        Assertions.assertEquals("Reloads: 1", cs.gameStatusVertical[1])
+        Assertions.assertEquals("Chips: $310.00", cs.gameStatusVertical[2])
         Assertions.assertEquals(
-            " Stake: $10.00 Chips: $310.00 Score: 0 (1) Hi-Lo: 1",
+            " Stake: $10.00 Reloads: 1 Chips: $310.00 Score: 0 (1) Hi-Lo: 1",
             cs.gameStatusHorizontal
         )
         Assertions.assertEquals("reloads: 1", cs.statusChipsVertical[0])

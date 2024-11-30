@@ -15,13 +15,14 @@ class DsTest {
         bge.getShoe().shuffle()
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), soft18v3())
         Assertions.assertEquals(
-            "| Stake: $10.00| Chips: $310.00| Score: 1 (1)| Hi-Lo: -1",
+            "| Stake: $10.00| Reloads: 1| Chips: $310.00| Score: 1 (1)| Hi-Lo: -1",
             bge.getGameStatus()
         )
         Assertions.assertEquals(
             Stringop.arrayToList(
                 arrayOf(
                     "Stake: $10.00",
+                    "Reloads: 1",
                     "Chips: $310.00",
                     "Score: 1 (1)",
                     "Hi-Lo: -1"
@@ -30,7 +31,7 @@ class DsTest {
             bge.getGameStatusVertical()
         )
         Assertions.assertEquals(
-            " Stake: $10.00 Chips: $310.00 Score: 1 (1) Hi-Lo: -1",
+            " Stake: $10.00 Reloads: 1 Chips: $310.00 Score: 1 (1) Hi-Lo: -1",
             bge.getGameStatusHorizontal()
         )
         Assertions.assertEquals(
@@ -54,7 +55,7 @@ class DsTest {
         bge.shuffle()
         bge.exec(CMD_COUNT)
         bge.toggleShowCount()
-        Assertions.assertEquals("| Stake: $10.00| Chips: $310.00| Score: 1 (1)", bge.getGameStatus())
+        Assertions.assertEquals("| Stake: $10.00| Reloads: 1| Chips: $310.00| Score: 1 (1)| Hi-Lo: 0", bge.getGameStatus())
     }
 
     @Test
