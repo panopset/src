@@ -32,7 +32,7 @@ class FeltPainter {
 
     private var blackjackTable = BlackjackTable(600, 500, cptr.cardHeight)
 
-    fun draw(logDisplayer: LogDisplayer, cs: BlackjackGameState, g: GraphicsContext, width: Int, height: Int) {
+    fun draw(cs: BlackjackGameState, g: GraphicsContext, width: Int, height: Int) {
         if (width.toDouble() == 0.0 || height.toDouble() == 0.0) {
             return
         }
@@ -49,7 +49,6 @@ class FeltPainter {
         }
         g.fillRect(0.0, 0.0, width.toDouble(), height.toDouble())
         paintChips(g, blackjackTable.chipTray, cs)
-        paintStatus(cs, g, blackjackTable.statusTile)
         paintDealer(g, blackjackTable.dealerTile, cs)
         if (dbg) {
             g.fill = Color.YELLOW
@@ -59,7 +58,7 @@ class FeltPainter {
             val mt  = blackjackTable.msgTile
             g.fillRect(mt.left.toDouble(), mt.top.toDouble(), mt.width.toDouble(), mt.bottom.toDouble())
         }
-        paintPlayer(logDisplayer, g, blackjackTable.playerTile, cs)
+        paintPlayer(g, blackjackTable.playerTile, cs)
         paintMsgLandscape(cs, g, blackjackTable.msgTile)
     }
 
@@ -121,7 +120,7 @@ class FeltPainter {
         }
     }
 
-    private fun paintPlayer(logDisplayer: LogDisplayer, g: GraphicsContext, t: Tile, cs: BlackjackGameState) {
+    private fun paintPlayer(g: GraphicsContext, t: Tile, cs: BlackjackGameState) {
         g.fill = Color.BLACK
         val o = LayoutPlayer(
             t, intArrayOf(cptr.cardWidth, cptr.cardHeight), cs, intArrayOf(
@@ -130,11 +129,6 @@ class FeltPainter {
         )
         var cardX = o.playerCardXstart!!
         var arrowHasBeenDrawn = false
-        if (cs.players.isEmpty()) {
-            logDisplayer.dspmsg(promptDeal)
-        } else {
-            logDisplayer.clear()
-        }
         for (p in cs.players) {
             val activeHand = p.activeHand
             for (h in p.hands) {

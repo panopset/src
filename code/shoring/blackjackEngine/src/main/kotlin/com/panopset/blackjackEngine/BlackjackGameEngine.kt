@@ -472,6 +472,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         sw.append("| Stake: ${Stringop.getDollarString(bankroll.getStakeIncludingHands(getCycle().players))}")
         sw.append("| Reloads: " + bankroll.reloadCount)
         sw.append("| Chips: ${Stringop.getDollarString(bankroll.getChips())}")
+        sw.append("| Next bet: ${Stringop.getDollarString(getNextBet().toLong())}")
         sw.append("| Score: " + metrics.handsSinceLastMistake)
         sw.append(" (" + metrics.getHandsSinceLastMistakeRecord() + ")")
         if (config.isShowCount()) {
@@ -486,7 +487,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         val sw = StringWriter()
         sw.append("  reloads: " + bankroll.reloadCount)
         sw.append("|  Chips: " + Stringop.getDollarString(bankroll.getChips()))
-        sw.append("|  Next bet: " + Stringop.getDollarString(getNextBet().toLong()))
+        sw.append("| Next bet: ${Stringop.getDollarString(getNextBet().toLong())}")
         return sw.toString()
     }
 

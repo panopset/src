@@ -119,7 +119,7 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
             }
         }
         val feltPainter = FeltPainter()
-        feltPainter.draw(fxDoc, bge.getLatestSnapshot(), g, layoutWidth, layoutHeight)
+        feltPainter.draw(bge.getLatestSnapshot(), g, layoutWidth, layoutHeight)
         if (feltPainter.dbg) {
             g.fillText("diags ${dbgcount++}", 100.0, 100.0)
         }

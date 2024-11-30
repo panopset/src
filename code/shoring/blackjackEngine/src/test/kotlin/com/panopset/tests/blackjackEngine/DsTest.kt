@@ -15,7 +15,7 @@ class DsTest {
         bge.getShoe().shuffle()
         verifyRecommendedActions(bge, arrayOf(CMD_DEAL, CMD_DOUBLE), soft18v3())
         Assertions.assertEquals(
-            "| Stake: $10.00| Reloads: 1| Chips: $310.00| Score: 1 (1)| Hi-Lo: -1",
+            "| Stake: $10.00| Reloads: 1| Chips: $310.00| Next bet: $5.00| Score: 1 (1)| Hi-Lo: -1",
             bge.getGameStatus()
         )
         Assertions.assertEquals(
@@ -24,6 +24,7 @@ class DsTest {
                     "Stake: $10.00",
                     "Reloads: 1",
                     "Chips: $310.00",
+                    "Next bet: $5.00",
                     "Score: 1 (1)",
                     "Hi-Lo: -1"
                 )
@@ -31,7 +32,7 @@ class DsTest {
             bge.getGameStatusVertical()
         )
         Assertions.assertEquals(
-            " Stake: $10.00 Reloads: 1 Chips: $310.00 Score: 1 (1) Hi-Lo: -1",
+            " Stake: $10.00 Reloads: 1 Chips: $310.00 Next bet: $5.00 Score: 1 (1) Hi-Lo: -1",
             bge.getGameStatusHorizontal()
         )
         Assertions.assertEquals(
@@ -39,15 +40,15 @@ class DsTest {
             bge.getStatusChipsVertical()
         )
         Assertions.assertEquals(
-            "  reloads: 1  Chips: $310.00  Next bet: $5.00",
+            "  reloads: 1  Chips: $310.00 Next bet: $5.00",
             bge.getStatusChipsHorizontal()
         )
         Assertions.assertEquals(
-            "  reloads: 1|  Chips: $310.00|  Next bet: $5.00",
+            "  reloads: 1|  Chips: $310.00| Next bet: $5.00",
             bge.getRawStatusChips()
         )
         Assertions.assertEquals(
-            "  reloads: 1|  Chips: $310.00|  Next bet: $5.00",
+            "  reloads: 1|  Chips: $310.00| Next bet: $5.00",
             bge.getRawStatusChips()
         )
         bge.shuffle()
@@ -55,7 +56,7 @@ class DsTest {
         bge.shuffle()
         bge.exec(CMD_COUNT)
         bge.toggleShowCount()
-        Assertions.assertEquals("| Stake: $10.00| Reloads: 1| Chips: $310.00| Score: 1 (1)| Hi-Lo: 0", bge.getGameStatus())
+        Assertions.assertEquals("| Stake: $10.00| Reloads: 1| Chips: $310.00| Next bet: $5.00| Score: 1 (1)| Hi-Lo: 0", bge.getGameStatus())
     }
 
     @Test
