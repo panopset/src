@@ -148,15 +148,22 @@ object JavaFXapp {
                 "\n\n " +
                 "\u00a9 1996-2024 Karl Dinwiddie.\n\n" +
 
-                "This program is free software: you can redistribute it and/or modify \n" +
-                "it under the terms of the GNU General Public License as published by \n" +
-                "the Free Software Foundation, either version 3 of the License, or \n" +
-                "(at your option) any later version. \n" +
-                " \n" +
+                "This program is free software for those that can't afford it: \n" +
+                "you can redistribute it and/or modify it under the terms of the GNU \n" +
+                "General Public License as published by the Free Software Foundation, \n" +
+                "either version 3 of the License, or (at your option) any later \n" +
+                "version, along with a couple of Panopset additional provisions,\n" +
+                "with regards to Panopset Blackjack:\n\n" +
+                "1) Under no circumstances, is the Panopset Blackjack module to be used to \n" +
+                "drive a real money game. You can do whatever you want with \n" +
+                "cryptocurrency, that isn't real money. \n" +
+                "2) All front end distributions of code that uses the Panopset Blackjack \n" +
+                "module must have a link to Gamblers Anonymous. \n\n" +
                 "This program is distributed in the hope that it will be useful, \n" +
                 "but WITHOUT ANY WARRANTY; without even the implied warranty of \n" +
                 "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \n\n" +
-                "Please click the link below for the full license, it will open in your default browser.")
+                "Please click the link below for the full license, " +
+                "it will open in your default browser.")
 
         val licenceLink = Hyperlink(licenseLinkText)
         licenceLink.onAction = EventHandler {

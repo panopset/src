@@ -1,6 +1,5 @@
-Strategy@2731
-Strategy@28c7c5e6
-
+show reloads
+link to gamblers anonymous prominently in Blackjack front end.
 
 
 

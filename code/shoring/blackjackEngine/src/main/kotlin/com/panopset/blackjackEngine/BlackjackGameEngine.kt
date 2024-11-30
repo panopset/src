@@ -140,7 +140,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
             }
 
             CMD_COUNT -> {
-                config.isShowCount()
+                config.toggleShowCount()
                 true
             }
 
@@ -470,6 +470,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     fun getGameStatus(): String {
         val sw = StringWriter()
         sw.append("| Stake: ${Stringop.getDollarString(bankroll.getStakeIncludingHands(getCycle().players))}")
+        sw.append("| Reloads: " + bankroll.reloadCount)
         sw.append("| Chips: ${Stringop.getDollarString(bankroll.getChips())}")
         sw.append("| Score: " + metrics.handsSinceLastMistake)
         sw.append(" (" + metrics.getHandsSinceLastMistakeRecord() + ")")

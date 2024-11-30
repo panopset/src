@@ -206,11 +206,13 @@ class FeltPainter {
             g.fillText("  " + s.trim { it <= ' ' }, t.left.toDouble(), y.toDouble())
             y += verticalSeparator
         }
-        g.fillText(
-            String.format("  Action: %s", cs.action.uppercase(Locale.getDefault())),
-            t.left.toDouble(),
-            y.toDouble()
-        )
+        if (dbg) {
+            g.fillText(
+                String.format("  Action: %s", cs.action.uppercase(Locale.getDefault())),
+                t.left.toDouble(),
+                y.toDouble()
+            )
+        }
     }
 
     var dbg = false
