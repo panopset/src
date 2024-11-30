@@ -305,6 +305,9 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
         get() = blackjackShoe.remaining() < blackjackShoe.cut()
 
     fun setNextBet(value: Int) {
+        if (value == 0) {
+            return
+        }
         nextBet = value
     }
 

@@ -92,7 +92,6 @@ class FeltPainter {
         } else if (Stringop.isPopulated(cs.dealerMessage)) {
             g.fill = Color.WHITE
             g.fillText(cs.dealerMessage, 0.0, y.toDouble())
-            Logz.info(cs.dealerMessage)
         }
         val newY = y - vs
         paintKeyMeanings(g, t.left, newY)
