@@ -17,7 +17,7 @@ import java.util.*
 
 class FeltPainter {
     private fun updateTable(w: Int, h: Int) {
-        if (weDontHaveEnoughRoomToWorkWith(w, h)) {
+        if (weDoNotHaveEnoughRoomToWorkWith(w, h)) {
             return
         }
         blackjackTable = BlackjackTable(w, h, cptr.cardHeight)
@@ -213,7 +213,7 @@ class FeltPainter {
         )
     }
 
-    var dbg = true
+    var dbg = false
     private fun paintChips(g: GraphicsContext, t: Tile?, cs: BlackjackGameState) {
         if (t == null) {
             return
@@ -242,6 +242,6 @@ class FeltPainter {
     private val fontMono = FontManagerFX.getMonospace()
 }
 
-fun weDontHaveEnoughRoomToWorkWith(w: Int, h: Int): Boolean {
+fun weDoNotHaveEnoughRoomToWorkWith(w: Int, h: Int): Boolean {
     return w < 200 || h < 200
 }

@@ -98,9 +98,6 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
         felt.width = layoutWidth.toDouble()
         felt.height = layoutHeight.toDouble()
         val g = felt.graphicsContext2D
-
-
-
         if (!Zombie.isActive) {
             g.fill = Color.DARKRED
             g.fillRect(0.0, 0.0, layoutWidth.toDouble(), layoutHeight.toDouble())
@@ -117,7 +114,9 @@ class BlackjackGameController(ctls: BlackjackFxControls, val bge: BlackjackGameE
                 }
             }
         } else {
-            return
+            if (!bge.isAutomaticRunning()) {
+                return
+            }
         }
         val feltPainter = FeltPainter()
         feltPainter.draw(fxDoc, bge.getLatestSnapshot(), g, layoutWidth, layoutHeight)
