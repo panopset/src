@@ -19,7 +19,7 @@ The base directory for this project contains these scripts:
 
 Flywheel:
 
-* [Samples](docs/uses/README.md)
+* [Samples](docs/uses/README.md).
 
 Build desktop applications from source:
 
@@ -28,8 +28,5 @@ Build desktop applications from source:
 Maintainers:
 
 * [Website Deployment Manual](docs/deploy.md).
-* [Continuous Integration Manual](docs/ci.md)
+* [Continuous Integration Manual](docs/ci.md).
 * [Dependencies](docs/deps.md).
-
-All of Panopset is completely open source, you could quickly start your
-own open source software company, by branching this repository and rebranding it.
