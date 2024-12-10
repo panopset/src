@@ -56,6 +56,10 @@ class CountingSystems(val countingSystemsData: ArrayList<String>) {
         }
     }
 
+    fun setSystemByName(keyName: String) {
+        setCountingSystem(getKeyNamePosition(keyName))
+    }
+
     fun setSystemByKeyNamePosition(position: Int) {
         setCountingSystem(position)
     }

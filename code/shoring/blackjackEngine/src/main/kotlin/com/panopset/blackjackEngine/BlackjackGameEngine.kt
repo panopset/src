@@ -2,7 +2,6 @@ package com.panopset.blackjackEngine
 
 import com.panopset.compat.*
 import java.io.StringWriter
-import java.lang.RuntimeException
 import java.util.*
 
 open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val config: BlackjackConfiguration) {
@@ -47,6 +46,7 @@ open class BlackjackGameEngine(private val logDisplayer: LogDisplayer, val confi
     }
 
     private fun reset() {
+        countingSystems = config.getCountingSystems()
         bankroll.reloadAmount = config.getReloadAmountInWholeDollars() * 100
         if (bankroll.reloadAmount < 0) {
             throw RuntimeException()

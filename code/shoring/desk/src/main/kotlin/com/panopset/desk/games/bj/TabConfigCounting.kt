@@ -19,7 +19,7 @@ class TabConfigCounting(val ctls: BlackjackFxControls) {
         val rtn = FontManagerFX.registerTab(ctls.fxDoc, Tab("Counting"))
         val topHbox = createPanHBox(
             createPanVBox(
-                createPanTitledPane(ctls.fxDoc, "Counting system", ctls.chCountingSystems),
+                createPanTitledPane(ctls.fxDoc, "Counting system", ctls.chCountingSystems.getChoiceBoxForDisplayOnly()),
                 createPanTitledPane(ctls.fxDoc, "Positive count large bet trigger", ctls.countPositive),
                 createPanLabel(ctls.fxDoc, "Setting positive count trigger to 0, or blank, will turn off card counting adjustments."),
                 createPanLabel(ctls.fxDoc, "Counting system simulations work best with one player."),

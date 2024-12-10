@@ -23,6 +23,9 @@ abstract class Anchor(val application: PanApplication) {
 
     fun getIntValue(key: String): Int {
         val value = getStringValue(key)
+        if (value.isEmpty()) {
+            return 0
+        }
         val intValue = value.toInt()
         return intValue
     }
@@ -114,25 +117,8 @@ abstract class Anchor(val application: PanApplication) {
         return "${application.applicationShortName}_Untitled${application.getNextUniqueID()}.properties"
     }
 
-    fun registerChoiceBox(keyChain: String, cb: ChoiceBox<String>, defaultValue: String, choices: ArrayList<String>) {
-
-        registerData(keyChain, BoltBox(object: Bolt {
-            override fun getBoltValue(): String {
-                return cb.value ?: defaultValue
-            }
-
-            override fun getBoltDefault(): String {
-                return defaultValue
-            }
-
-            override fun setBoltValue(value: String) {
-                if (choices.contains(value)) {
-                    cb.selectionModel.select(value)
-                } else {
-                    Logz.warn("$value is not a valid choice for $keyChain")
-                }
-            }
-        }))
+    fun registerChoiceBox(keyChain: String, panChoiceBox: PanChoiceBox, defaultValue: String, choices: ArrayList<String>) {
+         panChoiceBox.register(this, keyChain, defaultValue, choices)
     }
 
     fun registerCheckBox(keyChain: String, cb: CheckBox) {

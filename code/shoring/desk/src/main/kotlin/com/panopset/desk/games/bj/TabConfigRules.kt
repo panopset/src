@@ -13,11 +13,11 @@ class TabConfigRules {
             createPanHBox(
                 createPanVBox(
                     ctls.dealerHitsSoft17, ctls.resplitAces, ctls.splitAcePlayable, ctls.doubleAfterSplit,
-                    createPanHBox(createPanLabel(ctls.fxDoc, "Decks: "), ctls.chDecks)
+                    createPanHBox(createPanLabel(ctls.fxDoc, "Decks: "), ctls.chDecks.getChoiceBoxForDisplayOnly())
                 ),
                 createPanVBox(
                     ctls.rule65, ctls.ruleLateSurrender, ctls.ruleVariations,
-                    createPanHBox(createPanLabel(ctls.fxDoc, "Seats: "), ctls.chSeats)
+                    createPanHBox(createPanLabel(ctls.fxDoc, "Seats: "), ctls.chSeats.getChoiceBoxForDisplayOnly())
                 ),
                 createPanVBox(
                     ctls.ruleShowCount, ctls.ruleEuropeanStyle, ctls.ruleFastDeal,

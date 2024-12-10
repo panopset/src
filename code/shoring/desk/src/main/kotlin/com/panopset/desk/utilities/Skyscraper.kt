@@ -152,7 +152,7 @@ class Skyscraper: BrandedApp(
 
     private fun selectCenterPane(floor: Floor): SplitPane {
         val splitPaneID = "bodyResponseSplitPane"
-        return when (floor.postMethodChoiceBox.value) {
+        return when (floor.postMethodChoiceBox.getCurrentChoice()) {
             HttpCommMethod.GET.name -> {
                 createPanSplitPane(floor.fxDoc, splitPaneID, floor.headerTextArea, floor.responseTextArea)
             }
@@ -168,12 +168,12 @@ class Skyscraper: BrandedApp(
     private fun createTopControlPane(fxDoc: FxDoc, bp: BorderPane, floor: Floor): Pane {
         val rtn = createPanHBox(
             createPanButton(fxDoc, { doSend(floor) }, "_send", true, "Send the request."),
-            floor.postMethodChoiceBox,
+            floor.postMethodChoiceBox.getChoiceBoxForDisplayOnly(),
             createPanVBoxHGrow(floor.urlTextField, floor.urlOutField)
         )
-        floor.postMethodChoiceBox.onAction = EventHandler {
+        floor.postMethodChoiceBox.setAction(EventHandler {
             updateCenterBorderPaneCenterCenter(bp, floor)
-        }
+        })
         return rtn
     }
 
@@ -183,11 +183,10 @@ class Skyscraper: BrandedApp(
             Skyscraper().go()
         }
     }
-
 }
 
 private fun doSend(floor: Floor) {
-    when (floor.postMethodChoiceBox.value) {
+    when (floor.postMethodChoiceBox.getCurrentChoice()) {
         HttpCommMethod.GET.name -> {
             doGet(floor)
         }

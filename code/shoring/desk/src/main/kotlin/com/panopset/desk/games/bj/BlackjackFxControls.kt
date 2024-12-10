@@ -14,7 +14,7 @@ class BlackjackFxControls(val fxDoc: FxDoc) {
     val defaultConfig = BlackjackConfigDefault()
     val felt = Canvas()
     val taBasicStrategy = createPersistentPanTextArea(fxDoc, KEY_BASIC_STRATEGY_DATA, "", "", Stringop.arrayToString(defaultConfig.getStrategyData()))
-    val taCountingSystems = createPersistentPanTextArea(fxDoc, KEY_COUNTING_SYSTEMS_DATA, "", "Entry with the * in front of the name, is the default.", Stringop.arrayToString(defaultConfig.getCountingSystems().countingSystemsData))
+    val taCountingSystems = createPersistentPanTextArea(fxDoc, KEY_COUNTING_SYSTEMS_DATA, "Reset game to pick up changes.", "Entry with the * in front of the name, is the default.", Stringop.arrayToString(defaultConfig.getCountingSystems().countingSystemsData))
     val chCountingSystems = createPanChoiceBox(fxDoc, KEY_COUNTING_SYSTEMS_CHOICE_BOX, defaultConfig.getCountingSystems().keyNames, defaultConfig.getCountingSystems().defaultKey)
     val countPositive = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_VERY_POSITIVE_COUNT, defaultConfig.getStrategicVeryPositiveCount().toString(), "", "")
     val minimumBet = createPanInputTextFieldWithDefaultValue(fxDoc, KEY_MINIMUM_BET_IN_WHOLE_DOLLARS, defaultConfig.getMinimumBetInWholeDollars().toString(), "", "")

@@ -75,7 +75,6 @@ object PanComponentFactory {
         return rtn
     }
 
-
     fun createPanTextArea(fxDoc: FxDoc, prompt: String, ttt: String, dft: String): TextArea {
         val rtn = createPanTextArea(fxDoc, prompt, ttt)
         rtn.text = dft
@@ -125,22 +124,8 @@ object PanComponentFactory {
         return rtn
     }
 
-    fun createPanChoiceBox(fxDoc: FxDoc, id: String, choices: ArrayList<String>, defaultValue: String): ChoiceBox<String> {
-        val rtn = ChoiceBox<String>()
-        FontManagerFX.register(fxDoc, rtn)
-        fxDoc.registerChoiceBox(id, rtn, defaultValue, choices)
-        setChoiceBoxChoices(rtn, choices)
-        rtn.setValue(defaultValue)
-        return rtn
-    }
-
-    private fun setChoiceBoxChoices(ch: ChoiceBox<String>, choices: ArrayList<String>) {
-        val ol = FXCollections.observableArrayList(choices)
-        ch.items = ol
-        val selected = ch.selectionModel.selectedIndex
-        if (selected == -1) {
-            ch.selectionModel.select(0)
-        }
+    fun createPanChoiceBox(fxDoc: FxDoc, id: String, choices: ArrayList<String>, defaultValue: String): PanChoiceBox {
+        return PanChoiceBox(fxDoc, id, choices, defaultValue)
     }
 
     fun createPanPwdField(fxDoc: FxDoc): PasswordField {
@@ -242,7 +227,6 @@ object PanComponentFactory {
         rtn.collapsibleProperty().value = false
         return rtn
     }
-
 
     fun createPanTitledPane(fxDoc: FxDoc, title: String, content: Node): TitledPane {
         val rtn = createPanTitledPane(fxDoc, title)
