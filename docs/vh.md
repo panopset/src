@@ -6,6 +6,10 @@ Not all versions listed, just those with enhancements or bug fixes worth noting 
 The dates are when the release was started. If downloaded from the preview site, panopset.net, they could be out of
 date later; panopset.com always has the final release.
 
+## 1.5.1 (2024.11.30)
+* Bug fix
+  * Blackjack config, counting system not picked up on reset.
+
 ## 1.5.0 (2024.11.16)
 * Bug fixes
   * Default values not getting picked up in new documents. 
