@@ -24,9 +24,9 @@
            ../legacy/pom.xml
         -->
         <java.version>23</java.version>
-        <kotlin.version>2.1.0-RC2</kotlin.version>
+        <kotlin.version>2.1.0</kotlin.version>
         <dokka.version>2.0.0-Beta</dokka.version>
-        <fx.v>24-ea+15</fx.v>
+        <fx.v>24-ea+19</fx.v>
         <gson.version>2.11.0</gson.version>
 
         <maven.compiler.version>3.13.0</maven.compiler.version>
