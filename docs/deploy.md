@@ -145,7 +145,14 @@ and add the following before "location /beam/ {":
 To test locally, run with the DEV profile, to put it on port 8090:
 
 
-    -Dspring.profiles.active=DEV 
+    -Dspring.profiles.active=DEV
+	
+
+Use journalctl to look at systemd logs for panopsetweb.
+
+
+    sudo journalctl --unit=panopsetweb
+	sudo journalctl --vacuum-time=1h
 
 
 ## Platform specific deployment
