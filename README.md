@@ -17,6 +17,7 @@ The base directory for this project contains these scripts:
 
 ## Manuals
 
+
 Flywheel:
 
 * [Samples](docs/uses/README.md).
@@ -27,6 +28,7 @@ Build desktop applications from source:
 
 Maintainers:
 
+* [Workstation Configuration Manual](docs/workstation.md).
 * [Website Deployment Manual](docs/deploy.md).
 * [Continuous Integration Manual](docs/ci.md).
 * [Dependencies](docs/deps.md).

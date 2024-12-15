@@ -62,5 +62,8 @@ Add the following lines, replacing anything in &lt;&gt; brackets, with your valu
     HostName <your host ip address>
     User root
     IdentityFile ~/.ssh/<your private key file>
-
+    Host github
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/<your private key file>
 

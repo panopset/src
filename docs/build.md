@@ -25,6 +25,12 @@ To clone this project:
     git clone https://github.com/panopset/src
 
 
+... or, if you have ssh [configured](workstation.md) for github:
+
+
+    git clone github:/panopset/src
+
+
 To set up your git environment:
 
 
@@ -45,7 +51,14 @@ For Debian Linux systems:
     ./baldeb.sh
 
 
-You can use [sdkman](https://sdkman.io/) to install the requirements.
+You can use [sdkman](https://sdkman.io/) to install the latest adoptium Java, and
+apt for your Linux specific applications:
+
+    sdk list java
+    sdk install java 23.0.1-tem
+    sdk install gradle
+    sdk install maven
+    apt install -y git vim
 
 # Linux RPM
 
