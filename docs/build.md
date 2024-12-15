@@ -58,7 +58,7 @@ apt for your Linux specific applications:
     sdk install java 23.0.1-tem
     sdk install gradle
     sdk install maven
-    apt install -y git vim
+    apt install -y git gitk vim
 
 # Linux RPM
 
@@ -68,7 +68,7 @@ For RedHat/Fedora Linux systems:
 
 Requirements may be installed with the yum command:
 
-    sudo yum -y install java maven rpm-build vim gitk
+    sudo yum -y install java maven rpm-build vim git gitk
     
 For current Java and Maven, [sdkman](https://sdkman.io/) will help.
 
