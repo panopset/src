@@ -92,6 +92,10 @@ object Stringop {
         return str.uppercase(Locale.getDefault()).replace(" ".toRegex(), "_")
     }
 
+    fun allcaps(str: String?): String {
+        return str?.uppercase() ?: ""
+    }
+
     fun capitalize(str: String?): String {
         return if (str != null && str.length > 0) {
             if (str.length > 1) {

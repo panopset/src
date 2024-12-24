@@ -21,7 +21,7 @@ public class Warning {
         c.line80("Please consider installing Panopset applications as platform applications,");
         c.line80("see panopset.com/downloads.html.");
         c.line80b();
-        c.line80("Because you are running this from a one-jar, you'll also get a JavaFX ");
+        c.line80("Because you are running this from a one-jar, you may also get a JavaFX ");
         c.line80("unnamed module warning, which you may also ignore for now.");
         c.line80b();
         c.line80();
