@@ -14,13 +14,9 @@ If you just want the application, see [Desktop Applications Build](build.md).
 
 ## Deployment
 
-Once you have a server set up, you'll want a domain name.
-
-* [Domain](domain.md)
-
+Once you have a server set up, you'll want a [domain](domains.squarspace.com) name.
 
 ssh to your server, with this script
-
 
     ./s.sh
 
