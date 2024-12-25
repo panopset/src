@@ -14,7 +14,7 @@ If you just want the application, see [Desktop Applications Build](build.md).
 
 ## Deployment
 
-Once you have a server set up, you'll want a [domain](domains.squarspace.com) name.
+Once you have a server set up, you'll want a [domain](https://domains.squarespace.com) name.
 
 ssh to your server, with this script
 
