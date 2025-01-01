@@ -23,9 +23,7 @@ We need to
 * Optionally abstract the script, using parameters obtained from a bootstrap file.
 * Place the script on the remote system.
 * Execute it.
-
-
-
-
-    -- output executables in fw --help
-    -- finish this.
+ 
+  
+    cd docs/tutorials/fas21/scripts
+    ./createServerScripts.sh

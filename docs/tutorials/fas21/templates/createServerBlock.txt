@@ -1,7 +1,4 @@
-${@p your_domain}fas21.com${@q}
 ${@f createServerBlock.sh}sudo mkdir -p /var/www/${your_domain}/html
+sudo chown -R $USER:$USER /var/www/${your_domain}/html
+sudo chmod -R 755 /var/www/${your_domain}
 
-${user.home}
-
-
-${GDMSESSION}
