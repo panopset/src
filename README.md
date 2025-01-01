@@ -32,3 +32,7 @@ Maintainers:
 * [Website Deployment Manual](docs/deploy.md).
 * [Continuous Integration Manual](docs/ci.md).
 * [Dependencies](docs/deps.md).
+
+Tutorial:
+
+* [fas21](docs/tutorials/fas21/README.md)

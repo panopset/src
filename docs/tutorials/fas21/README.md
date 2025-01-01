@@ -1,6 +1,8 @@
+[home](../../../README.md)
+
 # Panopset Tutorial: fas21.com
 
-Panopset blackjack was split out from Panopset, because
+Panopset Blackjack was split out from Panopset, because
 it is unrelated to the productivity oriented 
 applications associated with Panopset, such as flywheel
 and skyscraper. 
@@ -9,7 +11,11 @@ Also, there is no societal value to gambling. I like to play
 blackjack once in a while, and it never ceases to amaze me
 how people throw away their money on poor play. If you are going
 to sit down at a blackjack table, at least memorize the basic
-strategy. Fas21 (formerly Panopset Blackjack) helps you do just that. 
+strategy. Fas21 (formerly Panopset Blackjack) helps you learn
+the basic strategy, as well as practice counting cards using
+a variety of strategies, which can be simulated at tens of thousands
+of hands per second (t key).
+
 I'm a compulsive degenerate gambler and I wrote fas21 because
 none of the other blackjack apps had a fast deal feature
 (irrelevant to this tutorial, but go to 
