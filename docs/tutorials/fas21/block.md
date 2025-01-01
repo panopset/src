@@ -1,6 +1,6 @@
-`[home](README.md)
+[home](README.md)
 
-`# Block
+# Block
 
 Just as nobody builds a house without a blueprint,
 you shouldn't build a website without being able to
