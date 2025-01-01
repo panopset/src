@@ -1,7 +1,6 @@
 package com.panopset.flywheel
 
 import com.panopset.compat.Stringop.getEol
-import java.io.IOException
 import java.io.StringWriter
 import java.util.*
 
@@ -17,6 +16,7 @@ class NamedMap<K, V> (
     private val name: String,
     val map: MutableMap<K, V> = Collections.synchronizedMap(HashMap())
 ) {
+
     fun put(key: K, value: V) {
         keyReporter.reportDefinedKey(name, key.toString())
         map[key] = value

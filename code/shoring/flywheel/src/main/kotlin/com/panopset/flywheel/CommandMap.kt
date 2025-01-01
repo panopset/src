@@ -17,7 +17,7 @@ class CommandMap (
         }
         val props  = Fileop.loadProps( mapFile)
         for (key in props.propertyNames()) {
-            template.flywheel.topMap[key.toString()] = props.getProperty(key.toString())
+            template.flywheel.put(key.toString(), props.getProperty(key.toString()))
         }
         super.resolve(sw)
     }

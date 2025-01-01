@@ -45,6 +45,8 @@ All build scripts are in the code folder:
 
 # Linux DEB
 
+Panopset recommends Linux Mint as a good primary dev PC.
+
 For Debian Linux systems:
 
 
@@ -58,7 +60,9 @@ apt for your Linux specific applications:
     sdk install java 23.0.1-tem
     sdk install gradle
     sdk install maven
-    apt install -y git gitk vim cpu-checker qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils sc
+    apt install -y git gitk vim nginx cpu-checker qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils sc
+    sudo chown -R $USER:$USER /var/www
+    mkdir /var/www/html/downloads
 
 Note that after cpu-checker, in the last line above, Android kvm requirements are also included.
 

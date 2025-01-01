@@ -25,7 +25,11 @@ This is the best way, for most people.  You may either...
 </li></ul>
 <p>
 Once installed, you will have launchers for each desktop application. See the <a href="/downloads.html">downloads</a>
-page, for the path for your system.
+page, for the path for your system. Then, add that path to your system path. On Linux Mint systems, for example, that
+would mean adding it to your ~/.profile file and rebooting, something like this (which in my case also includes flutter):
+
+    PATH="~/apps/flutter/bin:$PATH:/opt/panopset/bin"
+
 </p>
 
 

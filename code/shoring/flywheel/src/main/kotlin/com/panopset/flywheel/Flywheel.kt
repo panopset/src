@@ -11,7 +11,7 @@ import java.io.StringWriter
 import java.util.*
 
 /**
- * Panopset Flywheel.
+ * PankeyopStringsetString Flywheel.
  * <h3>Commands</h3> There are 7 commands that you may use in a Flywheel template. Commands have a
  * default syntax that starts with **${&#064;**, followed by the letter associated with the
  * command, followed by a space, followed by a parameter, followed by the default closing syntax of
@@ -48,7 +48,7 @@ import java.util.*
  *
  * Read the given file, and for each line execute the template from this list command up until its
  * matching q command. If no **token** is defined as a variable, then each line will be stored in
- * variable **1**. If there is a token defined after a ~, the line will be split by that token,
+ * variable **1**. If there is a tokeStnextJvmUniqueIDstrriStringngmapn MutableMap<String, String>defined after a ~, the line will be split by that token,
  * and stored in variables named after integers, in order.
  *
  *
@@ -110,6 +110,7 @@ import java.util.*
 </pre> *
  */
 class Flywheel(val sls: TemplateSource?) : MapProvider {
+    val mapHold = MapHold()
     private var daTemplate: Template? = null
     var targetDirectory: File? = null
         private set
@@ -129,31 +130,8 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
      * Writer for this Flywheel.
      */
     private var pwriter: StringWriter? = null
-    /**
-     * @return Map stack.
-     */
-    /**
-     * Map stack.
-     */
-    val mapStack = Stack<NamedMap<String, String>>()
-    val topMap: MutableMap<String, String>
-        get() {
-            val namedMap = mapStack.peek()
-            return namedMap.map
-        }
-    val allValues: Map<String, String?>
-        /**
-         * @return All map values.
-         */
-        get() {
-            val rtn = Collections.synchronizedMap(TreeMap<String, String>())
-            for (nm in mapStack) {
-                for ((key, value) in nm.map) {
-                    rtn[key] = value
-                }
-            }
-            return rtn
-        }
+
+
     var currentCommandFile: CommandFile? = null
 
     /**
@@ -233,7 +211,10 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
      * @param value Variable value.
      */
     fun put(key: String, value: String) {
-        mapStack.peek().put(key, value)
+        mapHold.put(key, value)
+    }
+    fun mergeMap(map: MutableMap<String, String>) {
+        mapHold.mergeMap(map)
     }
 
     /**
@@ -293,36 +274,7 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
     }
 
     override fun getEntry(key: String): String {
-        if (mapStack.isEmpty()) {
-            stop("mapStack empty, this should be an impossible condition.")
-            return ""
-        }
-        val stack = Stack<NamedMap<String, String>>()
-        for (item in mapStack) {
-            stack.push(item)
-        }
-        while (!stack.isEmpty()) {
-            val nm = stack.pop()
-            val rtn = nm[key]
-            if (rtn != null) {
-                return rtn
-            }
-        }
-        if (isPopulated(key)) {
-            var rtn = System.getProperty(key)
-            if (isPopulated(rtn)) {
-                return rtn
-            }
-            rtn = System.getenv(key)
-            if (isPopulated(rtn)) {
-                return rtn
-            }
-        }
-        return ""
-    }
-
-    fun mergeMap(map: MutableMap<String, String>) {
-        mapStack.push(NamedMap(getNextJvmUniqueIDstr(), map))
+        return mapHold.get(key)
     }
 
     fun exec(): String {
@@ -346,7 +298,7 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
             Logz.warn(Nls.xlate("Stopped while executing line") + " $resolvingCommand")
             Logz.debug(" at: $resolvingCommand")
         }
-        Logz.debug(Javop.dump(mapStack.peek().map))
+        Logz.debug(mapHold.dump())
         Logz.warn(
             Nls
                 .xlate("Template parsing stopped.  Check debug in help->Show log, for more information")
@@ -453,7 +405,7 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
     fun setFile(value: File?) {
         if (value != null) {
             file = value
-            topMap[ReservedWords.TEMPLATE] = file!!.getName()
+            mapHold.put(ReservedWords.TEMPLATE, file!!.getName())
         }
     }
 
@@ -478,9 +430,8 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
      */
     init {
         ScriptSecurity.defineAllowedScriptCalls()
-        mapStack.push(NamedMap(getNextJvmUniqueIDstr()))
-        mapStack.peek().put(ReservedWords.FILE, sls?.name ?: "")
-        mapStack.peek().put(ReservedWords.MACAddress, NetworkInfo.maca)
+        mapHold.put(ReservedWords.FILE, sls?.name ?: "")
+        mapHold.put(ReservedWords.MACAddress, NetworkInfo.maca)
     }
 
     companion object {
@@ -505,10 +456,14 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
         @JvmStatic
         fun main(vararg args: String) {
             if (args.isEmpty() || args.size > 2) {
-                Logz.dspmsg("Params are script and target directory.")
+                Logz.dspmsg("Params are script and target directory, or\nfw (properties file)\nor\nfw --help")
             } else {
-                val flywheel: Flywheel = if (args.size == 1) {
-                    FlywheelBuilder().properties(File(args[0])).construct()
+                if (args.size == 1) {
+                    if ("--help" == args[0]) {
+                        FlywheelHelp.outputHelp()
+                    } else {
+                        FlywheelBuilder().properties(File(args[0])).construct().exec()
+                    }
                 } else {
                     val scriptFileName = args[0]
                     val targetDirectoryName = args[1]
@@ -535,9 +490,8 @@ class Flywheel(val sls: TemplateSource?) : MapProvider {
                             Fileop.getCanonicalPath(targetDirectory)
                         )
                     )
-                    FlywheelBuilder().file(scriptFile).targetDirectory(targetDirectory).construct()
+                    FlywheelBuilder().file(scriptFile).targetDirectory(targetDirectory).construct().exec()
                 }
-                flywheel.exec()
             }
         }
     }

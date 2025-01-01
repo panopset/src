@@ -1,0 +1,7 @@
+${@p your_domain}fas21.com${@q}
+${@f createServerBlock.sh}sudo mkdir -p /var/www/${your_domain}/html
+
+${user.home}
+
+
+${GDMSESSION}

@@ -87,18 +87,15 @@ class CommandList(
         }
         val tokens = template.flywheel.getEntry(ReservedWords.TOKENS)
         val splits = template.flywheel.getEntry(ReservedWords.SPLITS)
-        template
-            .flywheel
-            .mapStack
-            .push(
-                NamedMap(String.format("key_%d_%s", Stringop.getNextJvmUniqueID(), getParams()))
-            )
+
+        template.flywheel.mapHold.pushNewMapStack("key_${Stringop.getNextJvmUniqueID()}_${getParams()}")
+
         for (s in lines) {
             if (!Stringop.isPopulated(s)) {
                 continue
             }
             Logz.debug(String.format("CommandList line:%s", s))
-            TokenVariableFactory().addTokensToMap(template.flywheel.topMap, s, tokens, template)
+            TokenVariableFactory().addTokensToMap(template.flywheel.mapHold.mapStack.peek().map, s, tokens, template)
             if (Stringop.isPopulated(splits)) {
                 val st = StringTokenizer(splits, ",")
                 var count = 1
@@ -125,7 +122,7 @@ class CommandList(
             }
             resolveMatchedCommands(sw)
         }
-        template.flywheel.mapStack.pop()
+        template.flywheel.mapHold.mapStack.pop()
     }
 
     /**
