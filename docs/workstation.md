@@ -21,12 +21,17 @@ Place the following in ~/Documents/panopset/dev.properties:
 
 
 
+    SITE_FAS21=<Optional, if you are following the fas21.com tutorial>
     SITE_DN=<your domain>
     SITE_NAME=<your .ssh/config alias, for that domain>
     SITE_USR=<your server user name>
     WKSN_USR=<your workstation user name>
     SITE_PWD=<your server password>
     WKSN_PWD=<your workstation password>
+
+
+
+SITE_FAS21 is for the fas21.com [tutorial](../docs/tutorials/fas21/README.md), you may replace this with your own.
 
 
 

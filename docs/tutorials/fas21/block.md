@@ -18,12 +18,16 @@ that leaves you in a lurch, if your site ever has to be re-built.
 
 We need to
 
-* Create a script.
-* Document the script.
+* Create and document some scripts.
 * Optionally abstract the script, using parameters obtained from a bootstrap file.
-* Place the script on the remote system.
+  * Added SITE_FAS21 to ~/Documents/panopset/dev.properties.
+* Structure the scripts so that they may be run all at once or pieces at a time.
 * Execute it.
- 
-  
+
+Dev system:
+
     cd docs/tutorials/fas21/scripts
-    ./createServerScripts.sh
+    ./deploy.sh
+
+
+

@@ -13,3 +13,7 @@ domain name:
 | @             | A     | 127.0.0.1 |
 | fas21.com     | A     | 127.0.0.1 |
 | www.fas21.com | CNAME | fas21.com |
+
+Once you can ping your domain (if I have to explain ping, I'm amazed you 
+are reading this, but hats off for diving right in I guess) you're ready
+to set up your server [block](block.md).
