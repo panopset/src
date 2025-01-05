@@ -32,6 +32,7 @@ Maintainers:
 * [Website Deployment Manual](docs/deploy.md).
 * [Continuous Integration Manual](docs/ci.md).
 * [Dependencies](docs/deps.md).
+* [Flutter](docs/flutter/README.md)
 
 Tutorial:
 

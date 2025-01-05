@@ -48,3 +48,32 @@ DOCN stockholder, you may use your own vendors.)
 * First, you'll need a [server](server.md).
 * Next, you'll need a [domain](domain.md).
 * Next, you'll set up your server [block](block.md).
+
+At this point we have a letsencrypt secured server block attached to fas21.com.
+
+Next we'll need some content. For this, 
+
+* Install [flutter](../../flutter/README.md)
+
+Then
+
+
+    cd docs/tutorials/fas21/flutter
+    flutter create blackjack
+
+
+Follow any instructions given from executing the flutter create, regarding
+gradle/java compatibility.
+
+
+    cd blackjack
+    flutter analyze
+
+
+Make sure you see "No issues found!", before continuing.
+
+
+    flutter build web --base-href web
+    cd ../../scripts
+    ./deployFlutter.sh
+

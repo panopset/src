@@ -24,6 +24,13 @@ We need to
 * Structure the scripts so that they may be run all at once or pieces at a time.
 * Execute it.
 
+The deploy.sh script assumes an existing server which needs a new server block.
+
+If you are doing this on a brand new server, see the 
+[Panopset Website Deployment Manual](../../deploy.md).
+
+(TODO: Abstract out the initial server setup steps.)
+
 Dev system:
 
     cd docs/tutorials/fas21/scripts

@@ -1,5 +1,4 @@
 . ./init.sh
-HTML_DIR=/var/www/${SITE_FAS21}/html/
 ssh $SITE_NAME "mkdir -p ${HTML_DIR}"
 scp -p temp/index.html $SITE_USR@$SITE_NAME:$HTML_DIR
 scp -p temp/${SITE_FAS21} $SITE_USR@$SITE_NAME:/etc/nginx/sites-available/

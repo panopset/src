@@ -1,6 +1,6 @@
 [home](../../README.md)
 
-# Panopset Mobile Applications Build Manual
+# Flutter Installation
 
 From [Flutter](https://docs.flutter.dev/get-started/install/linux/android):
 
