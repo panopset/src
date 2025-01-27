@@ -1,4 +1,4 @@
-. ./checkProps4Linux.sh
+. ./checkProps4LinuxDEB.sh
 
 # Create the crtusr.sh command for your new server
 rm -rf temp

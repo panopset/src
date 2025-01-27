@@ -28,10 +28,11 @@ Then, go into target and install it using the .deb file you see there.
 
 Make sure your $user.home/Documents/panopset/dev.properties is correct, 
 
-    ./e.sh
+    ./editDevProps.sh
 
 then:
 
+    cd code
     ./s.sh
 
 to verify the server is running.

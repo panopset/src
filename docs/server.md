@@ -15,7 +15,7 @@ Adjust the instructions, as needed, for your hardware.
 
 ## Steps
 
-ssh to your server, with this script
+ssh to your server:
 
     cd code
     ./s.sh
