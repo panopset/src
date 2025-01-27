@@ -1,6 +1,6 @@
 [home](../README.md)
 
-# Panopset Workstation Configuration Manuel
+# Panopset Workstation Configuration Manual
 
 ## Requirements
 
@@ -14,7 +14,7 @@ You will need an external configuration file, to hold your deployment specifics.
 Edit/verify your ~/Documents/panopset/dev.properties file:
 
 
-    ./e.sh
+    ./editDevProps.sh
 
 
 Place the following in ~/Documents/panopset/dev.properties:
@@ -71,4 +71,7 @@ Add the following lines, replacing anything in &lt;&gt; brackets, with your valu
     HostName github.com
     User git
     IdentityFile ~/.ssh/<your private key file>
+
+
+Next, [Server Deployment](./server.md)
 

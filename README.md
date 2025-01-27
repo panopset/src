@@ -9,10 +9,10 @@
 The base directory for this project contains these scripts:
 
 
-| Script | Purpose                                                                |
-|--------|------------------------------------------------------------------------|
-| ./u.sh | Contains the git commands to update the current branch of the project. |
-| ./p.sh | Edit the ~/Documents/panopset/dev.properties file, using vim.          |
+| Script            | Purpose                                                                |
+|-------------------|------------------------------------------------------------------------|
+| ./updateGit.sh    | Contains the git commands to update the current branch of the project. |
+| ./editDevProps.sh | Edit the ~/Documents/panopset/dev.properties file, using vim.          |
 
 
 ## Manuals
@@ -29,6 +29,7 @@ Build desktop applications from source:
 Maintainers:
 
 * [Workstation Configuration Manual](docs/workstation.md).
+* [Server Deployment Manual](docs/server.md).
 * [Website Deployment Manual](docs/deploy.md).
 * [Continuous Integration Manual](docs/ci.md).
 * [Dependencies](docs/deps.md).

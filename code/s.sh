@@ -1,3 +1,3 @@
 #!/bin/bash
-. ./checkProps4Linux.sh
+. ./checkProps4LinuxDEB.sh
 ssh $SITE_NAME
