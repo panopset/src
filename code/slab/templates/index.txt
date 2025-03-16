@@ -1,17 +1,5 @@
 ${previewBlurb}
 
-<!--
-<div>
-<header><center>
-<p>&nbsp;</p>
-<img src="/images/freedom.png" alt="Freedom">
-<p>&nbsp;</p>
- Time to vote! <a href="https://kamalaharris.com/">Kamala Harris</a> for President.
-</center></header>
-<p>&nbsp;</p>
-</div>
--->
-
 <div class="inset">
 
 <p>Keep it real with</p>

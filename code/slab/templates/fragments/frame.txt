@@ -20,7 +20,7 @@
   <ul class="pad0">
    <li id="bnr0">
     <a href="./index.html">
-     <img src="/images/panopset.png" alt="PANOPSET">
+     <img src="/images/panopset.svg" height="32" width="256" alt="PANOPSET">
     </a>
    </li>
    <li><div class="menuSeparator">&nbsp;</div></li>
