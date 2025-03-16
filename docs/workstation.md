@@ -21,13 +21,18 @@ Place the following in ~/Documents/panopset/dev.properties:
 
 
 
-    SITE_FAS21=<Optional, if you are following the fas21.com tutorial>
-    SITE_DN=<your domain>
-    SITE_NAME=<your .ssh/config alias, for that domain>
+    SITE_FAS21=<fas21.com site deployment domain>
+    SITE_DN=<panopset.com site deployment domain>
+    SITE_NAME=<your .ssh/config alias, for the server hosting the above domains>
     SITE_USR=<your server user name>
     WKSN_USR=<your workstation user name>
     SITE_PWD=<your server password>
     WKSN_PWD=<your workstation password>
+    REDS_USR=<Redis user>
+    REDS_PWD=<Redis password>
+    REDS_HST=<Redis server>
+    REDS_PRT=<Redis port>
+
 
 
 
